@@ -51,6 +51,28 @@
               <text class="m-ui-component-card__link">查看详情 →</text>
             </view>
           </view>
+
+          <view class="m-ui-component-card" @click="navigateTo('/examples/pages/layout-demo')">
+            <view class="m-ui-component-card__header">
+              <h3 class="m-ui-component-card__title">Layout 布局</h3>
+            </view>
+            <view class="m-ui-component-card__content">
+              <p class="m-ui-component-card__desc">栅格布局组件，支持 24 分栏和响应式设计。</p>
+              <view class="m-ui-component-card__preview">
+                <view class="demo-layout-preview">
+                  <view class="demo-layout-preview__row">
+                    <view class="demo-layout-preview__col demo-layout-preview__col--span6"></view>
+                    <view class="demo-layout-preview__col demo-layout-preview__col--span6"></view>
+                    <view class="demo-layout-preview__col demo-layout-preview__col--span6"></view>
+                    <view class="demo-layout-preview__col demo-layout-preview__col--span6"></view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="m-ui-component-card__footer">
+              <text class="m-ui-component-card__link">查看详情 →</text>
+            </view>
+          </view>
         </div>
       </view>
     </view>
@@ -322,5 +344,25 @@ function scrollTo(id) {
   flex: none !important;
   width: auto !important;
   min-width: auto !important;
+}
+
+.demo-layout-preview {
+  width: 100%;
+  padding: 8px;
+
+  &__row {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__col {
+    height: 24px;
+    background-color: #4D80F0;
+    border-radius: 2px;
+
+    &--span6 {
+      flex: 1;
+    }
+  }
 }
 </style>

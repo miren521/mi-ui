@@ -17,6 +17,12 @@
       "style": {
         "navigationBarTitleText": "Button 按钮"
       }
+    },
+    {
+      "path": "examples/pages/layout-demo",
+      "style": {
+        "navigationBarTitleText": "Layout 布局"
+      }
     }
   ],
   "globalStyle": {

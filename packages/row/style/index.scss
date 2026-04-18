@@ -1,0 +1,50 @@
+// 栅格布局 - 行样式
+.m-row {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+  
+  // 主轴对齐方式
+  &--justify-start {
+    justify-content: flex-start;
+  }
+  
+  &--justify-end {
+    justify-content: flex-end;
+  }
+  
+  &--justify-center {
+    justify-content: center;
+  }
+  
+  &--justify-space-around {
+    justify-content: space-around;
+  }
+  
+  &--justify-space-between {
+    justify-content: space-between;
+  }
+  
+  &--justify-space-evenly {
+    justify-content: space-evenly;
+  }
+  
+  // 交叉轴对齐方式
+  &--align-top {
+    align-items: flex-start;
+  }
+  
+  &--align-middle {
+    align-items: center;
+  }
+  
+  &--align-bottom {
+    align-items: flex-end;
+  }
+}
