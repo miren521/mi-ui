@@ -1,0 +1,29 @@
+{
+	"pages": [
+		{
+			"path": "src/pages/index",
+			"style": {
+				"navigationBarTitleText": "M-UI"
+			}
+		},
+		{
+			"path": "src/pages/demo/icon-demo",
+			"style": {
+				"navigationBarTitleText": "Icon 图标"
+			}
+		},
+		{
+			"path": "examples/pages/button-demo",
+			"style": {
+				"navigationBarTitleText": "Button 按钮"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "M-UI",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}

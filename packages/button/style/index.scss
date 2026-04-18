@@ -1,0 +1,268 @@
+// CSS 变量定义
+:root {
+	// 按钮颜色
+	--m-button-primary-bg-color: #4d80f0;
+	--m-button-primary-color: #ffffff;
+	--m-button-success-bg-color: #34d19d;
+	--m-button-success-color: #ffffff;
+	--m-button-warning-bg-color: #f0883a;
+	--m-button-warning-color: #ffffff;
+	--m-button-danger-bg-color: #fa4350;
+	--m-button-danger-color: #ffffff;
+	--m-button-info-bg-color: #f2f3f5;
+	--m-button-info-color: #333333;
+
+	// 按钮尺寸
+	--m-button-large-height: 44px;
+	--m-button-large-padding: 0 20px;
+	--m-button-large-radius: 8px;
+	--m-button-large-font-size: 16px;
+
+	--m-button-medium-height: 36px;
+	--m-button-medium-padding: 0 16px;
+	--m-button-medium-radius: 6px;
+	--m-button-medium-font-size: 14px;
+
+	--m-button-small-height: 28px;
+	--m-button-small-padding: 0 12px;
+	--m-button-small-radius: 4px;
+	--m-button-small-font-size: 12px;
+
+	// 其他
+	--m-button-disabled-opacity: 0.6;
+	--m-button-plain-bg-color: transparent;
+
+	// 禁用状态颜色 - Primary
+	--m-button-primary-disabled-bg-color: #a0cfff;
+	--m-button-primary-disabled-color: #ffffff;
+
+	// 禁用状态颜色 - Success
+	--m-button-success-disabled-bg-color: #b8e6b8;
+	--m-button-success-disabled-color: #ffffff;
+
+	// 禁用状态颜色 - Warning
+	--m-button-warning-disabled-bg-color: #ffd699;
+	--m-button-warning-disabled-color: #ffffff;
+
+	// 禁用状态颜色 - Danger
+	--m-button-danger-disabled-bg-color: #ffb3b3;
+	--m-button-danger-disabled-color: #ffffff;
+
+	// 禁用状态颜色 - Info
+	--m-button-info-disabled-bg-color: #e0e0e0;
+	--m-button-info-disabled-color: #999999;
+
+	// 朴素按钮禁用状态颜色
+	--m-button-primary-plain-disabled-color: #a0cfff;
+	--m-button-primary-plain-disabled-border-color: #a0cfff;
+	--m-button-success-plain-disabled-color: #b8e6b8;
+	--m-button-success-plain-disabled-border-color: #b8e6b8;
+	--m-button-warning-plain-disabled-color: #ffd699;
+	--m-button-warning-plain-disabled-border-color: #ffd699;
+	--m-button-danger-plain-disabled-color: #ffb3b3;
+	--m-button-danger-plain-disabled-border-color: #ffb3b3;
+	--m-button-info-plain-disabled-color: #c8c8c8;
+	--m-button-info-plain-disabled-border-color: #c8c8c8;
+}
+
+.m-button {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+	-webkit-appearance: none;
+	border: none;
+	border-radius: var(--m-button-medium-radius);
+	font-weight: normal;
+	transition: opacity 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s;
+	user-select: none;
+	box-sizing: border-box;
+
+	&__content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+	}
+
+	&__loading {
+		margin-right: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 1em;
+		height: 1em;
+		flex-shrink: 0;
+		animation: m-rotate 1s linear infinite;
+	}
+
+	&__text {
+		white-space: nowrap;
+	}
+
+	// 类型样式
+	&--primary {
+		background-color: var(--m-button-primary-bg-color, #4d80f0);
+		color: var(--m-button-primary-color, #ffffff);
+	}
+
+	&--success {
+		background-color: var(--m-button-success-bg-color, #34d19d);
+		color: var(--m-button-success-color, #ffffff);
+	}
+
+	&--warning {
+		background-color: var(--m-button-warning-bg-color, #f0883a);
+		color: var(--m-button-warning-color, #ffffff);
+	}
+
+	&--danger {
+		background-color: var(--m-button-danger-bg-color, #fa4350);
+		color: var(--m-button-danger-color, #ffffff);
+	}
+
+	&--info {
+		background-color: var(--m-button-info-bg-color, #f2f3f5);
+		color: var(--m-button-info-color, #333333);
+	}
+
+	// 尺寸样式
+	&--large {
+		height: var(--m-button-large-height, 44px);
+		padding: var(--m-button-large-padding, 0 20px);
+		border-radius: var(--m-button-large-radius, 8px);
+		font-size: var(--m-button-large-font-size, 16px);
+
+
+	}
+
+	&--medium {
+		height: var(--m-button-medium-height, 36px);
+		padding: var(--m-button-medium-padding, 0 16px);
+		border-radius: var(--m-button-medium-radius, 6px);
+		font-size: var(--m-button-medium-font-size, 14px);
+
+
+	}
+
+	&--small {
+		height: var(--m-button-small-height, 28px);
+		padding: var(--m-button-small-padding, 0 12px);
+		border-radius: var(--m-button-small-radius, 4px);
+		font-size: var(--m-button-small-font-size, 12px);
+
+
+	}
+
+	// 朴素按钮
+	&--plain {
+		background-color: var(--m-button-plain-bg-color, transparent);
+		border: 1px solid currentColor;
+
+		&.m-button--primary {
+			color: var(--m-button-primary-bg-color, #4d80f0);
+		}
+
+		&.m-button--success {
+			color: var(--m-button-success-bg-color, #34d19d);
+		}
+
+		&.m-button--warning {
+			color: var(--m-button-warning-bg-color, #f0883a);
+		}
+
+		&.m-button--danger {
+			color: var(--m-button-danger-bg-color, #fa4350);
+		}
+
+		&.m-button--info {
+			color: var(--m-button-info-color, #333333);
+			border-color: #c8c8c8;
+		}
+	}
+
+	// 圆角按钮
+	&--round {
+		border-radius: 9999px;
+	}
+
+	// 禁用状态
+	&--disabled {
+		cursor: default;
+
+		&.m-button--primary {
+			background-color: var(--m-button-primary-disabled-bg-color, #a0cfff);
+			color: var(--m-button-primary-disabled-color, #ffffff);
+		}
+
+		&.m-button--success {
+			background-color: var(--m-button-success-disabled-bg-color, #b8e6b8);
+			color: var(--m-button-success-disabled-color, #ffffff);
+		}
+
+		&.m-button--warning {
+			background-color: var(--m-button-warning-disabled-bg-color, #ffd699);
+			color: var(--m-button-warning-disabled-color, #ffffff);
+		}
+
+		&.m-button--danger {
+			background-color: var(--m-button-danger-disabled-bg-color, #ffb3b3);
+			color: var(--m-button-danger-disabled-color, #ffffff);
+		}
+
+		&.m-button--info {
+			background-color: var(--m-button-info-disabled-bg-color, #e0e0e0);
+			color: var(--m-button-info-disabled-color, #999999);
+		}
+	}
+
+	// 朴素按钮禁用状态
+	&--plain.m-button--disabled {
+		background-color: transparent;
+
+		&.m-button--primary {
+			color: var(--m-button-primary-plain-disabled-color, #a0cfff);
+			border-color: var(--m-button-primary-plain-disabled-border-color, #a0cfff);
+		}
+
+		&.m-button--success {
+			color: var(--m-button-success-plain-disabled-color, #b8e6b8);
+			border-color: var(--m-button-success-plain-disabled-border-color, #b8e6b8);
+		}
+
+		&.m-button--warning {
+			color: var(--m-button-warning-plain-disabled-color, #ffd699);
+			border-color: var(--m-button-warning-plain-disabled-border-color, #ffd699);
+		}
+
+		&.m-button--danger {
+			color: var(--m-button-danger-plain-disabled-color, #ffb3b3);
+			border-color: var(--m-button-danger-plain-disabled-border-color, #ffb3b3);
+		}
+
+		&.m-button--info {
+			color: var(--m-button-info-plain-disabled-color, #c8c8c8);
+			border-color: var(--m-button-info-plain-disabled-border-color, #c8c8c8);
+		}
+	}
+
+	// 加载状态
+	&--loading {
+		cursor: not-allowed;
+	}
+
+	// 点击效果
+	&:not(.m-button--disabled):not(.m-button--loading):active {
+		opacity: 0.8;
+	}
+}
+
+@keyframes m-rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
