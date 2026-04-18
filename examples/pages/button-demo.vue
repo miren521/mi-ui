@@ -35,9 +35,12 @@
 			<!-- 圆角按钮 -->
 			<m-demo-block title="圆角按钮" desc="使用 round 属性创建圆角按钮">
 				<view class="demo-button-row">
-					<m-button type="primary" round class="fit-content-btn">圆角主要按钮</m-button>
-					<m-button type="success" round class="fit-content-btn">圆角成功按钮</m-button>
-					<m-button type="warning" round class="fit-content-btn">圆角警告按钮</m-button>
+					<m-button type="primary" round class="fit-content-btn">主要按钮</m-button>
+					<m-button type="success" round class="fit-content-btn">成功按钮</m-button>
+					<m-button type="warning" round class="fit-content-btn">警告按钮</m-button>
+					<m-button type="primary" plain round class="fit-content-btn">主要按钮</m-button>
+					<m-button type="success" plain round class="fit-content-btn">成功按钮</m-button>
+					<m-button type="warning" plain round class="fit-content-btn">警告按钮</m-button>
 				</view>
 			</m-demo-block>
 
@@ -87,7 +90,7 @@
 </template>
 
 <script setup>
-import MButton from '../../packages/button/index.js';
+import MButton from '@/packages/button/index.js';
 import { ref, onMounted } from 'vue';
 
 // 加载状态

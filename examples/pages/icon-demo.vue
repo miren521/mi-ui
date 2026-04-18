@@ -28,8 +28,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import MIcon from '../../../packages/icon/index.js'
-import MDemoBlock from '../../../src/components/m-demo-block/index.js'
+import MIcon from '@/packages/icon/index.js'
 
 const searchText = ref('')
 

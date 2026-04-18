@@ -78,6 +78,8 @@
 	transition: opacity 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s;
 	user-select: none;
 	box-sizing: border-box;
+	// border: 1px solid transparent; // 始终占位
+	box-sizing: border-box;
 
 	&__content {
 		display: flex;
@@ -133,8 +135,6 @@
 		padding: var(--m-button-large-padding, 0 20px);
 		border-radius: var(--m-button-large-radius, 8px);
 		font-size: var(--m-button-large-font-size, 16px);
-
-
 	}
 
 	&--medium {
@@ -142,8 +142,6 @@
 		padding: var(--m-button-medium-padding, 0 16px);
 		border-radius: var(--m-button-medium-radius, 6px);
 		font-size: var(--m-button-medium-font-size, 14px);
-
-
 	}
 
 	&--small {
@@ -151,14 +149,14 @@
 		padding: var(--m-button-small-padding, 0 12px);
 		border-radius: var(--m-button-small-radius, 4px);
 		font-size: var(--m-button-small-font-size, 12px);
-
-
 	}
 
 	// 朴素按钮
 	&--plain {
 		background-color: var(--m-button-plain-bg-color, transparent);
-		border: 1px solid currentColor;
+		// border: 1px solid currentColor;
+		// 使用 inset，让阴影向内
+		box-shadow: inset 0 0 0 1px currentColor;
 
 		&.m-button--primary {
 			color: var(--m-button-primary-bg-color, #4d80f0);

@@ -3,7 +3,7 @@ import App from './App'
 // #ifndef VUE3
 import Vue from 'vue'
 import './uni.promisify.adaptor'
-import MDemoBlock from './src/components/m-demo-block/index.js'
+import MDemoBlock from '@/components/m-demo-block/index.js'
 Vue.config.productionTip = false
 Vue.component('m-demo-block', MDemoBlock)
 App.mpType = 'app'
@@ -15,7 +15,7 @@ app.$mount()
 
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
-import MDemoBlock from './src/components/m-demo-block/index.js'
+import MDemoBlock from '@/components/m-demo-block/index.js'
 export function createApp() {
   const app = createSSRApp(App)
   app.component('m-demo-block', MDemoBlock)
