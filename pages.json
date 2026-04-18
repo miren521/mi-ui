@@ -23,6 +23,12 @@
       "style": {
         "navigationBarTitleText": "Layout 布局"
       }
+    },
+    {
+      "path": "examples/pages/popup-demo",
+      "style": {
+        "navigationBarTitleText": "Popup 弹出层"
+      }
     }
   ],
   "globalStyle": {

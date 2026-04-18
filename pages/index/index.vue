@@ -73,6 +73,18 @@
               <text class="m-ui-component-card__link">查看详情 →</text>
             </view>
           </view>
+
+          <view class="m-ui-component-card" @click="navigateTo('/examples/pages/popup-demo')">
+            <view class="m-ui-component-card__header">
+              <h3 class="m-ui-component-card__title">Popup 弹出层</h3>
+            </view>
+            <view class="m-ui-component-card__content">
+              <p class="m-ui-component-card__desc">弹出层组件，支持多种位置和动画效果。</p>
+            </view>
+            <view class="m-ui-component-card__footer">
+              <text class="m-ui-component-card__link">查看详情 →</text>
+            </view>
+          </view>
         </div>
       </view>
     </view>
@@ -102,12 +114,14 @@
         <p class="m-ui-footer__text">© 2026 M-UI. All rights reserved.</p>
       </view>
     </view>
+
   </view>
 </template>
 
 <script setup>
 import MButton from '../../packages/button/index.js'
 import MIcon from '../../packages/icon/index.js'
+import MPopup from '../../packages/popup/index.js'
 
 function navigateTo(url) {
   uni.navigateTo({
@@ -121,6 +135,9 @@ function scrollTo(id) {
     duration: 300
   })
 }
+
+// 引入 ref
+import { ref } from 'vue'
 </script>
 
 <style lang="scss">
