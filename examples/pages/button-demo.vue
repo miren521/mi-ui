@@ -85,6 +85,23 @@
 					</div>
 				</div>
 			</m-demo-block>
+
+			<!-- 自定义样式 -->
+			<m-demo-block title="自定义样式" desc="使用 custom-class 和 custom-style 属性自定义按钮样式">
+				<view class="demo-button-row">
+					<m-button type="primary" custom-class="custom-button-class" class="fit-content-btn">自定义类名按钮</m-button>
+					<m-button type="success" :custom-style="{ borderRadius: '8px', boxShadow: '0 4px 12px rgba(52, 209, 157, 0.3)', width: '120px' }" class="fit-content-btn">内联样式按钮</m-button>
+					<m-button type="warning" :custom-style="{ fontSize: '16px', padding: '0 24px', background: 'linear-gradient(90deg, #f0883a, #ffb64d)' }" class="fit-content-btn">渐变背景按钮</m-button>
+				</view>
+				<view class="demo-button-code" style="margin-top: 16px; padding: 16px; background: #f5f5f5; border-radius: 8px; font-family: monospace; font-size: 14px; white-space: pre-wrap;">
+					<!-- 代码示例 -->
+					&lt;!-- 使用 custom-class --&gt;
+					&lt;m-button type="primary" custom-class="custom-button-class"&gt;自定义类名按钮&lt;/m-button&gt;
+
+					&lt;!-- 使用 custom-style --&gt;
+					&lt;m-button type="success" :custom-style="{ borderRadius: '8px', boxShadow: '0 4px 12px rgba(52, 209, 157, 0.3)', width: '120px' }"&gt;内联样式按钮&lt;/m-button&gt;
+				</view>
+			</m-demo-block>
 		</view>
 	</view>
 </template>
@@ -172,6 +189,24 @@ onMounted(() => {
 		font-size: 14px;
 		color: #666;
 		font-family: monospace;
+	}
+}
+
+.custom-button-class {
+	background-color: #9c27b0 !important;
+	color: white !important;
+	font-weight: bold !important;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+	box-shadow: 0 4px 8px rgba(156, 39, 176, 0.3) !important;
+
+	&:hover {
+		background-color: #7b1fa2 !important;
+		box-shadow: 0 6px 12px rgba(156, 39, 176, 0.4) !important;
+	}
+
+	&:active {
+		background-color: #6a0080 !important;
+		box-shadow: 0 2px 4px rgba(156, 39, 176, 0.3) !important;
 	}
 }
 </style>

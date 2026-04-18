@@ -7,8 +7,10 @@
       { 'm-button--plain': plain },
       { 'm-button--round': round },
       { 'm-button--disabled': disabled },
-      { 'm-button--loading': loading }
+      { 'm-button--loading': loading },
+      props.customClass
     ]"
+    :style="props.customStyle"
     :disabled="disabled"
     @click="handleClick"
   >
@@ -33,6 +35,8 @@ interface ButtonProps {
   disabled?: boolean
   loading?: boolean
   loadingColor?: string
+  customClass?: string
+  customStyle?: string | object
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
@@ -42,7 +46,9 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   round: false,
   disabled: false,
   loading: false,
-  loadingColor: ''
+  loadingColor: '',
+  customClass: '',
+  customStyle: () => ({})
 })
 
 const emit = defineEmits<{
