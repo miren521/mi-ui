@@ -1,70 +1,68 @@
-// CSS 变量定义
-:root {
-	// 按钮颜色
-	--m-button-primary-bg-color: #4d80f0;
-	--m-button-primary-color: #ffffff;
-	--m-button-success-bg-color: #34d19d;
-	--m-button-success-color: #ffffff;
-	--m-button-warning-bg-color: #f0883a;
-	--m-button-warning-color: #ffffff;
-	--m-button-danger-bg-color: #fa4350;
-	--m-button-danger-color: #ffffff;
-	--m-button-info-bg-color: #f2f3f5;
-	--m-button-info-color: #333333;
+// SCSS 变量定义
+$m-button-primary-bg-color: #4d80f0;
+$m-button-primary-color: #ffffff;
+$m-button-success-bg-color: #34d19d;
+$m-button-success-color: #ffffff;
+$m-button-warning-bg-color: #f0883a;
+$m-button-warning-color: #ffffff;
+$m-button-danger-bg-color: #fa4350;
+$m-button-danger-color: #ffffff;
+$m-button-info-bg-color: #f2f3f5;
+$m-button-info-color: #333333;
 
-	// 按钮尺寸
-	--m-button-large-height: 44px;
-	--m-button-large-padding: 0 20px;
-	--m-button-large-radius: 8px;
-	--m-button-large-font-size: 16px;
+// 按钮尺寸
+$m-button-large-height: 44px;
+$m-button-large-padding: 0 20px;
+$m-button-large-radius: 8px;
+$m-button-large-font-size: 16px;
 
-	--m-button-medium-height: 36px;
-	--m-button-medium-padding: 0 16px;
-	--m-button-medium-radius: 6px;
-	--m-button-medium-font-size: 14px;
+$m-button-medium-height: 36px;
+$m-button-medium-padding: 0 16px;
+$m-button-medium-radius: 6px;
+$m-button-medium-font-size: 14px;
 
-	--m-button-small-height: 28px;
-	--m-button-small-padding: 0 12px;
-	--m-button-small-radius: 4px;
-	--m-button-small-font-size: 12px;
+$m-button-small-height: 28px;
+$m-button-small-padding: 0 12px;
+$m-button-small-radius: 4px;
+$m-button-small-font-size: 12px;
 
-	// 其他
-	--m-button-disabled-opacity: 0.6;
-	--m-button-plain-bg-color: transparent;
+// 其他
+$m-button-disabled-opacity: 0.6;
+$m-button-plain-bg-color: transparent;
 
-	// 禁用状态颜色 - Primary
-	--m-button-primary-disabled-bg-color: #a0cfff;
-	--m-button-primary-disabled-color: #ffffff;
+// 禁用状态颜色 - Primary
+$m-button-primary-disabled-bg-color: #a0cfff;
+$m-button-primary-disabled-color: #ffffff;
 
-	// 禁用状态颜色 - Success
-	--m-button-success-disabled-bg-color: #b8e6b8;
-	--m-button-success-disabled-color: #ffffff;
+// 禁用状态颜色 - Success
+$m-button-success-disabled-bg-color: #b8e6b8;
+$m-button-success-disabled-color: #ffffff;
 
-	// 禁用状态颜色 - Warning
-	--m-button-warning-disabled-bg-color: #ffd699;
-	--m-button-warning-disabled-color: #ffffff;
+// 禁用状态颜色 - Warning
+$m-button-warning-disabled-bg-color: #ffd699;
+$m-button-warning-disabled-color: #ffffff;
 
-	// 禁用状态颜色 - Danger
-	--m-button-danger-disabled-bg-color: #ffb3b3;
-	--m-button-danger-disabled-color: #ffffff;
+// 禁用状态颜色 - Danger
+$m-button-danger-disabled-bg-color: #ffb3b3;
+$m-button-danger-disabled-color: #ffffff;
 
-	// 禁用状态颜色 - Info
-	--m-button-info-disabled-bg-color: #e0e0e0;
-	--m-button-info-disabled-color: #999999;
+// 禁用状态颜色 - Info
+$m-button-info-disabled-bg-color: #e0e0e0;
+$m-button-info-disabled-color: #999999;
 
-	// 朴素按钮禁用状态颜色
-	--m-button-primary-plain-disabled-color: #a0cfff;
-	--m-button-primary-plain-disabled-border-color: #a0cfff;
-	--m-button-success-plain-disabled-color: #b8e6b8;
-	--m-button-success-plain-disabled-border-color: #b8e6b8;
-	--m-button-warning-plain-disabled-color: #ffd699;
-	--m-button-warning-plain-disabled-border-color: #ffd699;
-	--m-button-danger-plain-disabled-color: #ffb3b3;
-	--m-button-danger-plain-disabled-border-color: #ffb3b3;
-	--m-button-info-plain-disabled-color: #c8c8c8;
-	--m-button-info-plain-disabled-border-color: #c8c8c8;
-}
+// 朴素按钮禁用状态颜色
+$m-button-primary-plain-disabled-color: #a0cfff;
+$m-button-primary-plain-disabled-border-color: #a0cfff;
+$m-button-success-plain-disabled-color: #b8e6b8;
+$m-button-success-plain-disabled-border-color: #b8e6b8;
+$m-button-warning-plain-disabled-color: #ffd699;
+$m-button-warning-plain-disabled-border-color: #ffd699;
+$m-button-danger-plain-disabled-color: #ffb3b3;
+$m-button-danger-plain-disabled-border-color: #ffb3b3;
+$m-button-info-plain-disabled-color: #c8c8c8;
+$m-button-info-plain-disabled-border-color: #c8c8c8;
 
+// 按钮基础样式
 .m-button {
 	position: relative;
 	display: inline-flex;
@@ -73,189 +71,189 @@
 	outline: none;
 	-webkit-appearance: none;
 	border: none;
-	border-radius: var(--m-button-medium-radius);
+	border-radius: $m-button-medium-radius;
 	font-weight: normal;
 	transition: opacity 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s;
 	user-select: none;
 	box-sizing: border-box;
-	// border: 1px solid transparent; // 始终占位
-	box-sizing: border-box;
-
-	&__content {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		line-height: 1;
-	}
-
-	&__loading {
-		margin-right: 8px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 1em;
-		height: 1em;
-		flex-shrink: 0;
-		animation: m-rotate 1s linear infinite;
-	}
-
-	&__text {
-		white-space: nowrap;
-	}
-
-	// 类型样式
-	&--primary {
-		background-color: var(--m-button-primary-bg-color, #4d80f0);
-		color: var(--m-button-primary-color, #ffffff);
-	}
-
-	&--success {
-		background-color: var(--m-button-success-bg-color, #34d19d);
-		color: var(--m-button-success-color, #ffffff);
-	}
-
-	&--warning {
-		background-color: var(--m-button-warning-bg-color, #f0883a);
-		color: var(--m-button-warning-color, #ffffff);
-	}
-
-	&--danger {
-		background-color: var(--m-button-danger-bg-color, #fa4350);
-		color: var(--m-button-danger-color, #ffffff);
-	}
-
-	&--info {
-		background-color: var(--m-button-info-bg-color, #f2f3f5);
-		color: var(--m-button-info-color, #333333);
-	}
-
-	// 尺寸样式
-	&--large {
-		height: var(--m-button-large-height, 44px);
-		padding: var(--m-button-large-padding, 0 20px);
-		border-radius: var(--m-button-large-radius, 8px);
-		font-size: var(--m-button-large-font-size, 16px);
-	}
-
-	&--medium {
-		height: var(--m-button-medium-height, 36px);
-		padding: var(--m-button-medium-padding, 0 16px);
-		border-radius: var(--m-button-medium-radius, 6px);
-		font-size: var(--m-button-medium-font-size, 14px);
-	}
-
-	&--small {
-		height: var(--m-button-small-height, 28px);
-		padding: var(--m-button-small-padding, 0 12px);
-		border-radius: var(--m-button-small-radius, 4px);
-		font-size: var(--m-button-small-font-size, 12px);
-	}
-
-	// 朴素按钮
-	&--plain {
-		background-color: var(--m-button-plain-bg-color, transparent);
-		// border: 1px solid currentColor;
-		// 使用 inset，让阴影向内
-		box-shadow: inset 0 0 0 1px currentColor;
-
-		&.m-button--primary {
-			color: var(--m-button-primary-bg-color, #4d80f0);
-		}
-
-		&.m-button--success {
-			color: var(--m-button-success-bg-color, #34d19d);
-		}
-
-		&.m-button--warning {
-			color: var(--m-button-warning-bg-color, #f0883a);
-		}
-
-		&.m-button--danger {
-			color: var(--m-button-danger-bg-color, #fa4350);
-		}
-
-		&.m-button--info {
-			color: var(--m-button-info-color, #333333);
-			border-color: #c8c8c8;
-		}
-	}
-
-	// 圆角按钮
-	&--round {
-		border-radius: 9999px;
-	}
-
-	// 禁用状态
-	&--disabled {
-		cursor: default;
-
-		&.m-button--primary {
-			background-color: var(--m-button-primary-disabled-bg-color, #a0cfff);
-			color: var(--m-button-primary-disabled-color, #ffffff);
-		}
-
-		&.m-button--success {
-			background-color: var(--m-button-success-disabled-bg-color, #b8e6b8);
-			color: var(--m-button-success-disabled-color, #ffffff);
-		}
-
-		&.m-button--warning {
-			background-color: var(--m-button-warning-disabled-bg-color, #ffd699);
-			color: var(--m-button-warning-disabled-color, #ffffff);
-		}
-
-		&.m-button--danger {
-			background-color: var(--m-button-danger-disabled-bg-color, #ffb3b3);
-			color: var(--m-button-danger-disabled-color, #ffffff);
-		}
-
-		&.m-button--info {
-			background-color: var(--m-button-info-disabled-bg-color, #e0e0e0);
-			color: var(--m-button-info-disabled-color, #999999);
-		}
-	}
-
-	// 朴素按钮禁用状态
-	&--plain.m-button--disabled {
-		background-color: transparent;
-
-		&.m-button--primary {
-			color: var(--m-button-primary-plain-disabled-color, #a0cfff);
-			border-color: var(--m-button-primary-plain-disabled-border-color, #a0cfff);
-		}
-
-		&.m-button--success {
-			color: var(--m-button-success-plain-disabled-color, #b8e6b8);
-			border-color: var(--m-button-success-plain-disabled-border-color, #b8e6b8);
-		}
-
-		&.m-button--warning {
-			color: var(--m-button-warning-plain-disabled-color, #ffd699);
-			border-color: var(--m-button-warning-plain-disabled-border-color, #ffd699);
-		}
-
-		&.m-button--danger {
-			color: var(--m-button-danger-plain-disabled-color, #ffb3b3);
-			border-color: var(--m-button-danger-plain-disabled-border-color, #ffb3b3);
-		}
-
-		&.m-button--info {
-			color: var(--m-button-info-plain-disabled-color, #c8c8c8);
-			border-color: var(--m-button-info-plain-disabled-border-color, #c8c8c8);
-		}
-	}
-
-	// 加载状态
-	&--loading {
-		cursor: not-allowed;
-	}
-
-	// 点击效果
-	&:not(.m-button--disabled):not(.m-button--loading):active {
-		opacity: 0.8;
-	}
 }
 
+// 按钮内容
+.m-button__content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 1;
+}
+
+// 加载图标
+.m-button__loading {
+	margin-right: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1em;
+	height: 1em;
+	flex-shrink: 0;
+	animation: m-rotate 1s linear infinite;
+}
+
+// 按钮文字
+.m-button__text {
+	white-space: nowrap;
+}
+
+// 类型样式
+.m-button--primary {
+	background-color: $m-button-primary-bg-color;
+	color: $m-button-primary-color;
+}
+
+.m-button--success {
+	background-color: $m-button-success-bg-color;
+	color: $m-button-success-color;
+}
+
+.m-button--warning {
+	background-color: $m-button-warning-bg-color;
+	color: $m-button-warning-color;
+}
+
+.m-button--danger {
+	background-color: $m-button-danger-bg-color;
+	color: $m-button-danger-color;
+}
+
+.m-button--info {
+	background-color: $m-button-info-bg-color;
+	color: $m-button-info-color;
+}
+
+// 尺寸样式
+.m-button--large {
+	height: $m-button-large-height;
+	padding: $m-button-large-padding;
+	border-radius: $m-button-large-radius;
+	font-size: $m-button-large-font-size;
+}
+
+.m-button--medium {
+	height: $m-button-medium-height;
+	padding: $m-button-medium-padding;
+	border-radius: $m-button-medium-radius;
+	font-size: $m-button-medium-font-size;
+}
+
+.m-button--small {
+	height: $m-button-small-height;
+	padding: $m-button-small-padding;
+	border-radius: $m-button-small-radius;
+	font-size: $m-button-small-font-size;
+}
+
+// 朴素按钮
+.m-button--plain {
+	background-color: $m-button-plain-bg-color;
+	box-shadow: inset 0 0 0 1px currentColor;
+}
+
+.m-button--plain.m-button--primary {
+	color: $m-button-primary-bg-color;
+}
+
+.m-button--plain.m-button--success {
+	color: $m-button-success-bg-color;
+}
+
+.m-button--plain.m-button--warning {
+	color: $m-button-warning-bg-color;
+}
+
+.m-button--plain.m-button--danger {
+	color: $m-button-danger-bg-color;
+}
+
+.m-button--plain.m-button--info {
+	color: $m-button-info-color;
+	border-color: #c8c8c8;
+}
+
+// 圆角按钮
+.m-button--round {
+	border-radius: 9999px;
+}
+
+// 禁用状态
+.m-button--disabled {
+	cursor: default;
+}
+
+.m-button--disabled.m-button--primary {
+	background-color: $m-button-primary-disabled-bg-color;
+	color: $m-button-primary-disabled-color;
+}
+
+.m-button--disabled.m-button--success {
+	background-color: $m-button-success-disabled-bg-color;
+	color: $m-button-success-disabled-color;
+}
+
+.m-button--disabled.m-button--warning {
+	background-color: $m-button-warning-disabled-bg-color;
+	color: $m-button-warning-disabled-color;
+}
+
+.m-button--disabled.m-button--danger {
+	background-color: $m-button-danger-disabled-bg-color;
+	color: $m-button-danger-disabled-color;
+}
+
+.m-button--disabled.m-button--info {
+	background-color: $m-button-info-disabled-bg-color;
+	color: $m-button-info-disabled-color;
+}
+
+// 朴素按钮禁用状态
+.m-button--plain.m-button--disabled {
+	background-color: transparent;
+}
+
+.m-button--plain.m-button--disabled.m-button--primary {
+	color: $m-button-primary-plain-disabled-color;
+	border-color: $m-button-primary-plain-disabled-border-color;
+}
+
+.m-button--plain.m-button--disabled.m-button--success {
+	color: $m-button-success-plain-disabled-color;
+	border-color: $m-button-success-plain-disabled-border-color;
+}
+
+.m-button--plain.m-button--disabled.m-button--warning {
+	color: $m-button-warning-plain-disabled-color;
+	border-color: $m-button-warning-plain-disabled-border-color;
+}
+
+.m-button--plain.m-button--disabled.m-button--danger {
+	color: $m-button-danger-plain-disabled-color;
+	border-color: $m-button-danger-plain-disabled-border-color;
+}
+
+.m-button--plain.m-button--disabled.m-button--info {
+	color: $m-button-info-plain-disabled-color;
+	border-color: $m-button-info-plain-disabled-border-color;
+}
+
+// 加载状态
+.m-button--loading {
+	cursor: not-allowed;
+}
+
+// 点击效果
+.m-button:not(.m-button--disabled):not(.m-button--loading):active {
+	opacity: 0.8;
+}
+
+// 旋转动画
 @keyframes m-rotate {
 	from {
 		transform: rotate(0deg);
