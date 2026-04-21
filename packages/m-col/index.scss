@@ -1,72 +1,16 @@
-// 栅格布局 - 列样式
+$i: 1;
+
 .m-col {
-  position: relative;
+  float: left;
   box-sizing: border-box;
-  min-height: 1px;
-  padding-left: var(--m-col-padding, 0);
-  padding-right: var(--m-col-padding, 0);
-  flex: 0 0 auto;
 }
 
-// 24 列网格系统
-$i: 1;
 @while $i <= 24 {
   .m-col__#{$i} {
-    width: calc(100% / 24 * #{$i});
+    width: calc(100% / 24 * $i);
   }
-  
   .m-col__offset-#{$i} {
-    margin-left: calc(100% / 24 * #{$i});
+    margin-left: calc(100% / 24 * $i);
   }
-  
   $i: $i + 1;
-}
-
-// 响应式断点
-// 小型设备
-@media (max-width: 750px) {
-  $i: 1;
-  @while $i <= 24 {
-    .m-col--sm-#{$i} {
-      width: calc(100% / 24 * #{$i});
-    }
-    
-    .m-col--sm-offset-#{$i} {
-      margin-left: calc(100% / 24 * #{$i});
-    }
-    
-    $i: $i + 1;
-  }
-}
-
-// 中型设备
-@media (min-width: 751px) and (max-width: 1023px) {
-  $i: 1;
-  @while $i <= 24 {
-    .m-col--md-#{$i} {
-      width: calc(100% / 24 * #{$i});
-    }
-    
-    .m-col--md-offset-#{$i} {
-      margin-left: calc(100% / 24 * #{$i});
-    }
-    
-    $i: $i + 1;
-  }
-}
-
-// 大型设备
-@media (min-width: 1024px) {
-  $i: 1;
-  @while $i <= 24 {
-    .m-col--lg-#{$i} {
-      width: calc(100% / 24 * #{$i});
-    }
-    
-    .m-col--lg-offset-#{$i} {
-      margin-left: calc(100% / 24 * #{$i});
-    }
-    
-    $i: $i + 1;
-  }
 }
