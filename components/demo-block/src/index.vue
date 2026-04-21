@@ -1,10 +1,10 @@
 <template>
-  <view class="m-demo-block">
-    <view class="m-demo-block__header">
-      <h2 class="m-demo-block__title">{{ title }}</h2>
-      <p v-if="desc" class="m-demo-block__desc">{{ desc }}</p>
+  <view class="demo-block">
+    <view class="demo-block__header">
+      <h2 class="demo-block__title">{{ title }}</h2>
+      <p v-if="desc" class="demo-block__desc">{{ desc }}</p>
     </view>
-    <view class="m-demo-block__content">
+    <view class="demo-block__content">
       <slot></slot>
     </view>
   </view>

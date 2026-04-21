@@ -56,5 +56,5 @@ const rowStyle = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import '../style/index.scss';
+@import './index.scss';
 </style>

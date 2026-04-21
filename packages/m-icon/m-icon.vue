@@ -77,5 +77,5 @@ function handleClick(event: any) {
 </script>
 
 <style lang="scss" scoped>
-@import '../style/index.scss';
+@import './index.scss';
 </style>

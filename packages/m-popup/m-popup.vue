@@ -45,7 +45,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import MIcon from '../../icon/src/index.vue'
+import MIcon from '../m-icon/m-icon.vue'
 
 interface PopupProps {
   modelValue?: boolean
@@ -219,5 +219,5 @@ watch(
 </script>
 
 <style lang="scss" scoped>
-@import '../style/index.scss';
+@import './index.scss';
 </style>

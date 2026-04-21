@@ -1,4 +1,4 @@
-.m-demo-block {
+.demo-block {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -31,7 +31,7 @@
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  .m-demo-block {
+  .demo-block {
     &__header {
       padding: 12px 16px;
     }

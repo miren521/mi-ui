@@ -119,10 +119,6 @@
 </template>
 
 <script setup>
-import MButton from '../../packages/button/index.js'
-import MIcon from '../../packages/icon/index.js'
-import MPopup from '../../packages/popup/index.js'
-
 function navigateTo(url) {
   uni.navigateTo({
     url: url

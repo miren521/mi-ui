@@ -2,7 +2,7 @@
   <view class="m-popup-demo">
     <view class="m-popup-demo__container">
       <!-- 基础用法 -->
-      <m-demo-block title="基础用法" desc="从底部弹出的基本弹窗">
+      <demo-block title="基础用法" desc="从底部弹出的基本弹窗">
         <view class="demo-popup-row">
           <m-button type="primary" @click="showBasicPopup = true">打开弹窗</m-button>
         </view>
@@ -16,10 +16,10 @@
             </view>
           </view>
         </m-popup>
-      </m-demo-block>
+      </demo-block>
 
       <!-- 弹出位置 -->
-      <m-demo-block title="弹出位置" desc="展示不同 position 的弹出效果">
+      <demo-block title="弹出位置" desc="展示不同 position 的弹出效果">
         <view class="demo-popup-row">
           <m-button type="primary" @click="showCenterPopup = true">居中弹窗</m-button>
           <m-button type="success" @click="showTopPopup = true">顶部弹窗</m-button>
@@ -71,10 +71,10 @@
             <m-button type="primary" @click="showRightPopup = false">关闭</m-button>
           </view>
         </m-popup>
-      </m-demo-block>
+      </demo-block>
 
       <!-- 带关闭按钮 -->
-      <m-demo-block title="带关闭按钮" desc="展示 closable 属性">
+      <demo-block title="带关闭按钮" desc="展示 closable 属性">
         <view class="demo-popup-row">
           <m-button type="primary" @click="showClosablePopup = true">带关闭按钮</m-button>
         </view>
@@ -87,10 +87,10 @@
             </view>
           </view>
         </m-popup>
-      </m-demo-block>
+      </demo-block>
 
       <!-- 自定义内容 -->
-      <m-demo-block title="自定义内容" desc="展示表单、列表等复杂内容">
+      <demo-block title="自定义内容" desc="展示表单、列表等复杂内容">
         <view class="demo-popup-row">
           <m-button type="primary" @click="showCustomContentPopup = true">自定义内容</m-button>
         </view>
@@ -117,10 +117,10 @@
             </view>
           </view>
         </m-popup>
-      </m-demo-block>
+      </demo-block>
 
       <!-- 自定义样式 -->
-      <m-demo-block title="自定义样式" desc="展示 custom-style 自定义弹窗样式">
+      <demo-block title="自定义样式" desc="展示 custom-style 自定义弹窗样式">
         <view class="demo-popup-row">
           <m-button type="primary" @click="showCustomStylePopup = true">自定义样式</m-button>
         </view>
@@ -143,10 +143,10 @@
             </view>
           </view>
         </m-popup>
-      </m-demo-block>
+      </demo-block>
 
       <!-- 覆盖导航栏 -->
-      <m-demo-block title="覆盖导航栏" desc="弹窗默认覆盖整个视口，包括导航栏">
+      <demo-block title="覆盖导航栏" desc="弹窗默认覆盖整个视口，包括导航栏">
         <view class="demo-popup-row">
           <m-button type="primary" @click="showCoverNavbarPopup = true">打开弹窗</m-button>
         </view>
@@ -160,10 +160,10 @@
             </view>
           </view>
         </m-popup>
-      </m-demo-block>
+      </demo-block>
 
       <!-- 不覆盖导航栏 -->
-      <m-demo-block title="不覆盖导航栏" desc="设置 coverNavbar=false，并设置 topOffset=88（导航栏高度）">
+      <demo-block title="不覆盖导航栏" desc="设置 coverNavbar=false，并设置 topOffset=88（导航栏高度）">
         <view class="demo-popup-row">
           <m-button type="primary" @click="showNoCoverNavbarPopup = true">打开弹窗</m-button>
         </view>
@@ -177,7 +177,7 @@
             </view>
           </view>
         </m-popup>
-      </m-demo-block>
+      </demo-block>
     </view>
   </view>
 </template>
@@ -185,8 +185,6 @@
 <script setup>
 // 引入 ref
 import { ref } from 'vue'
-import MButton from '@/packages/button/index.js'
-import MPopup from '@/packages/popup/index.js'
 
 // 基础弹窗
 const showBasicPopup = ref(false)

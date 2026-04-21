@@ -37,5 +37,11 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "uniIdRouter": {}
+  "uniIdRouter": {},
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^m-(.*)": "@/packages/m-$1/m-$1.vue"
+    }
+  }
 }

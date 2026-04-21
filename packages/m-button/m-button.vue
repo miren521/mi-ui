@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import MIcon from '../../icon/index.js'
+import MIcon from '../m-icon/m-icon.vue'
 
 interface ButtonProps {
   type?: 'primary' | 'success' | 'warning' | 'danger' | 'info'
@@ -74,5 +74,5 @@ function handleClick(event: MouseEvent) {
 </script>
 
 <style lang="scss" scoped>
-@import '../style/index.scss';
+@import './index.scss';
 </style>

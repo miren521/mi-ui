@@ -2,7 +2,7 @@
   <view class="m-icon-demo">
     <view class="m-icon-demo__container">
 
-      <m-demo-block title="图标搜索" desc="搜索图标">
+      <demo-block title="图标搜索" desc="搜索图标">
         <view class="demo-search-box">
           <m-icon name="search" size="20px" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #999;" />
           <input 
@@ -12,23 +12,22 @@
             class="demo-search-input"
           />
         </view>
-      </m-demo-block>
+      </demo-block>
 
-      <m-demo-block title="图标列表" desc="网格展示所有图标">
+      <demo-block title="图标列表" desc="网格展示所有图标">
         <view class="demo-icon-grid">
           <view class="demo-icon-grid__item" v-for="icon in filteredIcons" :key="icon" @click="copyIconCode(icon)">
             <m-icon :name="icon" size="22px" />
             <text class="demo-icon-grid__name">{{ icon }}</text>
           </view>
         </view>
-      </m-demo-block>
+      </demo-block>
     </view>
   </view>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
-import MIcon from '@/packages/icon/index.js'
 
 const searchText = ref('')
 

@@ -25,15 +25,15 @@
 
 ## 演示页面区块包裹规范
 
-所有演示页面的示例区块必须使用 m-demo-block 组件包裹，格式如下：
+所有演示页面的示例区块必须使用 demo-block 组件包裹，格式如下：
 
-<m-demo-block title="[区块标题]">
+<demo-block title="[区块标题]">
   <view class="demo-[组件名]-row">
     <!-- 示例内容 -->
   </view>
-</m-demo-block>
+</demo-block>
 
-m-demo-block 组件属性：
+demo-block 组件属性：
 - title：必填，区块标题，描述当前展示的组件属性或状态
 - desc：可选，区块的补充说明文字
-- m-demo-block 组件已全局注册
+- demo-block 组件已全局注册

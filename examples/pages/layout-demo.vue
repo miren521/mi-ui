@@ -2,7 +2,7 @@
   <view class="m-layout-demo">
     <view class="m-layout-demo__container">
       <!-- 基本用法 -->
-      <m-demo-block title="基本用法" desc="基础的 24 分栏布局，通过 span 属性设置占位格数">
+      <demo-block title="基本用法" desc="基础的 24 分栏布局，通过 span 属性设置占位格数">
         <view class="demo-layout-row">
           <m-row>
             <m-col :span="24" class="demo-layout-col">
@@ -49,10 +49,10 @@
             </m-col>
           </m-row>
         </view>
-      </m-demo-block>
+      </demo-block>
 
       <!-- 分栏偏移 -->
-      <m-demo-block title="分栏偏移" desc="使用 offset 属性设置左侧偏移格数">
+      <demo-block title="分栏偏移" desc="使用 offset 属性设置左侧偏移格数">
         <view class="demo-layout-row">
           <m-row>
             <m-col :span="4" class="demo-layout-col">
@@ -80,10 +80,10 @@
             </m-col>
           </m-row>
         </view>
-      </m-demo-block>
+      </demo-block>
 
       <!-- 分栏间隔 -->
-      <m-demo-block title="分栏间隔" desc="使用 gutter 属性设置列之间的间距">
+      <demo-block title="分栏间隔" desc="使用 gutter 属性设置列之间的间距">
         <view class="demo-layout-row-title demo-layout-row-title--first">gutter=16</view>
         <m-row :gutter="16" class="demo-layout-row--gutter">
           <m-col :span="8" class="demo-layout-col">
@@ -108,10 +108,10 @@
             <view class="demo-layout-col__content demo-layout-col__content--primary">span=8</view>
           </m-col>
         </m-row>
-      </m-demo-block>
+      </demo-block>
 
       <!-- 对齐方式 -->
-      <m-demo-block title="对齐方式" desc="使用 justify 和 align 属性设置主轴和交叉轴对齐方式">
+      <demo-block title="对齐方式" desc="使用 justify 和 align 属性设置主轴和交叉轴对齐方式">
         <view class="demo-layout-row-title">默认（start + top）</view>
         <m-row class="demo-layout-row--gutter">
           <m-col :span="4" class="demo-layout-col">
@@ -178,14 +178,12 @@
             <view class="demo-layout-col__content demo-layout-col__content--tall">span=4</view>
           </m-col>
         </m-row>
-      </m-demo-block>
+      </demo-block>
     </view>
   </view>
 </template>
 
 <script setup>
-import MRow from '@/packages/row/index.js'
-import MCol from '@/packages/col/index.js'
 </script>
 
 <style lang="scss">
