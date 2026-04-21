@@ -38,12 +38,12 @@
       <m-transition
         :show="customShow"
         :duration="{ enter: 700, leave: 1000 }"
-        enterClass="custom-enter"
-        enterActiveClass="custom-enter-active"
-        enterToClass="custom-enter-to"
-        leaveClass="custom-leave"
-        leaveActiveClass="custom-leave-active"
-        leaveToClass="custom-leave-to"
+        enterClass="m-custom-enter"
+        enterActiveClass="m-custom-enter-active"
+        enterToClass="m-custom-enter-to"
+        leaveClass="m-custom-leave"
+        leaveActiveClass="m-custom-leave-active"
+        leaveToClass="m-custom-leave-to"
         customClass="block"
       />
     </view>
@@ -137,16 +137,17 @@ function transition(transitionName: string) {
   background: #0083ff;
 }
 
-:deep(.custom-enter-active),
-:deep(.custom-leave-active) {
+:deep(.m-custom-enter-active),
+:deep(.m-custom-leave-active) {
   transition-property: background, transform;
+  transition-duration: 1000ms;
 }
-:deep(.custom-enter) {
-  transform: translate3d(-100px, -100px, 0) rotate(-180deg);
-  background: #ff0000;
+:deep(.m-custom-enter) {
+  opacity: 0;
+  transform: scale(0.3) rotate(-180deg);
 }
-:deep(.custom-leave-to) {
-  transform: translate3d(100px, 100px, 0) rotate(180deg);
-  background: #ff0000;
+:deep(.m-custom-leave-to) {
+  opacity: 0;
+  transform: scale(0.3) rotate(-180deg);
 }
 </style>
