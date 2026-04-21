@@ -1,75 +1,122 @@
 // 遮罩层动画
-.m-popup-modal-enter-active,
-.m-popup-modal-leave-active {
+.m-popup__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s;
+}
+
+.m-popup__modal--hidden {
+  opacity: 0;
+}
+
+.m-popup__modal--visible {
+  opacity: 1;
+}
+
+// 弹窗动画 - 中心位置
+.m-popup--center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
   transition: all 0.3s;
 }
 
-.m-popup-modal-enter-from,
-.m-popup-modal-leave-to {
+.m-popup--center.m-popup--visible {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.m-popup--center.m-popup--hidden {
+  transform: translate(-50%, -50%) scale(0.8);
   opacity: 0;
 }
 
-// 缩放淡入动画
-.m-zoom-fade-enter-active,
-.m-zoom-fade-leave-active {
-  transition: all 0.3s;
-}
-
-.m-zoom-fade-enter-from,
-.m-zoom-fade-leave-to {
-  opacity: 0;
-  transform: scale(0.8);
-}
-
-// 左右滑动动画
-.m-slide-left-enter-active,
-.m-slide-left-leave-active,
-.m-slide-right-enter-active,
-.m-slide-right-leave-active {
-  transition: all 0.3s;
-}
-
-.m-slide-left-enter-from {
-  transform: translateX(-100%);
-}
-
-.m-slide-left-leave-to {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-.m-slide-right-enter-from {
-  transform: translateX(100%);
-}
-
-.m-slide-right-leave-to {
-  transform: translateX(100%);
-  opacity: 0;
-}
-
-// 上下滑动动画
-.m-slide-up-enter-active,
-.m-slide-up-leave-active,
-.m-slide-down-enter-active,
-.m-slide-down-leave-active {
-  transition: all 0.3s;
-}
-
-.m-slide-up-enter-from {
-  transform: translateY(100%);
-}
-
-.m-slide-up-leave-to {
-  transform: translateY(100%);
-  opacity: 0;
-}
-
-.m-slide-down-enter-from {
+// 弹窗动画 - 顶部位置
+.m-popup--top {
+  top: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0 0 12px 12px;
   transform: translateY(-100%);
+  opacity: 0;
+  transition: all 0.3s;
 }
 
-.m-slide-down-leave-to {
+.m-popup--top.m-popup--visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.m-popup--top.m-popup--hidden {
   transform: translateY(-100%);
+  opacity: 0;
+}
+
+// 弹窗动画 - 底部位置
+.m-popup--bottom {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px 12px 0 0;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.m-popup--bottom.m-popup--visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.m-popup--bottom.m-popup--hidden {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+// 弹窗动画 - 左侧位置
+.m-popup--left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 0 12px 12px 0;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.m-popup--left.m-popup--visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.m-popup--left.m-popup--hidden {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+// 弹窗动画 - 右侧位置
+.m-popup--right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px 0 0 12px;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.m-popup--right.m-popup--visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.m-popup--right.m-popup--hidden {
+  transform: translateX(100%);
   opacity: 0;
 }
 
@@ -82,10 +129,6 @@
   z-index: 2000;
   pointer-events: none;
   isolation: isolate;
-
-  &:has(.m-popup__modal) {
-    pointer-events: auto;
-  }
 }
 
 .m-popup {
@@ -96,40 +139,6 @@
   pointer-events: auto;
   z-index: 2001;
   transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-
-  &--center {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  &--top {
-    top: 0;
-    left: 0;
-    right: 0;
-    border-radius: 0 0 12px 12px;
-  }
-
-  &--bottom {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 12px 12px 0 0;
-  }
-
-  &--left {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    border-radius: 0 12px 12px 0;
-  }
-
-  &--right {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 12px 0 0 12px;
-  }
 
   &__header {
     padding: 16px 20px 0;
@@ -153,14 +162,5 @@
     text-align: center;
     transform: rotate(45deg);
     color: #999;
-  }
-
-  &__modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
   }
 }

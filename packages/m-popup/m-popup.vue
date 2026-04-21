@@ -1,45 +1,33 @@
 <template>
   <view class="m-popup-wrapper">
-    <Transition
-      name="m-popup-modal"
-      appear
-      @enter="onModalEnter"
-      @leave="onModalLeave"
-    >
-      <view
-        v-if="modal && isVisible"
-        class="m-popup__modal"
-        :style="modalStyleStr"
-        @tap="handleClickModal"
-      />
-    </Transition>
+    <!-- 遮罩层 -->
+    <view
+      v-if="modal && isRendered"
+      :class="['m-popup__modal', isVisible ? 'm-popup__modal--visible' : 'm-popup__modal--hidden']"
+      :style="modalStyleStr"
+      @tap="handleClickModal"
+    />
     
-    <Transition
-      :name="transitionName"
-      appear
-      @enter="onPopupEnter"
-      @leave="onPopupLeave"
+    <!-- 弹窗内容 -->
+    <view
+      v-if="isRendered"
+      :class="['m-popup', `m-popup--${position}`, isVisible ? 'm-popup--visible' : 'm-popup--hidden']"
+      :style="popupStyleStr"
+      @tap.stop
     >
-      <view
-        v-if="isVisible"
-        :class="popupClasses"
-        :style="popupStyleStr"
-        @tap.stop
-      >
-        <view v-if="closable" class="m-popup__close" @tap="onClose">
-          <m-icon name="add" :size="20" />
-        </view>
-        <view v-if="$slots.header" class="m-popup__header">
-          <slot name="header" />
-        </view>
-        <view class="m-popup__content">
-          <slot />
-        </view>
-        <view v-if="$slots.footer" class="m-popup__footer">
-          <slot name="footer" />
-        </view>
+      <view v-if="closable" class="m-popup__close" @tap="onClose">
+        <m-icon name="add" :size="20" />
       </view>
-    </Transition>
+      <view v-if="$slots.header" class="m-popup__header">
+        <slot name="header" />
+      </view>
+      <view class="m-popup__content">
+        <slot />
+      </view>
+      <view v-if="$slots.footer" class="m-popup__footer">
+        <slot name="footer" />
+      </view>
+    </view>
   </view>
 </template>
 
@@ -92,24 +80,7 @@ const emit = defineEmits<{
 }>()
 
 const isVisible = ref(false)
-
-const transitionName = computed(() => {
-  if (props.transition) {
-    return props.transition
-  }
-  const positionMap: Record<string, string> = {
-    center: 'm-zoom-fade',
-    left: 'm-slide-left',
-    right: 'm-slide-right',
-    bottom: 'm-slide-up',
-    top: 'm-slide-down'
-  }
-  return positionMap[props.position] || 'm-zoom-fade'
-})
-
-const popupClasses = computed(() => {
-  return ['m-popup', `m-popup--${props.position}`]
-})
+const isRendered = ref(false)
 
 const popupStyleStr = computed(() => {
   let styleStr = `z-index: ${props.zIndex + 1};`
@@ -119,9 +90,6 @@ const popupStyleStr = computed(() => {
     const topOffsetValue = typeof props.topOffset === 'number' ? `${props.topOffset}rpx` : props.topOffset
     if (props.position === 'top') {
       styleStr += `top: ${topOffsetValue};`
-    } else {
-      // 其他位置的弹窗，在计算位置时需要考虑 topOffset
-      // 这里保持默认行为，由样式文件处理
     }
   }
   
@@ -172,46 +140,32 @@ function onClose() {
   emit('update:modelValue', false)
 }
 
-function onPopupEnter() {
-  emit('open')
-}
-
-function onPopupLeave() {
-  emit('close')
-}
-
-function onModalEnter() {
-  // 模态框进入动画开始
-}
-
-function onModalLeave() {
-  // 模态框离开动画开始
-}
-
-function openPopup() {
-  isVisible.value = true
-}
-
-function closePopup() {
-  isVisible.value = false
-  
-  // 动画结束后触发 closed 事件
-  setTimeout(() => {
-    emit('closed')
-  }, props.duration)
-}
-
 watch(
   () => props.modelValue,
   (newVal) => {
     if (newVal) {
-      openPopup()
-      // 动画结束后触发 opened 事件
+      // 显示弹窗
+      isRendered.value = true
+      // 延迟一帧设置可见，确保 DOM 已渲染
       setTimeout(() => {
-        emit('opened')
-      }, props.duration)
+        isVisible.value = true
+        emit('open')
+        // 动画结束后触发 opened 事件
+        setTimeout(() => {
+          emit('opened')
+        }, props.duration)
+      }, 20)
     } else {
-      closePopup()
+      // 隐藏弹窗
+      isVisible.value = false
+      emit('close')
+      // 动画结束后真正移除 DOM
+      setTimeout(() => {
+        if (!props.modelValue) {
+          isRendered.value = false
+          emit('closed')
+        }
+      }, props.duration)
     }
   },
   { immediate: true }
