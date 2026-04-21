@@ -50,8 +50,6 @@ interface PopupProps {
   safeAreaInsetBottom?: boolean
   transition?: string
   lockScroll?: boolean
-  coverNavbar?: boolean
-  topOffset?: string | number
 }
 
 const props = withDefaults(defineProps<PopupProps>(), {
@@ -65,9 +63,7 @@ const props = withDefaults(defineProps<PopupProps>(), {
   hideWhenClose: true,
   lazyRender: true,
   safeAreaInsetBottom: false,
-  lockScroll: true,
-  coverNavbar: true,
-  topOffset: 0
+  lockScroll: true
 })
 
 const emit = defineEmits<{
@@ -86,13 +82,6 @@ const popupStyleStr = computed(() => {
   let styleStr = `z-index: ${props.zIndex + 1};`
   styleStr += `transition-duration: ${props.duration}ms;`
   
-  if (!props.coverNavbar) {
-    const topOffsetValue = typeof props.topOffset === 'number' ? `${props.topOffset}rpx` : props.topOffset
-    if (props.position === 'top') {
-      styleStr += `top: ${topOffsetValue};`
-    }
-  }
-  
   if (props.safeAreaInsetBottom) {
     styleStr += `padding-bottom: env(safe-area-inset-bottom);`
   }
@@ -110,12 +99,6 @@ const popupStyleStr = computed(() => {
 
 const modalStyleStr = computed(() => {
   let styleStr = `z-index: ${props.zIndex}; transition-duration: ${props.duration}ms;`
-  
-  if (!props.coverNavbar) {
-    const topOffsetValue = typeof props.topOffset === 'number' ? `${props.topOffset}rpx` : props.topOffset
-    styleStr += `top: ${topOffsetValue};`
-    styleStr += `height: calc(100% - ${topOffsetValue});`
-  }
   
   if (typeof props.modalStyle === 'string') {
     styleStr += props.modalStyle

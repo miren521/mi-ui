@@ -27,7 +27,7 @@
           <m-button type="danger" @click="showLeftPopup = true">左侧弹窗</m-button>
           <m-button type="info" @click="showRightPopup = true">右侧弹窗</m-button>
         </view>
-        
+
         <m-popup v-model:modelValue="showCenterPopup" position="center">
           <view class="demo-popup-content">
             <view class="demo-popup-content__title">居中弹窗</view>
@@ -124,56 +124,44 @@
         <view class="demo-popup-row">
           <m-button type="primary" @click="showCustomStylePopup = true">自定义样式</m-button>
         </view>
-        <m-popup 
-          v-model:modelValue="showCustomStylePopup" 
-          position="center" 
-          :customStyle="{
-            width: '300px',
-            borderRadius: '12px',
-            background: 'linear-gradient(135deg, #6E9EF5 0%, #4D80F0 100%)',
-            color: 'white'
-          }"
-        >
-          <view class="demo-popup-content demo-popup-content--custom">
-            <view class="demo-popup-content__title">自定义样式</view>
-            <view class="demo-popup-content__text">这是一个带有渐变背景的弹窗</view>
-            <view class="demo-popup-content__actions">
-              <m-button type="info" plain @click="showCustomStylePopup = false">取消</m-button>
-              <m-button type="primary" plain @click="showCustomStylePopup = false">确定</m-button>
+        <m-popup v-model:modelValue="showCustomStylePopup" position="center" closable :customStyle="{
+          width: '320px',
+          borderRadius: '24rpx',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          padding: '0'
+        }">
+          <view class="demo-popup-content demo-popup-content--gradient">
+            <view class="demo-popup-content--gradient__header">
+              <view class="demo-popup-content--gradient__avatar">
+                <m-icon name="success" :size="32" color="#fff" />
+              </view>
+              <view class="demo-popup-content--gradient__badge">操作成功</view>
             </view>
-          </view>
-        </m-popup>
-      </demo-block>
-
-      <!-- 覆盖导航栏 -->
-      <demo-block title="覆盖导航栏" desc="弹窗默认覆盖整个视口，包括导航栏">
-        <view class="demo-popup-row">
-          <m-button type="primary" @click="showCoverNavbarPopup = true">打开弹窗</m-button>
-        </view>
-        <m-popup v-model:modelValue="showCoverNavbarPopup" position="center">
-          <view class="demo-popup-content">
-            <view class="demo-popup-content__title">覆盖导航栏</view>
-            <view class="demo-popup-content__text">这是一个默认的弹窗，会覆盖整个视口包括导航栏</view>
-            <view class="demo-popup-content__text">当前设置：coverNavbar=true (默认)</view>
-            <view class="demo-popup-content__actions">
-              <m-button type="primary" @click="showCoverNavbarPopup = false">关闭</m-button>
+            <view class="demo-popup-content--gradient__body">
+              <view class="demo-popup-content--gradient__title">恭喜您！</view>
+              <view class="demo-popup-content--gradient__desc">您的请求已成功处理，请查看详情信息。</view>
+              <view class="demo-popup-content--gradient__info">
+                <view class="demo-popup-content--gradient__info-item">
+                  <view class="demo-popup-content--gradient__info-label">处理时间</view>
+                  <view class="demo-popup-content--gradient__info-value">2024-01-15 14:30</view>
+                </view>
+                <view class="demo-popup-content--gradient__info-item">
+                  <view class="demo-popup-content--gradient__info-label">订单编号</view>
+                  <view class="demo-popup-content--gradient__info-value">ORD20240115001</view>
+                </view>
+              </view>
             </view>
-          </view>
-        </m-popup>
-      </demo-block>
-
-      <!-- 不覆盖导航栏 -->
-      <demo-block title="不覆盖导航栏" desc="设置 coverNavbar=false，并设置 topOffset=88（导航栏高度）">
-        <view class="demo-popup-row">
-          <m-button type="primary" @click="showNoCoverNavbarPopup = true">打开弹窗</m-button>
-        </view>
-        <m-popup v-model:modelValue="showNoCoverNavbarPopup" position="top" :coverNavbar="false" :topOffset="88">
-          <view class="demo-popup-content">
-            <view class="demo-popup-content__title">不覆盖导航栏</view>
-            <view class="demo-popup-content__text">这是一个不覆盖导航栏的弹窗，从导航栏下方弹出</view>
-            <view class="demo-popup-content__text">当前设置：coverNavbar=false, topOffset=88</view>
-            <view class="demo-popup-content__actions">
-              <m-button type="primary" @click="showNoCoverNavbarPopup = false">关闭</m-button>
+            <view class="demo-popup-content--gradient__footer">
+              <m-button type="success"
+                customClass="demo-popup-content--gradient__btn demo-popup-content--gradient__btn--secondary"
+                @click="showCustomStylePopup = false">
+                查看详情
+              </m-button>
+              <m-button type="primary"
+                customClass="demo-popup-content--gradient__btn demo-popup-content--gradient__btn--primary"
+                @click="showCustomStylePopup = false">
+                继续操作
+              </m-button>
             </view>
           </view>
         </m-popup>
@@ -183,43 +171,17 @@
 </template>
 
 <script setup>
-// 引入 ref
 import { ref } from 'vue'
 
-// 基础弹窗
 const showBasicPopup = ref(false)
-
-// 不同位置弹窗
 const showCenterPopup = ref(false)
 const showTopPopup = ref(false)
 const showBottomPopup = ref(false)
 const showLeftPopup = ref(false)
 const showRightPopup = ref(false)
-
-// 带关闭按钮
 const showClosablePopup = ref(false)
-
-// 自定义内容
 const showCustomContentPopup = ref(false)
-
-// 自定义样式
 const showCustomStylePopup = ref(false)
-
-// 覆盖导航栏
-const showCoverNavbarPopup = ref(false)
-
-// 不覆盖导航栏
-const showNoCoverNavbarPopup = ref(false)
-
-// 定义方法
-const openPopup = (popupRef) => {
-  popupRef.value = true
-}
-
-const closePopup = (popupRef) => {
-  popupRef.value = false
-}
-
 </script>
 
 <style lang="scss">
@@ -239,7 +201,8 @@ const closePopup = (popupRef) => {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  margin-bottom: 16px;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .demo-popup-content {
@@ -311,12 +274,120 @@ const closePopup = (popupRef) => {
 
     &-input {
       flex: 1;
+
       input {
         width: 100%;
         padding: 8px 12px;
         border: 1px solid #eee;
         border-radius: 4px;
         font-size: 14px;
+      }
+    }
+  }
+
+  &--gradient {
+    color: white;
+    padding: 0;
+    background: transparent;
+    box-shadow: 0 20rpx 40rpx rgba(102, 126, 234, 0.3);
+
+    &__header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48rpx 32rpx 32rpx;
+    }
+
+    &__avatar {
+      width: 120rpx;
+      height: 120rpx;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24rpx;
+    }
+
+    &__badge {
+      font-size: 24rpx;
+      padding: 8rpx 24rpx;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 24rpx;
+    }
+
+    &__body {
+      padding: 0 32rpx 32rpx;
+      text-align: center;
+    }
+
+    &__title {
+      font-size: 36rpx;
+      font-weight: 600;
+      margin-bottom: 16rpx;
+    }
+
+    &__desc {
+      font-size: 28rpx;
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 32rpx;
+    }
+
+    &__info {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16rpx;
+      padding: 24rpx;
+      margin-top: 24rpx;
+    }
+
+    &__info-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12rpx 0;
+
+      &:not(:last-child) {
+        border-bottom: 1rpx solid rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    &__info-label {
+      font-size: 26rpx;
+      opacity: 0.8;
+    }
+
+    &__info-value {
+      font-size: 26rpx;
+      font-weight: 500;
+    }
+
+    &__footer {
+      display: flex;
+      gap: 24rpx;
+      padding: 32rpx;
+      border-top: 1rpx solid rgba(255, 255, 255, 0.1);
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__btn {
+      flex: 1;
+      height: 80rpx;
+      line-height: 80rpx;
+      font-size: 28rpx;
+      border-radius: 40rpx;
+
+      &--secondary {
+        background: rgba(255, 255, 255, 0.15);
+        color: white;
+        border: none;
+      }
+
+      &--primary {
+        background: white;
+        color: #667eea;
+        border: none;
       }
     }
   }

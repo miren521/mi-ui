@@ -1,3 +1,6 @@
+// 圆角变量
+$m-popup-border-radius: 16rpx;
+
 // 遮罩层动画
 .m-popup__modal {
   position: fixed;
@@ -24,6 +27,7 @@
   transform: translate(-50%, -50%) scale(0.8);
   opacity: 0;
   transition: all 0.3s;
+  border-radius: $m-popup-border-radius;
 }
 
 .m-popup--center.m-popup--visible {
