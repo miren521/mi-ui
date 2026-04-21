@@ -108,3 +108,15 @@
 .m-zoom-out-leave-active {
   transition-property: opacity, transform;
 }
+
+/* 自定义动画 */
+.m-custom-enter,
+.m-custom-leave-to {
+  opacity: 0;
+  transform: scale(0.3) rotate(-180deg);
+}
+.m-custom-enter-active,
+.m-custom-leave-active {
+  transition-property: opacity, transform;
+  transition-duration: 1000ms;
+}

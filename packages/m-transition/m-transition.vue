@@ -86,7 +86,7 @@ const rootClass = computed(() => {
 })
 
 const isShow = computed(() => {
-  return !props.lazyRender || inited.value
+  return (!props.lazyRender || inited.value) && display.value
 })
 
 onBeforeMount(() => {
@@ -124,14 +124,16 @@ async function enter() {
   const dur = isObj(props.duration) ? props.duration.enter : props.duration
   currentDuration.value = Number(dur) || 300
 
-  classes.value = classNames.enter
+  const enterClass = (classNames.enter || '') + (props.enterClass ? ` ${props.enterClass}` : '') + (props.enterActiveClass ? ` ${props.enterActiveClass}` : '')
+  classes.value = enterClass
   display.value = true
 
   await nextTick()
   emit('enter')
 
   await pause(20)
-  classes.value = classNames.enterTo
+  const enterToClass = (classNames.enterTo || '') + (props.enterToClass ? ` ${props.enterToClass}` : '') + (props.enterActiveClass ? ` ${props.enterActiveClass}` : '')
+  classes.value = enterToClass
 }
 
 async function leave() {
@@ -146,12 +148,14 @@ async function leave() {
   const dur = isObj(props.duration) ? props.duration.leave : props.duration
   currentDuration.value = Number(dur) || 300
 
-  classes.value = classNames.leave
+  const leaveClass = (classNames.leave || '') + (props.leaveClass ? ` ${props.leaveClass}` : '') + (props.leaveActiveClass ? ` ${props.leaveActiveClass}` : '')
+  classes.value = leaveClass
   await nextTick()
   emit('leave')
 
   await pause(20)
-  classes.value = classNames.leaveTo
+  const leaveToClass = (classNames.leaveTo || '') + (props.leaveToClass ? ` ${props.leaveToClass}` : '') + (props.leaveActiveClass ? ` ${props.leaveActiveClass}` : '')
+  classes.value = leaveToClass
 }
 
 function onTransitionEnd() {
