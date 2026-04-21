@@ -27,76 +27,9 @@ export default {
 
 <script lang="ts" setup>
 import { computed, onBeforeMount, ref, watch } from 'vue'
-
-// 动画类型
-type TransitionName =
-  | 'fade'
-  | 'fade-down'
-  | 'fade-left'
-  | 'fade-right'
-  | 'fade-up'
-  | 'slide-down'
-  | 'slide-left'
-  | 'slide-right'
-  | 'slide-up'
-  | 'zoom-in'
-  | 'zoom-out'
-
-interface TransitionProps {
-  show?: boolean
-  duration?: number | boolean | Record<string, number>
-  lazyRender?: boolean
-  name?: TransitionName | TransitionName[]
-  destroy?: boolean
-  enterClass?: string
-  enterActiveClass?: string
-  enterToClass?: string
-  leaveClass?: string
-  leaveActiveClass?: string
-  leaveToClass?: string
-  disableTouchMove?: boolean
-  customClass?: string
-  customStyle?: string
-}
-
-const props = withDefaults(defineProps<TransitionProps>(), {
-  show: false,
-  duration: 300,
-  lazyRender: false,
-  destroy: true,
-  enterClass: '',
-  enterActiveClass: '',
-  enterToClass: '',
-  leaveClass: '',
-  leaveActiveClass: '',
-  leaveToClass: '',
-  disableTouchMove: false,
-  customClass: '',
-  customStyle: ''
-})
-
-const emit = defineEmits(['click', 'before-enter', 'enter', 'before-leave', 'leave', 'after-leave', 'after-enter'])
-
-// 初始化是否完成
-const inited = ref<boolean>(false)
-// 是否显示
-const display = ref<boolean>(false)
-// 当前动画状态
-const status = ref<string>('')
-// 动画是否结束
-const transitionEnded = ref<boolean>(false)
-// 动画持续时间
-const currentDuration = ref<number>(300)
-// 类名
-const classes = ref<string>('')
-// 用于控制enter和leave的顺序执行
-const enterPromise = ref<Promise<void> | null>(null)
-
-// 动画进入的生命周期
-const enterLifeCyclePromises = ref<Promise<void> | null>(null)
-
-// 动画离开的生命周期
-const leaveLifeCyclePromises = ref<Promise<void> | null>(null)
+import { isObj, isPromise, pause } from '../common/util'
+import { transitionProps, type TransitionName } from './types'
+import { AbortablePromise } from '../common/AbortablePromise'
 
 const getClassNames = (name?: TransitionName | TransitionName[]) => {
   let enter: string = `${props.enterClass} ${props.enterActiveClass}`
@@ -125,6 +58,30 @@ const getClassNames = (name?: TransitionName | TransitionName[]) => {
   }
 }
 
+const props = defineProps(transitionProps)
+const emit = defineEmits(['click', 'before-enter', 'enter', 'before-leave', 'leave', 'after-leave', 'after-enter'])
+
+// 初始化是否完成
+const inited = ref<boolean>(false)
+// 是否显示
+const display = ref<boolean>(false)
+// 当前动画状态
+const status = ref<string>('')
+// 动画是否结束
+const transitionEnded = ref<boolean>(false)
+// 动画持续时间
+const currentDuration = ref<number>(300)
+// 类名
+const classes = ref<string>('')
+// 用于控制enter和leave的顺序执行
+const enterPromise = ref<AbortablePromise<void> | null>(null)
+
+// 动画进入的生命周期
+const enterLifeCyclePromises = ref<AbortablePromise<unknown> | null>(null)
+
+// 动画离开的生命周期
+const leaveLifeCyclePromises = ref<AbortablePromise<unknown> | null>(null)
+
 const style = computed(() => {
   return `-webkit-transition-duration:${currentDuration.value}ms;transition-duration:${currentDuration.value}ms;${
     display.value || !props.destroy ? '' : 'display: none;'
@@ -147,7 +104,7 @@ onBeforeMount(() => {
 
 watch(
   () => props.show,
-  (newVal: boolean) => {
+  (newVal) => {
     handleShow(newVal)
   },
   { deep: true }
@@ -159,30 +116,36 @@ function handleClick() {
 
 function handleShow(value: boolean) {
   if (value) {
+    handleAbortPromise()
     enter()
   } else {
     leave()
   }
 }
-
-function pause() {
-  return new Promise<void>((resolve) => {
-    setTimeout(resolve, 0)
-  })
+/**
+ * 取消所有的promise
+ */
+function handleAbortPromise() {
+  isPromise(enterPromise.value) && enterPromise.value.abort()
+  isPromise(enterLifeCyclePromises.value) && enterLifeCyclePromises.value.abort()
+  isPromise(leaveLifeCyclePromises.value) && leaveLifeCyclePromises.value.abort()
+  enterPromise.value = null
+  enterLifeCyclePromises.value = null
+  leaveLifeCyclePromises.value = null
 }
 
 function enter() {
-  enterPromise.value = new Promise(async (resolve) => {
+  enterPromise.value = new AbortablePromise(async (resolve) => {
     try {
       const classNames = getClassNames(props.name)
-      const duration = typeof props.duration === 'object' ? (props.duration as any).enter : props.duration
+      const duration = isObj(props.duration) ? (props.duration as any).enter : props.duration
       status.value = 'enter'
       emit('before-enter')
       enterLifeCyclePromises.value = pause()
       await enterLifeCyclePromises.value
       emit('enter')
       classes.value = classNames.enter
-      currentDuration.value = typeof duration === 'number' ? duration : 300
+      currentDuration.value = duration
       enterLifeCyclePromises.value = pause()
       await enterLifeCyclePromises.value
       inited.value = true
@@ -194,11 +157,12 @@ function enter() {
       classes.value = classNames['enter-to']
       resolve()
     } catch (error) {
-      // 忽略错误
+      /**
+       *
+       */
     }
   })
 }
-
 async function leave() {
   if (!enterPromise.value) {
     transitionEnded.value = false
@@ -208,10 +172,10 @@ async function leave() {
     await enterPromise.value
     if (!display.value) return
     const classNames = getClassNames(props.name)
-    const duration = typeof props.duration === 'object' ? (props.duration as any).leave : props.duration
+    const duration = isObj(props.duration) ? (props.duration as any).leave : props.duration
     status.value = 'leave'
     emit('before-leave')
-    currentDuration.value = typeof duration === 'number' ? duration : 300
+    currentDuration.value = duration
     leaveLifeCyclePromises.value = pause()
     await leaveLifeCyclePromises.value
     emit('leave')
@@ -220,21 +184,30 @@ async function leave() {
     await leaveLifeCyclePromises.value
     transitionEnded.value = false
     classes.value = classNames['leave-to']
-    leaveLifeCyclePromises.value = new Promise<void>((resolve) => {
-      const timer = setTimeout(() => {
-        clearTimeout(timer)
-        resolve()
-      }, currentDuration.value)
-    })
+    leaveLifeCyclePromises.value = setPromise(currentDuration.value)
     await leaveLifeCyclePromises.value
     leaveLifeCyclePromises.value = null
     onTransitionEnd()
     enterPromise.value = null
   } catch (error) {
-    // 忽略错误
+    /**
+     *
+     */
   }
 }
 
+/**
+ * 定时器promise化
+ * @param duration 持续时间ms
+ */
+function setPromise(duration: number) {
+  return new AbortablePromise<void>((resolve) => {
+    const timer = setTimeout(() => {
+      clearTimeout(timer)
+      resolve()
+    }, duration)
+  })
+}
 function onTransitionEnd() {
   if (transitionEnded.value) return
 
@@ -254,7 +227,6 @@ function onTransitionEnd() {
 
 function noop() {}
 </script>
-
 <style lang="scss" scoped>
 @import './index.scss';
 </style>
