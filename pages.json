@@ -29,6 +29,12 @@
       "style": {
         "navigationBarTitleText": "Popup 弹出层"
       }
+    },
+    {
+      "path": "examples/pages/transition-demo",
+      "style": {
+        "navigationBarTitleText": "Transition 过渡动画"
+      }
     }
   ],
   "globalStyle": {

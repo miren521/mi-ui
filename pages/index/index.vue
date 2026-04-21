@@ -1,381 +1,311 @@
 <template>
-  <view class="m-ui-home">
-    <view class="m-ui-header">
-      <h1 class="m-ui-header__title">M-UI</h1>
-      <p class="m-ui-header__desc">基于 uni-app 的跨端组件库</p>
+  <view class="m-home">
+    <!-- 头部 -->
+    <view class="m-home__header">
+      <text class="m-home__title">M-UI</text>
+      <text class="m-home__desc">基于 uni-app 的跨端组件库</text>
     </view>
 
-    <view class="m-ui-nav">
-      <view class="m-ui-nav__content">
-        <nav class="m-ui-nav__menu">
-          <text class="m-ui-nav__item" @click="scrollTo('components')">组件列表</text>
-          <text class="m-ui-nav__item" @click="scrollTo('usage')">开始使用</text>
-        </nav>
+    <!-- 导航 -->
+    <view class="m-home__nav">
+      <text class="m-home__nav-item" @click="scrollTo('components')">组件列表</text>
+      <text class="m-home__nav-item" @click="scrollTo('usage')">开始使用</text>
+    </view>
+
+    <!-- 组件列表 -->
+    <view id="components" class="m-home__section">
+      <text class="m-home__section-title">组件列表</text>
+      
+      <!-- 搜索 -->
+      <view class="m-home__search">
+        <input 
+          v-model="searchText" 
+          type="text" 
+          class="m-home__search-input" 
+          placeholder="搜索组件..."
+        />
+        <text v-if="searchText" class="m-home__search-clear" @click="clearSearch">✕</text>
+      </view>
+
+      <!-- 组件网格 -->
+      <view v-if="filteredComponents.length" class="m-home__grid">
+        <view 
+          v-for="item in filteredComponents" 
+          :key="item.id"
+          class="m-home__card" 
+          @click="navigateTo(item.url)"
+        >
+          <text class="m-home__card-title">{{ item.title }}</text>
+          <text class="m-home__card-desc">{{ item.desc }}</text>
+          <text class="m-home__card-link">查看详情 →</text>
+        </view>
+      </view>
+
+      <!-- 空状态 -->
+      <view v-else class="m-home__empty">
+        <text class="m-home__empty-icon">🔍</text>
+        <text class="m-home__empty-text">未找到匹配的组件</text>
       </view>
     </view>
 
-    <view id="components" class="m-ui-components">
-      <view class="m-ui-components__content">
-        <h2 class="m-ui-components__title">组件列表</h2>
-        <div class="m-ui-components__grid">
-          <view class="m-ui-component-card" @click="navigateTo('/examples/pages/button-demo')">
-            <view class="m-ui-component-card__header">
-              <h3 class="m-ui-component-card__title">Button 按钮</h3>
-            </view>
-            <view class="m-ui-component-card__content">
-              <p class="m-ui-component-card__desc">按钮用于触发操作，支持多种类型和状态。</p>
-              <view class="m-ui-component-card__preview">
-                <m-button type="primary" size="small" class="fit-content-btn">主要按钮</m-button>
-                <m-button type="success" size="small" class="fit-content-btn" style="margin-left: 8px;">成功按钮</m-button>
-                <m-button type="warning" size="small" class="fit-content-btn" style="margin-left: 8px;">警告按钮</m-button>
-              </view>
-            </view>
-            <view class="m-ui-component-card__footer">
-              <text class="m-ui-component-card__link">查看详情 →</text>
-            </view>
-          </view>
-
-          <view class="m-ui-component-card" @click="navigateTo('/examples/pages/icon-demo')">
-            <view class="m-ui-component-card__header">
-              <h3 class="m-ui-component-card__title">Icon 图标</h3>
-            </view>
-            <view class="m-ui-component-card__content">
-              <p class="m-ui-component-card__desc">图标组件，提供丰富的图标资源。</p>
-              <view class="m-ui-component-card__preview">
-                <m-icon name="check" size="24px" color="#4D80F0" />
-                <m-icon name="close" size="24px" color="#fa4350" style="margin-left: 8px;" />
-                <m-icon name="add" size="24px" color="#34d19d" style="margin-left: 8px;" />
-              </view>
-            </view>
-            <view class="m-ui-component-card__footer">
-              <text class="m-ui-component-card__link">查看详情 →</text>
-            </view>
-          </view>
-
-          <view class="m-ui-component-card" @click="navigateTo('/examples/pages/layout-demo')">
-            <view class="m-ui-component-card__header">
-              <h3 class="m-ui-component-card__title">Layout 布局</h3>
-            </view>
-            <view class="m-ui-component-card__content">
-              <p class="m-ui-component-card__desc">栅格布局组件，支持 24 分栏和响应式设计。</p>
-              <view class="m-ui-component-card__preview">
-                <view class="demo-layout-preview">
-                  <view class="demo-layout-preview__row">
-                    <view class="demo-layout-preview__col demo-layout-preview__col--span6"></view>
-                    <view class="demo-layout-preview__col demo-layout-preview__col--span6"></view>
-                    <view class="demo-layout-preview__col demo-layout-preview__col--span6"></view>
-                    <view class="demo-layout-preview__col demo-layout-preview__col--span6"></view>
-                  </view>
-                </view>
-              </view>
-            </view>
-            <view class="m-ui-component-card__footer">
-              <text class="m-ui-component-card__link">查看详情 →</text>
-            </view>
-          </view>
-
-          <view class="m-ui-component-card" @click="navigateTo('/examples/pages/popup-demo')">
-            <view class="m-ui-component-card__header">
-              <h3 class="m-ui-component-card__title">Popup 弹出层</h3>
-            </view>
-            <view class="m-ui-component-card__content">
-              <p class="m-ui-component-card__desc">弹出层组件，支持多种位置和动画效果。</p>
-            </view>
-            <view class="m-ui-component-card__footer">
-              <text class="m-ui-component-card__link">查看详情 →</text>
-            </view>
-          </view>
-        </div>
-      </view>
-    </view>
-
-    <view id="usage" class="m-ui-usage">
-      <view class="m-ui-usage__content">
-        <h2 class="m-ui-usage__title">开始使用</h2>
-        <view class="m-ui-usage__steps">
-          <view class="m-ui-usage__step">
-            <h3 class="m-ui-usage__step-title">1. 安装组件库</h3>
-            <p class="m-ui-usage__step-desc">在项目中引入 M-UI 组件库</p>
-          </view>
-          <view class="m-ui-usage__step">
-            <h3 class="m-ui-usage__step-title">2. 注册组件</h3>
-            <p class="m-ui-usage__step-desc">在 main.js 中注册需要的组件</p>
-          </view>
-          <view class="m-ui-usage__step">
-            <h3 class="m-ui-usage__step-title">3. 使用组件</h3>
-            <p class="m-ui-usage__step-desc">在页面中直接使用组件</p>
-          </view>
+    <!-- 开始使用 -->
+    <view id="usage" class="m-home__section m-home__section--gray">
+      <text class="m-home__section-title">开始使用</text>
+      <view class="m-home__steps">
+        <view v-for="(step, index) in steps" :key="index" class="m-home__step">
+          <text class="m-home__step-num">{{ index + 1 }}</text>
+          <text class="m-home__step-title">{{ step.title }}</text>
+          <text class="m-home__step-desc">{{ step.desc }}</text>
         </view>
       </view>
     </view>
 
-    <view class="m-ui-footer">
-      <view class="m-ui-footer__content">
-        <p class="m-ui-footer__text">© 2026 M-UI. All rights reserved.</p>
-      </view>
+    <!-- 页脚 -->
+    <view class="m-home__footer">
+      <text class="m-home__footer-text">© 2026 M-UI</text>
     </view>
-
   </view>
 </template>
 
 <script setup>
-function navigateTo(url) {
-  uni.navigateTo({
-    url: url
-  })
-}
+import { ref, computed } from 'vue'
 
-function scrollTo(id) {
-  uni.pageScrollTo({
-    selector: '#' + id,
-    duration: 300
-  })
-}
+const searchText = ref('')
 
-// 引入 ref
-import { ref } from 'vue'
+const components = [
+  { id: 'button', title: 'Button 按钮', desc: '按钮组件，支持多种类型和状态', url: '/examples/pages/button-demo' },
+  { id: 'icon', title: 'Icon 图标', desc: '图标组件，提供丰富的图标资源', url: '/examples/pages/icon-demo' },
+  { id: 'layout', title: 'Layout 布局', desc: '栅格布局，支持 24 分栏', url: '/examples/pages/layout-demo' },
+  { id: 'popup', title: 'Popup 弹出层', desc: '弹出层组件，支持多种位置', url: '/examples/pages/popup-demo' },
+  { id: 'transition', title: 'Transition 动画', desc: '过渡动画组件', url: '/examples/pages/transition-demo' }
+]
+
+const steps = [
+  { title: '安装', desc: 'npm install @your-scope/m-ui' },
+  { title: '注册', desc: '在 main.js 中导入组件库' },
+  { title: '使用', desc: '在页面中直接使用组件' }
+]
+
+const filteredComponents = computed(() => {
+  if (!searchText.value) return components
+  const keyword = searchText.value.toLowerCase()
+  return components.filter(c => 
+    c.title.toLowerCase().includes(keyword) || 
+    c.desc.toLowerCase().includes(keyword)
+  )
+})
+
+const navigateTo = (url) => uni.navigateTo({ url })
+const scrollTo = (id) => uni.pageScrollTo({ selector: `#${id}`, duration: 300 })
+const clearSearch = () => { searchText.value = '' }
 </script>
 
-<style lang="scss">
-.m-ui-home {
+<style lang="scss" scoped>
+.m-home {
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background: #f5f6fa;
 }
 
-.m-ui-header {
-  background-color: #4D80F0;
-  color: white;
-  padding: 60px 0;
+// 头部
+.m-home__header {
+  padding: 80rpx 32rpx;
   text-align: center;
-
-  &__title {
-    font-size: 48px;
-    font-weight: 700;
-    margin: 0 0 16px;
-  }
-
-  &__desc {
-    font-size: 18px;
-    margin: 0;
-    opacity: 0.9;
-  }
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.m-ui-nav {
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-
-  &__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  &__menu {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  &__item {
-    display: block;
-    padding: 16px 24px;
-    color: #333;
-    font-size: 16px;
-    transition: color 0.2s;
-  }
+.m-home__title {
+  display: block;
+  font-size: 64rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 16rpx;
 }
 
-.m-ui-components {
-  padding: 60px 0;
-
-  &__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  &__title {
-    font-size: 32px;
-    font-weight: 600;
-    text-align: center;
-    margin: 0 0 48px;
-    color: #333;
-  }
-
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
-  }
+.m-home__desc {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255,255,255,0.85);
 }
 
-.m-ui-component-card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  padding: 24px;
-  transition: transform 0.2s, box-shadow 0.2s;
+// 导航
+.m-home__nav {
+  display: flex;
+  justify-content: center;
+  gap: 48rpx;
+  padding: 24rpx 32rpx;
+  background: #fff;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
 
+.m-home__nav-item {
+  font-size: 28rpx;
+  color: #666;
+  
   &:active {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  }
-
-  &__header {
-    margin-bottom: 16px;
-  }
-
-  &__title {
-    font-size: 20px;
-    font-weight: 600;
-    margin: 0;
-    color: #333;
-  }
-
-  &__content {
-    margin-bottom: 20px;
-  }
-
-  &__desc {
-    font-size: 14px;
-    color: #666;
-    margin: 0 0 16px;
-    line-height: 1.5;
-  }
-
-  &__preview {
-    padding: 16px;
-    background-color: #f8f9fa;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-  }
-
-  &__footer {
-    text-align: right;
-  }
-
-  &__link {
-    color: #4D80F0;
-    font-size: 14px;
+    color: #667eea;
   }
 }
 
-.m-ui-usage {
-  background-color: white;
-  padding: 60px 0;
-
-  &__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
-  &__title {
-    font-size: 32px;
-    font-weight: 600;
-    text-align: center;
-    margin: 0 0 48px;
-    color: #333;
-  }
-
-  &__steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 32px;
-  }
-
-  &__step {
-    text-align: center;
-  }
-
-  &__step-title {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0 0 12px;
-    color: #333;
-  }
-
-  &__step-desc {
-    font-size: 14px;
-    color: #666;
-    margin: 0;
-    line-height: 1.5;
+// 区块
+.m-home__section {
+  padding: 60rpx 32rpx;
+  
+  &--gray {
+    background: #fff;
   }
 }
 
-.m-ui-footer {
-  background-color: #333;
-  color: white;
-  padding: 32px 0;
-
-  &__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-  }
-
-  &__text {
-    margin: 0;
-    font-size: 14px;
-    opacity: 0.8;
-  }
+.m-home__section-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 48rpx;
 }
 
-@media (max-width: 768px) {
-  .m-ui-header {
-    padding: 40px 0;
-
-    &__title {
-      font-size: 32px;
-    }
-
-    &__desc {
-      font-size: 16px;
-    }
-  }
-
-  .m-ui-components,
-  .m-ui-usage {
-    padding: 40px 0;
-  }
-
-  .m-ui-components__title,
-  .m-ui-usage__title {
-    font-size: 24px;
-    margin-bottom: 32px;
-  }
+// 搜索
+.m-home__search {
+  position: relative;
+  max-width: 600rpx;
+  margin: 0 auto 48rpx;
 }
 
-.fit-content-btn {
-  flex: none !important;
-  width: auto !important;
-  min-width: auto !important;
-}
-
-.demo-layout-preview {
+.m-home__search-input {
   width: 100%;
-  padding: 8px;
+  height: 72rpx;
+  padding: 0 80rpx 0 32rpx;
+  background: #f5f6fa;
+  border-radius: 36rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
 
-  &__row {
-    display: flex;
-    gap: 8px;
+.m-home__search-clear {
+  position: absolute;
+  right: 24rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  color: #999;
+  font-size: 28rpx;
+}
+
+// 网格
+.m-home__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24rpx;
+}
+
+.m-home__card {
+  flex: 1;
+  min-width: 300rpx;
+  padding: 32rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+  transition: all 0.2s;
+  
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
   }
+}
 
-  &__col {
-    height: 24px;
-    background-color: #4D80F0;
-    border-radius: 2px;
+.m-home__card-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12rpx;
+}
 
-    &--span6 {
-      flex: 1;
-    }
-  }
+.m-home__card-desc {
+  display: block;
+  font-size: 26rpx;
+  color: #999;
+  line-height: 1.5;
+  margin-bottom: 24rpx;
+}
+
+.m-home__card-link {
+  display: block;
+  font-size: 26rpx;
+  color: #667eea;
+  text-align: right;
+}
+
+// 步骤
+.m-home__steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32rpx;
+}
+
+.m-home__step {
+  flex: 1;
+  min-width: 240rpx;
+  text-align: center;
+}
+
+.m-home__step-num {
+  display: inline-block;
+  width: 56rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  text-align: center;
+  background: #667eea;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: bold;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+}
+
+.m-home__step-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+
+.m-home__step-desc {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+}
+
+// 空状态
+.m-home__empty {
+  text-align: center;
+  padding: 80rpx 0;
+}
+
+.m-home__empty-icon {
+  display: block;
+  font-size: 80rpx;
+  margin-bottom: 24rpx;
+}
+
+.m-home__empty-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+// 页脚
+.m-home__footer {
+  padding: 48rpx 32rpx;
+  text-align: center;
+  background: #333;
+}
+
+.m-home__footer-text {
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.6);
 }
 </style>
