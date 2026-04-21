@@ -29,7 +29,7 @@
       
       <demo-block title="自定义动画">
         <view class="demo-transition-row">
-          <m-button @click="custom">custom</m-button>
+          <m-button @click="custom">旋转缩放动画</m-button>
         </view>
       </demo-block>
 
@@ -37,13 +37,13 @@
 
       <m-transition
         :show="customShow"
-        :duration="{ enter: 700, leave: 1000 }"
-        enterClass="m-custom-enter"
-        enterActiveClass="m-custom-enter-active"
-        enterToClass="m-custom-enter-to"
-        leaveClass="m-custom-leave"
-        leaveActiveClass="m-custom-leave-active"
-        leaveToClass="m-custom-leave-to"
+        :duration="{ enter: 600, leave: 600 }"
+        enterClass="custom-enter"
+        enterActiveClass="custom-enter-active"
+        enterToClass="custom-enter-to"
+        leaveClass="custom-leave"
+        leaveActiveClass="custom-leave-active"
+        leaveToClass="custom-leave-to"
         customClass="block"
       />
     </view>
@@ -94,7 +94,7 @@ function custom() {
   customShow.value = true
   setTimeout(() => {
     customShow.value = false
-  }, 2000)
+  }, 1200)
 }
 function transition(transitionName: string) {
   name.value = transitionName
@@ -137,17 +137,33 @@ function transition(transitionName: string) {
   background: #0083ff;
 }
 
-:deep(.m-custom-enter-active),
-:deep(.m-custom-leave-active) {
-  transition-property: background, transform;
-  transition-duration: 1000ms;
+// 兼容小程序的精简自定义动画
+:deep(.custom-enter-active),
+:deep(.custom-leave-active) {
+  transition: all 0.6s ease;
+  // 添加硬件加速，减少模拟器闪烁
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
-:deep(.m-custom-enter) {
+
+:deep(.custom-enter) {
+  transform: scale(0) rotate(0deg) translateZ(0);
   opacity: 0;
-  transform: scale(0.3) rotate(-180deg);
 }
-:deep(.m-custom-leave-to) {
+
+:deep(.custom-enter-to) {
+  transform: scale(1) rotate(360deg) translateZ(0);
+  opacity: 1;
+}
+
+:deep(.custom-leave) {
+  transform: scale(1) rotate(360deg) translateZ(0);
+  opacity: 1;
+}
+
+:deep(.custom-leave-to) {
+  transform: scale(0) rotate(720deg) translateZ(0);
   opacity: 0;
-  transform: scale(0.3) rotate(-180deg);
 }
 </style>
