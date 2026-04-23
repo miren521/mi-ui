@@ -1,13 +1,11 @@
 <template>
   <view
     :class="['m-cell', isBorder ? 'is-border' : '', size ? 'is-' + size : '', center ? 'is-center' : '', customClass]"
-    :style="customStyle"
-    :hover-class="isLink || clickable ? 'is-hover' : 'none'"
-    :hover-stay-time="70"
-    @click="onClick"
-  >
+    :style="customStyle" :hover-class="isLink || clickable ? 'is-hover' : 'none'" :hover-stay-time="70"
+    @click="onClick">
     <view :class="['m-cell__wrapper', vertical ? 'is-vertical' : '']">
-      <view v-if="showLeft" class="m-cell__left" :style="titleWidth ? 'min-width:' + titleWidth + ';max-width:' + titleWidth + ';' : ''">
+      <view v-if="showLeft" class="m-cell__left"
+        :style="titleWidth ? 'min-width:' + titleWidth + ';max-width:' + titleWidth + ';' : ''">
         <text v-if="isRequired && markerSide === 'before'" class="m-cell__required m-cell__required--left">*</text>
         <!--左侧icon部位-->
         <slot name="icon">
@@ -33,12 +31,16 @@
       <view class="m-cell__right">
         <view class="m-cell__body">
           <!--文案内容-->
-          <view :class="`m-cell__value ${customValueClass} m-cell__value--${valueAlign} ${ellipsis ? 'm-cell__value--ellipsis' : ''}`">
+          <view
+            :class="`m-cell__value ${customValueClass} m-cell__value--${valueAlign} ${ellipsis ? 'm-cell__value--ellipsis' : ''}`">
             <slot>{{ value }}</slot>
           </view>
           <!--箭头-->
-          <m-icon v-if="isLink" custom-class="m-cell__arrow-right" :name="`arrow-${arrowDirection || 'right'}`" />
-          <slot v-else name="right-icon" />
+          <view class="m-cell__iconBox">
+            <m-icon v-if="isLink" size="32rpx" color="#999" custom-class="m-cell__arrow-right"
+              :name="`chevron-${arrowDirection || 'right'}`" />
+            <slot v-else name="right-icon" />
+          </view>
         </view>
         <view v-if="errorMessage" class="m-cell__error-message">{{ errorMessage }}</view>
       </view>

@@ -4,7 +4,7 @@
       <!-- 基础用法 -->
       <view class="demo-cell-group">
         <m-cell-group title="个人信息">
-          <m-cell title="姓名" value="张三" />
+          <m-cell title="姓名" value="张三" is-link />
           <m-cell title="手机号" value="138****5678" />
           <m-cell title="地址" value="北京市朝阳区" />
           <m-cell title="邮箱" value="zhan@example.com" />
@@ -12,7 +12,6 @@
       </view>
 
       <!-- 带图标 -->
-
       <view class="demo-cell-group">
         <m-cell-group title="显示图标" value="左侧显示图标">
           <m-cell title="个人资料" value="查看" icon="user" is-link />

@@ -177,9 +177,12 @@ $m-cell-arrow-color: #c8c9cc;
     }
   }
 
+  &__iconBox{
+    margin-left: 16rpx;
+  }
+
   &__arrow-right {
     display: block;
-    margin-left: 8px;
     width: $m-cell-arrow-size;
     font-size: $m-cell-arrow-size;
     color: $m-cell-arrow-color;

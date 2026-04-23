@@ -47,6 +47,12 @@
       "style": {
         "navigationBarTitleText": "Cell 单元格"
       }
+    },
+    {
+      "path": "examples/pages/tabbar-demo",
+      "style": {
+        "navigationBarTitleText": "Cell 单元格"
+      }
     }
   ],
   "globalStyle": {

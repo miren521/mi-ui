@@ -51,3 +51,8 @@ export const makeNumericProp = <T>(defaultVal: T) => ({
   type: numericProp,
   default: defaultVal
 })
+
+export const makeNumberProp = <T>(defaultVal: T) => ({
+  type: Number,
+  default: defaultVal
+})
