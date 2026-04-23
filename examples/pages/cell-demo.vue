@@ -144,7 +144,7 @@ function handleClick(type) {
   background-color: #fff;
   overflow: hidden;
   border-radius: 20rpx;
-  margin-bottom: 40rpx;
+  margin: 10rpx 0 32rpx 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
