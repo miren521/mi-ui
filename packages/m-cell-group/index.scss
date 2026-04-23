@@ -1,0 +1,91 @@
+// 文本颜色变量
+$m-text-default-color: #8c8c8c;
+$m-text-primary-color: #4d80f0;
+$m-text-success-color: #34d19d;
+$m-text-warning-color: #f0883a;
+$m-text-error-color: #fa4350;
+
+// 边框颜色
+$m-border-color: #ebedf0;
+
+// 背景颜色
+$m-background-color: #f5f7fa;
+$m-white: #ffffff;
+
+// 字体大小
+$m-font-size-xs: 20rpx;
+$m-font-size-sm: 24rpx;
+$m-font-size-md: 28rpx;
+$m-font-size-lg: 32rpx;
+
+// 间距
+$m-padding-xs: 10rpx;
+$m-padding-sm: 20rpx;
+$m-padding-md: 30rpx;
+$m-padding-lg: 40rpx;
+
+// 圆角
+$m-radius-sm: 8rpx;
+$m-radius-md: 16rpx;
+
+// Cell Group 变量
+$m-cell-group-padding: 24rpx;
+$m-cell-group-title-fs: 24rpx;
+$m-cell-group-title-color: #666;
+$m-cell-group-value-color: #999;
+$m-cell-group-value-fs: 24rpx;
+$m-cell-group-insert-radius: 16rpx;
+$m-cell-group-insert-margin: 20rpx;
+
+.m-cell-group {
+  background-color: $m-white;
+
+  &.is-border {
+    .m-cell-group__title {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        height: 1rpx;
+        background-color: $m-border-color;
+      }
+    }
+  }
+
+  &__title {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: $m-cell-group-padding;
+    background: $m-white;
+    font-size: $m-cell-group-title-fs;
+    color: $m-cell-group-title-color;
+    font-weight: 500;
+    line-height: 1.43;
+    font-size: 16px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+   &__left {
+    font-weight: 600;
+  }
+
+  &__right {
+    color: $m-cell-group-value-color;
+    font-size: $m-cell-group-value-fs;
+  }
+
+  &__body {
+    background: $m-white;
+  }
+
+  &--insert {
+    border-radius: $m-cell-group-insert-radius;
+    overflow: hidden;
+    margin: $m-cell-group-insert-margin;
+  }
+}

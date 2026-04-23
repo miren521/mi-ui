@@ -36,12 +36,18 @@
         "navigationBarTitleText": "Transition 过渡动画"
       }
     },
-	{
-	  "path": "examples/pages/text-demo",
-	  "style": {
-	    "navigationBarTitleText": "Text 文本"
-	  }
-	}
+    {
+      "path": "examples/pages/text-demo",
+      "style": {
+        "navigationBarTitleText": "Text 文本"
+      }
+    },
+    {
+      "path": "examples/pages/cell-demo",
+      "style": {
+        "navigationBarTitleText": "Cell 单元格"
+      }
+    }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
@@ -54,7 +60,7 @@
     "autoscan": true,
     "custom": {
       "^m-(.*)": "@/packages/m-$1/m-$1.vue",
-	  "^wd-(.*)": "@/wot-design-uni/components/wd-$1/wd-$1.vue"
+      "^wd-(.*)": "@/wot-design-uni/components/wd-$1/wd-$1.vue"
     }
   }
 }

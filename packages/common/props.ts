@@ -1,3 +1,5 @@
+import type { PropType } from 'vue';
+
 export const numericProp = [Number, String]
 
 /**
@@ -19,6 +21,11 @@ export const baseProps = {
     default: ''
   }
 }
+
+export const makeArrayProp = <T>() => ({
+  type: Array as PropType<T[]>,
+  default: () => []
+})
 
 /**
  * 生成布尔类型的 Props

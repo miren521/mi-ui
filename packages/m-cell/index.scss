@@ -1,0 +1,230 @@
+// 文本颜色变量
+$m-text-default-color: #8c8c8c;
+$m-text-primary-color: #4d80f0;
+$m-text-success-color: #34d19d;
+$m-text-warning-color: #f0883a;
+$m-text-error-color: #fa4350;
+
+// 边框颜色
+$m-border-color: #ebedf0;
+
+// 背景颜色
+$m-background-color: #f5f7fa;
+$m-white: #ffffff;
+$m-cell-tap-bg: #f2f3f5;
+
+// 字体大小
+$m-font-size-xs: 20rpx;
+$m-font-size-sm: 24rpx;
+$m-font-size-md: 28rpx;
+$m-font-size-lg: 32rpx;
+
+// 间距
+$m-padding-xs: 10rpx;
+$m-padding-sm: 20rpx;
+$m-padding-md: 30rpx;
+$m-padding-lg: 40rpx;
+
+// Cell 变量
+$m-cell-padding: 32rpx;
+$m-cell-line-height: 44rpx;
+$m-cell-wrapper-padding: 24rpx;
+$m-cell-wrapper-padding-with-label: 20rpx;
+$m-cell-wrapper-padding-large: 32rpx;
+$m-cell-vertical-top: 12rpx;
+$m-cell-title-fs: 28rpx;
+$m-cell-title-fs-large: 32rpx;
+$m-cell-title-color: #333;
+$m-cell-label-fs: 22rpx;
+$m-cell-label-fs-large: 24rpx;
+$m-cell-label-color: #999;
+$m-cell-value-fs: 28rpx;
+$m-cell-value-fs-large: 32rpx;
+$m-cell-value-color: #999;
+$m-cell-icon-size: 32rpx;
+$m-cell-icon-size-large: 40rpx;
+$m-cell-icon-right: 24rpx;
+$m-cell-required-size: 28rpx;
+$m-cell-required-color: #fa4350;
+$m-cell-required-margin: 8rpx;
+$m-cell-arrow-size: 24rpx;
+$m-cell-arrow-color: #c8c9cc;
+
+.m-cell {
+  position: relative;
+  padding-left: $m-cell-padding;
+  background-color: $m-white;
+  text-decoration: none;
+  color: $m-cell-title-color;
+  line-height: $m-cell-line-height;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+
+  &.is-border {
+    .m-cell__wrapper {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        height: 1rpx;
+        background-color: $m-border-color;
+      }
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    padding: $m-cell-wrapper-padding $m-cell-padding $m-cell-wrapper-padding 0;
+    justify-content: space-between;
+    align-items: flex-start;
+    overflow: hidden;
+
+    &.is-vertical {
+      display: block;
+
+      .m-cell__right {
+        margin-top: $m-cell-vertical-top;
+      }
+
+      .m-cell__value {
+        text-align: left;
+      }
+
+      .m-cell__left {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__left {
+    position: relative;
+    flex: 1;
+    display: flex;
+    text-align: left;
+    font-size: $m-cell-title-fs;
+    box-sizing: border-box;
+    margin-right: $m-cell-padding;
+  }
+
+  &__right {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: $m-cell-title-fs;
+  }
+
+  &__required {
+    font-size: $m-cell-required-size;
+    color: $m-cell-required-color;
+    margin-left: $m-cell-required-margin;
+
+    &--left {
+      margin-left: 0;
+      margin-right: $m-cell-required-margin;
+    }
+  }
+
+  &__label {
+    margin-top: 2px;
+    font-size: $m-cell-label-fs;
+    color: $m-cell-label-color;
+  }
+
+  &__icon {
+    display: block;
+    position: relative;
+    margin-right: $m-cell-icon-right;
+    font-size: $m-cell-icon-size;
+    height: $m-cell-line-height;
+    line-height: $m-cell-line-height;
+  }
+
+  &__body {
+    display: flex;
+    min-width: 0;
+  }
+
+  &__value {
+    position: relative;
+    flex: 1;
+    font-size: $m-cell-value-fs;
+    color: $m-cell-value-color;
+    vertical-align: middle;
+
+    &--left {
+      text-align: left;
+    }
+
+    &--right {
+      text-align: right;
+    }
+
+    &--ellipsis {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+  }
+
+  &__arrow-right {
+    display: block;
+    margin-left: 8px;
+    width: $m-cell-arrow-size;
+    font-size: $m-cell-arrow-size;
+    color: $m-cell-arrow-color;
+    height: $m-cell-line-height;
+    line-height: $m-cell-line-height;
+  }
+
+  &__error-message {
+    color: $m-text-error-color;
+    font-size: $m-font-size-xs;
+    line-height: 1.4;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  &.is-hover {
+    background-color: $m-cell-tap-bg;
+  }
+
+  &.is-large {
+    .m-cell__title {
+      font-size: $m-cell-title-fs-large;
+    }
+
+    .m-cell__wrapper {
+      padding-top: $m-cell-wrapper-padding-large;
+      padding-bottom: $m-cell-wrapper-padding-large;
+    }
+
+    .m-cell__label {
+      font-size: $m-cell-label-fs-large;
+    }
+
+    .m-cell__value {
+      font-size: $m-cell-value-fs-large;
+    }
+
+    .m-cell__icon {
+      font-size: $m-cell-icon-size-large;
+    }
+  }
+
+  &.is-center {
+    .m-cell__wrapper {
+      align-items: center;
+    }
+  }
+}

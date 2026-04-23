@@ -101,6 +101,7 @@ const components = [
   { id: 'button', title: 'Button 按钮', desc: '按钮组件，支持多种类型和状态', category: 'basic', url: '/examples/pages/button-demo' },
   { id: 'icon', title: 'Icon 图标', desc: '图标组件，提供丰富的图标资源', category: 'basic', url: '/examples/pages/icon-demo' },
   { id: 'text', title: 'Text 文本', desc: '文本组件，支持多种样式和格式化', category: 'basic', url: '/examples/pages/text-demo' },
+  { id: 'cell', title: 'Cell 单元格', desc: '单元格组件，用于展示列表数据', category: 'basic', url: '/examples/pages/cell-demo' },
   { id: 'layout', title: 'Layout 布局', desc: '栅格布局，支持 24 分栏', category: 'layout', url: '/examples/pages/layout-demo' },
   { id: 'popup', title: 'Popup 弹出层', desc: '弹出层组件，支持多种位置', category: 'feedback', url: '/examples/pages/popup-demo' },
   { id: 'transition', title: 'Transition 动画', desc: '过渡动画组件', category: 'feedback', url: '/examples/pages/transition-demo' }
