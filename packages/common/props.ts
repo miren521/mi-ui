@@ -1,3 +1,5 @@
+export const numericProp = [Number, String]
+
 /**
  * 基础 Props
  */
@@ -37,3 +39,8 @@ export function makeStringProp(defaultValue = '') {
     default: defaultValue
   }
 }
+
+export const makeNumericProp = <T>(defaultVal: T) => ({
+  type: numericProp,
+  default: defaultVal
+})

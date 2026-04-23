@@ -1,0 +1,50 @@
+// 文本颜色变量
+$m-text-default-color: #8c8c8c;
+$m-text-primary-color: #4d80f0;
+$m-text-success-color: #34d19d;
+$m-text-warning-color: #f0883a;
+$m-text-error-color: #fa4350;
+
+.m-text {
+  display: inline;
+
+  &.is-bold {
+    font-weight: bold;
+  }
+
+  &.is-lines-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @for $i from 2 through 5 {
+    &.is-lines-#{$i} {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: $i;
+      overflow: hidden;
+      word-break: break-all;
+    }
+  }
+
+  &.is-default {
+    color: $m-text-default-color;
+  }
+
+  &.is-primary {
+    color: $m-text-primary-color;
+  }
+
+  &.is-error {
+    color: $m-text-error-color;
+  }
+
+  &.is-warning {
+    color: $m-text-warning-color;
+  }
+
+  &.is-success {
+    color: $m-text-success-color;
+  }
+}

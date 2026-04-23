@@ -35,7 +35,13 @@
       "style": {
         "navigationBarTitleText": "Transition 过渡动画"
       }
-    }
+    },
+	{
+	  "path": "examples/pages/text-demo",
+	  "style": {
+	    "navigationBarTitleText": "Text 文本"
+	  }
+	}
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

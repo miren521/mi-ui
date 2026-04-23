@@ -75,6 +75,7 @@ const searchText = ref('')
 const components = [
   { id: 'button', title: 'Button 按钮', desc: '按钮组件，支持多种类型和状态', url: '/examples/pages/button-demo' },
   { id: 'icon', title: 'Icon 图标', desc: '图标组件，提供丰富的图标资源', url: '/examples/pages/icon-demo' },
+  { id: 'text', title: 'Text 文本', desc: '文本组件，支持多种样式和格式化', url: '/examples/pages/text-demo' },
   { id: 'layout', title: 'Layout 布局', desc: '栅格布局，支持 24 分栏', url: '/examples/pages/layout-demo' },
   { id: 'popup', title: 'Popup 弹出层', desc: '弹出层组件，支持多种位置', url: '/examples/pages/popup-demo' },
   { id: 'transition', title: 'Transition 动画', desc: '过渡动画组件', url: '/examples/pages/transition-demo' }
