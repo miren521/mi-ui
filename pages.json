@@ -66,12 +66,18 @@
         "navigationBarTitleText": "Avatar 头像"
       }
     },
-	{
-	  "path": "examples/pages/img-demo",
-	  "style": {
-	    "navigationBarTitleText": "Img 图片"
-	  }
-	}
+    {
+      "path": "examples/pages/img-demo",
+      "style": {
+        "navigationBarTitleText": "Img 图片"
+      }
+    },
+    {
+      "path": "examples/pages/divider-demo",
+      "style": {
+        "navigationBarTitleText": "Divider 分割线"
+      }
+    }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

@@ -201,19 +201,6 @@ import mBadge from '../../packages/m-badge/m-badge.vue'
   min-height: 100vh;
   background-color: #f5f5f5;
 
-  &__header {
-    padding: 32rpx;
-    background-color: #fff;
-    text-align: center;
-    border-bottom: 1rpx solid #e8e8e8;
-
-    &__title {
-      font-size: 36rpx;
-      font-weight: 600;
-      color: #333;
-    }
-  }
-
   &__content {
     padding: 32rpx;
   }
