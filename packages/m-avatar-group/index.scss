@@ -6,14 +6,14 @@
   flex-wrap: nowrap;
 
   // 为所有子元素设置基础样式
-  > * {
+  :deep(.m-avatar__group-item) {
     position: relative;
     flex-shrink: 0;
     z-index: 1;
   }
 
   // 为除了第一个子元素外的所有子元素设置负边距
-  > * + * {
+  :deep(.m-avatar__group-item + .m-avatar__group-item) {
     margin-left: -12px;
   }
 
@@ -21,8 +21,7 @@
   &.is-vertical {
     flex-direction: column;
 
-    // 为除了第一个子元素外的所有子元素设置负边距
-    > * + * {
+    :deep(.m-avatar__group-item + .m-avatar__group-item) {
       margin-left: 0;
       margin-top: -12px;
     }
@@ -33,8 +32,7 @@
     flex-direction: row-reverse;
     justify-content: flex-end;
 
-    // 为除了第一个子元素外的所有子元素设置负边距
-    > * + * {
+    :deep(.m-avatar__group-item + .m-avatar__group-item) {
       margin-left: 0;
       margin-right: -12px;
     }
@@ -49,8 +47,7 @@
   &.m-avatar-group--left-up.is-vertical {
     flex-direction: column-reverse;
 
-    // 为除了第一个子元素外的所有子元素设置负边距
-    > * + * {
+    :deep(.m-avatar__group-item + .m-avatar__group-item) {
       margin-right: 0;
       margin-bottom: -12px;
     }

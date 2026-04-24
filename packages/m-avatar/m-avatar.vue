@@ -51,9 +51,10 @@ const emit = defineEmits(['error', 'click', 'load'])
 const slots = useSlots()
 
 // 父组件上下文：_internal 用于 avatar-group 内部的溢出计数头像，跳过父组件上下文
-const parentResult = props._internal ? { parent: ref(null), index: ref(-1) } : useParent(AVATAR_GROUP_KEY)
-const avatarGroup = parentResult?.parent || ref(null)
+const parentResult = props._internal ? { parent: null, index: ref(-1) } : useParent(AVATAR_GROUP_KEY)
+const avatarGroup = ref(parentResult?.parent || null)
 const index = parentResult?.index || ref(-1)
+
 
 /**
  * 计算头像是否应该显示
@@ -112,6 +113,7 @@ const rootClass = computed(() => {
   if (isBuiltInSize.value) {
     classes.push(`m-avatar--${sizeValue.value}`)
   }
+  
   // 在 avatar-group 中时，添加 item 类
   if (avatarGroup.value) {
     classes.push('m-avatar__group-item')

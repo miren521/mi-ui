@@ -29,14 +29,17 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, useSlots, type CSSProperties } from 'vue'
+import { computed, useSlots, type CSSProperties, provide } from 'vue'
 import mAvatar from '../m-avatar/m-avatar.vue'
-import { avatarGroupProps, AVATAR_GROUP_KEY } from './types'
+import { avatarGroupProps, AVATAR_GROUP_KEY, type AvatarGroupProvide } from './types'
 import { useChildren } from '../composables/useChildren'
 import { objToStyle, addUnit, isString } from '../common/util'
 
 const props = defineProps(avatarGroupProps)
 const slots = useSlots()
+
+// 提供父组件上下文
+provide<AvatarGroupProvide>(AVATAR_GROUP_KEY, { props })
 
 const { children, linkChildren } = useChildren(AVATAR_GROUP_KEY)
 
