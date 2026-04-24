@@ -84,7 +84,7 @@
     "autoscan": true,
     "custom": {
       "^m-(.*)": "@/packages/m-$1/m-$1.vue",
-      "^wd-(.*)": "@/wot-design-uni/components/wd-$1/wd-$1.vue"
+      "^wd-(.*)": "@/wot-ui/components/wd-$1/wd-$1.vue"
     }
   }
 }

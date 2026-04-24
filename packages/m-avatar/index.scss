@@ -74,28 +74,28 @@ $avatar-color: var(--wot-avatar-color, $text-auxiliary) !default;
     width: $avatar-size-large;
     height: $avatar-size-large;
     font-size: $avatar-font-size-large;
-    --m-avatar-overlap: calc(#{$avatar-size-large} * -0.25);
+    --m-avatar-overlap: calc(#{$avatar-size-large} * -0.5);
   }
 
   &--medium {
     width: $avatar-size-medium;
     height: $avatar-size-medium;
     font-size: $avatar-font-size-medium;
-    --m-avatar-overlap: calc(#{$avatar-size-medium} * -0.25);
+    --m-avatar-overlap: calc(#{$avatar-size-medium} * -0.5);
   }
 
   &--normal {
     width: $avatar-size-normal;
     height: $avatar-size-normal;
     font-size: $avatar-font-size;
-    --m-avatar-overlap: calc(#{$avatar-size-normal} * -0.25);
+    --m-avatar-overlap: calc(#{$avatar-size-normal} * -0.5);
   }
 
   &--small {
     width: $avatar-size-small;
     height: $avatar-size-small;
     font-size: $avatar-font-size-small;
-    --m-avatar-overlap: calc(#{$avatar-size-small} * -0.25);
+    --m-avatar-overlap: calc(#{$avatar-size-small} * -0.5);
   }
 
   // 形状

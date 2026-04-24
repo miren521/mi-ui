@@ -23,9 +23,9 @@ export const avatarGroupProps = {
    * 头像层叠方向
    * 可选值: left-up(左侧叠层) / right-up(右侧叠层)
    * 类型: string
-   * 默认值: 'left-up'
+   * 默认值: 'right-up'
    */
-  cascading: makeStringProp<AvatarGroupCascadingValue>('left-up'),
+  cascading: makeStringProp<AvatarGroupCascadingValue>('right-up'),
   /**
    * 统一设置组内所有头像的形状
    * 类型: string

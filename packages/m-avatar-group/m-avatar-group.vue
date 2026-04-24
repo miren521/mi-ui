@@ -94,17 +94,17 @@ const hasDefaultSlot = computed(() => !!slots.default)
  */
 const collapseStyle = computed(() => {
   const style: CSSProperties = {}
-  if (props.cascading === 'left-up') {
+  if (props.cascading === 'right-up') {
     const count = maxCountValue.value > 0 ? maxCountValue.value : children.length
     style.zIndex = count + 1
-  } else if (props.cascading === 'right-up') {
+  } else if (props.cascading === 'left-up') {
     style.zIndex = 1
   } else {
     style.zIndex = 0
   }
   if (hasDefaultSlot.value) {
     const isBuiltIn = isString(props.size) && ['large', 'medium', 'normal', 'small'].includes(props.size)
-    const margin = isBuiltIn ? 'var(--m-avatar-overlap)' : `calc(${addUnit(props.size)} * -0.25)`
+    const margin = isBuiltIn ? 'var(--m-avatar-overlap)' : `calc(${addUnit(props.size)} * -0.5)`
     if (props.vertical) {
       style.marginTop = margin
     } else {

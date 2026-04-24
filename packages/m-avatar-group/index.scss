@@ -14,47 +14,47 @@
 
   // 为除了第一个子元素外的所有子元素设置负边距
   :deep(.m-avatar__group-item + .m-avatar__group-item) {
-    margin-left: -12px;
+    margin-left: -10px;
   }
 
   // 垂直排列时的样式
-  &.is-vertical {
+  :deep(&.is-vertical) {
     flex-direction: column;
 
     :deep(.m-avatar__group-item + .m-avatar__group-item) {
       margin-left: 0;
-      margin-top: -12px;
+      margin-top: -10px;
     }
   }
 
-  // 左侧堆叠时的样式
-  &.m-avatar-group--left-up {
+  // 右侧堆叠时的样式
+  :deep(&.m-avatar-group--right-up) {
     flex-direction: row-reverse;
     justify-content: flex-end;
 
     :deep(.m-avatar__group-item + .m-avatar__group-item) {
       margin-left: 0;
-      margin-right: -12px;
+      margin-right: -10px;
     }
   }
 
-  // 右侧堆叠时的样式
-  &.m-avatar-group--right-up {
+  // 左侧堆叠时的样式
+  :deep(&.m-avatar-group--left-up) {
     flex-direction: row;
   }
 
-  // 左侧垂直堆叠时的样式
-  &.m-avatar-group--left-up.is-vertical {
+  // 右侧垂直堆叠时的样式
+  :deep(&.m-avatar-group--right-up.is-vertical) {
     flex-direction: column-reverse;
 
     :deep(.m-avatar__group-item + .m-avatar__group-item) {
       margin-right: 0;
-      margin-bottom: -12px;
+      margin-bottom: -10px;
     }
   }
 
-  // 右侧垂直堆叠时的样式
-  &.m-avatar-group--right-up.is-vertical {
+  // 左侧垂直堆叠时的样式
+  :deep(&.m-avatar-group--left-up.is-vertical) {
     flex-direction: column;
   }
 }

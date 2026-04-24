@@ -103,16 +103,11 @@
       <demo-block title="头像组最大数量" desc="通过 max-count 属性设置最大显示数量">
         <view class="demo-avatar-group">
           <m-avatar-group :max-count="3">
-            <m-avatar shape="round" src="/static/img/img_1.jpg">
-            </m-avatar>
-            <m-avatar shape="round" src="/static/img/img_1.jpg">
-            </m-avatar>
-            <m-avatar shape="round" src="/static/img/img_1.jpg">
-            </m-avatar>
-            <m-avatar shape="round" src="/static/img/img_1.jpg">
-            </m-avatar>
-            <m-avatar shape="round" src="/static/img/img_1.jpg">
-            </m-avatar>
+            <m-avatar shape="round" src="/static/img/img_1.jpg" />
+            <m-avatar shape="round" src="/static/img/img_2.jpg" />
+            <m-avatar shape="round" src="/static/img/img_3.jpg" />
+            <m-avatar shape="round" src="/static/img/img_4.jpg" />
+            <m-avatar shape="round" src="/static/img/img_5.jpg" />
           </m-avatar-group>
         </view>
       </demo-block>
@@ -125,9 +120,9 @@
             <m-avatar-group cascading="left-up">
               <m-avatar shape="round" src="/static/img/img_1.jpg">
               </m-avatar>
-              <m-avatar shape="round" src="/static/img/img_1.jpg">
+              <m-avatar shape="round" src="/static/img/img_2.jpg">
               </m-avatar>
-              <m-avatar shape="round" src="/static/img/img_1.jpg">
+              <m-avatar shape="round" src="/static/img/img_3.jpg">
               </m-avatar>
             </m-avatar-group>
           </view>
