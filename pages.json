@@ -49,9 +49,15 @@
       }
     },
     {
-      "path": "examples/pages/tabbar-demo",
+      "path": "examples/pages/tag-demo",
       "style": {
-        "navigationBarTitleText": "Cell 单元格"
+        "navigationBarTitleText": "Tag 标签"
+      }
+    },
+    {
+      "path": "examples/pages/badge-demo",
+      "style": {
+        "navigationBarTitleText": "Badge 徽标"
       }
     }
   ],

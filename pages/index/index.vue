@@ -28,17 +28,15 @@
           <text v-if="searchText" class="m-home__search-clear" @click="clearSearch">✕</text>
         </view>
         
-        <scroll-view scroll-x class="m-home__categories" :show-scrollbar="false">
-          <view class="m-home__categories-inner">
-            <text 
-              v-for="cat in categories" 
-              :key="cat.key"
-              class="m-home__category-item"
-              :class="{ 'm-home__category-item--active': activeCategory === cat.key }"
-              @click="setCategory(cat.key)"
-            >{{ cat.name }}</text>
-          </view>
-        </scroll-view>
+        <view class="m-home__categories">
+          <text 
+            v-for="cat in categories" 
+            :key="cat.key"
+            class="m-home__category-item"
+            :class="{ 'm-home__category-item--active': activeCategory === cat.key }"
+            @click="setCategory(cat.key)"
+          >{{ cat.name }}</text>
+        </view>
       </view>
 
       <!-- 组件网格 -->
@@ -96,6 +94,7 @@ const categories = [
   { key: 'feedback', name: '反馈' },
   { key: 'layout', name: '布局' },
   { key: 'navigation', name: '导航' },
+  { key: 'display', name: '展示' },
 ]
 
 const components = [
@@ -103,6 +102,8 @@ const components = [
   { id: 'icon', title: 'Icon 图标', desc: '图标组件，提供丰富的图标资源', category: 'basic', url: '/examples/pages/icon-demo' },
   { id: 'text', title: 'Text 文本', desc: '文本组件，支持多种样式和格式化', category: 'basic', url: '/examples/pages/text-demo' },
   { id: 'cell', title: 'Cell 单元格', desc: '单元格组件，用于展示列表数据', category: 'basic', url: '/examples/pages/cell-demo' },
+  { id: 'tag', title: 'Tag 标签', desc: '标签组件，用于标记和分类', category: 'display', url: '/examples/pages/tag-demo' },
+  { id: 'badge', title: 'Badge 徽标', desc: '徽标组件，用于显示未读数量和状态', category: 'display', url: '/examples/pages/badge-demo' },
   { id: 'tabbar', title: 'Tabbar 底部导航', desc: '底部导航栏，用于在不同页面之间进行切换', category: 'navigation', url: '/examples/pages/tabbar-demo' },
   { id: 'layout', title: 'Layout 布局', desc: '栅格布局，支持 24 分栏', category: 'layout', url: '/examples/pages/layout-demo' },
   { id: 'popup', title: 'Popup 弹出层', desc: '弹出层组件，支持多种位置', category: 'feedback', url: '/examples/pages/popup-demo' },
@@ -253,18 +254,13 @@ const setCategory = (key) => { activeCategory.value = key }
 }
 
 .m-home__categories {
-  white-space: nowrap;
-  width: 100%;
-  
-  &-inner {
-    display: inline-flex;
-    gap: 16rpx;
-    padding: 8rpx 0;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
 }
 
 .m-home__category-item {
-  display: inline-block;
+  display: inline-block;  // 或 flex 也可以
   padding: 10rpx 28rpx;
   font-size: 26rpx;
   background: #fff;

@@ -1,0 +1,332 @@
+@use "sass:map";
+@use '../common/styles/variable.scss' as *;
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/mixin/_config.scss' as config;
+@use '../common/styles/mixin/_function.scss' as function;
+
+// 基础文字颜色
+$tag-color: var(--m-tag-color, $text-white) !default;
+// 基础字号
+$tag-font-size: var(--m-tag-font-size, $typography-label-size-main) !default;
+// 默认圆角
+$tag-radius: var(--m-tag-radius, $radius-main) !default;
+// 圆角标签圆角
+$tag-round-radius: var(--m-tag-round-radius, $radius-full) !default;
+// 标记标签圆角
+$tag-mark-radius: var(--m-tag-mark-radius, $radius-large $radius-main) !default;
+// 图标间距
+$tag-icon-spacing: var(--m-tag-icon-spacing, $spacing-ultra-tight) !default;
+// 输入态宽度
+$tag-input-width: var(--m-tag-input-width, $n-64) !default;
+// 主色浅色背景
+$tag-primary-light-bg: var(--m-tag-primary-light-bg, $primary-1) !default;
+// 主色背景
+$tag-primary-bg: var(--m-tag-primary-bg, $primary-6) !default;
+// 主色文字颜色
+$tag-primary-color: var(--m-tag-primary-color, $primary-6) !default;
+// 成功色背景
+$tag-success-bg: var(--m-tag-success-bg, $success-main) !default;
+// 成功色浅色背景
+$tag-success-light-bg: var(--m-tag-success-light-bg, $success-surface) !default;
+// 成功色文字颜色
+$tag-success-color: var(--m-tag-success-color, $success-main) !default;
+// 警告色背景
+$tag-warning-bg: var(--m-tag-warning-bg, $warning-main) !default;
+// 警告色浅色背景
+$tag-warning-light-bg: var(--m-tag-warning-light-bg, $warning-surface) !default;
+// 警告色文字颜色
+$tag-warning-color: var(--m-tag-warning-color, $warning-main) !default;
+// 危险色背景
+$tag-danger-bg: var(--m-tag-danger-bg, $danger-main) !default;
+// 危险色浅色背景
+$tag-danger-light-bg: var(--m-tag-danger-light-bg, $danger-surface) !default;
+// 危险色文字颜色
+$tag-danger-color: var(--m-tag-danger-color, $danger-main) !default;
+// 橘火色背景
+$tag-volcano-bg: var(--m-tag-volcano-bg, $volcano-6) !default;
+// 橘火色浅色背景
+$tag-volcano-light-bg: var(--m-tag-volcano-light-bg, $volcano-1) !default;
+// 橘火色文字颜色
+$tag-volcano-color: var(--m-tag-volcano-color, $volcano-6) !default;
+// 默认信息色背景
+$tag-info-bg: var(--m-tag-info-bg, $text-auxiliary) !default; 
+// 默认信息色浅色背景
+$tag-info-light-bg: var(--m-tag-info-light-bg, $filled-content) !default;  
+// 默认信息色文字颜色
+$tag-info-color: var(--m-tag-info-color, $text-secondary) !default;
+// 亮蓝色背景
+$tag-lightblue-bg: var(--m-tag-lightblue-bg, $lightblue-6) !default;
+// 亮蓝色浅色背景
+$tag-lightblue-light-bg: var(--m-tag-lightblue-light-bg, $lightblue-1) !default;
+// 亮蓝色文字颜色
+$tag-lightblue-color: var(--m-tag-lightblue-color, $lightblue-6) !default;
+// 青色背景
+$tag-cyan-bg: var(--m-tag-cyan-bg, $cyan-6) !default;
+// 青色浅色背景
+$tag-cyan-light-bg: var(--m-tag-cyan-light-bg, $cyan-1) !default;
+// 青色文字颜色
+$tag-cyan-color: var(--m-tag-cyan-color, $cyan-6) !default;
+// 粉色背景
+$tag-pink-bg: var(--m-tag-pink-bg, $pink-6) !default;
+// 粉色浅色背景
+$tag-pink-light-bg: var(--m-tag-pink-light-bg, $pink-1) !default;
+// 粉色文字颜色
+$tag-pink-color: var(--m-tag-pink-color, $pink-6) !default;
+// 紫色背景
+$tag-purple-bg: var(--m-tag-purple-bg, $purple-6) !default;
+// 紫色浅色背景
+$tag-purple-light-bg: var(--m-tag-purple-light-bg, $purple-1) !default;
+// 紫色文字颜色
+$tag-purple-color: var(--m-tag-purple-color, $purple-6) !default;
+// 小尺寸字号
+$tag-small-font-size: var(--m-tag-small-font-size, $typography-label-size-small) !default;
+// 小尺寸行高
+$tag-small-line-height: var(--m-tag-small-line-height, $typography-label-line-height-size-small) !default;
+// 小尺寸内边距
+$tag-small-padding: var(--m-tag-small-padding, $padding-zero $padding-super-tight) !default;
+// 小尺寸圆角态内边距
+$tag-small-round-padding: var(--m-tag-small-round-padding, $padding-zero $padding-tight) !default;
+// 小尺寸图标尺寸
+$tag-small-icon-size: var(--m-tag-small-icon-size, $n-10) !default;
+// 中尺寸字号
+$tag-medium-font-size: var(--m-tag-medium-font-size, $typography-label-size-main) !default;
+// 中尺寸行高
+$tag-medium-line-height: var(--m-tag-medium-line-height, $typography-label-line-height-size-main) !default;
+// 中尺寸内边距
+$tag-medium-padding: var(--m-tag-medium-padding, $n-1 $padding-super-tight) !default;
+// 中尺寸圆角态内边距
+$tag-medium-round-padding: var(--m-tag-medium-round-padding, $n-1 $padding-tight) !default;
+// 中尺寸图标尺寸
+$tag-medium-icon-size: var(--m-tag-medium-icon-size, $n-10) !default;
+// 默认尺寸字号
+$tag-default-font-size: var(--m-tag-default-font-size, $typography-label-size-main) !default;
+// 默认尺寸行高
+$tag-default-line-height: var(--m-tag-default-line-height, $typography-label-line-height-size-main) !default;
+// 默认尺寸内边距
+$tag-default-padding: var(--m-tag-default-padding, $n-3 $padding-extra-tight) !default;
+// 默认尺寸圆角态内边距
+$tag-default-round-padding: var(--m-tag-default-round-padding, $n-3 $padding-loose) !default;
+// 默认尺寸图标尺寸
+$tag-default-icon-size: var(--m-tag-default-icon-size, $n-12) !default;
+// 大尺寸字号
+$tag-large-font-size: var(--m-tag-large-font-size, $typography-label-size-large) !default;
+// 大尺寸行高
+$tag-large-line-height: var(--m-tag-large-line-height, $typography-label-line-height-size-large) !default;
+// 大尺寸内边距
+$tag-large-padding: var(--m-tag-large-padding, $n-3 $padding-extra-tight) !default;
+// 大尺寸圆角态内边距
+$tag-large-round-padding: var(--m-tag-large-round-padding, $n-3 $padding-loose) !default;
+// 大尺寸图标尺寸
+$tag-large-icon-size: var(--m-tag-large-icon-size, $n-12) !default;
+// 超大尺寸字号
+$tag-extra-large-font-size: var(--m-tag-extra-large-font-size, $typography-body-size-main) !default;
+// 超大尺寸行高
+$tag-extra-large-line-height: var(--m-tag-extra-large-line-height, $typography-body-line-height-size-main) !default;
+// 超大尺寸内边距
+$tag-extra-large-padding: var(--m-tag-extra-large-padding, $n-3 $padding-extra-tight) !default;
+// 超大尺寸圆角态内边距
+$tag-extra-large-round-padding: var(--m-tag-extra-large-round-padding, $n-3 $padding-loose) !default;
+// 超大尺寸图标尺寸
+$tag-extra-large-icon-size: var(--m-tag-extra-large-icon-size, $n-12) !default;
+
+$tag-types: (
+  "default": (
+    "color": $tag-info-color,
+    "bg": $tag-info-bg, 
+    "light-bg": $tag-info-light-bg
+  ),
+  "primary": (
+    "color": $tag-primary-color,
+    "bg": $tag-primary-bg,
+    "light-bg": $tag-primary-light-bg
+  ),
+  "success": (
+    "color": $tag-success-color,
+    "bg": $tag-success-bg,
+    "light-bg": $tag-success-light-bg
+  ),
+  "danger": (
+    "color": $tag-danger-color,
+    "bg": $tag-danger-bg,
+    "light-bg": $tag-danger-light-bg
+  ),
+  "warning": (
+    "color": $tag-warning-color,
+    "bg": $tag-warning-bg,
+    "light-bg": $tag-warning-light-bg
+  ),
+  "volcano": (
+    "color": $tag-volcano-color,
+    "bg": $tag-volcano-bg,
+    "light-bg": $tag-volcano-light-bg
+  ),
+  "lightblue": (
+    "color": $tag-lightblue-color,
+    "bg": $tag-lightblue-bg,
+    "light-bg": $tag-lightblue-light-bg
+  ),
+  "cyan": (
+    "color": $tag-cyan-color,
+    "bg": $tag-cyan-bg,
+    "light-bg": $tag-cyan-light-bg
+  ),
+  "pink": (
+    "color": $tag-pink-color,
+    "bg": $tag-pink-bg,
+    "light-bg": $tag-pink-light-bg
+  ),
+  "purple": (
+    "color": $tag-purple-color,
+    "bg": $tag-purple-bg,
+    "light-bg": $tag-purple-light-bg
+  )
+);
+
+$tag-sizes: (
+  "small": (
+    "font-size": $tag-small-font-size,
+    "line-height": $tag-small-line-height,
+    "padding": $tag-small-padding,
+    "round-padding": $tag-small-round-padding,
+    "icon-size": $tag-small-icon-size
+  ),
+  "medium": (
+    "font-size": $tag-medium-font-size,
+    "line-height": $tag-medium-line-height,
+    "padding": $tag-medium-padding,
+    "round-padding": $tag-medium-round-padding,
+    "icon-size": $tag-medium-icon-size
+  ),
+  "default": (
+    "font-size": $tag-default-font-size,
+    "line-height": $tag-default-line-height,
+    "padding": $tag-default-padding,
+    "round-padding": $tag-default-round-padding,
+    "icon-size": $tag-default-icon-size
+  ),
+  "large": (
+    "font-size": $tag-large-font-size,
+    "line-height": $tag-large-line-height,
+    "padding": $tag-large-padding,
+    "round-padding": $tag-large-round-padding,
+    "icon-size": $tag-large-icon-size
+  ),
+  "extra-large": (
+    "font-size": $tag-extra-large-font-size,
+    "line-height": $tag-extra-large-line-height,
+    "padding": $tag-extra-large-padding,
+    "round-padding": $tag-extra-large-round-padding,
+    "icon-size": $tag-extra-large-icon-size
+  )
+);
+
+.m-tag {
+  display: inline-flex;
+  align-items: center;
+  color: $tag-color;
+  border-radius: $tag-radius;
+
+  &__input {
+    width: $tag-input-width;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+    font-size: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: inherit;
+  }
+
+  @each $size, $conf in $tag-sizes {
+    &.is-#{$size} {
+      font-size: map.get($conf, "font-size");
+      line-height: map.get($conf, "line-height");
+      padding: map.get($conf, "padding");
+      
+      &.is-round {
+        padding: map.get($conf, "round-padding");
+      }
+
+      .m-tag__icon,
+      .m-tag__add,
+      .m-tag__close-icon {
+        font-size: map.get($conf, "icon-size");
+        color: currentColor;
+      }
+
+      .m-tag__icon {
+        margin-right: $tag-icon-spacing;
+      }
+
+      .m-tag__input {
+        height: map.get($conf, "line-height");
+      }
+    }
+  }
+
+  @each $type, $conf in $tag-types {
+    $color: map.get($conf, "color");
+    $bg: map.get($conf, "bg");
+    $light-bg: map.get($conf, "light-bg");
+
+    &.is-#{$type} {
+      &.is-light {
+        background: $light-bg;
+        color: $color;
+      }
+
+      &.is-dark {
+        background: $bg;
+        color: $tag-color;
+      }
+
+      &.is-plain {
+        background: transparent;
+        color: $color;
+        border: 1px solid $color;
+      }
+
+      &.is-dashed {
+        background: transparent;
+        color: $color;
+        border: 1px dashed $color;
+      }
+
+      &.is-text {
+        background: transparent;
+        color: $color;
+      }
+
+      .m-tag__placeholder {
+        color: currentColor;
+      }
+    }
+  }
+
+  &.is-round {
+    border-radius: $tag-round-radius;
+  }
+
+  &.is-mark {
+    border-radius: $tag-mark-radius;
+  }
+
+  &.is-active {
+    color: $tag-primary-color;
+    border-color: $tag-primary-color;
+  }
+
+  &.is-icon {
+    font-size: $tag-font-size;
+  }
+
+  &__close {
+    margin-left: $tag-icon-spacing;
+  }
+
+  &__add {
+    margin-right: $tag-icon-spacing;
+  }
+}
