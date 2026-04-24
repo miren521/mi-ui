@@ -21,7 +21,7 @@
   :deep(&.is-vertical) {
     flex-direction: column;
 
-    :deep(.m-avatar__group-item + .m-avatar__group-item) {
+    .m-avatar__group-item + .m-avatar__group-item {
       margin-left: 0;
       margin-top: -10px;
     }
@@ -32,7 +32,7 @@
     flex-direction: row-reverse;
     justify-content: flex-end;
 
-    :deep(.m-avatar__group-item + .m-avatar__group-item) {
+    .m-avatar__group-item + .m-avatar__group-item {
       margin-left: 0;
       margin-right: -10px;
     }
@@ -47,7 +47,7 @@
   :deep(&.m-avatar-group--right-up.is-vertical) {
     flex-direction: column-reverse;
 
-    :deep(.m-avatar__group-item + .m-avatar__group-item) {
+    .m-avatar__group-item + .m-avatar__group-item {
       margin-right: 0;
       margin-bottom: -10px;
     }
