@@ -18,7 +18,7 @@
   }
 
   // 垂直排列时的样式
-  :deep(&.is-vertical) {
+  &.is-vertical {
     flex-direction: column;
 
     :deep(.m-avatar__group-item + .m-avatar__group-item) {

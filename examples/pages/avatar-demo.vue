@@ -172,19 +172,15 @@
       <demo-block title="头像与徽标组合" desc="头像与徽章组件的组合使用">
         <view class="demo-avatar-row">
           <m-badge value="8">
-            <m-avatar shape="round" src="/static/img/img_1.jpg">
+            <m-avatar shape="square" src="/static/img/img_1.jpg">
             </m-avatar>
           </m-badge>
-          <m-badge value="128">
-            <m-avatar shape="round" src="/static/img/img_2.jpg">
+          <m-badge value="12">
+            <m-avatar shape="square" src="/static/img/img_2.jpg">
             </m-avatar>
           </m-badge>
           <m-badge value="0" show-zero>
-            <m-avatar shape="round" src="/static/img/img_3.jpg">
-            </m-avatar>
-          </m-badge>
-          <m-badge is-dot>
-            <m-avatar shape="round" src="/static/img/img_4.jpg">
+            <m-avatar shape="square" src="/static/img/img_3.jpg">
             </m-avatar>
           </m-badge>
         </view>
@@ -230,13 +226,13 @@ import mBadge from '../../packages/m-badge/m-badge.vue'
 }
 
 .demo-avatar-group {
-  margin-bottom: 24rpx;
+  // margin-bottom: 24rpx;
 }
 
 .demo-avatar-group-row {
   display: flex;
   gap: 48rpx;
-  margin-bottom: 24rpx;
+  // margin-bottom: 24rpx;
 }
 
 .demo-avatar-group-item {
