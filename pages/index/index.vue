@@ -102,7 +102,7 @@ const components = [
   { id: 'icon', title: 'Icon 图标', desc: '图标组件，提供丰富的图标资源', category: 'basic', url: '/examples/pages/icon-demo' },
   { id: 'text', title: 'Text 文本', desc: '文本组件，支持多种样式和格式化', category: 'basic', url: '/examples/pages/text-demo' },
   { id: 'cell', title: 'Cell 单元格', desc: '单元格组件，用于展示列表数据', category: 'basic', url: '/examples/pages/cell-demo' },
-  { id: 'avatar', title: 'Avatar 头像', desc: '头像组件，支持图片、文本、图标和状态显示', category: 'basic', url: '/examples/pages/avatar-demo' },
+  { id: 'avatar', title: 'Avatar 头像', desc: '头像组件，支持图片、文本、图标和状态显示', category: 'display', url: '/examples/pages/avatar-demo' },
   { id: 'img', title: 'Img 图片', desc: '图片组件，支持多种填充模式和预览功能', category: 'display', url: '/examples/pages/img-demo' },
   { id: 'tag', title: 'Tag 标签', desc: '标签组件，用于标记和分类', category: 'display', url: '/examples/pages/tag-demo' },
   { id: 'badge', title: 'Badge 徽标', desc: '徽标组件，用于显示未读数量和状态', category: 'display', url: '/examples/pages/badge-demo' },
