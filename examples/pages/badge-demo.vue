@@ -2,7 +2,7 @@
   <view class="m-badge-demo">
     <view class="m-badge-demo__container">
       <!-- 基本用法 -->
-      <demo-block title="基本用法">
+      <demo-block title="基本用法" desc="徽标的默认样式，支持显示数字和零值">
         <view class="demo-badge-row">
           <m-badge value="8">
             <view class="demo-badge-btn">消息</view>
@@ -17,7 +17,7 @@
       </demo-block>
 
       <!-- 最大值设置 -->
-      <demo-block title="最大值设置">
+      <demo-block title="最大值设置" desc="通过 max 属性设置徽标的最大值">
         <view class="demo-badge-row">
           <m-badge value="20" max="9">
             <view class="demo-badge-btn">消息</view>
@@ -32,7 +32,7 @@
       </demo-block>
 
       <!-- 点状徽标 -->
-      <demo-block title="点状徽标">
+      <demo-block title="点状徽标" desc="使用 is-dot 属性创建点状徽标">
         <view class="demo-badge-row">
           <m-badge is-dot>
             <view class="demo-badge-btn">消息</view>
@@ -47,7 +47,7 @@
       </demo-block>
 
       <!-- 不同类型 -->
-      <demo-block title="不同类型">
+      <demo-block title="不同类型" desc="通过 type 属性设置徽标的颜色类型">
         <view class="demo-badge-row">
           <m-badge value="1" type="primary">
             <view class="demo-badge-btn">主要</view>
@@ -68,7 +68,7 @@
       </demo-block>
 
       <!-- 不同形状 -->
-      <demo-block title="不同形状">
+      <demo-block title="不同形状" desc="通过 shape 属性设置徽标的形状">
         <view class="demo-badge-row">
           <m-badge value="1" shape="circle">
             <view class="demo-badge-btn">圆形</view>
@@ -83,7 +83,7 @@
       </demo-block>
 
       <!-- 自定义位置 -->
-      <demo-block title="自定义位置">
+      <demo-block title="自定义位置" desc="通过 top 和 right 属性自定义徽标的位置">
         <view class="demo-badge-row">
           <m-badge value="1" top="-5" right="-5">
             <view class="demo-badge-btn">上移左移</view>
@@ -95,7 +95,7 @@
       </demo-block>
 
       <!-- 自定义背景色 -->
-      <demo-block title="自定义背景色">
+      <demo-block title="自定义背景色" desc="通过 bg-color 属性自定义徽标的背景色">
         <view class="demo-badge-row">
           <m-badge value="1" bg-color="#722ed1">
             <view class="demo-badge-btn">紫色</view>
@@ -110,7 +110,7 @@
       </demo-block>
 
       <!-- 显示白色描边 -->
-      <demo-block title="显示白色描边">
+      <demo-block title="显示白色描边" desc="使用 border 属性为徽标添加白色描边">
         <view class="demo-badge-row">
           <m-badge value="1" border>
             <view class="demo-badge-btn">带描边</view>
@@ -132,7 +132,7 @@
       </demo-block>
 
       <!-- 实际应用场景 -->
-      <demo-block title="实际应用场景">
+      <demo-block title="实际应用场景" desc="徽标在实际应用中的常见使用方式">
         <view class="demo-badge-row">
           <m-badge value="5">
             <view class="demo-badge-btn">消息</view>
@@ -177,7 +177,7 @@
 }
 
 .demo-badge-btn {
-  width: 120rpx;
+  padding: 0 30rpx;
   height: 48rpx;
   background-color: #f5f5f5;
   border-radius: 24rpx;

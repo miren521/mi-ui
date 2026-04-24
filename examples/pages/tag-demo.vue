@@ -2,7 +2,7 @@
   <view class="m-tag-demo">
     <view class="m-tag-demo__container">
       <!-- 基础用法 -->
-      <demo-block title="基础用法">
+      <demo-block title="基础用法" desc="标签的默认样式，支持多种类型">
         <view class="demo-tag-row">
           <m-tag>默认</m-tag>
           <m-tag type="primary">主要</m-tag>
@@ -13,7 +13,7 @@
       </demo-block>
 
       <!-- 更多颜色 -->
-      <demo-block title="更多颜色">
+      <demo-block title="更多颜色" desc="提供更多颜色选项，满足不同场景需求">
         <view class="demo-tag-row">
           <m-tag type="volcano">火山</m-tag>
           <m-tag type="lightblue">天蓝</m-tag>
@@ -24,7 +24,7 @@
       </demo-block>
 
       <!-- 浅色模式 -->
-      <demo-block title="浅色模式">
+      <demo-block title="浅色模式" desc="使用 variant='light' 属性开启浅色模式">
         <view class="demo-tag-row">
           <m-tag variant="light">默认</m-tag>
           <m-tag type="primary" variant="light">主要</m-tag>
@@ -35,7 +35,7 @@
       </demo-block>
 
       <!-- 朴素模式 -->
-      <demo-block title="朴素模式">
+      <demo-block title="朴素模式" desc="使用 variant='plain' 属性开启朴素模式">
         <view class="demo-tag-row">
           <m-tag variant="plain">默认</m-tag>
           <m-tag type="primary" variant="plain">主要</m-tag>
@@ -46,7 +46,7 @@
       </demo-block>
 
       <!-- 虚线模式 -->
-      <demo-block title="虚线模式">
+      <demo-block title="虚线模式" desc="使用 variant='dashed' 属性开启虚线模式">
         <view class="demo-tag-row">
           <m-tag variant="dashed">默认</m-tag>
           <m-tag type="primary" variant="dashed">主要</m-tag>
@@ -57,7 +57,7 @@
       </demo-block>
 
       <!-- 文字模式 -->
-      <demo-block title="文字模式">
+      <demo-block title="文字模式" desc="使用 variant='text' 属性开启文字模式">
         <view class="demo-tag-row">
           <m-tag variant="text">默认</m-tag>
           <m-tag type="primary" variant="text">主要</m-tag>
@@ -68,7 +68,7 @@
       </demo-block>
 
       <!-- 圆角标签 -->
-      <demo-block title="圆角标签">
+      <demo-block title="圆角标签" desc="使用 round 属性开启圆角样式">
         <view class="demo-tag-row">
           <m-tag round>默认</m-tag>
           <m-tag type="primary" round>主要</m-tag>
@@ -79,7 +79,7 @@
       </demo-block>
 
       <!-- 标记标签 -->
-      <demo-block title="标记标签">
+      <demo-block title="标记标签" desc="使用 mark 属性开启标记样式">
         <view class="demo-tag-row">
           <m-tag mark>默认</m-tag>
           <m-tag type="primary" mark>主要</m-tag>
@@ -90,7 +90,7 @@
       </demo-block>
 
       <!-- 标签尺寸 -->
-      <demo-block title="标签尺寸">
+      <demo-block title="标签尺寸" desc="通过 size 属性设置不同尺寸">
         <view class="demo-tag-row">
           <m-tag size="small" type="primary">小尺寸</m-tag>
           <m-tag size="medium" type="primary">中尺寸</m-tag>
@@ -101,7 +101,7 @@
       </demo-block>
 
       <!-- 可关闭标签 -->
-      <demo-block title="可关闭标签">
+      <demo-block title="可关闭标签" desc="使用 closable 属性开启标签关闭功能">
         <view class="demo-tag-row">
           <m-tag
             v-for="(tag, index) in closableTags"
@@ -116,7 +116,7 @@
       </demo-block>
 
       <!-- 带图标 -->
-      <demo-block title="带图标">
+      <demo-block title="带图标" desc="通过 icon 属性为标签添加图标">
         <view class="demo-tag-row">
           <m-tag icon="user" type="primary">用户</m-tag>
           <m-tag icon="star" type="warning">收藏</m-tag>
@@ -126,7 +126,7 @@
       </demo-block>
 
       <!-- 动态标签 -->
-      <demo-block title="动态标签">
+      <demo-block title="动态标签" desc="使用 dynamic 属性创建可输入的动态标签">
         <view class="demo-tag-row">
           <m-tag
             v-for="(tag, index) in dynamicTags"
@@ -142,7 +142,7 @@
       </demo-block>
 
       <!-- 自定义颜色 -->
-      <demo-block title="自定义颜色">
+      <demo-block title="自定义颜色" desc="通过 bg-color 和 color 属性自定义标签颜色">
         <view class="demo-tag-row">
           <m-tag bg-color="#722ed1" color="#fff">紫色</m-tag>
           <m-tag bg-color="#13c2c2" color="#fff">青色</m-tag>
