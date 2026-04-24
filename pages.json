@@ -59,7 +59,19 @@
       "style": {
         "navigationBarTitleText": "Badge 徽标"
       }
-    }
+    },
+    {
+      "path": "examples/pages/avatar-demo",
+      "style": {
+        "navigationBarTitleText": "Avatar 头像"
+      }
+    },
+	{
+	  "path": "examples/pages/img-demo",
+	  "style": {
+	    "navigationBarTitleText": "Img 图片"
+	  }
+	}
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",

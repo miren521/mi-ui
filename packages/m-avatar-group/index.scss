@@ -1,0 +1,33 @@
+@use '../common/styles/variables.scss' as *;
+
+.m-avatar-group {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+
+  &--left-up {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
+  &--right-up {
+    flex-direction: row;
+  }
+
+  &.is-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .m-avatar-group--left-up {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+
+    .m-avatar-group--right-up {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}

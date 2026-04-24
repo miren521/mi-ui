@@ -1,0 +1,82 @@
+@import '../common/styles/variables.scss';
+
+// 圆形模式圆角
+$img-border-radius: var(--m-img-border-radius, $radius-full) !default;
+// 加载态文字颜色
+$img-loading-color: var(--m-img-loading-color, $text-placeholder) !default;
+// 加载态背景色
+$img-loading-bg: var(--m-img-loading-bg, $filled-bottom) !default;
+// 加载态文字字号
+$img-loading-font-size: var(--m-img-loading-font-size, $typography-body-size-main) !default;
+// 加载态图标颜色
+$img-loading-icon-color: var(--m-img-loading-icon-color, $text-placeholder) !default;
+// 加载态图标尺寸
+$img-loading-icon-size: var(--m-img-loading-icon-size, $n-32) !default;
+// 失败态文字颜色
+$img-error-color: var(--m-img-error-color, $text-placeholder) !default;
+// 失败态背景色
+$img-error-bg: var(--m-img-error-bg, $filled-bottom) !default;
+// 失败态文字字号
+$img-error-font-size: var(--m-img-error-font-size, $typography-body-size-main) !default;
+// 失败态图标颜色
+$img-error-icon-color: var(--m-img-error-icon-color, $text-placeholder) !default;
+// 失败态图标尺寸
+$img-error-icon-size: var(--m-img-error-icon-size, $n-32) !default;
+
+.m-img {
+  position: relative;
+  display: inline-block;
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: inherit;
+  }
+
+  &__loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: $img-loading-color;
+    font-size: $img-loading-font-size;
+    background-color: $img-loading-bg;
+
+    &-icon {
+      color: $img-loading-icon-color;
+      font-size: $img-loading-icon-size;
+    }
+  }
+
+  &__error {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: $img-error-color;
+    font-size: $img-error-font-size;
+    background-color: $img-error-bg;
+
+    &-icon {
+      color: $img-error-icon-color;
+      font-size: $img-error-icon-size;
+    }
+  }
+
+  &.is-round {
+    overflow: hidden;
+    border-radius: $img-border-radius;
+  }
+}

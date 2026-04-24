@@ -1,4 +1,4 @@
-@use '../common/styles/variable.scss' as *;
+@use '../common/styles/variables.scss' as *;
 
 // 徽标高度
 $badge-height: var(--m-badge-height, $n-16) !default;

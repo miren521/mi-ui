@@ -1,0 +1,161 @@
+@use '../common/styles/variables.scss' as *;
+
+// 默认尺寸
+$avatar-size-normal: var(--wot-avatar-size-normal, $n-36) !default;
+// 大尺寸
+$avatar-size-large: var(--wot-avatar-size-large, $n-56) !default;
+// 中尺寸
+$avatar-size-medium: var(--wot-avatar-size-medium, $n-48) !default;
+// 小尺寸
+$avatar-size-small: var(--wot-avatar-size-small, $n-24) !default;
+// 头像文字颜色
+$avatar-text-color: var(--wot-avatar-text-color, $text-white) !default;
+// 头像文字字重
+$avatar-font-weight: var(--wot-avatar-font-weight, $typography-body-font-weight-strong) !default;
+// 默认文字字号
+$avatar-font-size: var(--wot-avatar-font-size, $typography-title-size-large) !default;
+// 大尺寸文字字号
+$avatar-font-size-large: var(--wot-avatar-font-size-large, $typography-title-size-extra-large) !default;
+// 中尺寸文字字号
+$avatar-font-size-medium: var(--wot-avatar-font-size-medium, $typography-title-size-large) !default;
+// 小尺寸文字字号
+$avatar-font-size-small: var(--wot-avatar-font-size-small, $typography-title-size-main) !default;
+// 默认文字行高
+$avatar-line-height: var(--wot-avatar-line-height, $typography-title-line-height-size-large) !default;
+// 大尺寸文字行高
+$avatar-line-height-large: var(--wot-avatar-line-height-large, $typography-title-line-height-size-extra-large) !default;
+// 中尺寸文字行高
+$avatar-line-height-medium: var(--wot-avatar-line-height-medium, $typography-title-line-height-size-large) !default;
+// 小尺寸文字行高
+$avatar-line-height-small: var(--wot-avatar-line-height-small, $typography-title-line-height-size-main) !default;
+// 头像背景颜色
+$avatar-bg: var(--wot-avatar-bg, $filled-strong) !default;
+// 默认圆角
+$avatar-border-radius: var(--wot-avatar-border-radius, $radius-main) !default;
+// 全圆角
+$avatar-border-radius-full: var(--wot-avatar-border-radius-full, $radius-full) !default;
+// 头像重叠距离
+$avatar-overlap: var(--wot-avatar-overlap, -8px) !default;
+// 图标颜色
+$avatar-icon-color: var(--wot-avatar-icon-color, $icon-auxiliary) !default;
+// 文本颜色
+$avatar-color: var(--wot-avatar-color, $text-auxiliary) !default;
+
+.m-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $avatar-bg;
+  color: $avatar-color;
+  font-size: $avatar-font-size;
+  line-height: 1;
+  vertical-align: middle;
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+
+  &__text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+
+  &__icon {
+    font-size: inherit;
+  }
+
+  // 内置尺寸
+  &--large {
+    width: $avatar-size-large;
+    height: $avatar-size-large;
+    font-size: $avatar-font-size-large;
+  }
+
+  &--medium {
+    width: $avatar-size-medium;
+    height: $avatar-size-medium;
+    font-size: $avatar-font-size-medium;
+  }
+
+  &--normal {
+    width: $avatar-size-normal;
+    height: $avatar-size-normal;
+    font-size: $avatar-font-size;
+  }
+
+  &--small {
+    width: $avatar-size-small;
+    height: $avatar-size-small;
+    font-size: $avatar-font-size-small;
+  }
+
+  // 形状
+  &.is-round {
+    border-radius: 50%;
+  }
+
+  &.is-square {
+    border-radius: $avatar-border-radius;
+  }
+
+  // 分组项
+  &.m-avatar__group-item {
+    display: inline-block;
+    margin-right: var(--m-avatar-overlap, #{$avatar-overlap});
+
+    &--vertical {
+      display: block;
+      margin-right: 0;
+      margin-bottom: var(--m-avatar-overlap, #{$avatar-overlap});
+    }
+  }
+
+  // 状态徽标
+  &__status {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--top-right {
+      top: -4px;
+      right: -4px;
+    }
+
+    &--bottom-right {
+      bottom: -4px;
+      right: -4px;
+    }
+  }
+
+  // 状态图标
+  &__status-icon {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+    &--online {
+      background-color: #52c41a;
+    }
+
+    &--offline {
+      background-color: #d9d9d9;
+    }
+
+    &--busy {
+      background-color: #ff4d4f;
+    }
+
+    &--vip {
+      background-color: #faad14;
+    }
+  }
+}
