@@ -74,24 +74,28 @@ $avatar-color: var(--wot-avatar-color, $text-auxiliary) !default;
     width: $avatar-size-large;
     height: $avatar-size-large;
     font-size: $avatar-font-size-large;
+    --m-avatar-overlap: calc(#{$avatar-size-large} * -0.25);
   }
 
   &--medium {
     width: $avatar-size-medium;
     height: $avatar-size-medium;
     font-size: $avatar-font-size-medium;
+    --m-avatar-overlap: calc(#{$avatar-size-medium} * -0.25);
   }
 
   &--normal {
     width: $avatar-size-normal;
     height: $avatar-size-normal;
     font-size: $avatar-font-size;
+    --m-avatar-overlap: calc(#{$avatar-size-normal} * -0.25);
   }
 
   &--small {
     width: $avatar-size-small;
     height: $avatar-size-small;
     font-size: $avatar-font-size-small;
+    --m-avatar-overlap: calc(#{$avatar-size-small} * -0.25);
   }
 
   // 形状
@@ -101,18 +105,6 @@ $avatar-color: var(--wot-avatar-color, $text-auxiliary) !default;
 
   &.is-square {
     border-radius: $avatar-border-radius;
-  }
-
-  // 分组项
-  &.m-avatar__group-item {
-    display: inline-block;
-    margin-right: var(--m-avatar-overlap, #{$avatar-overlap});
-
-    &--vertical {
-      display: block;
-      margin-right: 0;
-      margin-bottom: var(--m-avatar-overlap, #{$avatar-overlap});
-    }
   }
 
   // 状态徽标

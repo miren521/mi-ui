@@ -94,6 +94,8 @@ const collapseStyle = computed(() => {
   if (props.cascading === 'left-up') {
     const count = maxCountValue.value > 0 ? maxCountValue.value : children.length
     style.zIndex = count + 1
+  } else if (props.cascading === 'right-up') {
+    style.zIndex = 1
   } else {
     style.zIndex = 0
   }

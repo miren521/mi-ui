@@ -4,7 +4,7 @@
       <!-- 基本用法 -->
       <demo-block title="基本用法" desc="头像的默认样式，支持图片、文本和图标">
         <view class="demo-avatar-row">
-          <m-avatar shape="round" src="/static//img/img_1.jpg" />
+          <m-avatar shape="round" src="/static/img/img_1.jpg" />
           <m-avatar shape="round" text="张"></m-avatar>
           <m-avatar shape="round" icon="user"></m-avatar>
         </view>
@@ -13,15 +13,15 @@
       <!-- 不同尺寸 -->
       <demo-block title="不同尺寸" desc="通过 size 属性设置头像的尺寸">
         <view class="demo-avatar-row">
-          <m-avatar shape="round" size="large" src="/static//img/img_1.jpg">
+          <m-avatar shape="round" size="large" src="/static/img/img_1.jpg">
           </m-avatar>
-          <m-avatar shape="round" size="medium" src="/static//img/img_1.jpg">
+          <m-avatar shape="round" size="medium" src="/static/img/img_1.jpg">
           </m-avatar>
-          <m-avatar shape="round" size="normal" src="/static//img/img_1.jpg">
+          <m-avatar shape="round" size="normal" src="/static/img/img_1.jpg">
           </m-avatar>
-          <m-avatar shape="round" size="small" src="/static//img/img_1.jpg">
+          <m-avatar shape="round" size="small" src="/static/img/img_1.jpg">
           </m-avatar>
-          <m-avatar shape="round" size="40" src="/static//img/img_1.jpg">
+          <m-avatar shape="round" size="40" src="/static/img/img_1.jpg">
           </m-avatar>
         </view>
       </demo-block>
@@ -29,9 +29,9 @@
       <!-- 不同形状 -->
       <demo-block title="不同形状" desc="通过 shape 属性设置头像的形状">
         <view class="demo-avatar-row">
-          <m-avatar shape="round" src="/static//img/img_1.jpg">
+          <m-avatar shape="round" src="/static/img/img_1.jpg">
           </m-avatar>
-          <m-avatar shape="square" src="/static//img/img_1.jpg">
+          <m-avatar shape="square" src="/static/img/img_1.jpg">
           </m-avatar>
         </view>
       </demo-block>
@@ -49,13 +49,13 @@
       <!-- 状态徽标 -->
       <demo-block title="状态徽标" desc="通过 status 属性设置头像状态">
         <view class="demo-avatar-row">
-          <m-avatar shape="round" src="/static//img/img_1.jpg" status="online">
+          <m-avatar shape="round" src="/static/img/img_1.jpg" status="online">
           </m-avatar>
-          <m-avatar shape="round" src="/static//img/img_1.jpg" status="offline">
+          <m-avatar shape="round" src="/static/img/img_1.jpg" status="offline">
           </m-avatar>
-          <m-avatar shape="round" src="/static//img/img_1.jpg" status="busy">
+          <m-avatar shape="round" src="/static/img/img_1.jpg" status="busy">
           </m-avatar>
-          <m-avatar shape="round" src="/static//img/img_1.jpg" status="vip">
+          <m-avatar shape="round" src="/static/img/img_1.jpg" status="vip">
           </m-avatar>
         </view>
       </demo-block>
@@ -63,9 +63,9 @@
       <!-- 状态位置 -->
       <demo-block title="状态位置" desc="通过 status-position 属性设置状态徽标的位置">
         <view class="demo-avatar-row">
-          <m-avatar shape="round" src="/static//img/img_1.jpg" status="online" status-position="top-right">
+          <m-avatar shape="round" src="/static/img/img_1.jpg" status="online" status-position="top-right">
           </m-avatar>
-          <m-avatar shape="round" src="/static//img/img_1.jpg" status="online" status-position="bottom-right">
+          <m-avatar shape="round" src="/static/img/img_1.jpg" status="online" status-position="bottom-right">
           </m-avatar>
         </view>
       </demo-block>
@@ -87,13 +87,13 @@
       <demo-block title="头像组" desc="使用 m-avatar-group 展示多个头像">
         <view class="demo-avatar-group">
           <m-avatar-group>
-            <m-avatar shape="round" src="/static//img/img_1.jpg">
+            <m-avatar shape="round" src="/static/img/img_1.jpg">
             </m-avatar>
-            <m-avatar shape="round" src="/static//img/img_2.jpg">
+            <m-avatar shape="round" src="/static/img/img_2.jpg">
             </m-avatar>
-            <m-avatar shape="round" src="/static//img/img_3.jpg">
+            <m-avatar shape="round" src="/static/img/img_3.jpg">
             </m-avatar>
-            <m-avatar shape="round" src="/static//img/img_4.jpg">
+            <m-avatar shape="round" src="/static/img/img_4.jpg">
             </m-avatar>
           </m-avatar-group>
         </view>
@@ -103,15 +103,15 @@
       <demo-block title="头像组最大数量" desc="通过 max-count 属性设置最大显示数量">
         <view class="demo-avatar-group">
           <m-avatar-group :max-count="3">
-            <m-avatar shape="round" src="/static//img/img_1.jpg">
+            <m-avatar shape="round" src="/static/img/img_1.jpg">
             </m-avatar>
-            <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/2.jpg">
+            <m-avatar shape="round" src="/static/img/img_1.jpg">
             </m-avatar>
-            <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/3.jpg">
+            <m-avatar shape="round" src="/static/img/img_1.jpg">
             </m-avatar>
-            <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/4.jpg">
+            <m-avatar shape="round" src="/static/img/img_1.jpg">
             </m-avatar>
-            <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/5.jpg">
+            <m-avatar shape="round" src="/static/img/img_1.jpg">
             </m-avatar>
           </m-avatar-group>
         </view>
@@ -123,22 +123,22 @@
           <view class="demo-avatar-group-item">
             <view class="demo-avatar-group-label">左侧在上</view>
             <m-avatar-group cascading="left-up">
-              <m-avatar shape="round" src="/static//img/img_1.jpg">
+              <m-avatar shape="round" src="/static/img/img_1.jpg">
               </m-avatar>
-              <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/2.jpg">
+              <m-avatar shape="round" src="/static/img/img_1.jpg">
               </m-avatar>
-              <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/3.jpg">
+              <m-avatar shape="round" src="/static/img/img_1.jpg">
               </m-avatar>
             </m-avatar-group>
           </view>
           <view class="demo-avatar-group-item">
             <view class="demo-avatar-group-label">右侧在上</view>
             <m-avatar-group cascading="right-up">
-              <m-avatar shape="round" src="/static//img/img_1.jpg">
+              <m-avatar shape="round" src="/static/img/img_1.jpg">
               </m-avatar>
-              <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/2.jpg">
+              <m-avatar shape="round" src="/static/img/img_2.jpg">
               </m-avatar>
-              <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/3.jpg">
+              <m-avatar shape="round" src="/static/img/img_3.jpg">
               </m-avatar>
             </m-avatar-group>
           </view>
@@ -151,22 +151,22 @@
           <view class="demo-avatar-group-item">
             <view class="demo-avatar-group-label">左侧在上</view>
             <m-avatar-group cascading="left-up" vertical>
-              <m-avatar shape="round" src="/static//img/img_1.jpg">
+              <m-avatar shape="round" src="/static/img/img_1.jpg">
               </m-avatar>
-              <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/2.jpg">
+              <m-avatar shape="round" src="/static/img/img_2.jpg">
               </m-avatar>
-              <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/3.jpg">
+              <m-avatar shape="round" src="/static/img/img_3.jpg">
               </m-avatar>
             </m-avatar-group>
           </view>
           <view class="demo-avatar-group-item">
             <view class="demo-avatar-group-label">右侧在上</view>
             <m-avatar-group cascading="right-up" vertical>
-              <m-avatar shape="round" src="/static//img/img_1.jpg">
+              <m-avatar shape="round" src="/static/img/img_1.jpg">
               </m-avatar>
-              <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/2.jpg">
+              <m-avatar shape="round" src="/static/img/img_2.jpg">
               </m-avatar>
-              <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/3.jpg">
+              <m-avatar shape="round" src="/static/img/img_3.jpg">
               </m-avatar>
             </m-avatar-group>
           </view>
@@ -177,19 +177,19 @@
       <demo-block title="头像与徽标组合" desc="头像与徽章组件的组合使用">
         <view class="demo-avatar-row">
           <m-badge value="8">
-            <m-avatar shape="round" src="/static//img/img_1.jpg">
+            <m-avatar shape="round" src="/static/img/img_1.jpg">
             </m-avatar>
           </m-badge>
           <m-badge value="128">
-            <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/2.jpg">
+            <m-avatar shape="round" src="/static/img/img_2.jpg">
             </m-avatar>
           </m-badge>
           <m-badge value="0" show-zero>
-            <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/3.jpg">
+            <m-avatar shape="round" src="/static/img/img_3.jpg">
             </m-avatar>
           </m-badge>
           <m-badge is-dot>
-            <m-avatar shape="round" src="https://cdn.jsdelivr.net/gh/wot-design/wot-design-uni@main/example/static/avatar/4.jpg">
+            <m-avatar shape="round" src="/static/img/img_4.jpg">
             </m-avatar>
           </m-badge>
         </view>

@@ -4,30 +4,60 @@
   display: inline-flex;
   align-items: center;
   flex-wrap: nowrap;
-  white-space: nowrap;
 
-  &--left-up {
-    flex-direction: row-reverse;
-    justify-content: flex-end;
+  // 为所有子元素设置基础样式
+  > * {
+    position: relative;
+    flex-shrink: 0;
+    z-index: 1;
   }
 
-  &--right-up {
+  // 为除了第一个子元素外的所有子元素设置负边距
+  > * + * {
+    margin-left: -12px;
+  }
+
+  // 垂直排列时的样式
+  &.is-vertical {
+    flex-direction: column;
+
+    // 为除了第一个子元素外的所有子元素设置负边距
+    > * + * {
+      margin-left: 0;
+      margin-top: -12px;
+    }
+  }
+
+  // 左侧堆叠时的样式
+  &.m-avatar-group--left-up {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+
+    // 为除了第一个子元素外的所有子元素设置负边距
+    > * + * {
+      margin-left: 0;
+      margin-right: -12px;
+    }
+  }
+
+  // 右侧堆叠时的样式
+  &.m-avatar-group--right-up {
     flex-direction: row;
   }
 
-  &.is-vertical {
-    display: flex;
+  // 左侧垂直堆叠时的样式
+  &.m-avatar-group--left-up.is-vertical {
+    flex-direction: column-reverse;
+
+    // 为除了第一个子元素外的所有子元素设置负边距
+    > * + * {
+      margin-right: 0;
+      margin-bottom: -12px;
+    }
+  }
+
+  // 右侧垂直堆叠时的样式
+  &.m-avatar-group--right-up.is-vertical {
     flex-direction: column;
-    align-items: flex-start;
-
-    .m-avatar-group--left-up {
-      flex-direction: column-reverse;
-      align-items: flex-start;
-    }
-
-    .m-avatar-group--right-up {
-      flex-direction: column;
-      align-items: flex-start;
-    }
   }
 }

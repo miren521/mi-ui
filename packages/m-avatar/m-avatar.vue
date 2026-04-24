@@ -135,14 +135,11 @@ const rootStyle = computed(() => {
       style['--m-avatar-overlap' as any] = `calc(${addUnit(sizeValue.value)} * -0.25)`
     }
   }
-  // 为内置尺寸设置重叠距离
-  else if (isBuiltInSize.value && avatarGroup.value) {
-    style['--m-avatar-overlap' as any] = '-8px'
-  }
 
   // 处理层叠效果的 z-index
   if (avatarGroup.value) {
     const cascading = avatarGroup.value.props.cascading
+    const vertical = avatarGroup.value.props.vertical
     if (cascading === 'left-up') {
       // 左侧在上，越后面越大
       style.zIndex = index.value + 1
