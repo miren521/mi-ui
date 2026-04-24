@@ -14,16 +14,16 @@
 
   // 为除了第一个子元素外的所有子元素设置负边距
   :deep(.m-avatar__group-item + .m-avatar__group-item) {
-    margin-left: -10px;
+    margin-left: var(--m-avatar-overlap, -12px);
   }
 
   // 垂直排列时的样式
   :deep(&.is-vertical) {
     flex-direction: column;
 
-    .m-avatar__group-item + .m-avatar__group-item {
+    :deep(.m-avatar__group-item + .m-avatar__group-item) {
       margin-left: 0;
-      margin-top: -10px;
+      margin-top: var(--m-avatar-overlap, -12px);
     }
   }
 
@@ -32,9 +32,9 @@
     flex-direction: row-reverse;
     justify-content: flex-end;
 
-    .m-avatar__group-item + .m-avatar__group-item {
+    :deep(.m-avatar__group-item + .m-avatar__group-item) {
       margin-left: 0;
-      margin-right: -10px;
+      margin-right: var(--m-avatar-overlap, -12px);
     }
   }
 
@@ -47,9 +47,9 @@
   :deep(&.m-avatar-group--right-up.is-vertical) {
     flex-direction: column-reverse;
 
-    .m-avatar__group-item + .m-avatar__group-item {
+    :deep(.m-avatar__group-item + .m-avatar__group-item) {
       margin-right: 0;
-      margin-bottom: -10px;
+      margin-bottom: var(--m-avatar-overlap, -12px);
     }
   }
 
