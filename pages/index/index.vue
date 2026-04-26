@@ -111,7 +111,8 @@ const components = [
   { id: 'layout', title: 'Layout 布局', desc: '栅格布局，支持 24 分栏', category: 'layout', url: '/examples/pages/layout-demo' },
   { id: 'popup', title: 'Popup 弹出层', desc: '弹出层组件，支持多种位置', category: 'feedback', url: '/examples/pages/popup-demo' },
   { id: 'transition', title: 'Transition 动画', desc: '过渡动画组件', category: 'feedback', url: '/examples/pages/transition-demo' },
-  { id: 'card', title: 'Card 卡片', desc: '用于展示商品的图片、价格等信息', category: 'display', url: '/examples/pages/card-demo' }
+  { id: 'card', title: 'Card 卡片', desc: '用于展示商品的图片、价格等信息', category: 'display', url: '/examples/pages/card-demo' },
+  { id: 'grid', title: 'Grid 宫格', desc: '宫格组件，用于展示一组相关的内容', category: 'layout', url: '/examples/pages/grid-demo' }
 ]
 
 const steps = [
@@ -142,6 +143,13 @@ const filteredComponents = computed(() => {
       c.desc.toLowerCase().includes(keyword)
     )
   }
+  
+  // 按组件名称首字母 A-Z 排序
+  result.sort((a, b) => {
+    const titleA = a.title.charAt(0).toUpperCase()
+    const titleB = b.title.charAt(0).toUpperCase()
+    return titleA.localeCompare(titleB)
+  })
   
   return result
 })

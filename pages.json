@@ -83,6 +83,12 @@
       "style": {
         "navigationBarTitleText": "Card 卡片"
       }
+    },
+    {
+      "path": "examples/pages/grid-demo",
+      "style": {
+        "navigationBarTitleText": "Grid 宫格"
+      }
     }
   ],
   "globalStyle": {
