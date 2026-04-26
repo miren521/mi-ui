@@ -77,6 +77,12 @@
       "style": {
         "navigationBarTitleText": "Divider 分割线"
       }
+    },
+    {
+      "path": "examples/pages/card-demo",
+      "style": {
+        "navigationBarTitleText": "Card 卡片"
+      }
     }
   ],
   "globalStyle": {

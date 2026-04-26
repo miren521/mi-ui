@@ -110,7 +110,8 @@ const components = [
   { id: 'tabbar', title: 'Tabbar 底部导航', desc: '底部导航栏，用于在不同页面之间进行切换', category: 'navigation', url: '/examples/pages/tabbar-demo' },
   { id: 'layout', title: 'Layout 布局', desc: '栅格布局，支持 24 分栏', category: 'layout', url: '/examples/pages/layout-demo' },
   { id: 'popup', title: 'Popup 弹出层', desc: '弹出层组件，支持多种位置', category: 'feedback', url: '/examples/pages/popup-demo' },
-  { id: 'transition', title: 'Transition 动画', desc: '过渡动画组件', category: 'feedback', url: '/examples/pages/transition-demo' }
+  { id: 'transition', title: 'Transition 动画', desc: '过渡动画组件', category: 'feedback', url: '/examples/pages/transition-demo' },
+  { id: 'card', title: 'Card 卡片', desc: '用于展示商品的图片、价格等信息', category: 'display', url: '/examples/pages/card-demo' }
 ]
 
 const steps = [
@@ -287,7 +288,7 @@ const setCategory = (key) => { activeCategory.value = key }
 .m-home__grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 20rpx;
+  gap: 24rpx;
 }
 
 .m-home__card {
@@ -296,7 +297,7 @@ const setCategory = (key) => { activeCategory.value = key }
   padding: 24rpx;
   background: #fff;
   border-radius: 20rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.03);
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05);
   border: 1rpx solid #f0f2f5;
   transition: all 0.2s;
   
