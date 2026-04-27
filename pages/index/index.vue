@@ -2,6 +2,10 @@
   <view class="m-home">
     <!-- 头部 -->
     <view class="m-home__header">
+      <!-- 装饰元素 -->
+      <view class="m-home__decor m-home__decor--top-left"></view>
+      <view class="m-home__decor m-home__decor--bottom-right"></view>
+      
       <view class="m-home__logo-container">
         <image class="m-home__logo" src="/static/logo-un-bg.png" mode="aspectFit" />
       </view>
@@ -173,7 +177,7 @@ const setCategory = (key) => { activeCategory.value = key }
 .m-home__header {
   padding: 40rpx 32rpx;
   text-align: center;
-  background: linear-gradient(135deg, #9f7aea 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #d5c5f3 0%, #c6aaee 100%);
   position: relative;
   overflow: hidden;
 }
@@ -185,7 +189,7 @@ const setCategory = (key) => { activeCategory.value = key }
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
   animation: pulse 6s ease-in-out infinite;
 }
 
@@ -200,24 +204,53 @@ const setCategory = (key) => { activeCategory.value = key }
   }
 }
 
+.m-home__header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+  transform: translateX(-100%);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .m-home__logo-container {
-  width: 300rpx;
-  height: 300rpx;
+  width: 280rpx;
+  height: 280rpx;
   margin: 0 auto 20rpx;
-  border-radius: 24rpx;
+  border-radius: 28rpx;
   overflow: hidden;
-  box-shadow: 0 8rpx 24rpx rgba(159, 122, 234, 0.3);
   animation: float 3s ease-in-out infinite;
   position: relative;
   z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.m-home__logo-container:hover {
+  box-shadow: 0 16rpx 40rpx rgba(159, 122, 234, 0.3);
+  transform: scale(1.05);
 }
 
 @keyframes float {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(0) rotate(0deg);
   }
-  50% {
-    transform: translateY(-10rpx);
+  33% {
+    transform: translateY(-10rpx) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-5rpx) rotate(-1deg);
   }
 }
 
@@ -228,28 +261,40 @@ const setCategory = (key) => { activeCategory.value = key }
 }
 
 .m-home__logo-container:hover .m-home__logo {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .m-home__title {
   display: block;
   font-size: 56rpx;
   font-weight: bold;
-  color: #fff;
+  color: #6d28d9;
   margin-bottom: 8rpx;
   position: relative;
   z-index: 1;
-  text-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+  text-shadow: 0 2rpx 8rpx rgba(109, 40, 217, 0.2);
   animation: fadeInUp 0.6s ease-out;
+  transition: all 0.3s ease;
+}
+
+.m-home__title:hover {
+  transform: scale(1.05);
+  text-shadow: 0 4rpx 16rpx rgba(109, 40, 217, 0.3);
 }
 
 .m-home__desc {
   display: block;
-  font-size: 26rpx;
-  color: rgba(255,255,255,0.85);
+  font-size: 28rpx;
+  color: #fff;
   position: relative;
   z-index: 1;
   animation: fadeInUp 0.6s ease-out 0.2s both;
+  transition: all 0.3s ease;
+}
+
+.m-home__desc:hover {
+  color: #6d28d9;
+  transform: translateY(-2rpx);
 }
 
 @keyframes fadeInUp {
@@ -261,6 +306,32 @@ const setCategory = (key) => { activeCategory.value = key }
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+// 添加装饰元素
+.m-home__decor {
+  position: absolute;
+  z-index: 0;
+}
+
+.m-home__decor--top-left {
+  top: 20rpx;
+  left: 20rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background: rgba(145, 101, 232, 0.1);
+  border-radius: 50%;
+  animation: float 4s ease-in-out infinite 0.5s;
+}
+
+.m-home__decor--bottom-right {
+  bottom: 20rpx;
+  right: 20rpx;
+  width: 120rpx;
+  height: 120rpx;
+  background: rgba(126, 88, 201, 0.08);
+  border-radius: 50%;
+  animation: float 5s ease-in-out infinite 1s;
 }
 
 // 导航
