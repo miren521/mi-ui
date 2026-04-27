@@ -2,7 +2,9 @@
   <view class="m-home">
     <!-- 头部 -->
     <view class="m-home__header">
-      <text class="m-home__title">M-UI</text>
+      <view class="m-home__logo-container">
+        <image class="m-home__logo" src="/static/logo-un-bg.png" mode="aspectFit" />
+      </view>
       <text class="m-home__desc">基于 uni-app 的跨端组件库</text>
     </view>
 
@@ -117,7 +119,7 @@ const components = [
 ]
 
 const steps = [
-  { title: '安装', desc: 'npm install @your-scope/m-ui' },
+  { title: '安装', desc: 'npm install @your-scope/mini-ui' },
   { title: '注册', desc: '在 main.js 中导入组件库' },
   { title: '使用', desc: '在页面中直接使用组件' }
 ]
@@ -169,9 +171,64 @@ const setCategory = (key) => { activeCategory.value = key }
 
 // 头部
 .m-home__header {
-  padding: 60rpx 32rpx;
+  padding: 40rpx 32rpx;
   text-align: center;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #9f7aea 0%, #8b5cf6 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.m-home__header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: pulse 6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.1;
+  }
+}
+
+.m-home__logo-container {
+  width: 300rpx;
+  height: 300rpx;
+  margin: 0 auto 20rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 24rpx rgba(159, 122, 234, 0.3);
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10rpx);
+  }
+}
+
+.m-home__logo {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.m-home__logo-container:hover .m-home__logo {
+  transform: scale(1.05);
 }
 
 .m-home__title {
@@ -180,12 +237,30 @@ const setCategory = (key) => { activeCategory.value = key }
   font-weight: bold;
   color: #fff;
   margin-bottom: 8rpx;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2rpx 8rpx rgba(0,0,0,0.1);
+  animation: fadeInUp 0.6s ease-out;
 }
 
 .m-home__desc {
   display: block;
   font-size: 26rpx;
   color: rgba(255,255,255,0.85);
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 // 导航
@@ -195,15 +270,36 @@ const setCategory = (key) => { activeCategory.value = key }
   gap: 48rpx;
   padding: 20rpx 32rpx;
   background: #fff;
-  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.02);
+  box-shadow: 0 2rpx 12rpx rgba(159, 122, 234, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .m-home__nav-item {
   font-size: 28rpx;
   color: #666;
+  transition: all 0.3s ease;
+  position: relative;
   
   &:active {
-    color: #6366f1;
+    color: #9f7aea;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2rpx;
+    background: #9f7aea;
+    transition: width 0.3s ease;
+  }
+  
+  &:hover::after {
+    width: 100%;
   }
 }
 
