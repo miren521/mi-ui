@@ -134,7 +134,7 @@
         <view class="demo-card-row">
           <m-card title="带图片的卡片">
             <template #header>
-              <m-img 
+              <image
                 src="/static//img//img_3.jpg" 
                 class="card-image"
                 height="160"

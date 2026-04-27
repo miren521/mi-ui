@@ -1,0 +1,71 @@
+// 折叠项容器样式
+.m-collapse-item {
+  width: 100%;
+  background-color: #ffffff;
+  
+  &.is-disabled {
+    opacity: 0.6;
+  }
+  
+  &.is-border {
+    border-bottom: 1rpx solid #ebebeb;
+  }
+}
+
+// 折叠项头部样式
+.m-collapse-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx;
+  font-size: 32rpx;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:active {
+    background-color: #f5f5f5;
+  }
+  
+  &.is-expanded {
+    border-bottom: 1rpx solid #ebebeb;
+  }
+  
+  &.is-custom {
+    // 自定义标题样式
+  }
+}
+
+// 折叠项标题样式
+.m-collapse-item__title {
+  flex: 1;
+  font-weight: 500;
+}
+
+// 折叠项箭头样式
+.m-collapse-item__arrow {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  
+  &.is-retract {
+    transform: rotate(-180deg);
+  }
+}
+
+// 折叠项内容包装器样式（用于动画）
+.m-collapse-item__wrapper {
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+}
+
+// 折叠项内容样式
+.m-collapse-item__body {
+  padding: 32rpx;
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 40rpx;
+}

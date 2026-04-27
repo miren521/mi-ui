@@ -1,0 +1,40 @@
+// 折叠面板容器样式
+.m-collapse {
+  width: 100%;
+}
+
+// 查看更多模式样式
+.m-collapse.is-viewmore {
+  .m-collapse__content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+  }
+  
+  .m-collapse__content.is-retract {
+    transition: all 0.3s ease;
+  }
+  
+  .m-collapse__more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12rpx;
+    color: #3388ff;
+    font-size: 28rpx;
+    cursor: pointer;
+    
+    &-txt {
+      margin-right: 6rpx;
+    }
+    
+    &-arrow {
+      transition: transform 0.3s ease;
+      
+      &.is-retract {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+}
