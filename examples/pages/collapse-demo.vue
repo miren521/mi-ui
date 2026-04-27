@@ -222,7 +222,7 @@ const asyncBeforeExpand = (name) => {
 
 <style lang="scss" scoped>
 .m-collapse-demo {
-  padding: 24rpx;
+  padding: 32rpx;
   background: #f5f7fc;
   min-height: 100vh;
 }

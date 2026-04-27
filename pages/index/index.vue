@@ -119,7 +119,7 @@ const components = [
   { id: 'transition', title: 'Transition 动画', desc: '过渡动画组件', category: 'feedback', url: '/examples/pages/transition-demo' },
   { id: 'card', title: 'Card 卡片', desc: '用于展示商品的图片、价格等信息', category: 'display', url: '/examples/pages/card-demo' },
   { id: 'grid', title: 'Grid 宫格', desc: '宫格组件，用于展示一组相关的内容', category: 'layout', url: '/examples/pages/grid-demo' },
-  { id: 'collapse', title: 'Collapse 折叠面板', desc: '折叠面板组件，支持手风琴模式和普通模式', category: 'layout', url: '/examples/pages/collapse-demo' }
+  { id: 'collapse', title: 'Collapse 折叠面板', desc: '折叠面板组件，支持手风琴模式和普通模式', category: 'display', url: '/examples/pages/collapse-demo' }
 ]
 
 const steps = [
