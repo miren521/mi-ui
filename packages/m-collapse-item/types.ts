@@ -67,7 +67,7 @@ export const collapseItemProps = {
    * 展开前的回调函数，返回 false 可以阻止展开，支持返回 Promise
    * 类型: function
    */
-  beforeExpend: Function as PropType<CollapseItemBeforeExpand>,
+  beforeExpand: Function as PropType<CollapseItemBeforeExpand>,
   /**
    * 是否显示边框
    * 类型: boolean

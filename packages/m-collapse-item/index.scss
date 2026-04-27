@@ -54,6 +54,21 @@
   &.is-retract {
     transform: rotate(-180deg);
   }
+  
+  // 加载图标旋转动画
+  .m-icon-loading {
+    animation: spin 1s linear infinite;
+  }
+}
+
+// 旋转动画
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 // 折叠项内容包装器样式（用于动画）

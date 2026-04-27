@@ -4,10 +4,11 @@
       :class="`m-collapse-item__header ${expanded ? 'is-expanded' : ''} ${$slots.title ? 'is-custom' : ''}`"
       @click="handleClick"
     >
-      <slot name="title" :expanded="expanded" :disabled="disabled">
+      <slot name="title" :expanded="expanded" :disabled="disabled" :loading="loading">
         <text class="m-collapse-item__title">{{ title }}</text>
         <view :class="`m-collapse-item__arrow ${expanded ? 'is-retract' : ''}`">
-          <uni-icons type="bottom" size="24"></uni-icons>
+          <m-icon v-if="!loading" name="chevron-down" size="22" color="#4e5369" />
+          <m-icon v-else name="refresh1" size="22" color="#4e5369" class="m-icon-loading" />
         </view>
       </slot>
     </view>
@@ -34,6 +35,7 @@ export default {
 import { computed, ref, watch, onMounted, inject, getCurrentInstance } from 'vue'
 import { collapseItemProps, type CollapseItemExpose } from './types'
 import { COLLAPSE_KEY, type CollapseProvide } from '../m-collapse/types'
+import MIcon from '../m-icon/m-icon.vue'
 
 // 生成唯一ID
 const collapseId = ref<string>(`collapseId_${Date.now()}_${Math.floor(Math.random() * 1000)}`)
@@ -48,6 +50,7 @@ const collapse = inject<CollapseProvide | undefined>(COLLAPSE_KEY)
 const height = ref<string | number>('')
 const inited = ref<boolean>(false)
 const expanded = ref<boolean>(false)
+const loading = ref<boolean>(false)
 
 // 计算是否选中
 const isSelected = computed(() => {
@@ -74,28 +77,24 @@ const contentStyle = computed(() => {
 watch(
   () => isSelected.value,
   (newVal) => {
-    updateExpand(newVal)
+    updateExpand(false) // 状态变化时不触发展开前回调
   }
 )
 
 // 组件挂载后初始化
 onMounted(() => {
-  updateExpand(isSelected.value)
+  updateExpand(false) // 初始化时不触发展开前回调
 })
 
 /**
  * 更新展开状态
  * @param useBeforeExpand 是否使用展开前钩子
  */
-async function updateExpand(useBeforeExpand: boolean = true) {
-  try {
-    if (useBeforeExpand) {
-      await handleBeforeExpand()
-    }
-    initRect()
-  } catch (error) {
-    // 忽略错误
+async function updateExpand(useBeforeExpand: boolean = false) {
+  if (useBeforeExpand) {
+    await handleBeforeExpand()
   }
+  initRect()
 }
 
 /**
@@ -129,40 +128,48 @@ function handleTransitionEnd() {
 }
 
 /**
- * 点击事件处理
- */
-async function handleClick() {
-  if (props.disabled) return
-  try {
-    await updateExpand()
-    const { name } = props
-    collapse?.toggle(name, !expanded.value)
-  } catch (error) {
-    // 忽略错误
+   * 点击事件处理
+   */
+  async function handleClick() {
+    if (props.disabled || loading.value) return
+    try {
+      await updateExpand(true) // 点击时触发展开前回调
+      const { name } = props
+      collapse?.toggle(name, !isSelected.value)
+    } catch (error) {
+      // 回调被拒绝时，不执行展开操作
+      loading.value = false
+    }
   }
-}
 
 /**
- * 展开前钩子
- */
-function handleBeforeExpand() {
-  return new Promise<void>((resolve, reject) => {
-    const { name } = props
-    const nextexpanded = !expanded.value
-    if (nextexpanded && props.beforeExpend) {
-      const result = props.beforeExpend(name)
-      if (typeof result === 'boolean') {
-        result ? resolve() : reject()
-      } else if (result instanceof Promise) {
-        result.then(() => resolve()).catch(() => reject())
+   * 展开前钩子
+   */
+  function handleBeforeExpand() {
+    return new Promise<void>((resolve, reject) => {
+      const { name } = props
+      const nextexpanded = !expanded.value
+      if (nextexpanded && props.beforeExpand) {
+        const result = props.beforeExpand(name)
+        if (typeof result === 'boolean') {
+          result ? resolve() : reject()
+        } else if (result instanceof Promise) {
+          loading.value = true
+          result.then((res) => {
+            loading.value = false
+            res ? resolve() : reject()
+          }).catch(() => {
+            loading.value = false
+            reject()
+          })
+        } else {
+          resolve()
+        }
       } else {
         resolve()
       }
-    } else {
-      resolve()
-    }
-  })
-}
+    })
+  }
 
 /**
  * 获取展开状态

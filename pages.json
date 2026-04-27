@@ -3,7 +3,7 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "M-UI"
+        "navigationBarTitleText": "Mini-UI"
       }
     },
     {
@@ -88,6 +88,12 @@
       "path": "examples/pages/grid-demo",
       "style": {
         "navigationBarTitleText": "Grid 宫格"
+      }
+    },
+    {
+      "path": "examples/pages/collapse-demo",
+      "style": {
+        "navigationBarTitleText": "Collapse 折叠面板"
       }
     }
   ],

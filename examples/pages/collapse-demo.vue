@@ -1,12 +1,7 @@
 <template>
   <view class="m-collapse-demo">
-    <view class="m-demo-header">
-      <text class="m-demo-title">Collapse 折叠面板</text>
-      <text class="m-demo-desc">折叠面板组件，支持手风琴模式和普通模式</text>
-    </view>
-
     <!-- 基本使用 -->
-    <demo-block title="基本使用">
+    <demo-block title="基本使用" desc="使用 v-model 绑定展开的面板名称，支持同时展开多个面板">
       <view class="demo-collapse-row">
         <m-collapse v-model="activeNames1">
           <m-collapse-item name="1" title="标题1">
@@ -35,7 +30,7 @@
     </demo-block>
 
     <!-- 手风琴模式 -->
-    <demo-block title="手风琴模式">
+    <demo-block title="手风琴模式" desc="设置 accordion 属性为 true，只能同时展开一个面板">
       <view class="demo-collapse-row">
         <m-collapse v-model="activeName2" :accordion="true">
           <m-collapse-item name="1" title="标题1">
@@ -64,7 +59,7 @@
     </demo-block>
 
     <!-- 禁用状态 -->
-    <demo-block title="禁用状态">
+    <demo-block title="禁用状态" desc="设置 disabled 属性为 true，禁用面板的点击操作">
       <view class="demo-collapse-row">
         <m-collapse v-model="activeNames3">
           <m-collapse-item name="1" title="标题1">
@@ -87,7 +82,7 @@
     </demo-block>
 
     <!-- 自定义标题 -->
-    <demo-block title="自定义标题">
+    <demo-block title="自定义标题" desc="使用 title 插槽自定义标题内容，可访问 expanded 和 disabled 状态">
       <view class="demo-collapse-row">
         <m-collapse v-model="activeNames4">
           <m-collapse-item name="1">
@@ -118,7 +113,7 @@
     </demo-block>
 
     <!-- 无边框 -->
-    <demo-block title="无边框">
+    <demo-block title="无边框" desc="设置 border 属性为 false，移除面板间的边框">
       <view class="demo-collapse-row">
         <m-collapse v-model="activeNames5">
           <m-collapse-item name="1" title="标题1" :border="false">
@@ -136,10 +131,10 @@
     </demo-block>
 
     <!-- 展开前回调 -->
-    <demo-block title="展开前回调">
+    <demo-block title="展开前回调" desc="设置 beforeExpand 属性，点击展开前会触发回调，返回 false 可阻止展开">
       <view class="demo-collapse-row">
         <m-collapse v-model="activeNames6">
-          <m-collapse-item name="1" title="标题1" :beforeExpend="beforeExpand">
+          <m-collapse-item name="1" title="标题1" :beforeExpand="beforeExpand">
             <view class="demo-collapse-content">
               内容1：点击时会触发展开前回调。
             </view>
@@ -153,31 +148,21 @@
       </view>
     </demo-block>
 
-    <!-- 代码示例 -->
-    <demo-block title="代码示例">
-      <view class="demo-code">
-        <text class="demo-code-title">基本使用</text>
-        <view class="demo-code-content">
-          <text class="demo-code-line">&lt;m-collapse v-model="activeNames"&gt;</text>
-          <text class="demo-code-line">  &lt;m-collapse-item name="1" title="标题1"&gt;</text>
-          <text class="demo-code-line">    内容1
-          </text>
-          <text class="demo-code-line">  &lt;/m-collapse-item&gt;</text>
-          <text class="demo-code-line">  &lt;m-collapse-item name="2" title="标题2"&gt;</text>
-          <text class="demo-code-line">    内容2
-          </text>
-          <text class="demo-code-line">  &lt;/m-collapse-item&gt;</text>
-          <text class="demo-code-line">&lt;/m-collapse&gt;</text>
-        </view>
-        <text class="demo-code-title">手风琴模式</text>
-        <view class="demo-code-content">
-          <text class="demo-code-line">&lt;m-collapse v-model="activeName" :accordion="true"&gt;</text>
-          <text class="demo-code-line">  &lt;m-collapse-item name="1" title="标题1"&gt;</text>
-          <text class="demo-code-line">    内容1
-          </text>
-          <text class="demo-code-line">  &lt;/m-collapse-item&gt;</text>
-          <text class="demo-code-line">&lt;/m-collapse&gt;</text>
-        </view>
+    <!-- 异步展开 -->
+    <demo-block title="异步展开" desc="beforeExpand 回调支持返回 Promise，会显示加载状态，等待 Promise 完成后再切换展开状态">
+      <view class="demo-collapse-row">
+        <m-collapse v-model="activeNames7">
+          <m-collapse-item name="1" title="标题1" :beforeExpand="asyncBeforeExpand">
+            <view class="demo-collapse-content">
+              内容1：点击后会模拟异步操作，显示加载状态。
+            </view>
+          </m-collapse-item>
+          <m-collapse-item name="2" title="标题2">
+            <view class="demo-collapse-content">
+              内容2：正常展开。
+            </view>
+          </m-collapse-item>
+        </m-collapse>
       </view>
     </demo-block>
   </view>
@@ -204,6 +189,9 @@ const activeNames5 = ref(['1'])
 // 展开前回调
 const activeNames6 = ref(['1'])
 
+// 异步展开
+const activeNames7 = ref(['1'])
+
 // 展开前回调函数
 const beforeExpand = (name) => {
   return new Promise((resolve) => {
@@ -218,6 +206,16 @@ const beforeExpand = (name) => {
         }
       }
     })
+  })
+}
+
+// 异步展开前回调函数
+const asyncBeforeExpand = (name) => {
+  return new Promise((resolve) => {
+    // 模拟异步操作，比如网络请求
+    setTimeout(() => {
+      resolve(true)
+    }, 1500)
   })
 }
 </script>
