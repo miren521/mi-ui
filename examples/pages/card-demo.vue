@@ -320,7 +320,8 @@ const handleExtraClick = () => {
   font-weight: 600;
 }
 
-.custom-content-blue {
+// 使用样式穿透
+::v-deep .custom-content-blue {
   color: #1890ff !important;
 }
 
