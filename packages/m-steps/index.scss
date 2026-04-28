@@ -1,0 +1,14 @@
+.m-steps {
+  position: relative;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+
+  &--vertical {
+    flex-direction: column;
+  }
+
+  &--align-center {
+    justify-content: center;
+  }
+}
