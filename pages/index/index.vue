@@ -247,10 +247,10 @@ const setCategory = (key) => { activeCategory.value = key }
     transform: translateY(0) rotate(0deg);
   }
   33% {
-    transform: translateY(-10rpx) rotate(1deg);
+    transform: translateY(-20rpx) rotate(2deg);
   }
   66% {
-    transform: translateY(-5rpx) rotate(-1deg);
+    transform: translateY(-5rpx) rotate(-2deg);
   }
 }
 
