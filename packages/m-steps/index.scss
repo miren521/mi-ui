@@ -1,14 +1,7 @@
-.m-steps {
-  position: relative;
-  display: flex;
-  width: 100%;
-  box-sizing: border-box;
+@use '../common/styles/mixin/_mixin.scss' as *;
 
-  &--vertical {
-    flex-direction: column;
-  }
-
-  &--align-center {
-    justify-content: center;
+@include b(steps) {
+  @include when(vertical) {
+    display: block;
   }
 }

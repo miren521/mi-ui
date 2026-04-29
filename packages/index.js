@@ -4,10 +4,14 @@
   */ 
 
 import CuButton from './m-button/src/index.vue'
+import mStep from './m-step/m-step.vue'
+import mSteps from './m-steps/m-steps.vue'
 
 // 所有组件 
 const components = [ 
 	CuButton, 
+	mStep,
+	mSteps,
 ] 
 
 // 安装函数 
@@ -27,9 +31,13 @@ if (typeof window !== 'undefined' && window.Vue) {
 export { 
 	CuButton, 
 	CuBadge, 
+	mStep,
+	mSteps,
 } 
 
 export default { 
 	install, 
 	CuButton, 
+	mStep,
+	mSteps,
 }
