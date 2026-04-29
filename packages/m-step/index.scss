@@ -254,7 +254,7 @@ $step-description-padding: var(--m-step-description-padding, $padding-zero $padd
 
   @include e(circle-text) {
     font-size: $step-circle-text-font-size;
-    line-height: 1;
+    line-height: 18px;
     font-weight: $step-circle-text-font-weight;
     display: flex;
     justify-content: center;
