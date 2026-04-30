@@ -140,6 +140,12 @@ $step-description-padding: var(--m-step-description-padding, $padding-zero $padd
     width: $step-indicator-size;
     height: $step-indicator-size;
     border-radius: $step-circle-border-radius;
+    
+    > view,
+    > text,
+    > image {
+      flex-shrink: 0;
+    }
   }
 
   // 状态提升至组件层，使用 @include me 控制内部所有元素的样式
@@ -149,8 +155,8 @@ $step-description-padding: var(--m-step-description-padding, $padding-zero $padd
         @if $status==finished {
           background: $step-finished-bg;
           color: $step-circle-text-finished-color;
-          @include pixelBorderSurround($step-circle-text-finished-color);
-          :deep(.m-step__finished-icon) {
+          // @include pixelBorderSurround($step-circle-text-finished-color);
+          .m-step__finished-icon {
             color: $step-circle-text-finished-color;
           }
         }
@@ -161,8 +167,9 @@ $step-description-padding: var(--m-step-description-padding, $padding-zero $padd
         }
 
         @else if $status==error {
-          background: $step-error-bg;
-          color: $step-error-color;
+          // background: $step-error-bg;
+          // color: $step-error-color;
+          color: $step-error-bg;
         }
 
         @else if $status==wait {
@@ -206,7 +213,7 @@ $step-description-padding: var(--m-step-description-padding, $padding-zero $padd
         }
       }
 
-      :deep(.m-step__icon) {
+      .m-step__icon {
         @if $status==finished {
           color: $step-icon-color-active;
         }
@@ -244,22 +251,22 @@ $step-description-padding: var(--m-step-description-padding, $padding-zero $padd
     }
   }
 
-  @include edeep(finished-icon,error-icon) {
-    font-size: $step-circle-icon-size;
+  .m-step__finished-icon,
+  .m-step__error-icon {
+    font-size: $step-icon-size;
   }
 
-  @include edeep(icon) {
+  .m-step__icon {
     font-size: $step-icon-size;
   }
 
   @include e(circle-text) {
-    font-size: $step-circle-text-font-size;
-    line-height: 18px;
-    font-weight: $step-circle-text-font-weight;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    font-size: $n-11;
+    line-height: $n-18;
+    font-weight: $font-weight-medium;
+    text-align: center;
+    vertical-align: middle;
+    // margin-bottom: 2px;
   }
 
   @include e(line) {

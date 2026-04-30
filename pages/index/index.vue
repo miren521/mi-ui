@@ -239,8 +239,8 @@ const setCategory = (key) => { activeCategory.value = key }
 }
 
 .m-home__logo-container:hover {
-  box-shadow: 0 16rpx 40rpx rgba(159, 122, 234, 0.3);
-  transform: scale(1.05);
+  // box-shadow: 0 16rpx 40rpx rgba(159, 122, 234, 0.3);
+  transform: scale(1.5);
 }
 
 @keyframes float {
@@ -262,7 +262,7 @@ const setCategory = (key) => { activeCategory.value = key }
 }
 
 .m-home__logo-container:hover .m-home__logo {
-  transform: scale(1.1);
+  // transform: scale(1.1);
 }
 
 .m-home__title {
