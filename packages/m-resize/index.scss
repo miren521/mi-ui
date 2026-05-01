@@ -1,0 +1,29 @@
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$resize-container-min-size: var(--m-resize-container-min-size, $n-1) !default;
+$resize-wrapper-z-index: var(--m-resize-wrapper-z-index, -9999) !default;
+
+@include b(resize) {
+  position: relative;
+  @include e(container) {
+    position: absolute;
+    min-width: $resize-container-min-size;
+    min-height: $resize-container-min-size;
+  }
+  @include e(wrapper) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $resize-wrapper-z-index;
+    overflow: hidden;
+    visibility: hidden;
+
+    @include m(placeholder) {
+      transition: 0s;
+      animation: none;
+    }
+  }
+}

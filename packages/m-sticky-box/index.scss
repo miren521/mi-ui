@@ -1,0 +1,6 @@
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+@include b(sticky-box) {
+  position: relative;
+}
