@@ -53,12 +53,9 @@ const width = ref<number>(0)
 const scrollEventCount = ref<number>(0)
 
 const rootStyle = computed(() => {
-  const style: Record<string, string | number> = {}
-  if (width.value > 0) {
-    style['width'] = addUnit(width.value)
-  }
-  if (height.value > 0) {
-    style['height'] = addUnit(height.value)
+  const style: Record<string, string | number> = {
+    width: addUnit(width.value),
+    height: addUnit(height.value)
   }
   return `${objToStyle(style)}${props.customStyle}`
 })
@@ -70,6 +67,7 @@ const resizeId = ref<string>(`resize${uuid()}`)
 onMounted(() => {
   const query = uni.createSelectorQuery().in(proxy).select(`#${resizeId.value}`).boundingClientRect()
   query.exec(([res]) => {
+    if (!res) return
     let lastHeight = res.height
     let lastWidth = res.width
     height.value = lastHeight
@@ -78,6 +76,7 @@ onMounted(() => {
     onScrollHandler = () => {
       const query = uni.createSelectorQuery().in(proxy).select(`#${resizeId.value}`).boundingClientRect()
       query.exec(([res]) => {
+        if (!res) return
         if (scrollEventCount.value++ === 0) {
           const result: Record<string, string | number> = {}
           ;['bottom', 'top', 'left', 'right', 'height', 'width'].forEach((propName) => {
