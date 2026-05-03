@@ -113,6 +113,12 @@
       "style": {
         "navigationBarTitleText": "Skeleton 骨架屏"
       }
+    },
+    {
+      "path": "examples/pages/loading-demo",
+      "style": {
+        "navigationBarTitleText": "Loading 加载指示器"
+      }
     }
   ],
   "globalStyle": {

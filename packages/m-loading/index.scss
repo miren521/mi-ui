@@ -1,0 +1,438 @@
+@use "sass:map";
+@use '../common/styles/variables.scss' as *;
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/mixin/_config.scss' as config;
+@use '../common/styles/mixin/_function.scss' as function;
+
+$m-loading-color-main: var(--m-loading-color-main, $primary-6) !default;
+$m-loading-color-normal: var(--m-loading-color-normal, $icon-secondary) !default;
+$m-loading-color-white: var(--m-loading-color-white, $icon-white) !default;
+$m-loading-color-text: var(--m-loading-color-text, $text-main) !default;
+$m-loading-size: var(--m-loading-size, $n-28) !default;
+$m-loading-size-width: var(--m-loading-size-width, 1em) !default;
+$m-loading-size-height: var(--m-loading-size-height, 1em) !default;
+$m-loading-spinner-circle-stroke-width: var(--m-loading-spinner-circle-stroke-width, 15%) !default;
+$m-loading-spinner-circle-radius: var(--m-loading-spinner-circle-radius, $radius-full) !default;
+$m-loading-spinner-animation-duration: var(--m-loading-spinner-animation-duration, 0.8s) !default;
+$m-loading-spinner-dot-width: var(--m-loading-spinner-dot-width, 10%) !default;
+$m-loading-spinner-dot-height: var(--m-loading-spinner-dot-height, 25%) !default;
+$m-loading-spinner-dot-radius: var(--m-loading-spinner-dot-radius, $radius-full) !default;
+$m-loading-spinner-dots-dot-size: var(--m-loading-spinner-dots-dot-size, 20%) !default;
+$m-loading-spinner-dots-dot-radius: var(--m-loading-spinner-dots-dot-radius, $radius-full) !default;
+$m-loading-wave-gap: var(--m-loading-wave-gap, 6.25%) !default;
+$m-loading-wave-bar-width: var(--m-loading-wave-bar-width, 12.5%) !default;
+$m-loading-wave-bar-height: var(--m-loading-wave-bar-height, 83.333333%) !default;
+$m-loading-wave-bar-radius: var(--m-loading-wave-bar-radius, $radius-full) !default;
+$m-loading-wave-animation-duration: var(--m-loading-wave-animation-duration, 834ms) !default;
+$m-loading-spinner-padding: var(--m-loading-spinner-padding, $padding-ultra-tight) !default;
+$m-loading-text-spacing: var(--m-loading-text-spacing, $spacing-extra-tight) !default;
+$m-loading-text-font-size: var(--m-loading-text-font-size, $typography-body-size-main) !default;
+$m-loading-text-line-height: var(--m-loading-text-line-height, $typography-body-line-height-size-main) !default;
+$m-loading-pulse-dot-size: var(--m-loading-pulse-dot-size, 50%) !default;
+$m-loading-pulse-animation-duration: var(--m-loading-pulse-animation-duration, 1s) !default;
+$m-loading-sync-dot-size: var(--m-loading-sync-dot-size, 30%) !default;
+$m-loading-sync-animation-duration: var(--m-loading-sync-animation-duration, 1.2s) !default;
+
+@mixin generate($n, $i: 1) {
+  @if $i <=$n {
+    &:nth-of-type(#{$i}) {
+      transform: rotate(90deg - $i * 30deg);
+      opacity: 1 - calc(0.75 / 12) * ($i - 1);
+    }
+
+    @include generate($n, $i + 1);
+  }
+}
+
+@mixin dot-delay($n, $duration) {
+  @for $i from 1 through $n {
+    &:nth-of-type(#{$i}) {
+      animation-delay: calc(#{$duration} * #{($i - 1)} / 3);
+      animation-duration: $duration;
+    }
+  }
+}
+
+@include b(loading) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $m-loading-color-main;
+  font-size: $m-loading-size;
+
+  @include m(horizontal) {
+    flex-direction: row;
+
+    @include me(text) {
+      margin-left: $m-loading-text-spacing;
+    }
+  }
+
+  @include m(vertical) {
+    flex-direction: column;
+
+    @include me(text) {
+      margin-top: $m-loading-text-spacing;
+    }
+  }
+
+  @include e(spinner) {
+    flex: none;
+    position: relative;
+    font-size: inherit;
+    width: $m-loading-size-width;
+    height: $m-loading-size-height;
+    animation: m-rotate $m-loading-spinner-animation-duration linear infinite;
+    padding: $m-loading-spinner-padding;
+    box-sizing: border-box;
+
+    @include m(circular) {
+      @include me(spinner-wraper) {
+        border-radius: $m-loading-spinner-circle-radius;
+        border: none;
+        mask: radial-gradient(closest-side,
+            transparent calc(100% - $m-loading-spinner-circle-stroke-width),
+            $base-white calc(100% - $m-loading-spinner-circle-stroke-width),
+            $base-white 100%);
+        background: conic-gradient(from 0deg at 50% 50%, $base-transparent 0deg, $base-transparent 90deg, currentColor 330deg, currentColor 360deg);
+      }
+    }
+
+    @include m(spinner) {
+      animation-timing-function: steps(12);
+    }
+
+    @include m(dots) {
+      animation: none;
+
+      @include me(spinner-wraper) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      @include me(spinner-dot) {
+        position: static;
+        width: $m-loading-spinner-dots-dot-size;
+        height: $m-loading-spinner-dots-dot-size;
+        border-radius: $m-loading-spinner-dots-dot-radius;
+        background-color: currentColor;
+        animation-name: m-dotting;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-fill-mode: both;
+
+        &::before {
+          content: none;
+        }
+
+        @include dot-delay(3, $m-loading-spinner-animation-duration);
+      }
+    }
+
+    @include m(wave) {
+      animation: none;
+
+      @include me(spinner-wraper) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+      }
+
+      @include me(spinner-wave-bar) {
+        display: flex;
+        align-items: center;
+        animation-duration: $m-loading-wave-animation-duration;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+
+        &:nth-of-type(n + 2) {
+          margin-left: $m-loading-wave-gap;
+        }
+      }
+    }
+
+    @include m(pulse) {
+      animation: none;
+
+      @include me(spinner-wraper) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    @include m(sync) {
+      animation: none;
+
+      @include me(spinner-wraper) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  @include e(spinner-dot) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @include generate(12);
+
+    &::before {
+      display: block;
+      width: $m-loading-spinner-dot-width;
+      height: $m-loading-spinner-dot-height;
+      margin: 0 auto;
+      background-color: currentColor;
+      border-radius: $m-loading-spinner-dot-radius;
+      content: ' ';
+    }
+  }
+
+  @include e(spinner-wraper) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  @include e(spinner-wave-bar) {
+    flex: none;
+    width: $m-loading-wave-bar-width;
+    height: $m-loading-wave-bar-height;
+
+    &:nth-of-type(1) {
+      .m-loading__spinner-wave-bar-inner {
+        animation-name: m-wave-bar-1;
+      }
+    }
+
+    &:nth-of-type(2) {
+      .m-loading__spinner-wave-bar-inner {
+        animation-name: m-wave-bar-2;
+      }
+    }
+
+    &:nth-of-type(3) {
+      .m-loading__spinner-wave-bar-inner {
+        animation-name: m-wave-bar-3;
+      }
+    }
+
+    &:nth-of-type(4) {
+      .m-loading__spinner-wave-bar-inner {
+        animation-name: m-wave-bar-4;
+      }
+    }
+  }
+
+  @include e(spinner-wave-bar-inner) {
+    width: 100%;
+    height: 100%;
+    border-radius: $m-loading-wave-bar-radius;
+    background-color: currentColor;
+    animation-duration: $m-loading-wave-animation-duration;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: height;
+  }
+
+  @include e(spinner-pulse-dot) {
+    width: $m-loading-pulse-dot-size;
+    height: $m-loading-pulse-dot-size;
+    border-radius: $radius-full;
+    background-color: currentColor;
+    animation: m-pulse $m-loading-pulse-animation-duration ease-in-out infinite;
+
+    &:nth-of-type(2) {
+      animation-delay: calc(#{$m-loading-pulse-animation-duration} / 2);
+      margin-left: calc(#{$m-loading-pulse-dot-size} / 2);
+    }
+  }
+
+  @include e(spinner-sync-dot) {
+    position: absolute;
+    width: $m-loading-sync-dot-size;
+    height: $m-loading-sync-dot-size;
+    border-radius: $radius-full;
+    background-color: currentColor;
+
+    &:nth-of-type(1) {
+      animation: m-sync-left $m-loading-sync-animation-duration ease-in-out infinite;
+    }
+
+    &:nth-of-type(2) {
+      animation: m-sync-right $m-loading-sync-animation-duration ease-in-out infinite;
+    }
+  }
+
+  @include e(text) {
+    font-size: $m-loading-text-font-size;
+    line-height: $m-loading-text-line-height;
+    color: currentColor;
+  }
+}
+
+@keyframes m-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes m-dotting {
+  0% {
+    opacity: 0.15;
+  }
+
+  1% {
+    opacity: 0.8;
+  }
+
+  33% {
+    opacity: 0.8;
+  }
+
+  34% {
+    opacity: 0.15;
+  }
+
+  100% {
+    opacity: 0.15;
+  }
+}
+
+@keyframes m-wave-bar-1 {
+  0%,
+  100% {
+    height: 20%;
+  }
+
+  25.779376%,
+  87.889688% {
+    height: 40%;
+  }
+
+  37.889688%,
+  75.779376% {
+    height: 70%;
+  }
+
+  50% {
+    height: 100%;
+  }
+}
+
+@keyframes m-wave-bar-2 {
+  0%,
+  100% {
+    height: 40%;
+  }
+
+  25.779376%,
+  87.889688%,
+  50% {
+    height: 70%;
+  }
+
+  37.889688%,
+  75.779376% {
+    height: 100%;
+  }
+}
+
+@keyframes m-wave-bar-3 {
+  0%,
+  100%,
+  37.889688%,
+  75.779376% {
+    height: 70%;
+  }
+
+  25.779376%,
+  87.889688% {
+    height: 100%;
+  }
+
+  50% {
+    height: 40%;
+  }
+}
+
+@keyframes m-wave-bar-4 {
+  0%,
+  100% {
+    height: 100%;
+  }
+
+  25.779376%,
+  87.889688% {
+    height: 70%;
+  }
+
+  37.889688%,
+  75.779376% {
+    height: 40%;
+  }
+
+  50% {
+    height: 20%;
+  }
+}
+
+@keyframes m-pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+@keyframes m-sync-left {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes m-sync-right {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
