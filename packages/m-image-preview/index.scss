@@ -1,0 +1,82 @@
+@use '../common/styles/variables.scss' as *;
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/mixin/_config.scss' as config;
+@use '../common/styles/mixin/_function.scss' as function;
+
+$m-image-preview-bg: var(--m-image-preview-bg, rgba(0, 0, 0, 0.9)) !default;
+$m-image-preview-index-color: var(--m-image-preview-index-color, #fff) !default;
+$m-image-preview-index-margin: var(--m-image-preview-index-margin, 40rpx) !default;
+$m-image-preview-index-font-size: var(--m-image-preview-index-font-size, 32rpx) !default;
+$m-image-preview-index-font-weight: var(--m-image-preview-index-font-weight, 500) !default;
+$m-image-preview-index-line-height: var(--m-image-preview-index-line-height, 1.5) !default;
+$m-image-preview-close-size: var(--m-image-preview-close-size, 48rpx) !default;
+$m-image-preview-close-color: var(--m-image-preview-close-color, #fff) !default;
+$m-image-preview-close-margin: var(--m-image-preview-close-margin, 40rpx) !default;
+
+@include b(image-preview) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: $m-image-preview-bg;
+
+  @include e(close) {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include m(top-right) {
+      top: $m-image-preview-close-margin;
+      right: $m-image-preview-close-margin;
+    }
+
+    @include m(top-left) {
+      top: $m-image-preview-close-margin;
+      left: $m-image-preview-close-margin;
+    }
+  }
+
+  @include edeep(close-icon) {
+    font-size: $m-image-preview-close-size;
+    line-height: $m-image-preview-close-size;
+    color: $m-image-preview-close-color;
+  }
+
+  @include e(index) {
+    position: absolute;
+    top: $m-image-preview-index-margin;
+    left: 50%;
+    transform: translateX(-50%);
+    color: $m-image-preview-index-color;
+    font-size: $m-image-preview-index-font-size;
+    font-weight: $m-image-preview-index-font-weight;
+    line-height: $m-image-preview-index-line-height;
+    z-index: 10;
+  }
+
+  @include e(swiper) {
+    width: 100%;
+    height: 100%;
+  }
+
+  @include e(swiper-item) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  @include e(image) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform-origin: center center;
+    will-change: transform;
+  }
+}

@@ -125,11 +125,17 @@
       "style": {
         "navigationBarTitleText": "Loadmore 加载更多"
       }
+    },
+    {
+      "path": "examples/pages/image-preview-demo",
+      "style": {
+        "navigationBarTitleText": "ImagePreview 图片预览"
+      }
     }
   ],
   "globalStyle": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "M-UI",
+    "navigationBarTitleText": "Mini-UI",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
