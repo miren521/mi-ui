@@ -1,0 +1,108 @@
+@use "sass:map";
+@use '../common/styles/variables.scss' as *;
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/mixin/_config.scss' as config;
+@use '../common/styles/mixin/_function.scss' as function;
+
+$m-skeleton-row-margin-bottom: var(--m-skeleton-row-margin-bottom, $spacing-loose) !default;
+$m-skeleton-col-bg: var(--m-skeleton-col-bg, $filled-strong) !default;
+$m-skeleton-text-height: var(--m-skeleton-text-height, $n-16) !default;
+$m-skeleton-rect-height: var(--m-skeleton-rect-height, $n-16) !default;
+$m-skeleton-circle-height: var(--m-skeleton-circle-height, $n-48) !default;
+$m-skeleton-text-border-radius: var(--m-skeleton-text-border-radius, $radius-small) !default;
+$m-skeleton-rect-border-radius: var(--m-skeleton-rect-border-radius, $radius-main) !default;
+$m-skeleton-circle-border-radius: var(--m-skeleton-circle-border-radius, $radius-full) !default;
+$m-skeleton-animation-gradient: var(--m-skeleton-animation-gradient, $filled-bottom) !default;
+$m-skeleton-animation-flashed: var(--m-skeleton-animation-flashed, $filled-bottom) !default;
+$m-skeleton-animation-flashed-opacity: var(--m-skeleton-animation-flashed-opacity, $opacity-backdrop) !default;
+
+@include b(skeleton) {
+  box-sizing: border-box;
+
+  @include e(row) {
+    justify-content: space-between;
+    margin-bottom: $m-skeleton-row-margin-bottom;
+    display: flex;
+    align-items: center;
+
+    &:only-child,
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @include e(col) {
+    border-radius: $m-skeleton-text-border-radius;
+    background-color: $m-skeleton-col-bg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:first-child:last-child,
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  @include m(type) {
+    &-text {
+      width: 100%;
+      height: $m-skeleton-text-height;
+      border-radius: $m-skeleton-text-border-radius;
+    }
+
+    &-rect {
+      width: 100%;
+      height: $m-skeleton-rect-height;
+      border-radius: $m-skeleton-rect-border-radius;
+    }
+
+    &-circle {
+      flex-shrink: 0;
+      width: $m-skeleton-circle-height;
+      height: $m-skeleton-circle-height;
+      border-radius: $m-skeleton-circle-border-radius;
+    }
+  }
+
+  @include m(animation) {
+    &-gradient {
+      position: relative;
+      overflow-x: hidden;
+
+      &::after {
+        content: ' ';
+        position: absolute;
+        animation: m-skeleton-gradient 1.2s linear infinite;
+        background: linear-gradient(90deg, transparent, $m-skeleton-animation-gradient, transparent);
+        inset: 0;
+      }
+    }
+
+    &-flashed {
+      animation: m-skeleton-flashed 1.5s linear infinite;
+    }
+  }
+
+  @keyframes m-skeleton-gradient {
+    0% {
+      transform: translateX(-100%) skewX(-15deg);
+    }
+    100% {
+      transform: translateX(200%) skewX(-15deg);
+    }
+  }
+
+  @keyframes m-skeleton-flashed {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: $m-skeleton-animation-flashed-opacity;
+      background: $m-skeleton-animation-flashed;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
