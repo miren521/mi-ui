@@ -80,11 +80,8 @@ const containerStyle = computed(() => {
 const innerOffsetTop = computed(() => {
   let top: number = 0
   // #ifdef H5
-  // H5端，导航栏为普通元素，需要将组件移动到导航栏的下边沿
-  // H5的导航栏高度为44px
   top = 44
   // #endif
-
   return top + props.offsetTop
 })
 
@@ -105,8 +102,8 @@ async function handleResize(detail: any) {
   stickyState.height = detail.height
   await pause()
   observerContentScroll()
-  if (!stickyBox || !stickyBox.observerForChild) return
-  stickyBox.observerForChild(proxy)
+  if (!stickyBox.value || !stickyBox.value.observerForChild) return
+  stickyBox.value.observerForChild(proxy)
 }
 
 function observerContentScroll() {
@@ -122,7 +119,6 @@ function observerContentScroll() {
     })
   getRect(`#${stickyId.value}`, false, proxy).then((res) => {
     // #ifdef H5
-    // H5端，查询节点信息未计算导航栏高度
     res.bottom = Number(res.bottom) + 44
     // #endif
     if (Number(res.bottom) <= offset) handleRelativeTo({ boundingClientRect: res })
@@ -130,8 +126,7 @@ function observerContentScroll() {
 }
 
 function handleRelativeTo({ boundingClientRect }: any) {
-  // sticky 高度大于或等于 m-sticky-box，使用 m-sticky-box 无任何意义
-  if (stickyBox && stickyBox.boxStyle && stickyState.height >= stickyBox.boxStyle.height) {
+  if (stickyBox.value && stickyBox.value.boxStyle && stickyState.height >= stickyBox.value.boxStyle.height) {
     stickyState.position = 'absolute'
     stickyState.top = 0
     return

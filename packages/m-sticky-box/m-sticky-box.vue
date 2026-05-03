@@ -20,7 +20,7 @@ export default {
 
 <script lang="ts" setup>
 import mResize from '../m-resize/m-resize.vue'
-import { getCurrentInstance, onBeforeMount, reactive, ref } from 'vue'
+import { getCurrentInstance, onBeforeMount, onUnmounted, reactive, ref } from 'vue'
 import { getRect, uuid } from '../common/util'
 import { baseProps } from '../common/props'
 import { STICKY_BOX_KEY } from './types'
@@ -47,6 +47,13 @@ linkChildren({
 
 onBeforeMount(() => {
   observerMap.value = new Map()
+})
+
+onUnmounted(() => {
+  observerMap.value.forEach((observer) => {
+    observer.disconnect()
+  })
+  observerMap.value.clear()
 })
 
 function handleResize(detail: any) {
@@ -86,43 +93,39 @@ function observerForChild(child: any) {
   const exposed = child.$.exposed
   let offset = exposed.stickyState.height + exposed.offsetTop
   // #ifdef H5
-  // H5端，导航栏为普通元素，需要将组件移动到导航栏的下边沿
-  // H5的导航栏高度为44px
   offset = offset + 44
   // #endif
 
   if (boxStyle.height <= exposed.stickyState.height) {
     exposed.setPosition(false, 'absolute', 0)
   }
+
   observer.relativeToViewport({ top: -offset }).observe(`#${stickyBoxId.value}`, (result) => {
     handleRelativeTo(exposed, result)
   })
-  // 当子组件默认处于边界外且永远不会进入边界内时，需要手动调用一次
+
   getRect(`#${stickyBoxId.value}`, false, proxy)
     .then((res) => {
       // #ifdef H5
-      // H5端，查询节点信息未计算导航栏高度
       res.bottom = Number(res.bottom) + 44
       // #endif
       if (Number(res.bottom) <= offset) handleRelativeTo(exposed, { boundingClientRect: res })
     })
-    .catch((res) => {
-      console.log(res)
-    })
+    .catch(() => {})
 }
 
 function handleRelativeTo(exposed: any, { boundingClientRect }: any) {
   let childOffsetTop = exposed.offsetTop
   // #ifdef H5
-  // H5端，导航栏为普通元素，需要将组件移动到导航栏的下边沿
-  // H5的导航栏高度为44px
   childOffsetTop = childOffsetTop + 44
   // #endif
   const offset = exposed.stickyState.height + childOffsetTop
+
   let isAbsolute = boundingClientRect.bottom <= offset
   // #ifdef H5 || APP-PLUS
   isAbsolute = boundingClientRect.bottom < offset
   // #endif
+
   if (isAbsolute) {
     exposed.setPosition(true, 'absolute', boundingClientRect.height - exposed.stickyState.height)
   } else if (boundingClientRect.top <= offset && !isAbsolute) {
