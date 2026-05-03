@@ -37,11 +37,17 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted } from 'vue'
 import { useVideoPreview } from '../../packages/m-video-preview/index'
 
 const videoUrl = 'https://www.w3schools.com/html/mov_bbb.mp4'
 const posterUrl = 'https://picsum.photos/id/155/640/360'
 const videoTitle = '示例视频'
+
+onMounted(() => {
+  const img = new Image()
+  img.src = posterUrl
+})
 
 const { previewVideo: previewBasic, closeVideoPreview: closeBasic } = useVideoPreview('basic')
 function handleOpen() {
