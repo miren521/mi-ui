@@ -119,6 +119,12 @@
       "style": {
         "navigationBarTitleText": "Loading 加载指示器"
       }
+    },
+    {
+      "path": "examples/pages/loadmore-demo",
+      "style": {
+        "navigationBarTitleText": "Loadmore 加载更多"
+      }
     }
   ],
   "globalStyle": {

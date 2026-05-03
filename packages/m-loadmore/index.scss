@@ -1,0 +1,54 @@
+@use "sass:map";
+@use '../common/styles/variables.scss' as *;
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/mixin/_config.scss' as config;
+@use '../common/styles/mixin/_function.scss' as function;
+
+$m-loadmore-height: var(--m-loadmore-height, $n-48) !default;
+$m-loadmore-padding: var(--m-loadmore-padding, $spacing-main $spacing-loose) !default;
+$m-loadmore-color: var(--m-loadmore-color, $text-secondary) !default;
+$m-loadmore-font-size: var(--m-loadmore-font-size, $typography-body-size-main) !default;
+$m-loadmore-line-height: var(--m-loadmore-line-height, $typography-body-line-height-size-main) !default;
+$m-loadmore-loading-size: var(--m-loadmore-loading-size, $n-22) !default;
+$m-loadmore-loading-spacing: var(--m-loadmore-loading-spacing, $spacing-tight) !default;
+$m-loadmore-refresh-color: var(--m-loadmore-refresh-color, $primary-6) !default;
+$m-loadmore-refresh-font-size: var(--m-loadmore-refresh-font-size, $n-14) !default;
+$m-loadmore-refresh-line-height: var(--m-loadmore-refresh-line-height, $typography-body-line-height-size-extra-large) !default;
+$m-loadmore-retry-spacing: var(--m-loadmore-retry-spacing, 0 $spacing-extra-tight) !default;
+
+@include b(loadmore) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: $m-loadmore-height;
+  padding: $m-loadmore-padding;
+  color: $m-loadmore-color;
+
+  @include edeep(divider) {
+    width: 100%;
+    margin: $spacing-zero;
+  }
+
+  @include edeep(loading) {
+    margin-right: $m-loadmore-loading-spacing;
+    font-size: $m-loadmore-loading-size;
+  }
+
+  @include e(text, refresh-text) {
+    font-size: $m-loadmore-font-size;
+    line-height: $m-loadmore-line-height;
+  }
+
+  @include e(refresh-text) {
+    margin: $m-loadmore-retry-spacing;
+    color: $m-loadmore-refresh-color;
+  }
+
+  @include edeep(refresh) {
+    color: $m-loadmore-refresh-color;
+    font-size: $m-loadmore-refresh-font-size;
+    line-height: $m-loadmore-refresh-line-height;
+  }
+}

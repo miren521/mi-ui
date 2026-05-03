@@ -6,6 +6,12 @@ const defaultMessages: Record<string, Record<string, string>> = {
     failed: '失败',
     process: '进行中',
     wait: '待处理'
+  },
+  loadmore: {
+    finished: '没有更多了',
+    error: '加载失败',
+    loading: '加载中...',
+    retry: '点击重试'
   }
 }
 

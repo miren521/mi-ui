@@ -123,7 +123,8 @@ const components = [
   { id: 'collapse', title: 'Collapse 折叠面板', desc: '折叠面板组件，支持手风琴模式和普通模式', category: 'display', url: '/examples/pages/collapse-demo' },
   { id: 'sticky', title: 'Sticky 粘性布局', desc: '粘性布局组件，页面滚动时将元素固定在指定位置', category: 'display', url: '/examples/pages/sticky-demo' },
   { id: 'skeleton', title: 'Skeleton 骨架屏', desc: '骨架屏用于内容加载时的占位展示', category: 'display', url: '/examples/pages/skeleton-demo' },
-  { id: 'loading', title: 'Loading 加载指示器', desc: 'Loading 加载指示器', category: 'feedback', url: '/examples/pages/loading-demo' },
+  { id: 'loading', title: 'Loading 加载指示器', desc: '加载动画，用于表示加载中的过渡状态', category: 'feedback', url: '/examples/pages/loading-demo' },
+  { id: 'loadmore', title: 'Loadmore 加载更多', desc: '用于在列表底部展示加载状态', category: 'display', url: '/examples/pages/loadmore-demo' },
 ]
 
 const steps = [
