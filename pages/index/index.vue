@@ -126,6 +126,7 @@ const components = [
   { id: 'loading', title: 'Loading 加载指示器', desc: '加载动画，用于表示加载中的过渡状态', category: 'feedback', url: '/examples/pages/loading-demo' },
   { id: 'loadmore', title: 'Loadmore 加载更多', desc: '用于在列表底部展示加载状态', category: 'display', url: '/examples/pages/loadmore-demo' },
   { id: 'imagePreview', title: 'ImagePreview 图片预览', desc: '图片预览组件，支持多图预览、滑动切换', category: 'display', url: '/examples/pages/image-preview-demo' },
+  { id: 'videoPreview', title: 'VideoPreview 视频预览', desc: '视频预览组件，支持组件实例、函数式调用', category: 'display', url: '/examples/pages/video-preview-demo' },
 ]
 
 const steps = [

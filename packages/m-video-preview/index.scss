@@ -1,0 +1,49 @@
+@use '../common/styles/variables.scss' as *;
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/mixin/_config.scss' as config;
+@use '../common/styles/mixin/_function.scss' as function;
+
+$m-video-preview-bg: var(--m-video-preview-bg, rgba(0, 0, 0, 0.75)) !default;
+$m-video-preview-close-size: var(--m-video-preview-close-size, 48rpx) !default;
+$m-video-preview-close-color: var(--m-video-preview-close-color, #fff) !default;
+$m-video-preview-close-margin: var(--m-video-preview-close-margin, 40rpx) !default;
+$m-video-preview-video-height: var(--m-video-preview-video-height, 496rpx) !default;
+$m-video-preview-z-index: var(--m-video-preview-z-index, 1000) !default;
+$m-video-preview-close-z-index: var(--m-video-preview-close-z-index, 10) !default;
+
+@include b(video-preview) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $m-video-preview-z-index;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: $m-video-preview-bg;
+
+  @include e(video) {
+    width: 100%;
+    height: $m-video-preview-video-height;
+    transition: all 0.3s ease;
+  }
+
+  @include e(close) {
+    position: absolute;
+    z-index: $m-video-preview-close-z-index;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: $m-video-preview-close-margin;
+    right: $m-video-preview-close-margin;
+    cursor: pointer;
+  }
+
+  @include edeep(close-icon) {
+    font-size: $m-video-preview-close-size;
+    line-height: $m-video-preview-close-size;
+    color: $m-video-preview-close-color;
+  }
+}

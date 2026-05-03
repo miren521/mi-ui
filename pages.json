@@ -131,6 +131,12 @@
       "style": {
         "navigationBarTitleText": "ImagePreview 图片预览"
       }
+    },
+    {
+      "path": "examples/pages/video-preview-demo",
+      "style": {
+        "navigationBarTitleText": "VideoPreview 视频预览"
+      }
     }
   ],
   "globalStyle": {
