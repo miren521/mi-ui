@@ -40,8 +40,7 @@
 import { useVideoPreview } from '../../packages/m-video-preview/index'
 
 const videoUrl = 'https://www.w3schools.com/html/mov_bbb.mp4'
-// const posterUrl = 'https://picsum.photos/id/1/320/180'
-const posterUrl = '/static/img/img_1.jpg'
+const posterUrl = 'https://picsum.photos/id/155/640/360'
 const videoTitle = '示例视频'
 
 const { previewVideo: previewBasic, closeVideoPreview: closeBasic } = useVideoPreview('basic')
