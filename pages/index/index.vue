@@ -90,6 +90,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { components } from './components-data'
 
 const searchText = ref('')
 const activeCategory = ref('all')
@@ -103,31 +104,7 @@ const categories = [
   { key: 'display', name: '展示' },
 ]
 
-const components = [
-  { id: 'button', title: 'Button 按钮', desc: '按钮组件，支持多种类型和状态', category: 'basic', url: '/examples/pages/button-demo' },
-  { id: 'icon', title: 'Icon 图标', desc: '图标组件，提供丰富的图标资源', category: 'basic', url: '/examples/pages/icon-demo' },
-  { id: 'text', title: 'Text 文本', desc: '文本组件，支持多种样式和格式化', category: 'basic', url: '/examples/pages/text-demo' },
-  { id: 'cell', title: 'Cell 单元格', desc: '单元格组件，用于展示列表数据', category: 'basic', url: '/examples/pages/cell-demo' },
-  { id: 'divider', title: 'Divider 分割线', desc: '分割线组件，用于分隔内容', category: 'display', url: '/examples/pages/divider-demo' },
-  { id: 'avatar', title: 'Avatar 头像', desc: '头像组件，支持图片、文本、图标和状态显示', category: 'display', url: '/examples/pages/avatar-demo' },
-  { id: 'img', title: 'Img 图片', desc: '图片组件，支持多种填充模式和预览功能', category: 'display', url: '/examples/pages/img-demo' },
-  { id: 'tag', title: 'Tag 标签', desc: '标签组件，用于标记和分类', category: 'display', url: '/examples/pages/tag-demo' },
-  { id: 'badge', title: 'Badge 徽标', desc: '徽标组件，用于显示未读数量和状态', category: 'display', url: '/examples/pages/badge-demo' },
-  { id: 'tabbar', title: 'Tabbar 底部导航', desc: '底部导航栏，用于在不同页面之间进行切换', category: 'navigation', url: '/examples/pages/tabbar-demo' },
-  { id: 'layout', title: 'Layout 布局', desc: '栅格布局，支持 24 分栏', category: 'layout', url: '/examples/pages/layout-demo' },
-  { id: 'popup', title: 'Popup 弹出层', desc: '弹出层组件，支持多种位置', category: 'feedback', url: '/examples/pages/popup-demo' },
-  { id: 'transition', title: 'Transition 动画', desc: '过渡动画组件', category: 'feedback', url: '/examples/pages/transition-demo' },
-  { id: 'card', title: 'Card 卡片', desc: '用于展示商品的图片、价格等信息', category: 'display', url: '/examples/pages/card-demo' },
-  { id: 'steps', title: 'Steps 步骤条', desc: '步骤条组件，用于引导用户完成流程', category: 'display', url: '/examples/pages/steps-demo' },
-  { id: 'grid', title: 'Grid 宫格', desc: '宫格组件，用于展示一组相关的内容', category: 'layout', url: '/examples/pages/grid-demo' },
-  { id: 'collapse', title: 'Collapse 折叠面板', desc: '折叠面板组件，支持手风琴模式和普通模式', category: 'display', url: '/examples/pages/collapse-demo' },
-  { id: 'sticky', title: 'Sticky 粘性布局', desc: '粘性布局组件，页面滚动时将元素固定在指定位置', category: 'display', url: '/examples/pages/sticky-demo' },
-  { id: 'skeleton', title: 'Skeleton 骨架屏', desc: '骨架屏用于内容加载时的占位展示', category: 'display', url: '/examples/pages/skeleton-demo' },
-  { id: 'loading', title: 'Loading 加载指示器', desc: '加载动画，用于表示加载中的过渡状态', category: 'feedback', url: '/examples/pages/loading-demo' },
-  { id: 'loadmore', title: 'Loadmore 加载更多', desc: '用于在列表底部展示加载状态', category: 'display', url: '/examples/pages/loadmore-demo' },
-  { id: 'imagePreview', title: 'ImagePreview 图片预览', desc: '图片预览组件，支持多图预览、滑动切换', category: 'display', url: '/examples/pages/image-preview-demo' },
-  { id: 'videoPreview', title: 'VideoPreview 视频预览', desc: '视频预览组件，支持组件实例、函数式调用', category: 'display', url: '/examples/pages/video-preview-demo' },
-]
+
 
 const steps = [
   { title: '安装', desc: 'npm install @your-scope/mini-ui' },
