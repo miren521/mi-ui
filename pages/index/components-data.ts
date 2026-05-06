@@ -47,6 +47,7 @@ export const displayComponents: ComponentItem[] = [
   { id: 'loadmore', title: 'Loadmore 加载更多', desc: '用于在列表底部展示加载状态', category: 'display', url: '/examples/pages/loadmore-demo' },
   { id: 'imagePreview', title: 'ImagePreview 图片预览', desc: '图片预览组件，支持多图预览、滑动切换', category: 'display', url: '/examples/pages/image-preview-demo' },
   { id: 'videoPreview', title: 'VideoPreview 视频预览', desc: '视频预览组件，支持组件实例、函数式调用', category: 'display', url: '/examples/pages/video-preview-demo' },
+  { id: 'imgCropper', title: 'ImgCropper 图片裁剪', desc: '图片剪裁组件，用于图片裁剪，支持拖拽、缩放、旋转', category: 'display', url: '/examples/pages/img-cropper-demo' },
 ]
 
 export const components: ComponentItem[] = [

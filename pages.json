@@ -137,6 +137,12 @@
       "style": {
         "navigationBarTitleText": "VideoPreview 视频预览"
       }
+    },
+    {
+      "path": "examples/pages/img-cropper-demo",
+      "style": {
+        "navigationBarTitleText": "ImgCropper 图片裁剪"
+      }
     }
   ],
   "globalStyle": {
