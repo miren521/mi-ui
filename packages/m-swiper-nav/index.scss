@@ -1,0 +1,157 @@
+@use '../common/styles/variables.scss' as *;
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/mixin/_config.scss' as config;
+@use '../common/styles/mixin/_function.scss' as function;
+
+$m-swiper-nav-spacing: var(--m-swiper-nav-spacing, 20rpx) !default;
+$m-swiper-nav-dot-color: var(--m-swiper-nav-dot-color, rgba(0, 0, 0, 0.3)) !default;
+$m-swiper-nav-dot-color-active: var(--m-swiper-nav-dot-color-active, #fff) !default;
+$m-swiper-nav-dot-size: var(--m-swiper-nav-dot-size, 12rpx) !default;
+$m-swiper-nav-dot-margin: var(--m-swiper-nav-dot-margin, 8rpx) !default;
+$m-swiper-nav-dots-bar-width-active: var(--m-swiper-nav-dots-bar-width-active, 30rpx) !default;
+$m-swiper-nav-dot-border-radius: var(--m-swiper-nav-dot-border-radius, 50%) !default;
+$m-swiper-nav-fraction-color: var(--m-swiper-nav-fraction-color, #fff) !default;
+$m-swiper-nav-fraction-bg: var(--m-swiper-nav-fraction-bg, rgba(0, 0, 0, 0.5)) !default;
+$m-swiper-nav-fraction-line-height: var(--m-swiper-nav-fraction-line-height, 32rpx) !default;
+$m-swiper-nav-fraction-font-size: var(--m-swiper-nav-fraction-font-size, 24rpx) !default;
+$m-swiper-nav-fraction-padding: var(--m-swiper-nav-fraction-padding, 8rpx 16rpx) !default;
+$m-swiper-nav-fraction-border-radius: var(--m-swiper-nav-fraction-border-radius, 8rpx) !default;
+$m-swiper-nav-btn-color: var(--m-swiper-nav-btn-color, #fff) !default;
+$m-swiper-nav-btn-bg: var(--m-swiper-nav-btn-bg, rgba(0, 0, 0, 0.5)) !default;
+$m-swiper-nav-btn-size: var(--m-swiper-nav-btn-size, 48rpx) !default;
+$m-swiper-nav-btn-icon-size: var(--m-swiper-nav-btn-icon-size, 32rpx) !default;
+$m-swiper-nav-btn-spacing: var(--m-swiper-nav-btn-spacing, 24rpx) !default;
+$m-swiper-nav-btn-border-radius: var(--m-swiper-nav-btn-border-radius, 50%) !default;
+
+@include b(swiper-nav) {
+  @include e(btn) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $m-swiper-nav-btn-size;
+    height: $m-swiper-nav-btn-size;
+    border-radius: $m-swiper-nav-btn-border-radius;
+    background: $m-swiper-nav-btn-bg;
+
+    @include m(prev) {
+      left: $m-swiper-nav-btn-spacing;
+    }
+
+    @include m(next) {
+      right: $m-swiper-nav-btn-spacing;
+    }
+  }
+
+  @include edeep(btn-icon) {
+    font-size: $m-swiper-nav-btn-icon-size;
+    line-height: $m-swiper-nav-btn-icon-size;
+    color: $m-swiper-nav-btn-color;
+  }
+
+  @include m(dots, dots-bar) {
+    display: flex;
+    flex-direction: row;
+  }
+
+  @include m(fraction) {
+    padding: $m-swiper-nav-fraction-padding;
+    line-height: $m-swiper-nav-fraction-line-height;
+    border-radius: $m-swiper-nav-fraction-border-radius;
+    background: $m-swiper-nav-fraction-bg;
+    color: $m-swiper-nav-fraction-color;
+    font-size: $m-swiper-nav-fraction-font-size;
+  }
+
+  @include e(item) {
+    @include m(dots, dots-bar) {
+      width: $m-swiper-nav-dot-size;
+      height: $m-swiper-nav-dot-size;
+      background: $m-swiper-nav-dot-color;
+      border-radius: $m-swiper-nav-dot-border-radius;
+      margin: 0 $m-swiper-nav-dot-margin;
+      transition: all 0.4s ease-in;
+
+      @include when(vertical) {
+        margin: $m-swiper-nav-dot-margin 0;
+      }
+
+      @include when(active) {
+        background: $m-swiper-nav-dot-color-active;
+      }
+    }
+
+    @include m(dots-bar) {
+      @include when(vertical) {
+        @include when(active) {
+          width: $m-swiper-nav-dot-size;
+          height: $m-swiper-nav-dots-bar-width-active;
+        }
+      }
+
+      @include when(active) {
+        width: $m-swiper-nav-dots-bar-width-active;
+        border-radius: $m-swiper-nav-dot-border-radius;
+        background: $m-swiper-nav-dot-color-active;
+      }
+    }
+  }
+
+  @include m(left) {
+    position: absolute;
+    left: $m-swiper-nav-spacing;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @include m(right) {
+    position: absolute;
+    right: $m-swiper-nav-spacing;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @include m(top-left) {
+    position: absolute;
+    top: $m-swiper-nav-spacing;
+    left: $m-swiper-nav-spacing;
+  }
+
+  @include m(top) {
+    position: absolute;
+    left: 50%;
+    top: $m-swiper-nav-spacing;
+    transform: translateX(-50%);
+  }
+
+  @include m(top-right) {
+    position: absolute;
+    top: $m-swiper-nav-spacing;
+    right: $m-swiper-nav-spacing;
+  }
+
+  @include m(bottom-left) {
+    position: absolute;
+    left: $m-swiper-nav-spacing;
+    bottom: $m-swiper-nav-spacing;
+  }
+
+  @include m(bottom) {
+    position: absolute;
+    left: 50%;
+    bottom: $m-swiper-nav-spacing;
+    transform: translateX(-50%);
+  }
+
+  @include m(bottom-right) {
+    position: absolute;
+    right: $m-swiper-nav-spacing;
+    bottom: $m-swiper-nav-spacing;
+  }
+
+  @include m(vertical) {
+    flex-direction: column;
+  }
+}

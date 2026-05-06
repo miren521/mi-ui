@@ -1,8 +1,8 @@
 export interface ComponentItem {
   id: string
   title: string
-  enTitle: string
-  zhTitle: string
+  enTitle?: string
+  zhTitle?: string
   desc: string
   category: string
   url: string
@@ -50,6 +50,7 @@ export const displayComponents: ComponentItem[] = [
   { id: 'imagePreview', title: 'ImagePreview 图片预览', enTitle: 'ImagePreview', zhTitle: '图片预览', desc: '图片预览组件，支持多图预览、滑动切换', category: 'display', url: '/examples/pages/image-preview-demo' },
   { id: 'videoPreview', title: 'VideoPreview 视频预览', enTitle: 'VideoPreview', zhTitle: '视频预览', desc: '视频预览组件，支持组件实例、函数式调用', category: 'display', url: '/examples/pages/video-preview-demo' },
   { id: 'imgCropper', title: 'ImgCropper 图片裁剪', enTitle: 'ImgCropper', zhTitle: '图片裁剪', desc: '图片剪裁组件，用于图片裁剪', category: 'display', url: '/examples/pages/img-cropper-demo' },
+  { id: 'swiper', title: 'Swiper 轮播', enTitle: 'Swiper', zhTitle: '轮播', desc: '用于创建轮播，支持水平和垂直方向滑动', category: 'display', url: '/examples/pages/swiper-demo' },
 ]
 
 export const components: ComponentItem[] = [

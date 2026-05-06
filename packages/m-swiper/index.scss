@@ -1,0 +1,59 @@
+@use '../common/styles/variables.scss' as *;
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/mixin/_config.scss' as config;
+@use '../common/styles/mixin/_function.scss' as function;
+
+$m-swiper-border-radius: var(--m-swiper-border-radius, 0) !default;
+$m-swiper-item-padding: var(--m-swiper-item-padding, 0) !default;
+$m-swiper-item-text-color: var(--m-swiper-item-text-color, #fff) !default;
+$m-swiper-item-text-font-size: var(--m-swiper-item-text-font-size, 28rpx) !default;
+$m-swiper-item-text-spacing: var(--m-swiper-item-text-spacing, 24rpx) !default;
+
+@include b(swiper) {
+  position: relative;
+
+  @include e(track) {
+    border-radius: $m-swiper-border-radius;
+    overflow: hidden;
+    transform: translateY(0);
+  }
+
+  @include e(item) {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: $m-swiper-item-padding;
+
+    @include m(slot) {
+      /* #ifdef MP */
+      :deep() {
+        /* #ifdef MP-WEIXIN */
+        view:not([class]) {
+          width: 100%;
+          height: 100%;
+        }
+        /* #endif */
+        /* #ifndef MP-WEIXIN */
+        view {
+          width: 100%;
+          height: 100%;
+        }
+        /* #endif */
+      }
+      /* #endif */
+    }
+  }
+
+  @include e(image, video) {
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+
+  @include e(text) {
+    position: absolute;
+    right: $m-swiper-item-text-spacing;
+    top: $m-swiper-item-text-spacing;
+    color: $m-swiper-item-text-color;
+    font-size: $m-swiper-item-text-font-size;
+  }
+}

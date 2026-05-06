@@ -143,6 +143,12 @@
       "style": {
         "navigationBarTitleText": "ImgCropper 图片裁剪"
       }
+    },
+    {
+      "path": "examples/pages/swiper-demo",
+      "style": {
+        "navigationBarTitleText": "Swiper 轮播"
+      }
     }
   ],
   "globalStyle": {
