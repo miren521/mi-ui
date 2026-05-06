@@ -55,10 +55,12 @@
         >
           <view class="m-home__card-header">
             <text class="m-home__card-title">{{ item.title }}</text>
-            <text class="m-home__card-badge">{{ getCategoryName(item.category) }}</text>
           </view>
           <text class="m-home__card-desc">{{ item.desc }}</text>
-          <text class="m-home__card-link">查看详情 <m-icon name="arrow-right" size="24rpx" /></text>
+          <view class="m-home__card-footer">
+            <text class="m-home__card-badge">{{ getCategoryName(item.category) }}</text>
+            <text class="m-home__card-link">查看详情 <m-icon name="arrow-right" size="24rpx" /></text>
+          </view>
         </view>
       </view>
 
@@ -468,26 +470,15 @@ const setCategory = (key) => { activeCategory.value = key }
 }
 
 .m-home__card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
   margin-bottom: 12rpx;
-  flex-wrap: wrap;
-  gap: 8rpx;
 }
 
 .m-home__card-title {
   font-size: 30rpx;
   font-weight: 600;
   color: #1e293b;
-}
-
-.m-home__card-badge {
-  font-size: 20rpx;
-  color: #6366f1;
-  background: #eef2ff;
-  padding: 4rpx 12rpx;
-  border-radius: 20rpx;
+  line-height: 1.4;
+  word-break: break-all;
 }
 
 .m-home__card-desc {
@@ -498,11 +489,23 @@ const setCategory = (key) => { activeCategory.value = key }
   margin-bottom: 20rpx;
 }
 
+.m-home__card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.m-home__card-badge {
+  font-size: 20rpx;
+  color: #6366f1;
+  background: #eef2ff;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+}
+
 .m-home__card-link {
-  display: block;
   font-size: 24rpx;
   color: #6366f1;
-  text-align: right;
 }
 
 // 步骤 - 更紧凑
