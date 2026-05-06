@@ -152,6 +152,11 @@ $m-swiper-nav-btn-border-radius: var(--m-swiper-nav-btn-border-radius, 50%) !def
   }
 
   @include m(vertical) {
-    flex-direction: column;
+    flex-direction: column !important;
+
+    &.m-swiper-nav--dots,
+    &.m-swiper-nav--dots-bar {
+      flex-direction: column !important;
+    }
   }
 }

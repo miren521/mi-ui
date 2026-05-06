@@ -144,11 +144,12 @@ const swiperItemClass = computed(() => {
 
 const swiperIndicator = computed(() => {
   const { list, direction, indicatorPosition, indicator } = props
+  const isVertical = direction === 'vertical'
   const swiperIndicator: Partial<SwiperNavProps> = {
     current: currentValue.value || 0,
     total: list.length || 0,
     direction: direction || 'horizontal',
-    indicatorPosition: indicatorPosition || 'bottom'
+    indicatorPosition: isVertical ? 'right' : (indicatorPosition || 'bottom')
   }
   if (isObj(indicator)) {
     swiperIndicator.type = indicator.type || 'dots'

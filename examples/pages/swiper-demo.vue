@@ -7,14 +7,28 @@
         </view>
       </demo-block>
 
-      <demo-block title="垂直轮播" desc="设置 direction 为 vertical">
+      <demo-block title="垂直轮播" desc="设置 direction 为 vertical，指示器自动显示在右侧">
         <view class="demo-swiper-row">
-          <m-swiper 
-            :list="imageList" 
-            height="200" 
+          <m-swiper
+            :list="imageList"
+            height="200"
             direction="vertical"
             :indicator="{ type: 'dots' }"
           />
+        </view>
+      </demo-block>
+
+      <demo-block title="圆角轮播" desc="设置 radius 属性添加圆角效果">
+        <view class="demo-swiper-row">
+          <m-swiper
+            :list="imageList"
+            height="200"
+            :radius="showRadius ? 12 : 0"
+          />
+        </view>
+        <view class="demo-swiper-switch">
+          <switch :checked="showRadius" @change="onRadiusChange" />
+          <text class="demo-swiper-switch-text">{{ showRadius ? '已开启圆角' : '已关闭圆角' }}</text>
         </view>
       </demo-block>
 
@@ -50,9 +64,9 @@
 
       <demo-block title="控制按钮" desc="开启 showControls 显示左右切换按钮">
         <view class="demo-swiper-row">
-          <m-swiper 
-            :list="imageList" 
-            height="300" 
+          <m-swiper
+            :list="imageList"
+            height="300"
             :indicator="{ showControls: true, type: 'fraction' }"
           />
         </view>
@@ -60,9 +74,9 @@
 
       <demo-block title="多图展示" desc="设置 displayMultipleItems 同时显示多个滑块">
         <view class="demo-swiper-row">
-          <m-swiper 
-            :list="imageList" 
-            height="200" 
+          <m-swiper
+            :list="imageList"
+            height="200"
             :display-multiple-items="3"
             :previous-margin="20"
             :next-margin="20"
@@ -86,9 +100,9 @@
 
       <demo-block title="事件监听" desc="监听 change、click 等事件">
         <view class="demo-swiper-row">
-          <m-swiper 
-            :list="imageList" 
-            height="200" 
+          <m-swiper
+            :list="imageList"
+            height="200"
             @change="handleChange"
             @click="handleClick"
           />
@@ -101,11 +115,11 @@
 
       <demo-block title="手动控制" desc="通过 v-model:current 控制当前页">
         <view class="demo-swiper-row">
-          <m-swiper 
+          <m-swiper
             v-model:current="manualCurrent"
-            :list="imageList" 
+            :list="imageList"
             :autoplay="false"
-            height="200" 
+            height="200"
           />
         </view>
         <view class="demo-swiper-controls">
@@ -132,6 +146,7 @@ const imageList = [
 const currentIndex = ref(0)
 const clickIndex = ref(-1)
 const manualCurrent = ref(0)
+const showRadius = ref(false)
 
 function handleChange(e: { current: number }) {
   currentIndex.value = e.current
@@ -147,6 +162,10 @@ function prevSlide() {
 
 function nextSlide() {
   manualCurrent.value = manualCurrent.value < imageList.length - 1 ? manualCurrent.value + 1 : 0
+}
+
+function onRadiusChange(e: { detail: { value: boolean } }) {
+  showRadius.value = e.detail.value
 }
 </script>
 
@@ -200,10 +219,26 @@ function nextSlide() {
   border-radius: 8rpx;
 }
 
+.demo-swiper-switch {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-top: 20rpx;
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 12rpx;
+}
+
+.demo-swiper-switch-text {
+  font-size: 26rpx;
+  color: #1e293b;
+}
+
 .demo-swiper-events {
   padding: 20rpx;
   background: #fff;
   border-radius: 12rpx;
+  margin-top: 20rpx;
 }
 
 .demo-swiper-event-text {
