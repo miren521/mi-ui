@@ -54,7 +54,11 @@
           @click="navigateTo(item.url)"
         >
           <view class="m-home__card-header">
-            <text class="m-home__card-title">{{ item.title }}</text>
+            <view v-if="shouldBreakTitle(item)" class="m-home__card-title-wrap">
+              <text class="m-home__card-en-title">{{ item.enTitle }}</text>
+              <text class="m-home__card-en-title">{{ item.zhTitle }}</text>
+            </view>
+            <text v-else class="m-home__card-title">{{ item.enTitle }} {{ item.zhTitle }}</text>
           </view>
           <text class="m-home__card-desc">{{ item.desc }}</text>
           <view class="m-home__card-footer">
@@ -118,6 +122,13 @@ const steps = [
 const getCategoryName = (categoryKey) => {
   const cat = categories.find(c => c.key === categoryKey)
   return cat ? cat.name : ''
+}
+
+// 判断是否需要换行显示标题
+const shouldBreakTitle = (item) => {
+  const enLength = item.enTitle?.length || 0
+  const zhLength = item.zhTitle?.length || 0
+  return enLength >= 10 && zhLength > 3
 }
 
 const filteredComponents = computed(() => {
@@ -479,6 +490,23 @@ const setCategory = (key) => { activeCategory.value = key }
   color: #1e293b;
   line-height: 1.4;
   word-break: break-all;
+}
+
+.m-home__card-title-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.m-home__card-en-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.m-home__card-zh-title {
+  font-size: 26rpx;
+  color: #64748b;
+  margin-top: 4rpx;
 }
 
 .m-home__card-desc {
