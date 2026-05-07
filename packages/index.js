@@ -6,12 +6,14 @@
 import CuButton from './m-button/src/index.vue'
 import mStep from './m-step/m-step.vue'
 import mSteps from './m-steps/m-steps.vue'
+import mWatermark from './m-watermark/m-watermark.vue'
 
 // 所有组件 
 const components = [ 
 	CuButton, 
 	mStep,
 	mSteps,
+	mWatermark,
 ] 
 
 // 安装函数 
@@ -33,6 +35,7 @@ export {
 	CuBadge, 
 	mStep,
 	mSteps,
+	mWatermark,
 } 
 
 export default { 
@@ -40,4 +43,5 @@ export default {
 	CuButton, 
 	mStep,
 	mSteps,
+	mWatermark,
 }

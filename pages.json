@@ -155,6 +155,12 @@
       "style": {
         "navigationBarTitleText": "Table 表格"
       }
+    },
+    {
+      "path": "examples/pages/watermark-demo",
+      "style": {
+        "navigationBarTitleText": "Watermark 水印"
+      }
     }
   ],
   "globalStyle": {

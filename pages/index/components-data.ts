@@ -52,6 +52,7 @@ export const displayComponents: ComponentItem[] = [
   { id: 'imgCropper', title: 'ImgCropper 图片裁剪', enTitle: 'ImgCropper', zhTitle: '图片裁剪', desc: '图片剪裁组件，用于图片裁剪', category: 'display', url: '/examples/pages/img-cropper-demo' },
   { id: 'swiper', title: 'Swiper 轮播', enTitle: 'Swiper', zhTitle: '轮播', desc: '用于创建轮播，支持水平和垂直方向滑动', category: 'display', url: '/examples/pages/swiper-demo' },
   { id: 'table', title: 'Table 表格', enTitle: 'Table', zhTitle: '表格', desc: '用于展示多条结构类似的数据', category: 'display', url: '/examples/pages/table-demo' },
+  { id: 'watermark', title: 'Watermark 水印', enTitle: 'Watermark', zhTitle: '水印', desc: '在页面或组件上添加指定的图片或文字', category: 'display', url: '/examples/pages/watermark-demo' },
 ]
 
 export const components: ComponentItem[] = [
