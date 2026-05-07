@@ -8,7 +8,7 @@ $m-sort-button-text-font-size: var(--m-sort-button-text-font-size, 28rpx) !defau
 // 文字行高
 $m-sort-button-text-line-height: var(--m-sort-button-text-line-height, 1.5) !default;
 // 箭头图标尺寸
-$m-sort-button-arrow-icon-size: var(--m-sort-button-arrow-icon-size, 24rpx) !default;
+$m-sort-button-arrow-icon-size: var(--m-sort-button-arrow-icon-size, 40rpx) !default;
 // 右侧区域尺寸
 $m-sort-button-right-size: var(--m-sort-button-right-size, 16rpx) !default;
 // 图标颜色
@@ -99,6 +99,7 @@ $m-sort-button-sort-spacing: var(--m-sort-button-sort-spacing, 4rpx) !default;
     font-size: $m-sort-button-arrow-icon-size;
     color: $m-sort-button-icon-color;
     transition: color 0.15s;
+    line-height: .9;
   }
 
   @include e(icon-up) {

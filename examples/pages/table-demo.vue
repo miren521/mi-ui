@@ -77,7 +77,7 @@
         </view>
       </demo-block>
 
-      <demo-block title="排序功能" desc="sortable 属性开启列排序">
+      <demo-block title="排序功能" desc="sortable 属性开启列排序，点击表头自动排序数据">
         <view class="demo-table-row">
           <m-table :data="basicData" @sort-method="handleSort">
             <m-table-column prop="name" label="姓名" width="120" :sortable="true" />
@@ -86,8 +86,8 @@
           </m-table>
         </view>
         <view class="demo-table-events">
-          <text>排序字段：{{ sortColumn?.prop || '无' }}</text>
-          <text>排序方向：{{ sortColumn?.sortDirection === 1 ? '升序' : sortColumn?.sortDirection === -1 ? '降序' : '无' }}</text>
+          <text>排序字段：{{ sortField || '无' }}</text>
+          <text>排序方向：{{ sortDirection === 1 ? '升序' : sortDirection === -1 ? '降序' : '无' }}</text>
         </view>
       </demo-block>
 
@@ -167,10 +167,12 @@ const spanData = ref([
 const showStripe = ref(true)
 const showBorder = ref(true)
 const showIndex = ref(true)
-const sortColumn = ref<TableColumn | null>(null)
+const sortField = ref<string | null>(null)
+const sortDirection = ref<number>(0)
 
 function handleSort(column: TableColumn) {
-  sortColumn.value = column
+  sortField.value = column.prop
+  sortDirection.value = column.sortDirection || 0
 }
 
 function handleEdit(row: any) {

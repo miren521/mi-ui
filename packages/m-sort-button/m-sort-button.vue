@@ -5,8 +5,8 @@
         {{ title }}
       </view>
       <view class="m-sort-button__right">
-        <m-icon name="caret-up" :custom-class="`m-sort-button__icon-up ${modelValue === -1 ? 'm-sort-button__icon-up--active' : ''}`" />
-        <m-icon name="caret-down" :custom-class="`m-sort-button__icon-down ${modelValue === 1 ? 'm-sort-button__icon-down--active' : ''}`" />
+        <m-icon name="caret-down-small" size="40" :custom-class="`m-sort-button__icon-up ${modelValue === -1 ? 'm-sort-button__icon-up--active' : ''}`" />
+        <m-icon name="caret-up-small" size="40" :custom-class="`m-sort-button__icon-down ${modelValue === 1 ? 'm-sort-button__icon-down--active' : ''}`" />
       </view>
     </view>
   </view>
