@@ -73,17 +73,18 @@
       </demo-block>
 
       <demo-block title="卡片模式" desc="显示部分相邻卡片，营造立体卡片效果">
-        <view class="demo-swiper-row demo-swiper-card-row">
+        <view class="card-swiper">
           <m-swiper
             :list="imageList"
-            height="160"
-            :previous-margin="60"
-            :next-margin="60"
+            height="180"
+            :previous-margin="48"
+            :next-margin="48"
             :loop="false"
-            :radius="16"
             :indicator="{ type: 'dots' }"
-            custom-prev-class="demo-swiper-prev"
-            custom-next-class="demo-swiper-next"
+            custom-indicator-class="custom-indicator-class"
+            custom-image-class="custom-image"
+            custom-next-image-class="custom-image-prev"
+            custom-prev-image-class="custom-image-prev"
           />
         </view>
       </demo-block>
@@ -267,6 +268,30 @@ function onRadiusChange(e: { detail: { value: boolean } }) {
   font-size: 28rpx;
   color: #1e293b;
   font-weight: 500;
+}
+
+.card-swiper {
+  --m-swiper-radius: 0;
+  --m-swiper-item-padding: 0 16rpx;
+  --m-swiper-nav-dot-color: #e7e7e7;
+  --m-swiper-nav-dot-active-color: #4d80f0;
+  padding-bottom: 20rpx;
+
+  :deep(.custom-indicator-class) {
+    bottom: -16px;
+  }
+
+  :deep(.custom-image) {
+    border-radius: 12rpx;
+    box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  }
+
+  :deep(.custom-image-prev) {
+    transform: scale(0.9);
+    opacity: 0.8;
+    border-radius: 12rpx;
+    box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
+  }
 }
 
 :deep(.demo-swiper-prev),

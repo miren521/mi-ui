@@ -43,7 +43,7 @@
           <image
             v-else
             :src="isObj(item) ? item[valueKey] : item"
-            :class="`m-swiper__image ${customImageClass} ${customItemClass} ${getCustomItemClass(currentValue, index, list)}`"
+            :class="`m-swiper__image ${customImageClass} ${getCustomImageClass(currentValue, index, list)}`"
             :style="{ height: addUnit(height) }"
             :mode="imageMode"
             :show-menu-by-longpress="showMenuByLongpress"
@@ -210,6 +210,17 @@ function isPrev(current: number, index: number, list: string[] | SwiperItem[]) {
 
 function isNext(current: number, index: number, list: string[] | SwiperItem[]) {
   return (current + 1 + list.length) % list.length === index
+}
+
+function getCustomImageClass(current: number, index: number, list: string[] | SwiperItem[]) {
+  let customImageClass: string = ''
+  if (isPrev(current, index, list)) {
+    customImageClass = props.customPrevImageClass || props.customPrevClass
+  }
+  if (isNext(current, index, list)) {
+    customImageClass = props.customNextImageClass || props.customNextClass
+  }
+  return customImageClass
 }
 
 function getCustomItemClass(current: number, index: number, list: string[] | SwiperItem[]) {
