@@ -1,0 +1,21 @@
+@use '../common/styles/variables.scss' as *;
+@use '../common/styles/mixin/mixin.scss' as *;
+
+$form-item-error-message-color: var(--m-form-item-error-message-color, var(--m-color-danger, #ee0a24)) !default;
+$form-item-error-message-font-size: var(--m-form-item-error-message-font-size, var(--m-font-size-sm, 24rpx)) !default;
+$form-item-error-message-line-height: var(--m-form-item-error-message-line-height, 1.4) !default;
+$form-item-error-message-margin-top: var(--m-form-item-error-message-margin-top, var(--m-spacing-xs, 8rpx)) !default;
+$form-item-placeholder-color: var(--m-form-item-placeholder-color, var(--m-text-placeholder, #c8c9cc)) !default;
+
+@include b(form-item) {
+  @include e(placeholder) {
+    color: $form-item-placeholder-color;
+  }
+
+  @include e(error-message) {
+    color: $form-item-error-message-color;
+    font-size: $form-item-error-message-font-size;
+    line-height: $form-item-error-message-line-height;
+    margin-top: $form-item-error-message-margin-top;
+  }
+}

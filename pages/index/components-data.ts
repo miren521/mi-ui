@@ -23,6 +23,12 @@ export const feedbackComponents: ComponentItem[] = [
   { id: 'loading', title: 'Loading 加载指示器', enTitle: 'Loading', zhTitle: '加载指示器', desc: '加载动画，用于表示加载中的过渡状态', category: 'feedback', url: '/examples/pages/loading-demo' },
 ]
 
+// 表单
+export const formComponents: ComponentItem[] = [
+  { id: 'form', title: 'Form 表单', enTitle: 'Form', zhTitle: '表单', desc: '表单组件，用于数据录入、校验', category: 'form', url: '/examples/pages/form-demo' },
+  { id: 'Input', title: 'Input 输入框', enTitle: 'Input', zhTitle: '输入框', desc: '用户可以在文本框中输入内容', category: 'form', url: '/examples/pages/input-demo' },
+]
+
 // 布局
 export const layoutComponents: ComponentItem[] = [
   { id: 'layout', title: 'Layout 布局', enTitle: 'Layout', zhTitle: '布局', desc: '栅格布局，支持 24 分栏', category: 'layout', url: '/examples/pages/layout-demo' },
@@ -62,6 +68,7 @@ export const components: ComponentItem[] = [
   ...layoutComponents,
   ...navigationComponents,
   ...displayComponents,
+  ...formComponents,
 ]
 
 export const totalCount = components.length

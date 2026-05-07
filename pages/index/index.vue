@@ -105,6 +105,7 @@ const categories = [
   { key: 'all', name: '全部' },
   { key: 'basic', name: '基础' },
   { key: 'feedback', name: '反馈' },
+  { key: 'form', name: '表单' },
   { key: 'layout', name: '布局' },
   { key: 'navigation', name: '导航' },
   { key: 'display', name: '展示' },

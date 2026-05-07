@@ -8,6 +8,9 @@ import mStep from './m-step/m-step.vue'
 import mSteps from './m-steps/m-steps.vue'
 import mWatermark from './m-watermark/m-watermark.vue'
 import mCurtain from './m-curtain/m-curtain.vue'
+import mInput from './m-input/m-input.vue'
+import mForm from './m-form/m-form.vue'
+import mFormItem from './m-form-item/m-form-item.vue'
 
 // 所有组件 
 const components = [ 
@@ -16,6 +19,9 @@ const components = [
 	mSteps,
 	mWatermark,
 	mCurtain,
+	mInput,
+	mForm,
+	mFormItem,
 ] 
 
 // 安装函数 
@@ -39,6 +45,9 @@ export {
 	mSteps,
 	mWatermark,
 	mCurtain,
+	mInput,
+	mForm,
+	mFormItem,
 } 
 
 export default { 
@@ -48,4 +57,7 @@ export default {
 	mSteps,
 	mWatermark,
 	mCurtain,
+	mInput,
+	mForm,
+	mFormItem,
 }
