@@ -91,7 +91,7 @@
 
       <demo-block title="自定义内容" desc="使用 slot 自定义轮播内容">
         <view class="demo-swiper-row">
-          <m-swiper height="200">
+          <m-swiper :list="imageList" height="200">
             <template #default="{ item, index }">
               <view class="demo-swiper-custom">
                 <image :src="item" mode="aspectFill" class="demo-swiper-custom-img" />
