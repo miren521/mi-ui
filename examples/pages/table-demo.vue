@@ -105,8 +105,8 @@
             <m-table-column prop="action" label="操作" width="150">
               <template #value="{ row }">
                 <view class="demo-table-actions">
-                  <m-button size="mini" type="primary" @click="handleEdit(row)">编辑</m-button>
-                  <m-button size="mini" type="danger" @click="handleDelete(row)">删除</m-button>
+                  <m-button size="small" type="primary" @click="handleEdit(row)">编辑</m-button>
+                  <m-button size="small" type="danger" @click="handleDelete(row)">删除</m-button>
                 </view>
               </template>
             </m-table-column>
@@ -274,7 +274,7 @@ function spanMethod({ row, column, rowIndex, columnIndex }: {
 .demo-table-status {
   display: inline-flex;
   padding: 8rpx 16rpx;
-  border-radius: 20rpx;
+  border-radius: 10rpx;
   font-size: 24rpx;
 
   &--active {
