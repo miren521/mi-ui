@@ -149,6 +149,12 @@
       "style": {
         "navigationBarTitleText": "Swiper 轮播"
       }
+    },
+    {
+      "path": "examples/pages/table-demo",
+      "style": {
+        "navigationBarTitleText": "Table 表格"
+      }
     }
   ],
   "globalStyle": {

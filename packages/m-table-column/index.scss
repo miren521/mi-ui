@@ -1,0 +1,14 @@
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../m-table/index.scss' as *;
+
+@include b(table-column) {
+  display: contents;
+
+  .m-table__cell:last-child {
+    @include when(border) {
+      &::before {
+        border-bottom: none;
+      }
+    }
+  }
+}

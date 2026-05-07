@@ -1,0 +1,131 @@
+@use '../common/styles/variables.scss' as *;
+@use '../common/styles/mixin/_mixin.scss' as *;
+
+// 表格背景色
+$m-table-bg: var(--m-table-bg, #ffffff) !default;
+// 表格文字颜色
+$m-table-color: var(--m-table-color, #1e293b) !default;
+// 斑马纹背景色
+$m-table-stripe-bg: var(--m-table-stripe-bg, #f8fafc) !default;
+// 边框颜色
+$m-table-border-color: var(--m-table-border-color, #e2e8f0) !default;
+// 边框宽度
+$m-table-border-width: var(--m-table-border-width, 1px) !default;
+// 单元格字号
+$m-table-cell-font-size: var(--m-table-cell-font-size, 28rpx) !default;
+// 单元格行高
+$m-table-cell-line-height: var(--m-table-cell-line-height, 1.5) !default;
+// 单元格内边距
+$m-table-cell-padding: var(--m-table-cell-padding, 24rpx 32rpx) !default;
+// 固定列阴影渐变背景
+$m-table-shadow-gradient: var(--m-table-shadow-gradient, linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, 0.05) 100%)) !default;
+// 排序按钮高度
+$m-table-sort-button-height: var(--m-table-sort-button-height, 40rpx) !default;
+
+@include b(table) {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: $m-table-bg;
+
+  @include when(border) {
+    border: $m-table-border-width solid $m-table-border-color;
+  }
+
+  @include e(header) {
+    width: 100%;
+    background: $m-table-bg;
+    z-index: 2;
+
+    @include when(sticky) {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  @include e(body) {
+    width: 100%;
+  }
+
+  @include e(cell) {
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    background: $m-table-bg;
+    padding: $m-table-cell-padding;
+    font-size: $m-table-cell-font-size;
+    line-height: $m-table-cell-line-height;
+    color: $m-table-color;
+    --m-sort-button-height: #{$m-table-sort-button-height};
+
+    @include when(border) {
+      &::before {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        border-right: $m-table-border-width solid $m-table-border-color;
+        border-bottom: $m-table-border-width solid $m-table-border-color;
+        pointer-events: none;
+        box-sizing: border-box;
+      }
+
+      @include when(last) {
+        &::before {
+          border-right: none;
+        }
+      }
+    }
+
+    @include when(stripe) {
+      background: $m-table-stripe-bg;
+    }
+
+    @include when(fixed) {
+      position: sticky;
+      z-index: 1;
+    }
+
+    @include when(shadow) {
+      &::after {
+        content: ' ';
+        position: absolute;
+        right: -30rpx;
+        top: 0;
+        width: 30rpx;
+        height: 100%;
+        background: $m-table-shadow-gradient;
+      }
+    }
+
+    @include when(hidden) {
+      display: none;
+    }
+
+    @include when(left) {
+      justify-content: flex-start;
+    }
+
+    @include when(center) {
+      justify-content: center;
+    }
+
+    @include when(right) {
+      justify-content: flex-end;
+    }
+  }
+
+  @include e(value) {
+    white-space: normal;
+    @include when(ellipsis) {
+      word-break: break-all;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+  }
+}
