@@ -4,6 +4,24 @@
       <view :style="contentWidthStyle">
         <!-- 表头 -->
         <view v-if="showHeader" :class="['m-table__header', { 'is-sticky': fixedHeader }]" :style="gridColumnsStyle">
+          <!-- 索引列表头 -->
+          <view
+            v-if="showIndex"
+            :class="[
+              'm-table__cell',
+              'm-table__cell--header',
+              {
+                'is-border': border,
+                'is-stripe': stripe,
+                'is-last': children.length === 0
+              },
+              `is-${indexColumn.align}`
+            ]"
+            :style="indexHeaderCellStyle"
+          >
+            <text :class="['m-table__value', { 'is-ellipsis': ellipsis }]">{{ indexColumn.label }}</text>
+          </view>
+          <!-- 数据列表头 -->
           <view
             v-for="(column, index) in children"
             :key="index"
@@ -35,19 +53,27 @@
 
         <!-- 表体（CSS Grid 布局，虚拟滚动时包含 grid-template-rows） -->
         <view class="m-table__body" :style="bodyGridStyle">
-          <m-table-column
-            v-if="showIndex"
-            :prop="indexColumn.prop"
-            :label="indexColumn.label"
-            :width="indexColumn.width"
-            :sortable="indexColumn.sortable"
-            :fixed="indexColumn.fixed"
-            :align="indexColumn.align"
-          >
-            <template #value="{ index }">
-              <text>{{ index + 1 }}</text>
-            </template>
-          </m-table-column>
+          <!-- 索引列数据 -->
+          <template v-if="showIndex">
+            <view
+              v-for="rowIndex in visibleRowIndices"
+              :key="`index-${rowIndex}`"
+              :class="[
+                'm-table__cell',
+                {
+                  'is-stripe': stripe && isOdd(rowIndex),
+                  'is-border': border,
+                  'is-last': children.length === 0
+                },
+                `is-${indexColumn.align}`
+              ]"
+              :style="getIndexCellStyle(rowIndex)"
+              @click="handleRowClick(rowIndex)"
+            >
+              <text :class="['m-table__value', { 'is-ellipsis': ellipsis }]">{{ rowIndex + 1 }}</text>
+            </view>
+          </template>
+          <!-- 数据列 -->
           <slot></slot>
         </view>
       </view>
@@ -70,10 +96,9 @@ export default {
 
 <script lang="ts" setup>
 import { type CSSProperties, computed, reactive, ref } from 'vue'
-import { addUnit, isDef, isObj, objToStyle, throttle, uuid, isFunction } from '../common/util'
+import { addUnit, isDef, isObj, objToStyle, throttle, uuid, isFunction, isOdd } from '../common/util'
 import type { TableColumn, TableColumnInstance, TableColumnProps, SortDirection } from '../m-table-column/types'
 import { TABLE_KEY, tableProps, type SpanMethodResult, type TableProvide } from './types'
-import MTableColumn from '../m-table-column/m-table-column.vue'
 import MSortButton from '../m-sort-button/m-sort-button.vue'
 import { useChildren } from '../composables/useChildren'
 
@@ -103,6 +128,15 @@ const visibleRange = computed(() => {
   const start = Math.max(0, Math.floor(state.scrollTop / rowH) - bufferSize)
   const end = Math.min(total - 1, Math.ceil((state.scrollTop + viewportHeight) / rowH) + bufferSize)
   return { start, end }
+})
+
+/** 可视行索引数组 */
+const visibleRowIndices = computed(() => {
+  const indices: number[] = []
+  for (let i = visibleRange.value.start; i <= visibleRange.value.end; i++) {
+    indices.push(i)
+  }
+  return indices
 })
 
 linkChildren({ props, state, visibleRange, rowClick, getIsLastFixed, getFixedLeft, getSpan })
@@ -150,11 +184,18 @@ const scrollViewStyle = computed(() => {
 })
 
 /**
- * 所有列宽度数组
+ * 所有列宽度数组（包含索引列）
  * @returns 列宽字符串数组，如 ['100px', '150px', '200px']
  */
 const columnWidths = computed(() => {
-  return children.map((child) => addUnit(child.width))
+  const widths: string[] = []
+  if (showIndex.value) {
+    widths.push(addUnit(indexColumn.value.width))
+  }
+  children.forEach((child) => {
+    widths.push(addUnit(child.width))
+  })
+  return widths
 })
 
 /**
@@ -202,13 +243,20 @@ const lastFixedProp = computed(() => {
 })
 
 /**
- * 预计算每列的 left 偏移量
+ * 预计算每列的 left 偏移量（包含索引列）
  * @returns Map<列索引, CSS left 值>
  */
 const fixedLeftMap = computed(() => {
   const map = new Map<number, string>()
   const leftParts: string[] = []
 
+  // 索引列
+  if (showIndex.value) {
+    map.set(-1, '0')
+    leftParts.push(addUnit(indexColumn.value.width))
+  }
+
+  // 数据列
   children.forEach((_col, i) => {
     if (leftParts.length === 0) {
       map.set(i, '0')
@@ -218,6 +266,13 @@ const fixedLeftMap = computed(() => {
     leftParts.push(addUnit(children[i].width))
   })
   return map
+})
+
+/** 索引列表头单元格样式 */
+const indexHeaderCellStyle = computed(() => {
+  return objToStyle({
+    'grid-column': '1'
+  })
 })
 
 /**
@@ -267,12 +322,27 @@ function getSpan(rowIndex: number, columnIndex: number): SpanMethodResult {
 }
 
 /**
+ * 获取索引列单元格样式
+ * @param rowIndex - 行索引
+ * @returns 样式字符串
+ */
+function getIndexCellStyle(rowIndex: number): string {
+  const rowStart = rowIndex + 1
+  return objToStyle({
+    'grid-column': '1',
+    'grid-row': `${rowStart}`
+  })
+}
+
+/**
  * 获取表头单元格的内联样式（仅固定列需要 left 偏移）
  * @param columnIndex - 列索引
  * @returns 样式字符串
  */
 function getHeaderCellStyle(columnIndex: number): string {
   const style: CSSProperties = {}
+  const gridColumn = showIndex.value ? columnIndex + 2 : columnIndex + 1
+  style['grid-column'] = `${gridColumn}`
   if (children[columnIndex].fixed) {
     style['left'] = fixedLeftMap.value.get(columnIndex) || '0'
   }
@@ -320,6 +390,14 @@ function handleScroll(event: any) {
  */
 function rowClick(index: number) {
   emit('row-click', { rowIndex: index })
+}
+
+/**
+ * 处理行点击事件
+ * @param index - 被点击行的索引
+ */
+function handleRowClick(index: number) {
+  rowClick(index)
 }
 </script>
 

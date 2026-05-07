@@ -34,6 +34,11 @@ const { parent: table, index: columnIndex } = useParent(TABLE_KEY)
 /** 当前列的排序方向 */
 const sortDirection = ref<SortDirection>(0)
 
+/** 是否显示索引列（从父级 table 继承） */
+const showIndex = computed(() => {
+  return isDef(table.value) ? table.value.props.index !== false : false
+})
+
 /** 是否开启斑马纹（从父级 table 继承） */
 const stripe = computed(() => {
   return isDef(table.value) ? table.value.props.stripe : false
@@ -98,7 +103,8 @@ const cellConfigs = computed(() => {
 
   const range = isDef(table.value) ? table.value.visibleRange.value : { start: 0, end: data.length - 1 }
   const colIdx = columnIndex.value
-  const colStart = colIdx + 1
+  const hasIndex = showIndex.value
+  const colStart = hasIndex ? colIdx + 2 : colIdx + 1
   const hasScrollLeft = isDef(table.value) && table.value.state.scrollLeft
   const isFixed = props.fixed
   const isLast = isLastFixed.value
