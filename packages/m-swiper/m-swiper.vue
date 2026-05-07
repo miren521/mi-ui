@@ -22,7 +22,7 @@
       @change="handleChange"
       @animationfinish="handleAnimationfinish"
     >
-      <swiper-item v-for="(item, index) in list" :key="index" :class="swiperItemClass">
+      <swiper-item v-for="(item, index) in list" :key="index" :class="getSwiperItemClass(index)">
         <slot :item="item" :index="index">
           <video
             v-if="isVideo(item)"
@@ -141,6 +141,12 @@ const swiperStyle = computed(() => {
 const swiperItemClass = computed(() => {
   return `m-swiper__item ${slots.default ? 'm-swiper__item--slot' : ''}`
 })
+
+const getSwiperItemClass = (index: number) => {
+  const baseClass = swiperItemClass.value
+  const customClass = props.customItemClass || ''
+  return `${baseClass} ${customClass}`
+}
 
 const swiperIndicator = computed(() => {
   const { list, direction, indicatorPosition, indicator } = props

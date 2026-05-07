@@ -23,7 +23,7 @@
           <m-swiper
             :list="imageList"
             height="200"
-            :radius="showRadius ? 12 : 0"
+            :radius="showRadius ? 16 : 0"
           />
         </view>
         <view class="demo-swiper-switch">
@@ -72,15 +72,18 @@
         </view>
       </demo-block>
 
-      <demo-block title="多图展示" desc="设置 displayMultipleItems 同时显示多个滑块">
-        <view class="demo-swiper-row">
+      <demo-block title="卡片模式" desc="显示部分相邻卡片，营造立体卡片效果">
+        <view class="demo-swiper-row demo-swiper-card-row">
           <m-swiper
             :list="imageList"
-            height="200"
-            :display-multiple-items="3"
-            :previous-margin="20"
-            :next-margin="20"
+            height="160"
+            :previous-margin="60"
+            :next-margin="60"
             :loop="false"
+            :radius="16"
+            :indicator="{ type: 'dots' }"
+            custom-prev-class="demo-swiper-prev"
+            custom-next-class="demo-swiper-next"
           />
         </view>
       </demo-block>
@@ -184,6 +187,10 @@ function onRadiusChange(e: { detail: { value: boolean } }) {
   margin-bottom: 20rpx;
 }
 
+.demo-swiper-card-row {
+  padding: 0 20rpx;
+}
+
 .demo-swiper-card {
   flex: 1;
   min-width: 280rpx;
@@ -260,5 +267,17 @@ function onRadiusChange(e: { detail: { value: boolean } }) {
   font-size: 28rpx;
   color: #1e293b;
   font-weight: 500;
+}
+
+:deep(.demo-swiper-prev),
+:deep(.demo-swiper-next) {
+  transform: scale(0.85);
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+:deep(.demo-swiper-prev image),
+:deep(.demo-swiper-next image) {
+  border-radius: 16rpx;
 }
 </style>
