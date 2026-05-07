@@ -1,0 +1,110 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$curtain-content-radius: var(--m-curtain-content-radius, var(--m-radius-large, 16px)) !default;
+$curtain-content-close-color: var(--m-curtain-content-close-color, var(--m-text-white, #ffffff)) !default;
+$curtain-content-close-size: var(--m-curtain-content-close-size, var(--m-font-size-lg, 24px)) !default;
+$curtain-content-close-inset: var(--m-curtain-content-close-inset, var(--m-spacing-extra-loose, 16px)) !default;
+
+:deep() {
+  .m-curtain {
+    border-radius: $curtain-content-radius;
+    overflow-y: visible !important;
+    background: transparent !important;
+    font-size: 0;
+    padding: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  .m-curtain .m-popup__content {
+    padding: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  .m-curtain-wrapper {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+
+  .m-curtain__content {
+    position: relative;
+    display: inline-block;
+    background: transparent;
+    border-radius: $curtain-content-radius;
+  }
+
+  .m-curtain__content-link {
+    display: block;
+    border-radius: $curtain-content-radius;
+  }
+
+  .m-curtain__content-img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 100vh;
+    height: auto;
+    border-radius: $curtain-content-radius;
+  }
+
+  .m-curtain__content-close {
+    position: absolute;
+    top: $curtain-content-close-inset;
+    right: $curtain-content-close-inset;
+    color: $curtain-content-close-color;
+    font-size: $curtain-content-close-size;
+    -webkit-tap-highlight-color: transparent;
+    z-index: 1;
+
+    &.top {
+      top: calc(-1 * $curtain-content-close-inset);
+      left: 50%;
+      right: unset;
+      bottom: unset;
+      transform: translateY(-100%) translateX(-50%);
+    }
+
+    &.top-left {
+      top: calc(-1 * $curtain-content-close-inset);
+      right: unset;
+      left: 0;
+      bottom: unset;
+      transform: translateY(-100%);
+    }
+
+    &.top-right {
+      top: calc(-1 * $curtain-content-close-inset);
+      right: 0;
+      left: unset;
+      bottom: unset;
+      transform: translateY(-100%);
+    }
+
+    &.bottom {
+      top: unset;
+      right: unset;
+      left: 50%;
+      bottom: calc(-1 * $curtain-content-close-inset);
+      transform: translateY(100%) translateX(-50%);
+    }
+
+    &.bottom-left {
+      top: unset;
+      right: unset;
+      left: 0;
+      bottom: calc(-1 * $curtain-content-close-inset);
+      transform: translateY(100%);
+    }
+
+    &.bottom-right {
+      top: unset;
+      right: 0;
+      left: unset;
+      bottom: calc(-1 * $curtain-content-close-inset);
+      transform: translateY(100%);
+    }
+  }
+}

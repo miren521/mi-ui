@@ -7,6 +7,7 @@ import CuButton from './m-button/src/index.vue'
 import mStep from './m-step/m-step.vue'
 import mSteps from './m-steps/m-steps.vue'
 import mWatermark from './m-watermark/m-watermark.vue'
+import mCurtain from './m-curtain/m-curtain.vue'
 
 // 所有组件 
 const components = [ 
@@ -14,6 +15,7 @@ const components = [
 	mStep,
 	mSteps,
 	mWatermark,
+	mCurtain,
 ] 
 
 // 安装函数 
@@ -36,6 +38,7 @@ export {
 	mStep,
 	mSteps,
 	mWatermark,
+	mCurtain,
 } 
 
 export default { 
@@ -44,4 +47,5 @@ export default {
 	mStep,
 	mSteps,
 	mWatermark,
+	mCurtain,
 }

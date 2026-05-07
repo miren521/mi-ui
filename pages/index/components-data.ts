@@ -53,6 +53,7 @@ export const displayComponents: ComponentItem[] = [
   { id: 'swiper', title: 'Swiper 轮播', enTitle: 'Swiper', zhTitle: '轮播', desc: '用于创建轮播，支持水平和垂直方向滑动', category: 'display', url: '/examples/pages/swiper-demo' },
   { id: 'table', title: 'Table 表格', enTitle: 'Table', zhTitle: '表格', desc: '用于展示多条结构类似的数据', category: 'display', url: '/examples/pages/table-demo' },
   { id: 'watermark', title: 'Watermark 水印', enTitle: 'Watermark', zhTitle: '水印', desc: '在页面或组件上添加指定的图片或文字', category: 'display', url: '/examples/pages/watermark-demo' },
+  { id: 'curtain', title: 'Curtain 幕帘', enTitle: 'Curtain', zhTitle: '幕帘', desc: '一般用于公告类图片弹窗展示', category: 'display', url: '/examples/pages/curtain-demo' },
 ]
 
 export const components: ComponentItem[] = [

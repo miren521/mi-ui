@@ -161,6 +161,12 @@
       "style": {
         "navigationBarTitleText": "Watermark 水印"
       }
+    },
+    {
+      "path": "examples/pages/curtain-demo",
+      "style": {
+        "navigationBarTitleText": "Curtain 幕帘"
+      }
     }
   ],
   "globalStyle": {
