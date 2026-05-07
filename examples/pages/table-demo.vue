@@ -79,7 +79,7 @@
 
       <demo-block title="排序功能" desc="sortable 属性开启列排序，点击表头自动排序数据">
         <view class="demo-table-row">
-          <m-table :data="basicData" @sort-method="handleSort">
+          <m-table :data="sortedBasicData" @sort-method="handleSort">
             <m-table-column prop="name" label="姓名" width="120" :sortable="true" />
             <m-table-column prop="age" label="年龄" width="100" :sortable="true" />
             <m-table-column prop="address" label="地址" width="200" />
@@ -139,6 +139,9 @@ const basicData = ref([
   { name: '赵六', age: 35, address: '深圳市南山区' }
 ])
 
+// 排序后的数据（用于展示排序效果）
+const sortedBasicData = ref([...basicData.value])
+
 const largeData = ref(Array.from({ length: 20 }, (_, i) => ({
   name: `用户${i + 1}`,
   age: 20 + Math.floor(Math.random() * 20),
@@ -173,6 +176,30 @@ const sortDirection = ref<number>(0)
 function handleSort(column: TableColumn) {
   sortField.value = column.prop
   sortDirection.value = column.sortDirection || 0
+  
+  // 手动排序数据以展示效果
+  if (column.prop && column.sortDirection) {
+    const data = [...basicData.value]
+    data.sort((a, b) => {
+      const valA = a[column.prop!]
+      const valB = b[column.prop!]
+      
+      if (typeof valA === 'number' && typeof valB === 'number') {
+        return column.sortDirection * (valA - valB)
+      }
+      
+      const strA = String(valA).toLowerCase()
+      const strB = String(valB).toLowerCase()
+      
+      if (strA < strB) return -column.sortDirection
+      if (strA > strB) return column.sortDirection
+      return 0
+    })
+    sortedBasicData.value = data
+  } else {
+    // 重置排序
+    sortedBasicData.value = [...basicData.value]
+  }
 }
 
 function handleEdit(row: any) {
