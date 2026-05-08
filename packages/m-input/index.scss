@@ -120,3 +120,15 @@ $input-error-color: var(--m-input-error-color, var(--m-color-danger, #ee0a24));
     background: transparent;
   }
 }
+
+/* 【新增样式】：隐藏诱饵输入框 */
+.fake-input-hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none; /* 确保无法点击交互 */
+}
