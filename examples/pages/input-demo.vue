@@ -86,11 +86,22 @@
 					<m-input v-model="sendValue" confirm-type="发送" placeholder="发送" @confirm="handleSend" />
 				</view>
 			</demo-block>
+
+			<!-- 后缀插槽 -->
+			<demo-block title="后缀插槽" desc="使用 suffix 插槽自定义后置内容，如发送验证码按钮">
+				<view class="demo-input-row">
+					<m-input v-model="codeValue" placeholder="请输入验证码">
+						<template #suffix>
+              <m-button class="demo-input-suffix-btn" :class="{ 'disabled': codeDisabled }"  type="primary" size="small" @click="handleGetCode">{{ codeText }}</m-button>
+						</template>
+					</m-input>
+				</view>
+			</demo-block>
 		</view>
 	</view>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 
 const basicValue = ref('');
@@ -107,6 +118,10 @@ const errorValue = ref('');
 const compactValue = ref('');
 const searchValue = ref('');
 const sendValue = ref('');
+const codeValue = ref('');
+const codeText = ref('获取验证码');
+const codeDisabled = ref(false);
+let timer: number | null = null;
 
 function handleSearch() {
 	uni.showToast({
@@ -118,6 +133,33 @@ function handleSearch() {
 function handleSend() {
 	uni.showToast({
 		title: '发送: ' + sendValue.value,
+		icon: 'none'
+	});
+}
+
+function handleGetCode() {
+	if (codeDisabled.value) return;
+	
+	codeDisabled.value = true;
+	codeText.value = '60秒后重试';
+	let count = 60;
+	
+	timer = setInterval(() => {
+		count--;
+		if (count <= 0) {
+			codeText.value = '获取验证码';
+			codeDisabled.value = false;
+			if (timer) {
+				clearInterval(timer);
+				timer = null;
+			}
+		} else {
+			codeText.value = `${count}秒后重试`;
+		}
+	}, 1000) as unknown as number;
+	
+	uni.showToast({
+		title: '验证码已发送',
 		icon: 'none'
 	});
 }
@@ -149,5 +191,13 @@ function handleSend() {
 	border-radius: 4px;
 	font-size: 24rpx;
 	color: #666;
+}
+
+.demo-input-suffix-btn {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	
+	&.disabled {
+		background: #ccc;
+	}
 }
 </style>
