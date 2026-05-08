@@ -42,7 +42,7 @@
 			<!-- 带图标输入框 -->
 			<demo-block title="带图标输入框" desc="使用 prefix-icon 和 suffix-icon 属性添加前置和后置图标">
 				<view class="demo-input-row">
-					<m-input v-model="iconValue1" prefix-icon="search" placeholder="搜索内容" />
+					<m-input v-model="iconValue1" prefix-icon="search1" placeholder="搜索内容" />
 				</view>
 				<view class="demo-input-row" style="margin-top: 20rpx">
 					<m-input v-model="iconValue2" suffix-icon="warning" placeholder="带警告提示" />
@@ -53,13 +53,6 @@
 			<demo-block title="字数统计" desc="设置 show-word-limit 属性显示当前输入字数">
 				<view class="demo-input-row">
 					<m-input v-model="limitValue" :maxlength="50" show-word-limit placeholder="最多输入50个字" />
-				</view>
-			</demo-block>
-
-			<!-- 手机号输入 -->
-			<demo-block title="手机号输入" desc="type='tel' 用于手机号键盘输入">
-				<view class="demo-input-row">
-					<m-input v-model="telValue" type="tel" placeholder="请输入手机号" />
 				</view>
 			</demo-block>
 
@@ -85,12 +78,12 @@
 			</demo-block>
 
 			<!-- 不同类型的 confirmType -->
-			<demo-block title="键盘确认按钮" desc="通过 confirm-type 属性自定义键盘确认按钮文字">
+			<demo-block title="键盘确认按钮" desc="通过 confirm-type 属性自定义键盘确认按钮文字，原生键盘支持">
 				<view class="demo-input-row">
-					<m-input v-model="searchValue" confirm-type="search" placeholder="搜索" @confirm="handleSearch" />
+					<m-input v-model="searchValue" confirm-type="搜索" placeholder="搜索" @confirm="handleSearch" />
 				</view>
 				<view class="demo-input-row" style="margin-top: 20rpx">
-					<m-input v-model="sendValue" confirm-type="send" placeholder="发送" @confirm="handleSend" />
+					<m-input v-model="sendValue" confirm-type="发送" placeholder="发送" @confirm="handleSend" />
 				</view>
 			</demo-block>
 		</view>
