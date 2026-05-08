@@ -4,17 +4,6 @@
       <m-icon v-if="prefixIcon && !$slots.prefix" custom-class="m-input__icon" :name="prefixIcon" @click="onClickPrefixIcon" />
       <slot v-else name="prefix"></slot>
     </view>
-
-    <!-- 【修复核心】：防止 iOS/浏览器自动填充密码的“诱饵”输入框 -->
-    <!-- 当当前组件是密码类型时，渲染这个隐藏框 -->
-    <input 
-      v-if="type === 'password'" 
-      type="text" 
-      class="fake-input-hidden" 
-      autocomplete="new-password"
-      aria-hidden="true"
-    />
-
     <input
       :class="[
         'm-input__inner',
