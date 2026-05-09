@@ -1,0 +1,225 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$input-number-action-size: var(--m-input-number-action-size, $n-28) !default;
+$input-number-action-bg: var(--m-input-number-action-bg, $filled-bottom) !default;
+$input-number-action-color: var(--m-input-number-action-color, $icon-secondary) !default;
+$input-number-action-border-radius: var(--m-input-number-action-border-radius, $radius-main) !default;
+$input-number-action-border-radius-full: var(--m-input-number-action-border-radius-full, $radius-full) !default;
+$input-number-action-disabled-color: var(--m-input-number-action-disabled-color, $icon-disabled) !default;
+$input-number-action-divider-width: var(--m-input-number-action-divider-width, $stroke-main) !default;
+$input-number-action-divider-bg: var(--m-input-number-action-divider-bg, $filled-oppo) !default;
+$input-number-action-divider-split-bg: var(--m-input-number-action-divider-split-bg, $filled-strong) !default;
+$input-number-action-divider-split-height: var(--m-input-number-action-divider-split-height, $n-18) !default;
+$input-number-icon-size: var(--m-input-number-icon-size, $n-12) !default;
+$input-number-icon-weight: var(--m-input-number-icon-weight, $n-3) !default;
+$input-number-input-width: var(--m-input-number-input-width, $n-36) !default;
+$input-number-input-height: var(--m-input-number-input-height, $n-28) !default;
+$input-number-input-padding: var(--m-input-number-input-padding, $spacing-zero $padding-tight) !default;
+$input-number-input-bg: var(--m-input-number-input-bg, $filled-bottom) !default;
+$input-number-input-color: var(--m-input-number-input-color, $text-main) !default;
+$input-number-font-size: var(--m-input-number-font-size, $typography-label-size-large) !default;
+$input-number-border-color: var(--m-input-number-border-color, $border-main) !default;
+$input-number-disabled-opacity: var(--m-input-number-disabled-opacity, $opacity-disabled) !default;
+$input-number-action-primary-bg: var(--m-input-number-action-primary-bg, $primary-6) !default;
+$input-number-action-primary-color: var(--m-input-number-action-primary-color, $icon-white) !default;
+$input-number-action-primary-sub-color: var(--m-input-number-action-primary-sub-color, $primary-6) !default;
+
+@include b(input-number) {
+  display: flex;
+  align-items: center;
+  user-select: none;
+  line-height: 1;
+
+  @include e(action) {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $input-number-action-size;
+    height: $input-number-action-size;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @include e(action-divider) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $input-number-action-divider-width;
+    height: 100%;
+    background: $input-number-action-divider-bg;
+  }
+
+  @include e(sub) {
+    color: $input-number-action-color;
+    background: $input-number-action-bg;
+    border-radius: $input-number-action-border-radius 0 0 $input-number-action-border-radius;
+
+    .m-input-number__action-divider {
+      right: 0;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scaleY(0.5);
+      width: $input-number-icon-size;
+      height: $input-number-icon-weight;
+      background: currentColor;
+    }
+
+    @include when(loading) {
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  @include e(add) {
+    color: $input-number-action-color;
+    background: $input-number-action-bg;
+    border-radius: 0 $input-number-action-border-radius $input-number-action-border-radius 0;
+
+    .m-input-number__action-divider {
+      left: 0;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scaleY(0.5);
+      width: $input-number-icon-size;
+      height: $input-number-icon-weight;
+      background: currentColor;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scaleX(0.5);
+      width: $input-number-icon-weight;
+      height: $input-number-icon-size;
+      background: currentColor;
+    }
+
+    @include when(loading) {
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  @include e(inner) {
+    position: relative;
+    box-sizing: border-box;
+    height: $input-number-input-height;
+    padding: $input-number-input-padding;
+    background: $input-number-input-bg;
+  }
+
+  @include e(input) {
+    position: relative;
+    display: block;
+    width: $input-number-input-width;
+    height: 100%;
+    border: none;
+    outline: none;
+    text-align: center;
+    color: $input-number-input-color;
+    font-size: $input-number-font-size;
+    font-weight: $font-weight-medium;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @include m(default, outline, outline-split) {
+    @include me(sub, add) {
+      @include when(disabled) {
+        color: $input-number-action-disabled-color;
+      }
+    }
+  }
+
+  @include m(outline) {
+    @include me(action-divider) {
+      display: none;
+    }
+
+    @include me(action) {
+      border: 1px solid $input-number-border-color;
+    }
+
+    @include me(inner) {
+      border-top: 1px solid $input-number-border-color;
+      border-bottom: 1px solid $input-number-border-color;
+    }
+  }
+
+  @include m(outline-split) {
+    @include me(action-divider) {
+      height: $input-number-action-divider-split-height;
+      background: $input-number-action-divider-split-bg;
+    }
+  }
+
+  @include m(primary) {
+    @include me(action-divider) {
+      display: none;
+    }
+
+    @include me(sub) {
+      background: transparent;
+      color: $input-number-action-primary-sub-color;
+      border: 1px solid currentColor;
+    }
+
+    @include me(add) {
+      background: $input-number-action-primary-bg;
+      color: $input-number-action-primary-color;
+    }
+
+    @include me(sub, add) {
+      @include when(disabled) {
+        opacity: $input-number-disabled-opacity;
+      }
+    }
+  }
+
+  @include when(round) {
+    @include me(sub) {
+      border-radius: $input-number-action-border-radius-full 0 0 $input-number-action-border-radius-full;
+    }
+
+    @include me(add) {
+      border-radius: 0 $input-number-action-border-radius-full $input-number-action-border-radius-full 0;
+    }
+  }
+
+  @include e(loading-icon) {
+    animation: m-input-number-rotate 1s linear infinite;
+    font-size: $n-18;
+  }
+
+  @include m(primary) {
+    @include e(loading-icon) {
+      color: currentColor;
+    }
+  }
+}
+
+@keyframes m-input-number-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

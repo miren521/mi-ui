@@ -181,6 +181,12 @@
       }
     },
     {
+      "path": "examples/pages/input-number-demo",
+      "style": {
+        "navigationBarTitleText": "InputNumber 计数器"
+      }
+    },
+    {
       "path": "examples/pages/textarea-demo",
       "style": {
         "navigationBarTitleText": "Textarea 文本域"

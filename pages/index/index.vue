@@ -129,7 +129,7 @@ const getCategoryName = (categoryKey) => {
 const shouldBreakTitle = (item) => {
   const enLength = item.enTitle?.length || 0
   const zhLength = item.zhTitle?.length || 0
-  return enLength >= 10 && zhLength > 3
+  return enLength >= 10 && zhLength >= 3
 }
 
 const filteredComponents = computed(() => {
