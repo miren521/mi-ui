@@ -82,7 +82,7 @@ const iconValue = computed(() => {
       icon = isChecked.value ? 'check-rectangle-filled' : 'rectangle'
       break
     case 'dot':
-      icon = isChecked.value ? 'circle1' : 'circle'
+      icon = isChecked.value ? 'check-circle-radio-fill' : 'circle'
       break
     case 'button':
       icon = isChecked.value ? 'check' : ''
