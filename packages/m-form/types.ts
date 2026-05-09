@@ -43,7 +43,8 @@ export const formProps = {
   valueAlign: String as PropType<'left' | 'right' | 'center'>,
   asteriskPosition: String as PropType<'start' | 'end'>,
   hideAsterisk: makeBooleanProp(false),
-  ellipsis: makeBooleanProp(false)
+  ellipsis: makeBooleanProp(false),
+  titleAlign: String as PropType<'top' | 'center' | 'bottom'>
 }
 
 export type FormProps = ExtractPropTypes<typeof formProps>

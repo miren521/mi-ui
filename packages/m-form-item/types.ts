@@ -36,7 +36,8 @@ export const formItemProps = {
   customPrefixClass: makeStringProp(''),
   customLabelClass: makeStringProp(''),
   customValueClass: makeStringProp(''),
-  customTitleClass: makeStringProp('')
+  customTitleClass: makeStringProp(''),
+  titleAlign: String as PropType<'top' | 'center' | 'bottom'>
 }
 
 export type FormItemProps = ExtractPropTypes<typeof formItemProps>

@@ -1,5 +1,5 @@
 <template>
-  <view :class="`m-form-item ${customClass}`" :style="customStyle">
+  <view :class="rootClass" :style="customStyle">
     <!-- 标题区域 -->
     <view v-if="showTitle" class="m-form-item__label" :style="labelStyle">
       <text v-if="isRequired && !formItemHideAsterisk" class="m-form-item__asterisk">*</text>
@@ -135,11 +135,15 @@ const formItemEllipsis = computed(() => {
 })
 
 const formItemAsteriskPosition = computed(() => {
-  return isDef(props.asteriskPosition) ? props.asteriskPosition : form.value?.props.asteriskPosition || 'start'
+  return isDef(props.asteriskPosition) ? props.asteriskPosition : form.value?.asteriskPosition || 'start'
 })
 
 const formItemHideAsterisk = computed(() => {
   return isDef(props.hideAsterisk) ? props.hideAsterisk : form.value?.props.hideAsterisk
+})
+
+const formItemTitleAlign = computed(() => {
+  return isDef(props.titleAlign) ? props.titleAlign : form.value?.props.titleAlign || 'center'
 })
 
 const showPlaceholder = computed(() => {
@@ -158,6 +162,12 @@ const isRequired = computed(() => {
 
 const showTitle = computed(() => {
   return Boolean(props.title)
+})
+
+const rootClass = computed(() => {
+  return `m-form-item ${props.error ? 'is-error' : ''} ${props.disabled ? 'is-disabled' : ''} ${
+    formItemTitleAlign.value === 'top' ? 'm-form-item--title-top' : ''
+  } ${formItemTitleAlign.value === 'bottom' ? 'm-form-item--title-bottom' : ''} ${props.customClass}`
 })
 
 const labelStyle = computed(() => {
@@ -229,6 +239,25 @@ $form-item-asterisk-color: var(--m-color-danger, #ee0a24);
     padding-left: calc(var(--m-spacing-loose, 16rpx) + 70px);
     word-break: break-all;
     text-align: left;
+  }
+
+  // 标题顶部对齐
+  &--title-top {
+    align-items: flex-start;
+
+    .m-form-item__label {
+      align-items: flex-start;
+      padding-top: 12px; // 添加顶部间距，与输入框文字对齐
+    }
+  }
+
+  // 标题底部对齐
+  &--title-bottom {
+    align-items: flex-end;
+
+    .m-form-item__label {
+      align-items: flex-end;
+    }
   }
 }
 </style>

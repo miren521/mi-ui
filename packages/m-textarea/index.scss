@@ -1,7 +1,7 @@
 @use '../common/styles/mixin/mixin.scss' as *;
 @use '../common/styles/variables.scss' as *;
 
-$textarea-padding: var(--m-textarea-padding, var(--m-spacing-loose, 16rpx));
+$textarea-padding: var(--m-textarea-padding, var(--m-spacing-loose, 12px));
 $textarea-bg: var(--m-textarea-bg, var(--m-bg-fill, #f7f8fa));
 $textarea-inner-min-height: var(--m-textarea-inner-min-height, 80rpx);
 $textarea-inner-font-size: var(--m-textarea-inner-font-size, var(--m-font-size-base, 28rpx));
