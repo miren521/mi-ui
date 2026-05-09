@@ -187,6 +187,12 @@
       }
     },
     {
+      "path": "examples/pages/checkbox-demo",
+      "style": {
+        "navigationBarTitleText": "Checkbox 复选框"
+      }
+    },
+    {
       "path": "examples/pages/textarea-demo",
       "style": {
         "navigationBarTitleText": "Textarea 文本域"

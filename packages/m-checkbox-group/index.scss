@@ -1,0 +1,5 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+@include b(checkbox-group) {
+}

@@ -10,6 +10,8 @@ import mWatermark from './m-watermark/m-watermark.vue'
 import mCurtain from './m-curtain/m-curtain.vue'
 import mInput from './m-input/m-input.vue'
 import mInputNumber from './m-input-number/m-input-number.vue'
+import mCheckbox from './m-checkbox/m-checkbox.vue'
+import mCheckboxGroup from './m-checkbox-group/m-checkbox-group.vue'
 import mTextarea from './m-textarea/m-textarea.vue'
 import mForm from './m-form/m-form.vue'
 import mFormItem from './m-form-item/m-form-item.vue'
@@ -23,6 +25,8 @@ const components = [
 	mCurtain,
 	mInput,
 	mInputNumber,
+	mCheckbox,
+	mCheckboxGroup,
 	mTextarea,
 	mForm,
 	mFormItem,
@@ -51,6 +55,8 @@ export {
 	mCurtain,
 	mInput,
 	mInputNumber,
+	mCheckbox,
+	mCheckboxGroup,
 	mTextarea,
 	mForm,
 	mFormItem,
@@ -65,6 +71,8 @@ export default {
 	mCurtain,
 	mInput,
 	mInputNumber,
+	mCheckbox,
+	mCheckboxGroup,
 	mTextarea,
 	mForm,
 	mFormItem,
