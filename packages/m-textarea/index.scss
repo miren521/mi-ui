@@ -1,0 +1,123 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$textarea-padding: var(--m-textarea-padding, var(--m-spacing-loose, 16rpx));
+$textarea-bg: var(--m-textarea-bg, var(--m-bg-fill, #f7f8fa));
+$textarea-inner-min-height: var(--m-textarea-inner-min-height, 80rpx);
+$textarea-inner-font-size: var(--m-textarea-inner-font-size, var(--m-font-size-base, 28rpx));
+$textarea-inner-line-height: var(--m-textarea-inner-line-height, 1.5);
+$textarea-inner-color: var(--m-textarea-inner-color, var(--m-text-primary, #323233));
+$textarea-inner-placeholder-color: var(--m-textarea-inner-placeholder-color, var(--m-text-placeholder, #c8c9cc));
+$textarea-disabled-color: var(--m-textarea-disabled-color, var(--m-text-disabled, #c8c9cc));
+$textarea-icon-color: var(--m-textarea-icon-color, var(--m-color-secondary, #969799));
+$textarea-icon-font-size: var(--m-textarea-icon-font-size, 36rpx);
+$textarea-icon-margin: var(--m-textarea-icon-margin, var(--m-spacing-normal, 12rpx));
+$textarea-count-color: var(--m-textarea-count-color, var(--m-text-secondary, #969799));
+$textarea-count-font-size: var(--m-textarea-count-font-size, var(--m-font-size-base, 28rpx));
+$textarea-count-line-height: var(--m-textarea-count-line-height, 1.5);
+$textarea-error-color: var(--m-textarea-error-color, var(--m-color-danger, #ee0a24));
+
+@include b(textarea) {
+  -webkit-tap-highlight-color: transparent;
+  text-align: left;
+  background: $textarea-bg;
+  padding: $textarea-padding;
+  border-radius: var(--m-radius-md, 8rpx);
+
+  @include e(placeholder) {
+    color: $textarea-inner-placeholder-color;
+    line-height: $textarea-inner-line-height;
+  }
+
+  @include e(body) {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  @include e(inner) {
+    flex: 1;
+    width: 100%;
+    min-height: $textarea-inner-min-height;
+    line-height: $textarea-inner-line-height;
+    font-size: $textarea-inner-font-size;
+    color: $textarea-inner-color;
+    outline: none;
+    background: none;
+    border: none;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: break-word;
+
+    &::-webkit-input-placeholder {
+      color: $textarea-inner-placeholder-color;
+      line-height: $textarea-inner-line-height;
+    }
+  }
+
+  @include e(clear) {
+    margin-left: $textarea-icon-margin;
+    font-size: $textarea-icon-font-size;
+    color: $textarea-icon-color;
+  }
+
+  @include e(count) {
+    text-align: right;
+    font-size: $textarea-count-font-size;
+    color: $textarea-count-color;
+    line-height: $textarea-count-line-height;
+    margin-top: 8rpx;
+  }
+
+  @include e(readonly-mask) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+  }
+
+  @include when(disabled) {
+    .m-textarea__inner,
+    .m-textarea__placeholder {
+      color: $textarea-disabled-color;
+    }
+  }
+
+  @include when(error) {
+    .m-textarea__inner {
+      color: $textarea-error-color;
+    }
+  }
+
+  @include when(compact) {
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  @include when(border) {
+    padding: $textarea-padding;
+    background: #ffffff;
+    border: 1px solid var(--m-border-color, #ebedf0);
+    border-radius: var(--m-radius-md, 8rpx);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  @include when(auto-height) {
+    @include e(inner) {
+      overflow-y: auto;
+    }
+  }
+
+  @include when(auto-size) {
+    @include e(inner) {
+      overflow-y: auto;
+      height: auto;
+      resize: none;
+    }
+  }
+}

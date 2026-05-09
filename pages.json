@@ -179,6 +179,12 @@
       "style": {
         "navigationBarTitleText": "Input 输入框"
       }
+    },
+    {
+      "path": "examples/pages/textarea-demo",
+      "style": {
+        "navigationBarTitleText": "Textarea 文本域"
+      }
     }
   ],
   "globalStyle": {

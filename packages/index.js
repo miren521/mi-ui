@@ -9,6 +9,7 @@ import mSteps from './m-steps/m-steps.vue'
 import mWatermark from './m-watermark/m-watermark.vue'
 import mCurtain from './m-curtain/m-curtain.vue'
 import mInput from './m-input/m-input.vue'
+import mTextarea from './m-textarea/m-textarea.vue'
 import mForm from './m-form/m-form.vue'
 import mFormItem from './m-form-item/m-form-item.vue'
 
@@ -20,6 +21,7 @@ const components = [
 	mWatermark,
 	mCurtain,
 	mInput,
+	mTextarea,
 	mForm,
 	mFormItem,
 ] 
@@ -46,6 +48,7 @@ export {
 	mWatermark,
 	mCurtain,
 	mInput,
+	mTextarea,
 	mForm,
 	mFormItem,
 } 
@@ -58,6 +61,7 @@ export default {
 	mWatermark,
 	mCurtain,
 	mInput,
+	mTextarea,
 	mForm,
 	mFormItem,
 }

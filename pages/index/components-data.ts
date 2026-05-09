@@ -27,6 +27,7 @@ export const feedbackComponents: ComponentItem[] = [
 export const formComponents: ComponentItem[] = [
   { id: 'form', title: 'Form 表单', enTitle: 'Form', zhTitle: '表单', desc: '表单组件，用于数据录入、校验', category: 'form', url: '/examples/pages/form-demo' },
   { id: 'Input', title: 'Input 输入框', enTitle: 'Input', zhTitle: '输入框', desc: '用户可以在文本框中输入内容', category: 'form', url: '/examples/pages/input-demo' },
+  { id: 'Textarea', title: 'Textarea 文本域', enTitle: 'Textarea', zhTitle: '文本域', desc: '用于输入多行文本，高度自适应与紧凑布局', category: 'form', url: '/examples/pages/textarea-demo' },
 ]
 
 // 布局
