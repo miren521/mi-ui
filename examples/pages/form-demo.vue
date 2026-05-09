@@ -4,7 +4,7 @@
 			<!-- 基础表单 -->
 			<demo-block title="基础表单" desc="包含用户名、密码和邮箱的基础表单，点击提交按钮触发校验">
 				<view class="demo-form-wrapper">
-					<m-form ref="formRef" :model="formData" :schema="formSchema">
+					<m-form ref="formRef" :model="formData" :schema="formSchema" :title-width="70">
 						<m-form-item prop="username" title="用户名">
 							<m-input v-model="formData.username" placeholder="请输入用户名" />
 						</m-form-item>
@@ -21,16 +21,6 @@
 					<view class="demo-form-actions">
 						<m-button type="primary" @click="handleSubmit">提交</m-button>
 						<m-button type="default" @click="handleReset">重置</m-button>
-					</view>
-				</view>
-			</demo-block>
-			
-			<!-- 表单数据展示 -->
-			<demo-block title="表单数据" desc="实时显示表单数据变化">
-				<view class="demo-form-data">
-					<text class="demo-form-data__label">当前表单数据：</text>
-					<view class="demo-form-data__content">
-						<text>{{ JSON.stringify(formData, null, 2) }}</text>
 					</view>
 				</view>
 			</demo-block>
@@ -140,10 +130,6 @@ function handleReset() {
 }
 
 .demo-form-wrapper {
-	background: #ffffff;
-	border-radius: 8px;
-	padding: 20px;
-	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .demo-form-actions {

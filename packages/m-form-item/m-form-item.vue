@@ -192,6 +192,7 @@ $form-item-asterisk-color: var(--m-color-danger, #ee0a24);
   align-items: center;
   padding: var(--m-spacing-loose, 16rpx) var(--m-spacing-loose, 16rpx);
   background: var(--m-bg-white, #ffffff);
+  flex-wrap: wrap;
 
   &__label {
     flex-shrink: 0;
@@ -218,6 +219,16 @@ $form-item-asterisk-color: var(--m-color-danger, #ee0a24);
 
   &__placeholder {
     color: var(--m-text-placeholder, #c8c9cc);
+  }
+
+  &__error-message {
+    flex-basis: 100%;
+    font-size: 24rpx;
+    color: var(--m-color-danger, #ee0a24);
+    margin-top: 12rpx;
+    padding-left: calc(var(--m-spacing-loose, 16rpx) + 70px);
+    word-break: break-all;
+    text-align: left;
   }
 }
 </style>
