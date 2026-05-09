@@ -45,7 +45,8 @@ export const inputProps = {
   ignoreCompositionEvent: makeBooleanProp(true),
   inputmode: makeStringProp<InputMode>('text'),
   enableNative: makeBooleanProp(true),
-  compact: makeBooleanProp(void 0)
+  compact: makeBooleanProp(void 0),
+  border: makeBooleanProp(false)
 }
 
 export type InputProps = ExtractPropTypes<typeof inputProps>

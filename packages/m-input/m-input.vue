@@ -130,7 +130,7 @@ const currentLength = computed(() => {
 })
 
 const rootClass = computed(() => {
-  return `m-input ${props.error ? 'is-error' : ''} ${props.disabled ? 'is-disabled' : ''} ${isCompact.value ? 'is-compact' : ''} ${props.customClass}`
+  return `m-input ${props.error ? 'is-error' : ''} ${props.disabled ? 'is-disabled' : ''} ${isCompact.value ? 'is-compact' : ''} ${props.border ? 'is-border' : ''} ${props.customClass}`
 })
 
 const inputPlaceholderClass = computed(() => {

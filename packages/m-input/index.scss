@@ -119,4 +119,13 @@ $input-error-color: var(--m-input-error-color, var(--m-color-danger, #ee0a24));
     padding: 0;
     background: transparent;
   }
+
+  @include when(border) {
+    padding: $input-padding;
+    background: #ffffff;
+    border: 1px solid var(--m-border-color, #ebedf0);
+    border-radius: var(--m-radius-md, 8rpx);
+    overflow: hidden;
+    box-sizing: border-box;
+  }
 }

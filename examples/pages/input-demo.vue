@@ -71,9 +71,16 @@
 			</demo-block>
 
 			<!-- 紧凑模式 -->
-			<demo-block title="紧凑模式" desc="设置 compact 属性使用紧凑布局">
+			<demo-block title="紧凑模式" desc="设置 compact 属性使用紧凑布局，无背景色">
 				<view class="demo-input-row">
 					<m-input v-model="compactValue" compact placeholder="紧凑模式输入框" />
+				</view>
+			</demo-block>
+
+			<!-- 边框模式 -->
+			<demo-block title="边框模式" desc="设置 border 属性使用带边框的输入框，有白色背景和圆角">
+				<view class="demo-input-row demo-input-row--border">
+					<m-input v-model="borderValue" border placeholder="边框模式输入框" />
 				</view>
 			</demo-block>
 
@@ -149,6 +156,7 @@ const telValue = ref('');
 const numberValue = ref('');
 const errorValue = ref('');
 const compactValue = ref('');
+const borderValue = ref('');
 const searchValue = ref('');
 const sendValue = ref('');
 const codeValue = ref('');
@@ -256,6 +264,12 @@ function handleFormGetCode() {
 	background: #ffffff;
 	border-radius: 8px;
 	overflow: hidden;
+
+	&--border {
+		background: transparent;
+		border-radius: 0;
+		padding: 8rpx;
+	}
 }
 
 .demo-input-value {
