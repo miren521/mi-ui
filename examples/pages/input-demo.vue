@@ -92,17 +92,50 @@
 				<view class="demo-input-row">
 					<m-input v-model="codeValue" placeholder="请输入验证码">
 						<template #suffix>
-              <m-button class="demo-input-suffix-btn" :class="{ 'disabled': codeDisabled }"  type="primary" size="small" @click="handleGetCode">{{ codeText }}</m-button>
+							<m-button class="demo-input-suffix-btn" :class="{ 'disabled': codeDisabled }" type="primary" size="small" @click="handleGetCode">{{ codeText }}</m-button>
 						</template>
 					</m-input>
 				</view>
+			</demo-block>
+
+			<!-- 使用 m-form 的表单场景 -->
+			<demo-block title="表单场景（m-form）" desc="使用 m-form 和 m-form-item 组件构建表单，通过 title-width 控制标题宽度">
+				<m-form :model="formData" class="demo-form" :title-width="70">
+					<m-form-item prop="username" title="用户名" required>
+						<m-input v-model="formData.username" placeholder="请输入用户名" clearable />
+					</m-form-item>
+					<m-form-item prop="password" title="密码" required>
+						<m-input v-model="formData.password" type="password" show-password placeholder="请输入密码" />
+					</m-form-item>
+					<m-form-item prop="confirmPassword" title="确认密码">
+						<m-input v-model="formData.confirmPassword" type="password" show-password placeholder="请再次输入密码" />
+					</m-form-item>
+					<m-form-item prop="phone" title="手机号"  >
+						<m-input v-model="formData.phone" type="tel" maxlength="11" placeholder="请输入手机号" />
+					</m-form-item>
+					<m-form-item prop="code" title="验证码"  >
+						<m-input v-model="formData.code" placeholder="请输入验证码">
+							<template #suffix>
+								<view class="demo-form-code-btn" :class="{ 'disabled': formCodeDisabled }" @click="handleFormGetCode">
+									{{ formCodeText }}
+								</view>
+							</template>
+						</m-input>
+					</m-form-item>
+					<m-form-item prop="email" title="邮箱"  >
+						<m-input clearable v-model="formData.email" placeholder="请输入邮箱" />
+					</m-form-item>
+					<m-form-item prop="bio" title="个人简介"  >
+						<m-input v-model="formData.bio" :maxlength="20" show-word-limit placeholder="请输入个人简介（选填）" />
+					</m-form-item>
+				</m-form>
 			</demo-block>
 		</view>
 	</view>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 
 const basicValue = ref('');
 const passwordValue = ref('');
@@ -123,6 +156,20 @@ const codeText = ref('获取验证码');
 const codeDisabled = ref(false);
 let timer: number | null = null;
 
+const formData = reactive({
+	username: '',
+	password: '',
+	confirmPassword: '',
+	phone: '',
+	code: '',
+	email: '',
+	bio: ''
+});
+
+const formCodeText = ref('获取验证码');
+const formCodeDisabled = ref(false);
+let formTimer: number | null = null;
+
 function handleSearch() {
 	uni.showToast({
 		title: '搜索: ' + searchValue.value,
@@ -139,11 +186,11 @@ function handleSend() {
 
 function handleGetCode() {
 	if (codeDisabled.value) return;
-	
+
 	codeDisabled.value = true;
 	codeText.value = '60秒后重试';
 	let count = 60;
-	
+
 	timer = setInterval(() => {
 		count--;
 		if (count <= 0) {
@@ -157,7 +204,34 @@ function handleGetCode() {
 			codeText.value = `${count}秒后重试`;
 		}
 	}, 1000) as unknown as number;
-	
+
+	uni.showToast({
+		title: '验证码已发送',
+		icon: 'none'
+	});
+}
+
+function handleFormGetCode() {
+	if (formCodeDisabled.value) return;
+
+	formCodeDisabled.value = true;
+	formCodeText.value = '60秒后重试';
+	let count = 60;
+
+	formTimer = setInterval(() => {
+		count--;
+		if (count <= 0) {
+			formCodeText.value = '获取验证码';
+			formCodeDisabled.value = false;
+			if (formTimer) {
+				clearInterval(formTimer);
+				formTimer = null;
+			}
+		} else {
+			formCodeText.value = `${count}秒后重试`;
+		}
+	}, 1000) as unknown as number;
+
 	uni.showToast({
 		title: '验证码已发送',
 		icon: 'none'
@@ -195,7 +269,23 @@ function handleGetCode() {
 
 .demo-input-suffix-btn {
 	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-	
+
+	&.disabled {
+		background: #ccc;
+	}
+}
+
+.demo-form {
+}
+
+.demo-form-code-btn {
+	padding: 12rpx 24rpx;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #fff;
+	font-size: 24rpx;
+	border-radius: 4rpx;
+	white-space: nowrap;
+
 	&.disabled {
 		background: #ccc;
 	}
