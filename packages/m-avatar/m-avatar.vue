@@ -49,9 +49,7 @@ const emit = defineEmits(['error', 'click', 'load'])
 const slots = useSlots()
 
 // 父组件上下文：_internal 用于 avatar-group 内部的溢出计数头像，跳过父组件上下文
-const parentResult = props._internal ? { parent: null, index: ref(-1) } : useParent(AVATAR_GROUP_KEY)
-const avatarGroup = parentResult?.parent || null
-const index = parentResult?.index || ref(-1)
+const { parent: avatarGroup, index } = props._internal ? { parent: ref(null), index: ref(-1) } : useParent(AVATAR_GROUP_KEY)
 
 
 /**
@@ -59,11 +57,11 @@ const index = parentResult?.index || ref(-1)
  * 在 avatar-group 中根据 maxCount 判断是否超出数量限制
  */
 const isShow = computed(() => {
-  if (!avatarGroup) {
+  if (!avatarGroup.value) {
     return true
   }
   // 在 avatar-group 中，根据 maxCount 判断
-  const maxCount = avatarGroup.props.maxCount
+  const maxCount = avatarGroup.value.props.maxCount
   if (!isDef(maxCount)) {
     return true
   }
@@ -80,7 +78,7 @@ const isShow = computed(() => {
  * 优先级: Props > avatarGroup Props > 默认值
  */
 const sizeValue = computed(() => {
-  return props.size || (getPropByPath(avatarGroup, 'props.size') as string | number | AvatarSize) || 'normal'
+  return props.size || (getPropByPath(avatarGroup.value, 'props.size') as string | number | AvatarSize) || 'normal'
 })
 
 /**
@@ -95,7 +93,7 @@ const isBuiltInSize = computed(() => {
  * 优先级: Props > avatarGroup Props > 默认值
  */
 const shapeValue = computed(() => {
-  return props.shape || (getPropByPath(avatarGroup, 'props.shape') as AvatarShape) || 'round'
+  return props.shape || (getPropByPath(avatarGroup.value, 'props.shape') as AvatarShape) || 'round'
 })
 
 /**
@@ -113,9 +111,9 @@ const rootClass = computed(() => {
   }
   
   // 在 avatar-group 中时，添加 item 类
-  if (avatarGroup) {
+  if (avatarGroup.value) {
     classes.push('m-avatar__group-item')
-    if (avatarGroup.props.vertical) {
+    if (avatarGroup.value.props.vertical) {
       classes.push('m-avatar__group-item--vertical')
     }
   }
@@ -131,30 +129,28 @@ const rootStyle = computed(() => {
     style.width = addUnit(sizeValue.value)
     style.height = addUnit(sizeValue.value)
     style.fontSize = `calc(${addUnit(sizeValue.value)} * 0.45)`
-    if (avatarGroup) {
-      style['--m-avatar-overlap' as any] = `calc(${addUnit(sizeValue.value)} * -0.5)`
+    if (avatarGroup.value) {
+      style['--m-avatar-overlap' as any] = `calc(${addUnit(sizeValue.value)} * -0.25)`
     }
   }
 
   // 处理层叠效果的 z-index
-  if (avatarGroup) {
-    const cascading = avatarGroup.props.cascading
-    const vertical = avatarGroup.props.vertical
-    if (cascading === 'right-up') {
-      // 右侧在上，越后面越大
-      style.zIndex = index.value + 1
-    } else if (cascading === 'left-up') {
-      // 左侧在上，越前面越大
-      const maxCount = avatarGroup.props.maxCount
-      let count = avatarGroup.children?.length ?? 0
-
-      if (isDef(maxCount)) {
-        const parsedCount = typeof maxCount === 'number' ? maxCount : parseInt(maxCount, 10)
-        if (!isNaN(parsedCount) && parsedCount > 0) {
-          count = parsedCount
-        }
+  if (avatarGroup.value) {
+    const cascading = avatarGroup.value.props.cascading
+    const maxCount = avatarGroup.value.props.maxCount
+    let count = avatarGroup.value.children?.length ?? 0
+    if (isDef(maxCount)) {
+      const parsedCount = typeof maxCount === 'number' ? maxCount : parseInt(maxCount, 10)
+      if (!isNaN(parsedCount) && parsedCount > 0) {
+        count = parsedCount
       }
+    }
+    if (cascading === 'left-up') {
+      // 左侧在上：第一个头像（最左边）z-index 最大，显示在最上面
       style.zIndex = count - index.value
+    } else if (cascading === 'right-up') {
+      // 右侧在上：最后一个头像（最右边）z-index 最大，显示在最上面
+      style.zIndex = index.value + 1
     }
   }
 

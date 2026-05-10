@@ -45,6 +45,7 @@ const { children, linkChildren } = useChildren(AVATAR_GROUP_KEY)
 
 linkChildren({ props })
 
+
 /**
  * 根节点类名
  */
@@ -94,17 +95,19 @@ const hasDefaultSlot = computed(() => !!slots.default)
  */
 const collapseStyle = computed(() => {
   const style: CSSProperties = {}
+  const count = maxCountValue.value > 0 ? maxCountValue.value : children.length
   if (props.cascading === 'right-up') {
-    const count = maxCountValue.value > 0 ? maxCountValue.value : children.length
+    // 右侧在上：折叠头像在最右边，z-index 最大
     style.zIndex = count + 1
   } else if (props.cascading === 'left-up') {
+    // 左侧在上：折叠头像在最左边，z-index = 1（最小）
     style.zIndex = 1
   } else {
     style.zIndex = 0
   }
   if (hasDefaultSlot.value) {
     const isBuiltIn = isString(props.size) && ['large', 'medium', 'normal', 'small'].includes(props.size)
-    const margin = isBuiltIn ? 'var(--m-avatar-overlap)' : `calc(${addUnit(props.size)} * -0.5)`
+    const margin = isBuiltIn ? 'var(--m-avatar-overlap)' : `calc(${addUnit(props.size)} * -0.25)`
     if (props.vertical) {
       style.marginTop = margin
     } else {
