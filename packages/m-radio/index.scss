@@ -163,4 +163,8 @@ $m-radio-button-icon-left: var(--m-radio-button-icon-left, 8rpx) !default;
   @include when(disabled) {
     opacity: $m-radio-disabled;
   }
+
+  @include when(readonly) {
+    pointer-events: none;
+  }
 }

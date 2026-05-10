@@ -18,7 +18,7 @@ export const radioGroupProps = {
   },
   readonly: {
     type: Boolean,
-    default: false
+    default: undefined
   },
   checkedColor: {
     type: String,
@@ -34,7 +34,7 @@ export const radioGroupProps = {
   },
   placement: {
     type: String as () => RadioPlacement,
-    default: 'left'
+    default: 'right'
   },
   allowUncheck: {
     type: Boolean,

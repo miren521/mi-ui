@@ -23,7 +23,7 @@ export const radioProps = {
   },
   readonly: {
     type: Boolean,
-    default: false
+    default: undefined
   },
   checkedColor: {
     type: String,

@@ -1,6 +1,6 @@
 <template>
   <view
-    :class="`m-radio m-radio--${placementValue} ${isButton ? 'is-button' : 'm-radio--' + directionValue} ${isChecked ? 'is-checked' : ''} ${disabledValue ? 'is-disabled' : ''} ${customClass}`"
+    :class="`m-radio m-radio--${placementValue} ${isButton ? 'is-button' : 'm-radio--' + directionValue} ${isChecked ? 'is-checked' : ''} ${disabledValue ? 'is-disabled' : ''} ${readonlyValue ? 'is-readonly' : ''} ${customClass}`"
     :style="customStyle"
     @click="handleClick"
   >
