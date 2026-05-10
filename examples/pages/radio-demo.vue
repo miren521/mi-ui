@@ -1,7 +1,6 @@
 <template>
   <view class="demo-page">
-
-    <demo-block title="基础用法">
+    <demo-block title="基础用法" desc="默认垂直排列，点击选项进行选择">
       <view class="demo-radio-row">
         <m-radio-group v-model="radioValue1">
           <m-radio value="选项一">选项一</m-radio>
@@ -12,7 +11,7 @@
       <view class="demo-tip">当前选中: {{ radioValue1 }}</view>
     </demo-block>
 
-    <demo-block title="水平排列">
+    <demo-block title="水平排列" desc="设置 direction='horizontal' 实现水平布局">
       <view class="demo-radio-row">
         <m-radio-group v-model="radioValue2" direction="horizontal">
           <m-radio value="选项一">选项一</m-radio>
@@ -22,7 +21,7 @@
       </view>
     </demo-block>
 
-    <demo-block title="不同类型">
+    <demo-block title="不同类型" desc="支持圆形、方形、点状、按钮四种类型">
       <view class="demo-radio-row">
         <view class="demo-radio-section">
           <text class="demo-section-title">圆形 (circle)</text>
@@ -56,7 +55,7 @@
       </view>
     </demo-block>
 
-    <demo-block title="禁用状态">
+    <demo-block title="禁用状态" desc="设置 disabled 属性禁用指定选项">
       <view class="demo-radio-row">
         <m-radio-group v-model="radioValue7">
           <m-radio value="1" disabled>禁用选项</m-radio>
@@ -66,7 +65,7 @@
       </view>
     </demo-block>
 
-    <demo-block title="只读状态">
+    <demo-block title="只读状态" desc="设置 readonly 属性使选项只读，不可点击">
       <view class="demo-radio-row">
         <m-radio-group v-model="radioValue8" readonly>
           <m-radio value="1">选项一</m-radio>
@@ -74,10 +73,9 @@
           <m-radio value="3">选项三</m-radio>
         </m-radio-group>
       </view>
-      <view class="demo-tip">只读状态下可以看到选中状态，但无法点击切换</view>
     </demo-block>
 
-    <demo-block title="允许取消选中">
+    <demo-block title="允许取消选中" desc="设置 allow-uncheck 属性，点击已选中选项可取消">
       <view class="demo-radio-row">
         <m-radio-group v-model="radioValue9" allow-uncheck>
           <m-radio value="1">选项一</m-radio>
@@ -85,10 +83,9 @@
           <m-radio value="3">选项三</m-radio>
         </m-radio-group>
       </view>
-      <view class="demo-tip">点击已选中的选项可取消选中</view>
     </demo-block>
 
-    <demo-block title="自定义颜色">
+    <demo-block title="自定义颜色" desc="设置 checked-color 和 unchecked-color 自定义颜色">
       <view class="demo-radio-row">
         <m-radio-group v-model="radioValue10" checked-color="#07c160" unchecked-color="#999999">
           <m-radio value="1">绿色主题</m-radio>
@@ -98,7 +95,7 @@
       </view>
     </demo-block>
 
-    <demo-block title="标签位置">
+    <demo-block title="标签位置" desc="设置 placement 属性调整标签位置">
       <view class="demo-radio-row">
         <view class="demo-radio-section">
           <text class="demo-section-title">标签在左</text>
@@ -161,11 +158,11 @@ const radioValue12 = ref('1')
 }
 
 .demo-radio-row {
-  padding: 8rpx 16rpx;
+  padding: 10rpx 16rpx;
 }
 
 .demo-radio-section {
-  margin-bottom: 24rpx;
+  margin-bottom: 32rpx;
 
   &:last-child {
     margin-bottom: 0;
@@ -176,7 +173,8 @@ const radioValue12 = ref('1')
   display: block;
   font-size: 26rpx;
   color: #969799;
-  margin-bottom: 12rpx;
+  margin-bottom: 20rpx;
+  padding-left: 4rpx;
 }
 
 .demo-tip {
