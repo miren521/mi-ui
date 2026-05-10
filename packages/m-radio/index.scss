@@ -35,7 +35,7 @@ $m-radio-button-icon-left: var(--m-radio-button-icon-left, 8rpx) !default;
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  // justify-content: space-between;
   overflow: hidden;
 
   @include m(horizontal) {

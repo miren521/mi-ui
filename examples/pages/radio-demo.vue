@@ -87,11 +87,27 @@
 
     <demo-block title="自定义颜色" desc="设置 checked-color 和 unchecked-color 自定义颜色">
       <view class="demo-radio-row">
-        <m-radio-group v-model="radioValue10" checked-color="#07c160" unchecked-color="#999999">
-          <m-radio value="1">绿色主题</m-radio>
-          <m-radio value="2">绿色主题</m-radio>
-          <m-radio value="3">绿色主题</m-radio>
-        </m-radio-group>
+        <view class="demo-radio-section">
+          <text class="demo-section-title">绿色主题</text>
+          <m-radio-group v-model="radioValue10" checked-color="#07c160">
+            <m-radio value="1">选项一</m-radio>
+            <m-radio value="2">选项二</m-radio>
+          </m-radio-group>
+        </view>
+        <view class="demo-radio-section">
+          <text class="demo-section-title">红色主题</text>
+          <m-radio-group v-model="radioValue13" checked-color="#ff4d4f">
+            <m-radio value="1">选项一</m-radio>
+            <m-radio value="2">选项二</m-radio>
+          </m-radio-group>
+        </view>
+        <view class="demo-radio-section">
+          <text class="demo-section-title">紫色主题</text>
+          <m-radio-group v-model="radioValue14" checked-color="#722ed1">
+            <m-radio value="1">选项一</m-radio>
+            <m-radio value="2">选项二</m-radio>
+          </m-radio-group>
+        </view>
       </view>
     </demo-block>
 
@@ -131,6 +147,8 @@ const radioValue9 = ref('1')
 const radioValue10 = ref('1')
 const radioValue11 = ref('1')
 const radioValue12 = ref('1')
+const radioValue13 = ref('1')
+const radioValue14 = ref('1')
 </script>
 
 <style lang="scss" scoped>
