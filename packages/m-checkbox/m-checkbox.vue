@@ -71,18 +71,18 @@ const isButton = computed(() => {
 
 const iconValue = computed(() => {
   if (props.indeterminate && !isButton.value) {
-    return 'minus-circle-filled'
+    return 'minus-circle-fill'
   }
   let icon = ''
   switch (typeValue.value) {
     case 'circle':
-      icon = isChecked.value ? 'check-circle-filled' : 'circle'
+      icon = isChecked.value ? 'check-circle-fill' : 'uncheck-circle'
       break
     case 'square':
-      icon = isChecked.value ? 'check-rectangle-filled' : 'rectangle'
+      icon = isChecked.value ? 'check-square-fill' : 'uncheck-square'
       break
     case 'dot':
-      icon = isChecked.value ? 'check-circle-radio-fill' : 'circle'
+      icon = isChecked.value ? 'check-circle-radio-fill' : 'uncheck-circle'
       break
     case 'button':
       icon = isChecked.value ? 'check' : ''
