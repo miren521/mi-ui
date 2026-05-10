@@ -30,6 +30,7 @@ export const formComponents: ComponentItem[] = [
   { id: 'Textarea', title: 'Textarea 文本域', enTitle: 'Textarea', zhTitle: '文本域', desc: '用于输入多行文本，高度自适应与紧凑布局', category: 'form', url: '/examples/pages/textarea-demo' },
   { id: 'InputNumber', title: 'InputNumber 计数器', enTitle: 'InputNumber', zhTitle: '计数器', desc: '由增加按钮、减少按钮和输入框组成', category: 'form', url: '/examples/pages/input-number-demo' },
   { id: 'Checkbox', title: 'Checkbox 复选框', enTitle: 'Checkbox', zhTitle: '复选框', desc: '用于在一组备选项中进行多选', category: 'form', url: '/examples/pages/checkbox-demo' },
+  { id: 'Radio', title: 'Radio 单选框', enTitle: 'Radio', zhTitle: '单选框', desc: '单选框用于在一组备选项中进行单选', category: 'form', url: '/examples/pages/radio-demo' },
 ]
 
 // 布局

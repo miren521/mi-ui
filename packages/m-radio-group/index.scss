@@ -1,0 +1,18 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+
+$m-radio-group-item-gap: 24rpx;
+
+.m-radio-group {
+  display: flex;
+
+  &--vertical {
+    flex-direction: column;
+    gap: $m-radio-group-item-gap;
+  }
+
+  &--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $m-radio-group-item-gap;
+  }
+}

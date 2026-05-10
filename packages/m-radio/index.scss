@@ -1,0 +1,117 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+
+$m-radio-size: 32rpx;
+$m-radio-icon-size: 40rpx;
+$m-radio-label-margin: 16rpx;
+$m-radio-active-color: var(--m-color-primary, #4080ff);
+$m-radio-inactive-color: var(--m-color-text-disabled, #c8c9cc);
+$m-radio-text-color: var(--m-color-text-primary, #323233);
+$m-radio-disabled-text-color: var(--m-color-text-disabled, #c8c9cc);
+
+.m-radio {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--m-font-size-base, 28rpx);
+  color: $m-radio-text-color;
+  cursor: pointer;
+
+  &__label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: var(--m-font-size-base, 28rpx);
+    color: $m-radio-text-color;
+  }
+
+  &__shape {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $m-radio-icon-size;
+    height: $m-radio-icon-size;
+    font-size: $m-radio-icon-size;
+    line-height: 1;
+  }
+
+  &__icon {
+    color: $m-radio-inactive-color;
+    transition: color var(--m-transition-duration-base, 0.2s);
+    font-size: inherit;
+  }
+
+  &--left {
+    flex-direction: row;
+
+    .m-radio__label {
+      margin-left: $m-radio-label-margin;
+    }
+  }
+
+  &--right {
+    flex-direction: row-reverse;
+
+    .m-radio__label {
+      margin-right: $m-radio-label-margin;
+    }
+  }
+
+  &--vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .m-radio__label {
+      margin-left: 0;
+      margin-top: $m-radio-label-margin;
+    }
+  }
+
+  &--horizontal {
+    display: inline-flex;
+    flex-direction: row;
+  }
+
+  &.is-checked {
+    .m-radio__icon {
+      color: $m-radio-active-color;
+    }
+  }
+
+  &.is-disabled {
+    pointer-events: none;
+    opacity: var(--m-disabled-opacity, 0.5);
+
+    .m-radio__label {
+      color: $m-radio-disabled-text-color;
+    }
+  }
+
+  &.is-button {
+    position: relative;
+    padding: 16rpx 24rpx;
+    background-color: var(--m-bg-color, #ffffff);
+    border: 2rpx solid var(--m-border-color, #ebedf0);
+    border-radius: var(--m-border-radius-sm, 8rpx);
+    transition: all var(--m-transition-duration-base, 0.2s);
+
+    &.is-checked {
+      background-color: rgba($m-radio-active-color, 0.1);
+      border-color: $m-radio-active-color;
+
+      .m-radio__label {
+        color: $m-radio-active-color;
+      }
+    }
+
+    &.is-disabled {
+      background-color: var(--m-bg-color-disabled, #f5f6f7);
+      border-color: var(--m-border-color-disabled, #ebedf0);
+
+      .m-radio__label {
+        color: $m-radio-disabled-text-color;
+      }
+    }
+  }
+}
