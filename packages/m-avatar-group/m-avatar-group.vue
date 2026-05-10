@@ -1,9 +1,20 @@
 <template>
   <view :class="rootClass" :style="customStyle">
-    <slot></slot>
-    <!-- 折叠头像 -->
+    <!-- 左侧在上时，折叠头像放在最左边 -->
     <m-avatar
-      v-if="showCollapse"
+      v-if="showCollapse && props.cascading === 'left-up'"
+      :custom-style="collapseStyle"
+      _internal
+      :text="collapseText"
+      :shape="shape"
+      :size="size"
+      bg-color="#ebedf0"
+      color="#969799"
+    />
+    <slot></slot>
+    <!-- 右侧在上时，折叠头像放在最右边 -->
+    <m-avatar
+      v-if="showCollapse && props.cascading !== 'left-up'"
       :custom-style="collapseStyle"
       _internal
       :text="collapseText"
@@ -96,16 +107,17 @@ const hasDefaultSlot = computed(() => !!slots.default)
 const collapseStyle = computed(() => {
   const style: CSSProperties = {}
   const count = maxCountValue.value > 0 ? maxCountValue.value : children.length
-  if (props.cascading === 'right-up') {
-    // 右侧在上：折叠头像在最右边，z-index 最大
+  if (props.cascading === 'left-up') {
+    // 左侧在上：折叠头像在最左边，显示在最上面
     style.zIndex = count + 1
-  } else if (props.cascading === 'left-up') {
-    // 左侧在上：折叠头像在最左边，z-index = 1（最小）
-    style.zIndex = 1
+  } else if (props.cascading === 'right-up') {
+    // 右侧在上：折叠头像在最右边，显示在最上面
+    style.zIndex = count + 1
   } else {
     style.zIndex = 0
   }
-  if (hasDefaultSlot.value) {
+  // left-up 模式下折叠头像在最左边，不需要负边距
+  if (hasDefaultSlot.value && props.cascading !== 'left-up') {
     const isBuiltIn = isString(props.size) && ['large', 'medium', 'normal', 'small'].includes(props.size)
     const margin = isBuiltIn ? 'var(--m-avatar-overlap)' : `calc(${addUnit(props.size)} * -0.25)`
     if (props.vertical) {
