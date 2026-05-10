@@ -42,7 +42,7 @@
     <view v-if="readonly" class="m-input__readonly-mask" />
     <view v-if="showClear || showPassword || suffixIcon || showWordCount || $slots.suffix" class="m-input__suffix">
       <m-icon v-if="showClear" custom-class="m-input__clear" name="close-circle" @click="handleClear" />
-      <m-icon v-if="showPassword" custom-class="m-input__icon" :name="isPwdVisible ? 'view' : 'browse-off'" @click="togglePwdVisible" />
+      <m-icon v-if="showPassword" custom-class="m-input__icon" :name="isPwdVisible ? 'eye' : 'eye-invisible'" @click="togglePwdVisible" />
       <view v-if="showWordCount" class="m-input__count">{{ currentLength }}/{{ maxlength }}</view>
       <m-icon v-if="suffixIcon && !$slots.suffix" custom-class="m-input__icon" :name="suffixIcon" @click="onClickSuffixIcon" />
       <slot v-else name="suffix"></slot>

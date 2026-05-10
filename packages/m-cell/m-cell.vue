@@ -38,7 +38,7 @@
           <!--箭头-->
           <view class="m-cell__iconBox">
             <m-icon v-if="isLink" size="32rpx" color="#999" custom-class="m-cell__arrow-right"
-              :name="`chevron-${arrowDirection || 'right'}`" />
+              :name="`${arrowDirection || 'right'}`" />
             <slot v-else name="right-icon" />
           </view>
         </view>

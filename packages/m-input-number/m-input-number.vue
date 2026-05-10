@@ -36,7 +36,7 @@
       @touchend.stop="handleTouchEnd"
     >
       <view v-if="loadingType !== 'add'" class="m-input-number__action-divider" />
-      <m-icon v-if="loadingType === 'add'" name="refresh1" class="m-input-number__loading-icon" />
+      <m-icon v-if="loadingType === 'add'" name="sync" class="m-input-number__loading-icon" />
     </view>
   </view>
 </template>

@@ -16,7 +16,7 @@
       @tap.stop
     >
       <view v-if="closable" class="m-popup__close" @tap="onClose">
-        <m-icon name="add" :size="20" />
+        <m-icon name="plus" :size="20" />
       </view>
       <view v-if="$slots.header" class="m-popup__header">
         <slot name="header" />

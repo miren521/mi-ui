@@ -32,8 +32,6 @@ export default {
 
 <script lang="ts" setup>
 import { computed, useSlots, type CSSProperties, ref } from 'vue'
-import mIcon from '../m-icon/m-icon.vue'
-import mImg from '../m-img/m-img.vue'
 import { addUnit, getPropByPath, isDef, isString, objToStyle } from '../common/util'
 import { avatarProps, type AvatarShape, type AvatarSize, type AvatarStatus } from './types'
 import { useParent } from '../composables/useParent'

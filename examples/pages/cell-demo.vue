@@ -15,9 +15,9 @@
       <view class="demo-cell-group">
         <m-cell-group title="显示图标" value="左侧显示图标">
           <m-cell title="个人资料" value="查看" icon="user" is-link />
-          <m-cell title="消息通知" value="3条" icon="chat" is-link />
-          <m-cell title="设置" value="" icon="setting" is-link />
-          <m-cell title="帮助中心" value="" icon="help-circle" is-link />
+          <m-cell title="消息通知" value="3条" icon="message" is-link />
+          <m-cell title="设置" value="" icon="settings" is-link />
+          <m-cell title="帮助中心" value="" icon="bulb" is-link />
         </m-cell-group>
       </view>
 

@@ -7,8 +7,8 @@
       <slot name="title" :expanded="expanded" :disabled="disabled" :loading="loading">
         <text class="m-collapse-item__title">{{ title }}</text>
         <view :class="`m-collapse-item__arrow ${expanded ? 'is-retract' : ''}`">
-          <m-icon v-if="!loading" name="chevron-down" size="22" color="#4e5369" />
-          <m-icon v-else name="refresh1" size="22" color="#4e5369" class="m-icon-loading" />
+          <m-icon v-if="!loading" name="down" size="20" color="#4e5369" />
+          <m-icon v-else name="sync" size="20" color="#4e5369" class="m-icon-loading" />
         </view>
       </slot>
     </view>

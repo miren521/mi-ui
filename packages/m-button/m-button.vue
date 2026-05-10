@@ -16,7 +16,7 @@
   >
     <div class="m-button__content">
       <div v-if="loading" class="m-button__loading">
-        <m-icon name="refresh1" :size="loadingSize" />
+        <m-icon name="sync" :size="loadingSize" />
       </div>
       <div class="m-button__text"><slot /></div>
     </div>
@@ -25,7 +25,6 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import MIcon from '../m-icon/m-icon.vue'
 
 interface ButtonProps {
   type?: 'primary' | 'success' | 'warning' | 'danger' | 'info'

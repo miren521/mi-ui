@@ -65,7 +65,7 @@
           <m-steps :active="customIconActive" align-center>
             <m-step title="步骤1" icon="user" />
             <m-step title="步骤2" icon="phone" />
-            <m-step title="步骤3" icon="setting" />
+            <m-step title="步骤3" icon="settings" />
           </m-steps>
         </view>
         <view class="demo-steps-button">

@@ -11,8 +11,8 @@
           <m-icon v-if="icon" custom-class="m-step__icon" :name="icon" />
         </slot>
         <view v-else class="m-step__circle">
-          <m-icon custom-class="m-step__finished-icon" v-if="currentStatus === 'finished'" name="check-circle-filled" />
-          <m-icon custom-class="m-step__error-icon" v-else-if="currentStatus === 'error'" name="error-fill" />
+          <m-icon custom-class="m-step__finished-icon" v-if="currentStatus === 'finished'" name="check-circle-fill" />
+          <m-icon custom-class="m-step__error-icon" v-else-if="currentStatus === 'error'" name="close-circle-fill" />
           <text class="m-step__circle-text" v-else>{{ index + 1 }}</text>
         </view>
       </view>

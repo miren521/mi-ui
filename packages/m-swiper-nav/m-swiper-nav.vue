@@ -1,10 +1,10 @@
 <template>
   <template v-if="showControls">
     <view class="m-swiper-nav__btn m-swiper-nav__btn--prev" @click="handleNav('prev')">
-      <m-icon name="arrow-left" custom-class="m-swiper-nav__btn-icon" color="#fff" size="18"></m-icon>
+      <m-icon name="left" custom-class="m-swiper-nav__btn-icon" color="#fff" size="18"></m-icon>
     </view>
     <view class="m-swiper-nav__btn m-swiper-nav__btn--next" @click="handleNav('next')">
-      <m-icon name="arrow-right" custom-class="m-swiper-nav__btn-icon" color="#fff" size="18"></m-icon>
+      <m-icon name="right" custom-class="m-swiper-nav__btn-icon" color="#fff" size="18"></m-icon>
     </view>
   </template>
   <view
