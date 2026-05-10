@@ -36,14 +36,14 @@ import type { BadgeProps } from '../m-badge/types'
 const props = defineProps(gridItemProps)
 const emit = defineEmits(['click'])
 
-const { parent: grid, index } = useParent(GRID_KEY)
+const { parent: gridRef, index } = useParent(GRID_KEY)
 
-const gutter = computed(() => Number(grid?.props.gutter || 0))
-const border = computed(() => Boolean(grid?.props.border))
-const bgColor = computed(() => grid?.props.bgColor || '')
-const column = computed(() => grid?.props.column || 0)
-const childCount = computed(() => grid?.children?.length || 0)
-const iconSize = computed(() => grid?.props.iconSize)
+const gutter = computed(() => Number(gridRef.value?.props.gutter || 0))
+const border = computed(() => Boolean(gridRef.value?.props.border))
+const bgColor = computed(() => gridRef.value?.props.bgColor || '')
+const column = computed(() => gridRef.value?.props.column || 0)
+const childCount = computed(() => gridRef.value?.children?.length || 0)
+const iconSize = computed(() => gridRef.value?.props.iconSize)
 
 const borderClass = computed(() => {
   if (!border.value || gutter.value) return ''
@@ -68,7 +68,7 @@ const borderClass = computed(() => {
 })
 
 const rootStyle = computed(() => {
-  if (!grid) return props.customStyle || ''
+  if (!gridRef.value) return props.customStyle || ''
 
   const columnNum = column.value || childCount.value
   const percent = `${100 / columnNum}%`
@@ -94,7 +94,7 @@ const rootStyle = computed(() => {
 })
 
 const contentStyle = computed(() => {
-  if (!grid) return ''
+  if (!gridRef.value) return ''
 
   const style: CSSProperties = {}
 
@@ -130,8 +130,8 @@ const contentClass = computed(() => {
   if (border.value && gutter.value > 0) {
     classes.push('is-around')
   }
-  if (grid) {
-    const { center, direction, reverse } = grid.props
+  if (gridRef.value) {
+    const { center, direction, reverse } = gridRef.value.props
     if (center) {
       classes.push('is-center')
     }
@@ -164,14 +164,14 @@ const customBadgeProps = computed(() => {
 })
 
 const hoverClass = computed(() => {
-  if (grid?.props.clickable) {
-    return grid.props.hoverClass ? grid.props.hoverClass : 'm-grid-item__content--hover'
+  if (gridRef.value?.props.clickable) {
+    return gridRef.value.props.hoverClass ? gridRef.value.props.hoverClass : 'm-grid-item__content--hover'
   }
   return ''
 })
 
 function handleClick() {
-  if (grid && !grid.props.clickable) return
+  if (gridRef.value && !gridRef.value.props.clickable) return
   const { url, linkType } = props
   emit('click')
   if (url) {

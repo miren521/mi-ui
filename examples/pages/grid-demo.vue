@@ -6,7 +6,7 @@
         <view class="demo-grid-row">
           <m-grid :column="4">
             <m-grid-item icon="home" text="首页" />
-            <m-grid-item icon="cart" text="购物车" />
+            <m-grid-item icon="Fire" text="热门" />
             <m-grid-item icon="heart" text="收藏" />
             <m-grid-item icon="user" text="我的" />
           </m-grid>
@@ -18,7 +18,7 @@
         <view class="demo-grid-row">
           <m-grid :column="4" :border="true">
             <m-grid-item icon="home" text="首页" />
-            <m-grid-item icon="cart" text="购物车" />
+            <m-grid-item icon="Fire" text="热门" />
             <m-grid-item icon="heart" text="收藏" />
             <m-grid-item icon="user" text="我的" />
           </m-grid>
@@ -30,7 +30,7 @@
         <view class="demo-grid-row">
           <m-grid :column="3" :gutter="20">
             <m-grid-item icon="home" text="首页" />
-            <m-grid-item icon="cart" text="购物车" />
+            <m-grid-item icon="Fire" text="热门" />
             <m-grid-item icon="heart" text="收藏" />
           </m-grid>
         </view>
@@ -98,7 +98,7 @@
           <m-grid :column="3" :direction="'horizontal'">
             <m-grid-item icon="home" text="首页" />
             <m-grid-item icon="heart" text="收藏" />
-            <m-grid-item icon="cart" text="购物车" />
+            <m-grid-item icon="Fire" text="热门" />
           </m-grid>
         </view>
       </demo-block>
@@ -108,7 +108,7 @@
         <view class="demo-grid-row">
           <m-grid :column="4" :gutter="10">
             <m-grid-item icon="home" text="首页" />
-            <m-grid-item icon="cart" text="购物车" :value="3" />
+            <m-grid-item icon="Fire" text="热门" :value="3" />
             <m-grid-item icon="heart" text="收藏" :is-dot="true" />
             <m-grid-item icon="user" text="我的" :value="99" />
           </m-grid>
@@ -120,7 +120,7 @@
         <view class="demo-grid-row">
           <m-grid :column="4" :clickable="true" :gutter="10">
             <m-grid-item icon="home" text="首页" @click="handleClick" />
-            <m-grid-item icon="cart" text="购物车" @click="handleClick" />
+            <m-grid-item icon="Fire" text="热门" @click="handleClick" />
             <m-grid-item icon="heart" text="收藏" @click="handleClick" />
             <m-grid-item icon="user" text="我的" @click="handleClick" />
           </m-grid>
