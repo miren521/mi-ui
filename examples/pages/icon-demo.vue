@@ -4,20 +4,20 @@
 
       <demo-block title="图标搜索" desc="搜索图标">
         <view class="demo-search-box">
-          <m-icon name="search" size="20px" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #999;" />
-          <input 
+          <m-input 
             v-model="searchText" 
-            type="text" 
-            placeholder="搜索图标名称" 
-            class="demo-search-input"
+            placeholder="搜索图标名称"
+            left-icon="search"
           />
         </view>
       </demo-block>
 
-      <demo-block title="图标列表" desc="网格展示所有图标">
+      <demo-block title="图标列表" desc="点击图标可复制代码">
         <view class="demo-icon-grid">
           <view class="demo-icon-grid__item" v-for="icon in filteredIcons" :key="icon" @click="copyIconCode(icon)">
-            <m-icon :name="icon" size="22px" />
+            <view class="demo-icon-grid__icon-wrapper">
+              <m-icon :name="icon" size="22px" />
+            </view>
             <text class="demo-icon-grid__name">{{ icon }}</text>
           </view>
         </view>
@@ -390,82 +390,80 @@ function copyIconCode(icon) {
   }
 }
 
-.demo-icon-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
 .demo-search-box {
-  position: relative;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
 }
 
-.demo-search-input {
-  width: 100%;
-  height: 40px;
-  padding: 0 40px 0 36px;
-  border: 1px solid #e8e9ea;
-  border-radius: 20px;
-  font-size: 14px;
-  background-color: #f8f9fa;
-  transition: all 0.3s;
-
-  &:focus {
-    outline: none;
-    border-color: #4D80F0;
-    box-shadow: 0 0 0 2px rgba(77, 128, 240, 0.1);
-  }
-}
-
 .demo-icon-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
 
   &__item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     padding: 16px 8px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    transition: all 0.2s;
+    background-color: transparent;
+    border-radius: 0;
+    transition: all 0.2s ease;
     cursor: pointer;
+    min-height: 90px;
 
     &:hover {
-      background-color: #e8e9ea;
-      transform: translateY(-2px);
+      background-color: #f5f6f7;
+      border-radius: 12px;
     }
 
     &:active {
-      background-color: #d8d9da;
-      transform: translateY(0);
+      background-color: #e8e9ea;
     }
   }
 
+  &__icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background-color: #f5f6f7;
+    flex-shrink: 0;
+    color: #333;
+  }
+
   &__name {
-    margin-top: 8px;
+    margin-top: 10px;
     font-size: 12px;
     color: #666;
     text-align: center;
+    word-break: break-word;
+    line-height: 1.4;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   .demo-icon-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+    gap: 10px;
 
     &__item {
-      padding: 12px 4px;
+      padding: 12px 6px;
+      min-height: 80px;
+    }
+
+    &__icon-wrapper {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
     }
 
     &__name {
-      font-size: 10px;
+      font-size: 11px;
+      margin-top: 8px;
     }
   }
 }
