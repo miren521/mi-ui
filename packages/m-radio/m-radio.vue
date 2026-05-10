@@ -1,17 +1,24 @@
 <template>
   <view
-    :class="`m-radio m-radio--${placementValue} ${isButton ? 'is-button' : ''} ${isChecked ? 'is-checked' : ''} ${disabledValue ? 'is-disabled' : ''} ${customClass}`"
+    :class="`m-radio m-radio--${placementValue} ${isButton ? 'is-button' : 'm-radio--' + directionValue} ${isChecked ? 'is-checked' : ''} ${disabledValue ? 'is-disabled' : ''} ${customClass}`"
     :style="customStyle"
     @click="handleClick"
   >
-    <view :class="`m-radio__shape`">
-      <slot name="icon" :is-checked="isChecked">
-        <m-icon :class="`m-radio__icon`" :style="iconStyle" :name="iconValue"></m-icon>
-      </slot>
-    </view>
-
     <view :class="`m-radio__label ${customLabelClass || ''}`" v-if="$slots.default">
       <slot></slot>
+    </view>
+
+    <template v-if="isButton">
+      <slot name="icon" :is-checked="isChecked">
+        <view v-if="isChecked" class="m-radio__shape">
+          <m-icon custom-class="m-radio__icon" :custom-style="iconStyle" :name="iconValue"></m-icon>
+        </view>
+      </slot>
+    </template>
+    <view v-else class="m-radio__shape">
+      <slot name="icon" :is-checked="isChecked">
+        <m-icon custom-class="m-radio__icon" :custom-style="iconStyle" :name="iconValue"></m-icon>
+      </slot>
     </view>
   </view>
 </template>
@@ -57,10 +64,10 @@ const iconValue = computed(() => {
   let icon = ''
   switch (typeValue.value) {
     case 'circle':
-      icon = isChecked.value ? 'check-circle-fill' : 'check-circle'
+      icon = isChecked.value ? 'check-circle-fill' : 'uncheck-circle'
       break
     case 'square':
-      icon = isChecked.value ? 'check-square-fill' : 'check-square'
+      icon = isChecked.value ? 'check-square-fill' : 'uncheck-square'
       break
     case 'dot':
       icon = isChecked.value ? 'check-circle-radio-fill' : 'uncheck-circle'
@@ -69,7 +76,7 @@ const iconValue = computed(() => {
       icon = isChecked.value ? 'check' : ''
       break
     default:
-      icon = isChecked.value ? 'check-circle-fill' : 'check-circle'
+      icon = isChecked.value ? 'check-circle-fill' : 'uncheck-circle'
       break
   }
   return icon

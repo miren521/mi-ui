@@ -1,117 +1,166 @@
 @use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
 
-$m-radio-size: 32rpx;
-$m-radio-icon-size: 40rpx;
-$m-radio-label-margin: 16rpx;
-$m-radio-active-color: var(--m-color-primary, #4080ff);
-$m-radio-inactive-color: var(--m-color-text-disabled, #c8c9cc);
-$m-radio-text-color: var(--m-color-text-primary, #323233);
-$m-radio-disabled-text-color: var(--m-color-text-disabled, #c8c9cc);
+$m-radio-label-margin: var(--m-radio-label-margin, 16rpx) !default;
+$m-radio-checked-color: var(--m-radio-checked-color, #1989fa) !default;
+$m-radio-icon-size: var(--m-radio-icon-size, 44rpx) !default;
+$m-radio-unchecked-color: var(--m-radio-unchecked-color, #c8c9cc) !default;
+$m-radio-label-font-size: var(--m-radio-label-font-size, 28rpx) !default;
+$m-radio-label-color: var(--m-radio-label-color, #323233) !default;
+$m-radio-label-line-height: var(--m-radio-label-line-height, 1.5) !default;
+$m-radio-disabled: var(--m-radio-disabled, 0.5) !default;
+$m-radio-horizontal-margin: var(--m-radio-horizontal-margin, 0 32rpx 0 0) !default;
+$m-radio-button-margin: var(--m-radio-button-margin, 0 32rpx 32rpx 0) !default;
+$m-radio-button-border-width: var(--m-radio-button-border-width, 2rpx) !default;
+$m-radio-button-shape-border-radius: var(--m-radio-button-shape-border-radius, 50%) !default;
+$m-radio-button-shape-size: var(--m-radio-button-shape-size, 52rpx) !default;
+$m-radio-button-font-size: var(--m-radio-button-font-size, 28rpx) !default;
+$m-radio-button-line-height: var(--m-radio-button-line-height, 1.5) !default;
+$m-radio-button-bg: var(--m-radio-button-bg, #f5f6f7) !default;
+$m-radio-button-checked-bg: var(--m-radio-button-checked-bg, rgba(25, 137, 250, 0.1)) !default;
+$m-radio-button-icon-size: var(--m-radio-button-icon-size, 20rpx) !default;
+$m-radio-button-min-width: var(--m-radio-button-min-width, 148rpx) !default;
+$m-radio-button-max-width: var(--m-radio-button-max-width, 296rpx) !default;
+$m-radio-button-border-radius: var(--m-radio-button-border-radius, 8rpx) !default;
+$m-radio-button-padding: var(--m-radio-button-padding, 16rpx 32rpx) !default;
+$m-radio-button-icon-color: var(--m-radio-button-icon-color, #ffffff) !default;
+$m-radio-button-shape-top: var(--m-radio-button-shape-top, -22rpx) !default;
+$m-radio-button-shape-left: var(--m-radio-button-shape-left, -18rpx) !default;
+$m-radio-button-shape-right: var(--m-radio-button-shape-right, -18rpx) !default;
+$m-radio-button-icon-top: var(--m-radio-button-icon-top, 26rpx) !default;
+$m-radio-button-icon-right: var(--m-radio-button-icon-right, 8rpx) !default;
+$m-radio-button-icon-left: var(--m-radio-button-icon-left, 8rpx) !default;
 
-.m-radio {
-  display: inline-flex;
+@include b(radio) {
+  position: relative;
+  display: flex;
   align-items: center;
-  font-size: var(--m-font-size-base, 28rpx);
-  color: $m-radio-text-color;
-  cursor: pointer;
+  justify-content: space-between;
+  overflow: hidden;
 
-  &__label {
-    flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-size: var(--m-font-size-base, 28rpx);
-    color: $m-radio-text-color;
+  @include m(horizontal) {
+    display: inline-flex;
+    justify-content: flex-start;
+    vertical-align: middle;
+
+    &:not(:last-child) {
+      margin: $m-radio-horizontal-margin;
+    }
   }
 
-  &__shape {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: $m-radio-icon-size;
-    height: $m-radio-icon-size;
-    font-size: $m-radio-icon-size;
-    line-height: 1;
+  @include m(right) {
+    .m-radio__label {
+      margin-right: $m-radio-label-margin;
+    }
   }
 
-  &__icon {
-    color: $m-radio-inactive-color;
-    transition: color var(--m-transition-duration-base, 0.2s);
-    font-size: inherit;
-  }
-
-  &--left {
-    flex-direction: row;
+  @include m(left) {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
 
     .m-radio__label {
       margin-left: $m-radio-label-margin;
     }
   }
 
-  &--right {
-    flex-direction: row-reverse;
-
-    .m-radio__label {
-      margin-right: $m-radio-label-margin;
-    }
+  @include edeep(icon) {
+    font-size: $m-radio-icon-size;
+    height: $m-radio-icon-size;
+    line-height: $m-radio-icon-size;
+    color: $m-radio-unchecked-color;
+    transition: all 0.2s;
   }
 
-  &--vertical {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    .m-radio__label {
-      margin-left: 0;
-      margin-top: $m-radio-label-margin;
-    }
+  @include e(label) {
+    font-size: $m-radio-label-font-size;
+    color: $m-radio-label-color;
+    line-height: $m-radio-label-line-height;
+    text-align: center;
+    word-break: break-all;
   }
 
-  &--horizontal {
-    display: inline-flex;
-    flex-direction: row;
-  }
-
-  &.is-checked {
-    .m-radio__icon {
-      color: $m-radio-active-color;
-    }
-  }
-
-  &.is-disabled {
-    pointer-events: none;
-    opacity: var(--m-disabled-opacity, 0.5);
-
-    .m-radio__label {
-      color: $m-radio-disabled-text-color;
-    }
-  }
-
-  &.is-button {
+  @include e(shape) {
     position: relative;
-    padding: 16rpx 24rpx;
-    background-color: var(--m-bg-color, #ffffff);
-    border: 2rpx solid var(--m-border-color, #ebedf0);
-    border-radius: var(--m-border-radius-sm, 8rpx);
-    transition: all var(--m-transition-duration-base, 0.2s);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-    &.is-checked {
-      background-color: rgba($m-radio-active-color, 0.1);
-      border-color: $m-radio-active-color;
+  @include when(checked) {
+    :deep(.m-radio__icon) {
+      color: $m-radio-checked-color;
+    }
+  }
 
-      .m-radio__label {
-        color: $m-radio-active-color;
+  @include when(button) {
+    display: inline-block;
+    min-width: $m-radio-button-min-width;
+    max-width: $m-radio-button-max-width;
+    margin: $m-radio-button-margin;
+    border-radius: $m-radio-button-border-radius;
+    background: $m-radio-button-bg;
+    font-size: $m-radio-button-font-size;
+    box-sizing: border-box;
+    border: $m-radio-button-border-width solid $m-radio-button-bg;
+
+    .m-radio__label {
+      position: relative;
+      padding: $m-radio-button-padding;
+      margin: auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .m-radio__shape {
+      position: absolute;
+      top: $m-radio-button-shape-top;
+      left: $m-radio-button-shape-left;
+      width: $m-radio-button-shape-size;
+      height: $m-radio-button-shape-size;
+      border-radius: $m-radio-button-shape-border-radius;
+      background: transparent;
+    }
+
+    :deep(.m-radio__icon) {
+      position: absolute;
+      top: $m-radio-button-icon-top;
+      right: $m-radio-button-icon-right;
+      font-size: $m-radio-button-icon-size;
+      line-height: $m-radio-button-icon-size;
+      height: $m-radio-button-icon-size;
+      color: $m-radio-button-icon-color;
+    }
+
+    &.m-radio--right {
+      .m-radio__shape {
+        left: auto;
+        right: $m-radio-button-shape-right;
+      }
+
+      :deep(.m-radio__icon) {
+        right: auto;
+        left: $m-radio-button-icon-left;
       }
     }
 
-    &.is-disabled {
-      background-color: var(--m-bg-color-disabled, #f5f6f7);
-      border-color: var(--m-border-color-disabled, #ebedf0);
+    @include when(checked) {
+      color: $m-radio-checked-color;
+      border-color: currentColor;
+      background: $m-radio-button-checked-bg;
+
+      .m-radio__shape {
+        color: $m-radio-checked-color;
+        background: currentColor;
+      }
 
       .m-radio__label {
-        color: $m-radio-disabled-text-color;
+        color: $m-radio-checked-color;
       }
     }
+  }
+
+  @include when(disabled) {
+    opacity: $m-radio-disabled;
   }
 }
