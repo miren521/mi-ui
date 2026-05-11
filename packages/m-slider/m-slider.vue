@@ -91,7 +91,6 @@ import { computed, type CSSProperties, getCurrentInstance, onMounted, ref, watch
 import { deepClone, getRect, isArray, isDef, isEqual, objToStyle, uuid } from '../common/util'
 import { useTouch } from '../composables/useTouch'
 import { sliderProps, type SliderExpose, type SliderEmits, type SliderValue, type SliderMarks, type SliderPopoverVisible } from './types'
-import './index.scss'
 
 const props = defineProps(sliderProps)
 const emit = defineEmits<SliderEmits>()
@@ -231,16 +230,19 @@ const lineStyle = computed(() => {
   const prop = props.vertical ? 'height' : 'width'
   const startProp = props.vertical ? 'top' : 'left'
 
+  const isCapsule = props.theme === 'capsule'
+  const capsuleOffset = isCapsule ? 2 : 0
+
   if (props.range) {
     const [left, right] = currentValue.value
-    const start = ((left - props.min) / scope.value) * 100
-    const size = ((right - left) / scope.value) * 100
-    style[startProp] = `${start}%`
+    const start = ((left - props.min) / scope.value) * (100 - capsuleOffset)
+    const size = ((right - left) / scope.value) * (100 - capsuleOffset)
+    style[startProp] = `${start + (isCapsule ? 1 : 0)}%`
     style[prop] = `${size}%`
   } else {
     const value = modelValue.value as number
-    const size = ((value - props.min) / scope.value) * 100
-    style[startProp] = '0'
+    const size = ((value - props.min) / scope.value) * (100 - capsuleOffset)
+    style[startProp] = isCapsule ? '1%' : '0'
     style[prop] = `${size}%`
   }
 
@@ -524,3 +526,7 @@ defineExpose<SliderExpose>({
   initSlider
 })
 </script>
+
+<style lang="scss">
+@import './index.scss';
+</style>

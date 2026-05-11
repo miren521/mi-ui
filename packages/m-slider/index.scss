@@ -7,6 +7,7 @@ $slider-bar-height: var(--m-slider-bar-height, 16rpx) !default;
 $slider-bar-height-capsule: var(--m-slider-bar-height-capsule, 48rpx) !default;
 $slider-bar-bg: var(--m-slider-bar-bg, #e8e8e8) !default;
 $slider-bar-radius: var(--m-slider-bar-radius, 8rpx) !default;
+$slider-bar-radius-capsule: var(--m-slider-bar-radius-capsule, 24rpx) !default;
 $slider-bar-height-vertical: var(--m-slider-bar-height-vertical, 248rpx) !default;
 
 /* 进度条 (Range) */
@@ -93,8 +94,8 @@ $slider-opacity-disabled: var(--m-slider-opacity-disabled, 0.5) !default;
     @include m(capsule) {
       height: $slider-bar-height-capsule;
       background: $slider-bar-bg;
-      border-radius: $slider-bar-radius;
-      padding: 0 $slider-capsule-track-inset;
+      border-radius: $slider-bar-radius-capsule;
+      padding: 0 calc($slider-dot-size / 2);
       display: flex;
       align-items: center;
     }
@@ -125,6 +126,9 @@ $slider-opacity-disabled: var(--m-slider-opacity-disabled, 0.5) !default;
 
     @include m(capsule) {
       height: $slider-line-height-capsule;
+      top: ($slider-bar-height-capsule - $slider-line-height-capsule) / 2;
+      left: calc($slider-dot-size / 2);
+      border-radius: $slider-bar-radius-capsule;
     }
 
     @include m(single) {
@@ -291,6 +295,21 @@ $slider-opacity-disabled: var(--m-slider-opacity-disabled, 0.5) !default;
         @include me(dot-slider) {
           width: $slider-dot-size;
           height: $slider-dot-size;
+        }
+
+        @include me(dot) {
+          top: 50%;
+          transform: translateY(-50%);
+
+          &.m-slider__dot--left {
+            left: 0;
+            transform: translate(-50%, -50%);
+          }
+
+          &.m-slider__dot--right {
+            right: 0;
+            transform: translate(50%, -50%);
+          }
         }
       }
     }
