@@ -2,8 +2,8 @@
 	<view class="m-input-demo">
 		<view class="m-input-demo__container">
 			<!-- 基础用法 -->
-			<demo-block title="基础用法" desc="最简单的输入框使用场景">
-				<view class="demo-input-row">
+			<demo-block title="基础用法" desc="默认紧凑模式，无背景色">
+				<view class="demo-input-row demo-input-row--plain">
 					<m-input v-model="basicValue" placeholder="请输入文本" />
 				</view>
 				<view class="demo-input-value">
@@ -42,10 +42,10 @@
 			<!-- 带图标输入框 -->
 			<demo-block title="带图标输入框" desc="使用 prefix-icon 和 suffix-icon 属性添加前置和后置图标">
 				<view class="demo-input-row">
-					<m-input v-model="iconValue1" prefix-icon="search1" placeholder="搜索内容" />
+					<m-input v-model="iconValue1" prefix-icon="search-line" placeholder="搜索内容" />
 				</view>
 				<view class="demo-input-row" style="margin-top: 20rpx">
-					<m-input v-model="iconValue2" suffix-icon="warning" placeholder="带警告提示" />
+					<m-input v-model="iconValue2" suffix-icon="info-circle" placeholder="带警告提示" />
 				</view>
 			</demo-block>
 
@@ -70,10 +70,10 @@
 				</view>
 			</demo-block>
 
-			<!-- 紧凑模式 -->
-			<demo-block title="紧凑模式" desc="设置 compact 属性使用紧凑布局，无背景色">
-				<view class="demo-input-row">
-					<m-input v-model="compactValue" compact placeholder="紧凑模式输入框" />
+			<!-- 背景模式 -->
+			<demo-block title="背景模式" desc="设置 background 属性显示灰色背景和内边距">
+				<view class="demo-input-row demo-input-row--border">
+					<m-input v-model="backgroundValue" background placeholder="带背景的输入框" />
 				</view>
 			</demo-block>
 
@@ -155,7 +155,7 @@ const limitValue = ref('');
 const telValue = ref('');
 const numberValue = ref('');
 const errorValue = ref('');
-const compactValue = ref('');
+const backgroundValue = ref('');
 const borderValue = ref('');
 const searchValue = ref('');
 const sendValue = ref('');
@@ -269,6 +269,17 @@ function handleFormGetCode() {
 		background: transparent;
 		border-radius: 0;
 		padding: 8rpx;
+	}
+
+	&--bg {
+		background: #f7f8fa;
+		padding: 4rpx 24rpx;
+		border-radius: 8rpx;
+	}
+
+	&--plain {
+		background: transparent;
+		border-radius: 0;
 	}
 }
 

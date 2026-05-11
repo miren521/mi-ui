@@ -22,11 +22,10 @@ $input-error-color: var(--m-input-error-color, var(--m-color-danger, #ee0a24));
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: $input-padding;
+  padding: 0;
   -webkit-tap-highlight-color: transparent;
   text-align: left;
-  background: $input-bg;
-  border-radius: var(--m-radius-md, 8rpx);
+  background: transparent;
 
   @include e(prefix) {
     margin-right: $input-icon-margin;
@@ -115,9 +114,10 @@ $input-error-color: var(--m-input-error-color, var(--m-color-danger, #ee0a24));
     color: $input-count-color;
   }
 
-  @include when(compact) {
-    padding: 0;
-    background: transparent;
+  @include when(background) {
+    padding: $input-padding;
+    background: $input-bg;
+    border-radius: var(--m-radius-md, 8rpx);
   }
 
   @include when(border) {
