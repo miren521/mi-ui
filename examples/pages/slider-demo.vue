@@ -146,7 +146,8 @@ const sliderValue17 = ref([30, 70])
 
 <style lang="scss" scoped>
 .demo-page {
-  padding: 24rpx;
+  padding: 32rpx;
+  background-color: #f5f6fa;
 }
 
 .demo-row {

@@ -216,12 +216,12 @@ $slider-opacity-disabled: var(--m-slider-opacity-disabled, 0.5) !default;
     @include m(default) {
       width: $slider-scale-size;
       height: $slider-scale-size;
-      background: $slider-scale-bg;
+      background: transparent;
       border-radius: $slider-scale-border-radius;
     }
 
     @include when(active) {
-      background: $slider-scale-bg-active;
+      background: transparent;
     }
 
     // 管道样式下的刻度变为垂直分割线（间隙）
@@ -266,6 +266,14 @@ $slider-opacity-disabled: var(--m-slider-opacity-disabled, 0.5) !default;
       line-height: $slider-scale-desc-line-height;
       color: $slider-scale-desc-color;
       white-space: nowrap;
+    }
+
+    @include me(scale-item) {
+      &:first-child {
+        @include me(scale-desc) {
+          transform: translateX(calc(-50% + 16rpx));
+        }
+      }
     }
 
     &.m-slider--theme-capsule {
