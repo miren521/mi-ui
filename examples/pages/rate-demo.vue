@@ -26,7 +26,7 @@
       <view class="demo-tip">当前值: {{ rateValue4 }}</view>
     </demo-block>
 
-    <demo-block title="可清空" desc="设置 clearable 属性再次点击相同值时可清空">
+    <demo-block title="可清空" desc="设置 clearable 属性，当选中最小值时再次点击可清空为 0">
       <view class="demo-row">
         <m-rate v-model="rateValue5" clearable></m-rate>
       </view>
