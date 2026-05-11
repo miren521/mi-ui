@@ -20,9 +20,8 @@ $textarea-error-color: var(--m-textarea-error-color, var(--m-color-danger, #ee0a
 @include b(textarea) {
   -webkit-tap-highlight-color: transparent;
   text-align: left;
-  background: $textarea-bg;
-  padding: $textarea-padding;
-  border-radius: var(--m-radius-md, 8rpx);
+  background: transparent;
+  padding: 0;
 
   @include e(placeholder) {
     color: $textarea-inner-placeholder-color;
@@ -92,10 +91,10 @@ $textarea-error-color: var(--m-textarea-error-color, var(--m-color-danger, #ee0a
     }
   }
 
-  @include when(compact) {
-    padding: 0;
-    background: transparent;
-    border-radius: 0;
+  @include when(background) {
+    padding: $textarea-padding;
+    background: $textarea-bg;
+    border-radius: var(--m-radius-md, 8rpx);
   }
 
   @include when(border) {

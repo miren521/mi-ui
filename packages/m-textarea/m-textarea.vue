@@ -116,7 +116,7 @@ const isAutoSize = computed(() => {
 const rootClass = computed(() => {
   return `m-textarea ${props.error ? 'is-error' : ''} ${props.disabled ? 'is-disabled' : ''} ${props.autoHeight ? 'is-auto-height' : ''} ${
     isAutoSize.value ? 'is-auto-size' : ''
-  } ${isCompact.value ? 'is-compact' : ''} ${props.border ? 'is-border' : ''} ${props.customClass}`
+  } ${isCompact.value ? 'is-compact' : ''} ${props.border ? 'is-border' : ''} ${props.background ? 'is-background' : ''} ${props.customClass}`
 })
 
 const isCompact = computed(() => {

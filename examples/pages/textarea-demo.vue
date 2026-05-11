@@ -2,8 +2,8 @@
 	<view class="m-textarea-demo">
 		<view class="m-textarea-demo__container">
 			<!-- 基础用法 -->
-			<demo-block title="基础用法" desc="最简单的文本域使用场景">
-				<view class="demo-textarea-row">
+			<demo-block title="基础用法" desc="默认紧凑模式，无背景色">
+				<view class="demo-textarea-row demo-textarea-row--plain">
 					<m-textarea v-model="basicValue" placeholder="请输入内容" />
 				</view>
 				<view class="demo-textarea-value">
@@ -67,10 +67,10 @@
 				</view>
 			</demo-block>
 
-			<!-- 紧凑模式 -->
-			<demo-block title="紧凑模式" desc="设置 compact 属性使用紧凑布局，无背景色和内边距，适合表单场景">
-				<view class="demo-textarea-row">
-					<m-textarea v-model="compactValue" compact placeholder="紧凑模式文本域" />
+			<!-- 背景模式 -->
+			<demo-block title="背景模式" desc="设置 background 属性显示灰色背景和内边距">
+				<view class="demo-textarea-row border-demo">
+					<m-textarea v-model="backgroundValue" background placeholder="带背景的文本域" />
 				</view>
 			</demo-block>
 
@@ -119,7 +119,7 @@ const autoSizeValue = ref('');
 const autoSizeNoLimitValue = ref('');
 const clearableValue = ref('可清除的文本内容');
 const errorValue = ref('');
-const compactValue = ref('');
+const backgroundValue = ref('');
 const borderValue = ref('');
 const borderAutoSizeValue = ref('');
 
@@ -151,6 +151,11 @@ const formData = reactive({
 	&.border-demo {
 		background: transparent;
 		padding: 16rpx;
+	}
+
+	&--plain {
+		background: transparent;
+		border-radius: 0;
 	}
 }
 

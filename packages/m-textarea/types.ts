@@ -43,8 +43,9 @@ export const textareaProps = {
   ignoreCompositionEvent: makeBooleanProp(true),
   inputmode: makeStringProp<InputMode>('text'),
   enableNative: makeBooleanProp(true),
-  compact: makeBooleanProp(void 0),
-  border: makeBooleanProp(false)
+  compact: makeBooleanProp(true),
+  border: makeBooleanProp(false),
+  background: makeBooleanProp(false)
 }
 
 export type TextareaProps = ExtractPropTypes<typeof textareaProps>
