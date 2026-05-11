@@ -1,5 +1,5 @@
 <template>
-  <view :class="rootClass" :style="customStyle">
+  <view :class="rootClass" :style="[customStyle, rootStyle]">
     <!-- 标题区域 -->
     <view v-if="showTitle" class="m-form-item__label" :style="labelStyle">
       <text v-if="isRequired && !formItemHideAsterisk" class="m-form-item__asterisk">*</text>
@@ -185,6 +185,14 @@ const contentStyle = computed(() => {
   }
   return style
 })
+
+const rootStyle = computed(() => {
+  const style: Record<string, string> = {}
+  if (props.titlePadding) {
+    style.padding = props.titlePadding
+  }
+  return style
+})
 </script>
 
 <style lang="scss" scoped>
@@ -247,7 +255,6 @@ $form-item-asterisk-color: var(--m-color-danger, #ee0a24);
 
     .m-form-item__label {
       align-items: flex-start;
-      padding-top: 12px; // 添加顶部间距，与输入框文字对齐
     }
   }
 

@@ -37,7 +37,8 @@ export const formItemProps = {
   customLabelClass: makeStringProp(''),
   customValueClass: makeStringProp(''),
   customTitleClass: makeStringProp(''),
-  titleAlign: String as PropType<'top' | 'center' | 'bottom'>
+  titleAlign: String as PropType<'top' | 'center' | 'bottom'>,
+  titlePadding: String
 }
 
 export type FormItemProps = ExtractPropTypes<typeof formItemProps>

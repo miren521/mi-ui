@@ -94,10 +94,10 @@
 					<m-form-item prop="username" title="用户名">
 						<m-input v-model="formData.username" placeholder="请输入用户名" clearable />
 					</m-form-item>
-					<m-form-item prop="content" title="内容">
+					<m-form-item prop="content" title="内容" title-align="top">
 						<m-textarea v-model="formData.content" :maxlength="200" show-word-limit :auto-size="{ minRows: 3, maxRows: 6 }" placeholder="请输入内容（3-6行自动适应）" />
 					</m-form-item>
-					<m-form-item prop="remark" title="备注">
+					<m-form-item prop="remark" title="备注" title-align="top">
 						<m-textarea v-model="formData.remark" placeholder="请输入备注（选填）" />
 					</m-form-item>
 				</m-form>
