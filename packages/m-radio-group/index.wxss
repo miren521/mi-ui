@@ -1,0 +1,1 @@
+@use '../common/styles/mixin/mixin.scss' as *;.m-radio-group{display:flex}.m-radio-group--vertical{flex-direction:column;gap:24rpx}.m-radio-group--horizontal{flex-direction:row;flex-wrap:wrap;gap:24rpx}

@@ -199,6 +199,12 @@
       }
     },
     {
+      "path": "examples/pages/switch-demo",
+      "style": {
+        "navigationBarTitleText": "Switch 开关"
+      }
+    },
+    {
       "path": "examples/pages/textarea-demo",
       "style": {
         "navigationBarTitleText": "Textarea 文本域"

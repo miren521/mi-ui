@@ -1,0 +1,152 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$m-switch-color-action-bg: var(--m-switch-color-action-bg, #fff) !default;
+$m-switch-color-action-icon: var(--m-switch-color-action-icon, #1989fa) !default;
+$m-switch-color-active-bg: var(--m-switch-color-active-bg, #1989fa) !default;
+$m-switch-color-inner-active-text: var(--m-switch-color-inner-active-text, #fff) !default;
+$m-switch-color-inner-inactive-text: var(--m-switch-color-inner-inactive-text, #646566) !default;
+$m-switch-color-active-icon: var(--m-switch-color-active-icon, #fff) !default;
+$m-switch-color-inactive-bg: var(--m-switch-color-inactive-bg, #f2f3f5) !default;
+$m-switch-color-inactive-icon: var(--m-switch-color-inactive-icon, #969799) !default;
+
+$m-switch-left-right-padding: var(--m-switch-left-right-padding, 10rpx) !default;
+$m-switch-top-bottom-padding: var(--m-switch-top-bottom-padding, 4rpx) !default;
+
+$m-switch-size: var(--m-switch-size, 52rpx) !default;
+$m-switch-size-icon: var(--m-switch-size-icon, 26rpx) !default;
+$m-switch-size-action-height: var(--m-switch-size-action-height, 52rpx) !default;
+$m-switch-size-action-width: var(--m-switch-size-action-width, 52rpx) !default;
+$m-switch-size-action-icon: var(--m-switch-size-action-icon, 26rpx) !default;
+$m-switch-size-inner-height: var(--m-switch-size-inner-height, calc(#{$m-switch-size-action-height} + #{$m-switch-top-bottom-padding} * 2)) !default;
+$m-switch-size-inner-min-width: var(--m-switch-size-inner-min-width, 100rpx) !default;
+
+$m-switch-inner-font-size: var(--m-switch-inner-font-size, 28rpx) !default;
+
+$m-switch-radius: var(--m-switch-radius, 8rpx) !default;
+$m-switch-radius-full: var(--m-switch-radius-full, 999rpx) !default;
+
+$m-switch-radius-action: var(--m-switch-radius-action, 4rpx) !default;
+$m-switch-radius-action-full: var(--m-switch-radius-action-full, 50%) !default;
+
+$m-switch-spacing: var(--m-switch-spacing, 8rpx) !default;
+$m-switch-transition-duration: var(--m-switch-transition-duration, 0.3s) !default;
+$m-switch-disabled: var(--m-switch-disabled, 0.5) !default;
+
+@include b(switch) {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  font-size: $m-switch-size;
+  vertical-align: middle;
+
+  @include when(disabled) {
+    opacity: $m-switch-disabled;
+  }
+
+  @include when(loading) {
+    opacity: 0.7;
+  }
+
+  @include e(inner) {
+    box-sizing: border-box;
+    font-size: inherit;
+    display: flex;
+    align-items: center;
+    min-width: $m-switch-size-inner-min-width;
+    height: $m-switch-size-inner-height;
+    transition: all $m-switch-transition-duration ease;
+    border-radius: $m-switch-radius-full;
+    padding: $m-switch-top-bottom-padding $m-switch-left-right-padding;
+  }
+
+  @include e(action) {
+    position: absolute;
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: inherit;
+    width: $m-switch-size-action-width;
+    height: $m-switch-size-action-height;
+    background: $m-switch-color-action-bg;
+    border-radius: $m-switch-radius-action-full;
+    transition: all $m-switch-transition-duration ease;
+    left: $m-switch-top-bottom-padding;
+  }
+
+  @include m(round) {
+    .m-switch__inner {
+      border-radius: $m-switch-radius-full;
+    }
+    .m-switch__action {
+      border-radius: $m-switch-radius-action-full;
+    }
+  }
+
+  @include m(square) {
+    .m-switch__inner {
+      border-radius: $m-switch-radius;
+    }
+    .m-switch__action {
+      border-radius: $m-switch-radius-action;
+    }
+  }
+
+  @include edeep(action-loading) {
+    font-size: $m-switch-size-action-icon;
+  }
+
+  @include edeep(inner-icon) {
+    font-size: $m-switch-size-icon;
+  }
+
+  @include edeep(action-icon) {
+    font-size: $m-switch-size-action-icon;
+    color: $m-switch-color-action-icon;
+  }
+
+  @include e(inner-text) {
+    font-size: $m-switch-inner-font-size;
+  }
+
+  @include when(active) {
+    .m-switch__inner {
+      background: $m-switch-color-active-bg;
+      padding-right: calc(#{$m-switch-size-action-width} + #{$m-switch-top-bottom-padding});
+    }
+
+    :deep(.m-switch__inner-icon) {
+      color: $m-switch-color-active-icon;
+      margin-right: $m-switch-spacing;
+    }
+
+    .m-switch__inner-text {
+      color: $m-switch-color-inner-active-text;
+      margin-left: 6rpx;
+      margin-right: $m-switch-spacing;
+    }
+
+    .m-switch__action {
+      left: calc(100% - #{$m-switch-size-action-width} - #{$m-switch-top-bottom-padding});
+    }
+  }
+
+  @include when(inactive) {
+    .m-switch__inner {
+      background: $m-switch-color-inactive-bg;
+      padding-left: calc(#{$m-switch-size-action-width} + #{$m-switch-top-bottom-padding});
+    }
+
+    :deep(.m-switch__inner-icon) {
+      color: $m-switch-color-inactive-icon;
+      margin-left: $m-switch-spacing;
+    }
+
+    .m-switch__inner-text {
+      color: #999999;
+      margin-left: calc(#{$m-switch-spacing} + 6rpx);
+      margin-right: 4rpx;
+    }
+  }
+}
