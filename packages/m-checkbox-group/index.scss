@@ -2,4 +2,7 @@
 @use '../common/styles/variables.scss' as *;
 
 @include b(checkbox-group) {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
 }
