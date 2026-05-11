@@ -15,6 +15,7 @@ import mCheckboxGroup from './m-checkbox-group/m-checkbox-group.vue'
 import mTextarea from './m-textarea/m-textarea.vue'
 import mForm from './m-form/m-form.vue'
 import mFormItem from './m-form-item/m-form-item.vue'
+import mSlider from './m-slider/m-slider.vue'
 
 // 所有组件 
 const components = [ 
@@ -30,6 +31,7 @@ const components = [
 	mTextarea,
 	mForm,
 	mFormItem,
+	mSlider,
 ] 
 
 // 安装函数 
@@ -60,6 +62,7 @@ export {
 	mTextarea,
 	mForm,
 	mFormItem,
+	mSlider,
 } 
 
 export default { 
@@ -76,4 +79,5 @@ export default {
 	mTextarea,
 	mForm,
 	mFormItem,
+	mSlider,
 }
