@@ -11,7 +11,7 @@
       <text v-else class="m-switch__inner-text">{{ isActive ? activeText : inactiveText }}</text>
     </view>
     <view class="m-switch__action">
-      <m-loading v-if="loading" v-bind="customLoadingProps"></m-loading>
+      <m-loading v-if="loading" v-bind="customLoadingProps" :size="20"></m-loading>
       <m-icon
         v-else-if="actionIcon || actionCssIcon"
         custom-class="m-switch__action-icon"

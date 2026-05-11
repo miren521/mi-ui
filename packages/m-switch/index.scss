@@ -91,6 +91,29 @@ $m-switch-disabled: var(--m-switch-disabled, 0.5) !default;
     .m-switch__action {
       border-radius: $m-switch-radius-action;
     }
+
+    &.is-active {
+      .m-switch__inner {
+        padding-right: calc(#{$m-switch-size-action-width} + #{$m-switch-top-bottom-padding} + 6rpx);
+      }
+    }
+  }
+
+  @include e(loading) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    .m-switch__loading-ring {
+      width: 28rpx;
+      height: 28rpx;
+      border: 3rpx solid rgba(255, 255, 255, 0.3);
+      border-top-color: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      animation: switchLoading 1s linear infinite;
+    }
   }
 
   @include edeep(action-loading) {
@@ -145,8 +168,17 @@ $m-switch-disabled: var(--m-switch-disabled, 0.5) !default;
 
     .m-switch__inner-text {
       color: #999999;
-      margin-left: calc(#{$m-switch-spacing} + 6rpx);
-      margin-right: 4rpx;
+      margin-left: calc(#{$m-switch-spacing});
+      margin-right: 6rpx;
     }
+  }
+}
+
+@keyframes switchLoading {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

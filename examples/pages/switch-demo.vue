@@ -13,10 +13,14 @@
       </view>
     </demo-block>
 
-    <demo-block title="加载状态" desc="设置 loading 属性显示加载状态">
+    <demo-block title="加载状态" desc="模拟异步操作，点击后显示加载中，2秒后自动切换">
       <view class="demo-row">
-        <m-switch v-model="switchValue3" loading></m-switch>
+        <view class="demo-item">
+          <text class="demo-label">点击切换</text>
+          <m-switch v-model="switchValue3" :loading="isLoading" @change="handleAsyncChange"></m-switch>
+        </view>
       </view>
+      <view class="demo-tip" v-if="isLoading">正在加载中...</view>
     </demo-block>
 
     <demo-block title="不同形状" desc="支持圆角(round)和方角(square)两种形状">
@@ -61,7 +65,8 @@
 
     <demo-block title="自定义文案" desc="通过 active-text 和 inactive-text 设置开关的文案">
       <view class="demo-row">
-        <m-switch v-model="switchValue10" active-text="开" inactive-text="关"></m-switch>
+        <m-switch v-model="switchValue10" active-text="上班" inactive-text="下班"></m-switch>
+        <m-switch v-model="switchValue14" shape="square" active-text="上班" inactive-text="下班"></m-switch>
       </view>
     </demo-block>
 
@@ -78,6 +83,19 @@
         <view class="demo-item">
           <text class="demo-label">大</text>
           <m-switch v-model="switchValue13" size="64rpx"></m-switch>
+        </view>
+      </view>
+    </demo-block>
+
+    <demo-block title="自定义图标" desc="通过 active-icon 和 inactive-icon 设置开关的图标">
+      <view class="demo-row">
+        <view class="demo-item">
+          <text class="demo-label">圆形图标</text>
+          <m-switch v-model="switchValue15" active-icon="check" inactive-icon="close"></m-switch>
+        </view>
+        <view class="demo-item">
+          <text class="demo-label">方形图标</text>
+          <m-switch v-model="switchValue16" shape="square" active-icon="check" inactive-icon="close"></m-switch>
         </view>
       </view>
     </demo-block>
@@ -100,6 +118,18 @@ const switchValue10 = ref(true)
 const switchValue11 = ref(true)
 const switchValue12 = ref(true)
 const switchValue13 = ref(true)
+const switchValue14 = ref(true)
+const switchValue15 = ref(true)
+const switchValue16 = ref(true)
+
+const isLoading = ref(false)
+
+const handleAsyncChange = () => {
+  isLoading.value = true
+  setTimeout(() => {
+    isLoading.value = false
+  }, 2000)
+}
 </script>
 
 <style lang="scss" scoped>
@@ -110,7 +140,7 @@ const switchValue13 = ref(true)
 }
 
 .demo-row {
-  padding: 16rpx 16rpx;
+  padding: 8rpx 16rpx;
   display: flex;
   flex-wrap: wrap;
   gap: 36rpx;
