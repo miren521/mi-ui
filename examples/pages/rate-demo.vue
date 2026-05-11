@@ -53,6 +53,19 @@
       </view>
     </demo-block>
 
+    <demo-block title="自定义图标" desc="通过 icon 和 active-icon 设置选中和未选中图标">
+      <view class="demo-row">
+        <view class="demo-item">
+          <text class="demo-label">心情图标</text>
+          <m-rate v-model="rateValue15" icon="face-frown-fill" active-icon="face-smile-fill"></m-rate>
+        </view>
+        <view class="demo-item">
+          <text class="demo-label">点赞图标</text>
+          <m-rate v-model="rateValue16" icon="thumb-down-fill" active-icon="thumb-up-fill"></m-rate>
+        </view>
+      </view>
+    </demo-block>
+
     <demo-block title="分段颜色" desc="active-color 支持数组实现分段颜色">
       <view class="demo-row">
         <m-rate v-model="rateValue9" :active-color="['#ff4d4f', '#52c41a']"></m-rate>
@@ -66,19 +79,23 @@
       </view>
     </demo-block>
 
-    <demo-block title="自定义尺寸" desc="通过 size 属性设置图标大小">
+    <demo-block title="自定义尺寸" desc="通过 size 属性设置图标大小，默认40rpx">
       <view class="demo-row">
         <view class="demo-item">
-          <text class="demo-label">小</text>
+          <text class="demo-label">超小</text>
           <m-rate v-model="rateValue11" size="24rpx"></m-rate>
         </view>
         <view class="demo-item">
-          <text class="demo-label">中</text>
+          <text class="demo-label">小</text>
           <m-rate v-model="rateValue12" size="32rpx"></m-rate>
         </view>
         <view class="demo-item">
+          <text class="demo-label">默认</text>
+          <m-rate v-model="rateValue13"></m-rate>
+        </view>
+        <view class="demo-item">
           <text class="demo-label">大</text>
-          <m-rate v-model="rateValue13" size="48rpx"></m-rate>
+          <m-rate v-model="rateValue17" size="48rpx"></m-rate>
         </view>
       </view>
     </demo-block>
@@ -108,6 +125,9 @@ const rateValue11 = ref(3)
 const rateValue12 = ref(3)
 const rateValue13 = ref(3)
 const rateValue14 = ref(3)
+const rateValue15 = ref(3)
+const rateValue16 = ref(3)
+const rateValue17 = ref(3)
 </script>
 
 <style lang="scss" scoped>
