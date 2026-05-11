@@ -56,19 +56,17 @@
     </demo-block>
 
     <demo-block title="气泡显示" desc="popover-visible 控制气泡显示模式">
-      <view class="demo-row">
-        <view class="demo-item">
-          <text class="demo-label">始终显示</text>
-          <m-slider v-model="sliderValue9" popover-visible="always"></m-slider>
-        </view>
-        <view class="demo-item">
-          <text class="demo-label">拖动时显示</text>
-          <m-slider v-model="sliderValue10"></m-slider>
-        </view>
-        <view class="demo-item">
-          <text class="demo-label">从不显示</text>
-          <m-slider v-model="sliderValue11" popover-visible="never"></m-slider>
-        </view>
+      <view class="demo-bubble-item">
+        <text class="demo-bubble-label">始终显示</text>
+        <m-slider v-model="sliderValue9" popover-visible="always"></m-slider>
+      </view>
+      <view class="demo-bubble-item">
+        <text class="demo-bubble-label">拖动时显示</text>
+        <m-slider v-model="sliderValue10"></m-slider>
+      </view>
+      <view class="demo-bubble-item">
+        <text class="demo-bubble-label">从不显示</text>
+        <m-slider v-model="sliderValue11" popover-visible="never"></m-slider>
       </view>
     </demo-block>
 
@@ -177,5 +175,17 @@ const sliderValue17 = ref([30, 70])
 .vertical-demo {
   justify-content: center;
   height: 300rpx;
+}
+
+.demo-bubble-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24rpx;
+
+  .demo-bubble-label {
+    font-size: 28rpx;
+    color: #969799;
+    margin-bottom: 12rpx;
+  }
 }
 </style>
