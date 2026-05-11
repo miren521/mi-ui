@@ -73,8 +73,8 @@ $slider-opacity-disabled: var(--m-slider-opacity-disabled, 0.5) !default;
 
   @include m(with-extreme) {
     @include me(bar) {
-      margin-left: $slider-extreme-spacing;
-      margin-right: $slider-extreme-spacing;
+      margin-left: calc(#{$slider-extreme-spacing} + #{$slider-dot-size} / 3);
+      margin-right: calc(#{$slider-extreme-spacing} + #{$slider-dot-size} / 3);
     }
   }
 
@@ -361,8 +361,8 @@ $slider-opacity-disabled: var(--m-slider-opacity-disabled, 0.5) !default;
 
     &.m-slider--with-extreme {
       .m-slider__bar {
-        margin-top: $slider-extreme-spacing;
-        margin-bottom: $slider-extreme-spacing;
+        margin-top: calc(#{$slider-extreme-spacing} + #{$slider-dot-size} / 3);
+        margin-bottom: calc(#{$slider-extreme-spacing} + #{$slider-dot-size} / 3);
       }
     }
 
