@@ -205,6 +205,12 @@
       }
     },
     {
+      "path": "examples/pages/rate-demo",
+      "style": {
+        "navigationBarTitleText": "Rate 评分"
+      }
+    },
+    {
       "path": "examples/pages/textarea-demo",
       "style": {
         "navigationBarTitleText": "Textarea 文本域"

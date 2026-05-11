@@ -32,6 +32,7 @@ export const formComponents: ComponentItem[] = [
   { id: 'Checkbox', title: 'Checkbox 复选框', enTitle: 'Checkbox', zhTitle: '复选框', desc: '用于在一组备选项中进行多选', category: 'form', url: '/examples/pages/checkbox-demo' },
   { id: 'Radio', title: 'Radio 单选框', enTitle: 'Radio', zhTitle: '单选框', desc: '单选框用于在一组备选项中进行单选', category: 'form', url: '/examples/pages/radio-demo' },
   { id: 'Switch', title: 'Switch 开关', enTitle: 'Switch', zhTitle: '开关', desc: '用来打开或关闭选项', category: 'form', url: '/examples/pages/switch-demo' },
+  { id: 'Rate', title: 'Rate 评分', enTitle: 'Rate', zhTitle: '评分', desc: '评分组件，用于评价等级展示', category: 'form', url: '/examples/pages/rate-demo' },
 ]
 
 // 布局
