@@ -44,13 +44,13 @@ $m-picker-radius: var(--m-picker-radius, var(--m-radius-large, 16rpx)) !default;
     @include m(cancel) {
       color: $m-picker-action-color-cancel;
       padding: 0;
-      width: 100rpx;
+      width: 70rpx;
     }
 
     @include m(confirm) {
       color: $m-picker-action-color-confirm;
       padding: 0;
-      width: 100rpx;
+      width: 70rpx;
       text-align: right;
     }
   }
@@ -63,5 +63,69 @@ $m-picker-radius: var(--m-picker-radius, var(--m-radius-large, 16rpx)) !default;
     font-size: $m-picker-title-font-size;
     font-weight: $m-picker-title-font-weight;
     line-height: $m-picker-title-line-height;
+  }
+
+  @include e(toast) {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8rpx;
+    padding: 24rpx 40rpx;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 12rpx;
+    z-index: 1000;
+    color: #ffffff;
+    font-size: 28rpx;
+    animation: m-picker-toast-fade-in 0.2s ease-out;
+  }
+
+  @include e(toast-icon) {
+    color: #ffffff;
+  }
+
+  @include e(toast-text) {
+    color: #ffffff;
+    font-size: 28rpx;
+  }
+
+  @include e(loading) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100rpx;
+    height: 100%;
+  }
+
+  @include e(loading-icon) {
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 50%;
+    border: 3rpx solid rgba(59, 130, 246, 0.3);
+    border-top-color: rgba(59, 130, 246, 1);
+    animation: m-picker-loading-rotate 0.8s linear infinite;
+  }
+}
+
+@keyframes m-picker-loading-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes m-picker-toast-fade-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }

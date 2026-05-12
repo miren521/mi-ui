@@ -12,13 +12,22 @@
       custom-class="m-picker__popup"
     >
       <view class="m-picker__wraper">
+        <view v-if="toastVisible" class="m-picker__toast">
+          <view class="m-picker__toast-icon" v-if="toastIcon">
+            <m-icon :name="toastIcon" :size="24" />
+          </view>
+          <text class="m-picker__toast-text">{{ toastText }}</text>
+        </view>
         <view class="m-picker__toolbar" @touchmove="noop">
           <view class="m-picker__action m-picker__action--cancel" @click="onCancel">
             {{ cancelButtonText || '取消' }}
           </view>
           <view v-if="title" class="m-picker__title">{{ title }}</view>
           <view class="m-picker__action m-picker__action--confirm" @click="onConfirm">
-            {{ confirmButtonText || '完成' }}
+            <view v-if="confirmLoading" class="m-picker__loading">
+              <view class="m-picker__loading-icon"></view>
+            </view>
+            <text v-else>{{ confirmButtonText || '完成' }}</text>
           </view>
         </view>
         <m-picker-view
@@ -73,6 +82,10 @@ const pickerViewRef = ref<PickerViewExpose>()
 const displayColumns = ref<Array<PickerOption | Array<PickerOption>>>([])
 const isPicking = ref<boolean>(false)
 const hasConfirmed = ref<boolean>(false)
+const confirmLoading = ref<boolean>(false)
+const toastVisible = ref<boolean>(false)
+const toastText = ref<string>('')
+const toastIcon = ref<string>('')
 
 watch(
   () => props.modelValue,
@@ -146,6 +159,15 @@ function onCancel() {
   emit('cancel')
 }
 
+function showToast(text: string, icon: string = 'success') {
+  toastText.value = text
+  toastIcon.value = icon
+  toastVisible.value = true
+  setTimeout(() => {
+    toastVisible.value = false
+  }, 2000)
+}
+
 function onConfirm() {
   if (isPicking.value) {
     hasConfirmed.value = true
@@ -153,10 +175,15 @@ function onConfirm() {
   }
 
   const { beforeConfirm } = props
+  confirmLoading.value = true
   callInterceptor(beforeConfirm, {
     args: [pickerValue.value],
     done: () => {
+      confirmLoading.value = false
       handleConfirm()
+    },
+    canceled: () => {
+      confirmLoading.value = false
     }
   })
 }

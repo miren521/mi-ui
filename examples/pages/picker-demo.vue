@@ -79,6 +79,19 @@
 				</view>
 			</demo-block>
 
+			<!-- 异步校验 -->
+			<demo-block title="异步校验" desc="通过 beforeConfirm 钩子在确认前进行异步校验，返回 false 可阻止确认">
+				<view class="demo-picker-row">
+					<view class="demo-picker-item" @click="openBeforeConfirmPicker">
+						<text class="demo-picker-label">异步校验</text>
+						<view class="demo-picker-value">
+							<text>{{ beforeConfirmText || '请选择（选择广州会被拒绝）' }}</text>
+							<m-icon name="right" :size="18" />
+						</view>
+					</view>
+				</view>
+			</demo-block>
+
 			<!-- picker-view 基础用法 -->
 			<demo-block title="PickerView 基础用法" desc="直接在页面中嵌入选择器视图">
 				<view class="demo-picker-row demo-picker-row--view">
@@ -156,6 +169,16 @@
 			title="手动控制"
 			@confirm="onManualConfirm"
 		/>
+
+		<!-- 异步校验选择器 -->
+		<m-picker
+			ref="beforeConfirmPickerRef"
+			v-model="beforeConfirmValue"
+			:columns="basicColumns"
+			title="异步校验示例"
+			:before-confirm="asyncBeforeConfirm"
+			@confirm="onBeforeConfirmConfirm"
+		/>
 	</view>
 </template>
 
@@ -168,6 +191,7 @@ const cascadeValue = ref<number[]>([])
 const disabledValue = ref<number[]>([])
 const titleValue = ref<number[]>([])
 const manualValue = ref<number[]>([])
+const beforeConfirmValue = ref<number[]>([])
 const pickerViewValue = ref<string[]>([])
 const pickerViewMultiValue = ref<string[]>([])
 
@@ -177,6 +201,7 @@ const cascadeText = ref('')
 const disabledText = ref('')
 const titleText = ref('')
 const manualText = ref('')
+const beforeConfirmText = ref('')
 
 const basicPickerRef = ref()
 const multiPickerRef = ref()
@@ -184,6 +209,7 @@ const cascadePickerRef = ref()
 const disabledPickerRef = ref()
 const titlePickerRef = ref()
 const manualPickerRef = ref()
+const beforeConfirmPickerRef = ref()
 
 const basicColumns = [
 	{ label: '北京', value: 1 },
@@ -284,6 +310,10 @@ function openManualPicker() {
 	manualPickerRef.value?.open()
 }
 
+function openBeforeConfirmPicker() {
+	beforeConfirmPickerRef.value?.open()
+}
+
 function onBasicConfirm({ selectedItems }: any) {
 	if (selectedItems && selectedItems.length > 0) {
 		basicText.value = selectedItems.map((item: any) => item.label).join(', ')
@@ -317,6 +347,32 @@ function onTitleConfirm({ selectedItems }: any) {
 function onManualConfirm({ selectedItems }: any) {
 	if (selectedItems && selectedItems.length > 0) {
 		manualText.value = selectedItems.map((item: any) => item.label).join(', ')
+	}
+}
+
+async function asyncBeforeConfirm(value: number[]) {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			if (value[0] === 3) {
+				uni.showToast({
+					title: '选择广州被拒绝',
+					icon: 'none'
+				})
+				resolve(false)
+			} else {
+				uni.showToast({
+					title: '校验通过',
+					icon: 'success'
+				})
+				resolve(true)
+			}
+		}, 1000)
+	})
+}
+
+function onBeforeConfirmConfirm({ selectedItems }: any) {
+	if (selectedItems && selectedItems.length > 0) {
+		beforeConfirmText.value = selectedItems.map((item: any) => item.label).join(', ')
 	}
 }
 
