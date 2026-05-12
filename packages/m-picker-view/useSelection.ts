@@ -219,6 +219,24 @@ export function useSelection(valueKey: string, labelKey: string, childrenKey: st
         if (isObj(firstItem) && childrenKey in firstItem) {
           const cascadeData = columns as PickerOption[]
           formatColumns.value = [formatArray([cascadeData], valueKey, labelKey)[0]]
+          
+          // 级联模式：初始化时自动展开所有子级数据
+          let currentLevel = cascadeData
+          let currentColumnIndex = 0
+          while (currentLevel.length > 0) {
+            const firstEnabledIndex = currentLevel.findIndex((item) => !item.disabled)
+            const nextIndex = firstEnabledIndex !== -1 ? firstEnabledIndex : 0
+            const selected = currentLevel[nextIndex]
+            
+            if (selected && selected[childrenKey] && (selected[childrenKey] as PickerOption[]).length > 0) {
+              currentLevel = selected[childrenKey] as PickerOption[]
+              currentColumnIndex++
+              formatColumns.value.push(formatArray([currentLevel], valueKey, labelKey)[0])
+            } else {
+              break
+            }
+          }
+          
           return
         }
       }

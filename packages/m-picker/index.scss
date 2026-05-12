@@ -43,10 +43,15 @@ $m-picker-radius: var(--m-picker-radius, var(--m-radius-large, 16rpx)) !default;
 
     @include m(cancel) {
       color: $m-picker-action-color-cancel;
+      padding: 0;
+      width: 100rpx;
     }
 
     @include m(confirm) {
       color: $m-picker-action-color-confirm;
+      padding: 0;
+      width: 100rpx;
+      text-align: right;
     }
   }
 
