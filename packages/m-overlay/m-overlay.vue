@@ -22,7 +22,9 @@
 export default {
   name: 'm-overlay',
   options: {
+    // #ifndef MP-TOUTIAO
     virtualHost: true,
+    // #endif
     addGlobalClass: true,
     styleIsolation: 'shared'
   }

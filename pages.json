@@ -227,6 +227,12 @@
       "style": {
         "navigationBarTitleText": "Textarea 文本域"
       }
+    },
+    {
+      "path": "examples/pages/overlay-demo",
+      "style": {
+        "navigationBarTitleText": "Overlay 遮罩层"
+      }
     }
   ],
   "globalStyle": {
