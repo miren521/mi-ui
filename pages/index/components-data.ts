@@ -34,6 +34,7 @@ export const formComponents: ComponentItem[] = [
   { id: 'Switch', title: 'Switch 开关', enTitle: 'Switch', zhTitle: '开关', desc: '用来打开或关闭选项', category: 'form', url: '/examples/pages/switch-demo' },
   { id: 'Rate', title: 'Rate 评分', enTitle: 'Rate', zhTitle: '评分', desc: '评分组件，支持半选、可清空', category: 'form', url: '/examples/pages/rate-demo' },
   { id: 'Slider', title: 'Slider 滑块', enTitle: 'Slider', zhTitle: '滑块', desc: '滑块组件，支持双向、刻度、垂直', category: 'form', url: '/examples/pages/slider-demo' },
+  { id: 'Picker', title: 'Picker 选择器', enTitle: 'Picker', zhTitle: '选择器', desc: '选择器组件，支持单列、多列、级联选择', category: 'form', url: '/examples/pages/picker-demo' },
 ]
 
 // 布局

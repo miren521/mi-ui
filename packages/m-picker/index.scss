@@ -1,0 +1,62 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$m-picker-toolbar-height: var(--m-picker-toolbar-height, auto) !default;
+$m-picker-bg: var(--m-picker-bg, #ffffff) !default;
+$m-picker-action-color-confirm: var(--m-picker-action-color-confirm, var(--m-color-primary, #3b82f6)) !default;
+$m-picker-action-color-cancel: var(--m-picker-action-color-cancel, var(--m-text-secondary, #969799)) !default;
+$m-picker-action-disabled-color: var(--m-picker-action-disabled-color, var(--m-text-disabled, #c8c9cc)) !default;
+$m-picker-action-font-size: var(--m-picker-action-font-size, var(--m-font-size-xl, 32rpx)) !default;
+$m-picker-title-color: var(--m-picker-title-color, var(--m-text-primary, #323233)) !default;
+$m-picker-title-font-size: var(--m-picker-title-font-size, var(--m-font-size-lg, 32rpx)) !default;
+$m-picker-title-font-weight: var(--m-picker-title-font-weight, 500) !default;
+$m-picker-title-line-height: var(--m-picker-title-line-height, 1.2) !default;
+$m-picker-radius: var(--m-picker-radius, var(--m-radius-large, 16rpx)) !default;
+
+@include b(picker) {
+  @include edeep(popup) {
+    border-radius: $m-picker-radius $m-picker-radius 0px 0px;
+    padding: 0;
+  }
+
+  @include e(wraper) {
+    padding-bottom: env(safe-area-inset-bottom);
+    background: $m-picker-bg;
+  }
+
+  @include e(toolbar) {
+    position: relative;
+    display: flex;
+    height: $m-picker-toolbar-height;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  @include e(action) {
+    display: block;
+    border: none;
+    outline: none;
+    font-size: $m-picker-action-font-size;
+    background: transparent;
+    padding: 0 30rpx;
+
+    @include m(cancel) {
+      color: $m-picker-action-color-cancel;
+    }
+
+    @include m(confirm) {
+      color: $m-picker-action-color-confirm;
+    }
+  }
+
+  @include e(title) {
+    display: block;
+    flex: 1;
+    text-align: center;
+    color: $m-picker-title-color;
+    font-size: $m-picker-title-font-size;
+    font-weight: $m-picker-title-font-weight;
+    line-height: $m-picker-title-line-height;
+  }
+}

@@ -1,0 +1,81 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$m-picker-view-bg: var(--m-picker-view-bg, #ffffff) !default;
+$m-picker-view-padding: var(--m-picker-view-padding, 0) !default;
+$m-picker-view-mask-start-color: var(--m-picker-view-mask-start-color, rgba(255, 255, 255, 0.85)) !default;
+$m-picker-view-mask-end-color: var(--m-picker-view-mask-end-color, rgba(255, 255, 255, 0.2)) !default;
+$m-picker-view-mask-bg: var(--m-picker-view-mask-bg, linear-gradient(180deg, $m-picker-view-mask-start-color, $m-picker-view-mask-end-color), linear-gradient(0deg, $m-picker-view-mask-start-color, $m-picker-view-mask-end-color)) !default;
+$m-picker-view-disabled-opacity: var(--m-picker-view-disabled-opacity, 0.4) !default;
+$m-picker-view-column-item-height: var(--m-picker-view-column-item-height, 88rpx) !default;
+$m-picker-view-column-item-font-size: var(--m-picker-view-column-item-font-size, var(--m-font-size-xl, 32rpx)) !default;
+$m-picker-view-column-item-color: var(--m-picker-view-column-item-color, var(--m-text-primary, #323233)) !default;
+$m-picker-view-column-item-padding: var(--m-picker-view-column-item-padding, 0 var(--m-spacing-tight, 12rpx)) !default;
+$m-picker-view-column-item-disabled-color: var(--m-picker-view-column-item-disabled-color, var(--m-text-disabled, #c8c9cc)) !default;
+$m-picker-view-column-item-font-weight-active: var(--m-picker-view-column-item-font-weight-active, 500) !default;
+$m-picker-view-roller-bg: var(--m-picker-view-roller-bg, var(--m-filled-bottom, #e8e8e8)) !default;
+$m-picker-view-roller-border-radius: var(--m-picker-view-roller-border-radius, var(--m-radius-md, 8rpx)) !default;
+
+@include b(picker-view) {
+  position: relative;
+  padding: $m-picker-view-padding;
+  box-sizing: border-box;
+  background: $m-picker-view-bg;
+
+  @include edeep(mask) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: $m-picker-view-mask-bg;
+    background-position: top, bottom;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+
+  @include edeep(roller) {
+    height: $m-picker-view-column-item-height;
+    background: $m-picker-view-roller-bg;
+    border-radius: 0;
+    z-index: 0;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+  @include edeep(main) {
+    .m-picker-view__column:first-child .m-picker-view__roller {
+      border-radius: $m-picker-view-roller-border-radius 0 0 $m-picker-view-roller-border-radius;
+    }
+
+    .m-picker-view__column:last-child .m-picker-view__roller {
+      border-radius: 0 $m-picker-view-roller-border-radius $m-picker-view-roller-border-radius 0;
+    }
+  }
+
+  @include e(column) {
+    flex: 1;
+  }
+
+  @include e(column-item) {
+    padding: $m-picker-view-column-item-padding;
+    color: $m-picker-view-column-item-color;
+    font-size: $m-picker-view-column-item-font-size;
+    line-height: $m-picker-view-column-item-height;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include m(disabled) {
+      color: $m-picker-view-column-item-disabled-color;
+    }
+
+    @include m(active) {
+      font-weight: $m-picker-view-column-item-font-weight-active;
+    }
+  }
+}

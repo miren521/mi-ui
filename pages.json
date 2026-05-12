@@ -217,6 +217,12 @@
       }
     },
     {
+      "path": "examples/pages/picker-demo",
+      "style": {
+        "navigationBarTitleText": "Picker 选择器"
+      }
+    },
+    {
       "path": "examples/pages/textarea-demo",
       "style": {
         "navigationBarTitleText": "Textarea 文本域"
@@ -239,4 +245,5 @@
         "^wd-(.*)": "@/wot-ui/components/wd-$1/wd-$1.vue"
       }
     }
+  }
 }
