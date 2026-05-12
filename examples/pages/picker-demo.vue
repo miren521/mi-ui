@@ -8,7 +8,7 @@
 						<text class="demo-picker-label">单列选择</text>
 						<view class="demo-picker-value">
 							<text>{{ basicText || '请选择' }}</text>
-							<m-icon name="arrow-right" :size="16" />
+							<m-icon name="right" :size="18" />
 						</view>
 					</view>
 				</view>
@@ -21,7 +21,7 @@
 						<text class="demo-picker-label">多列选择</text>
 						<view class="demo-picker-value">
 							<text>{{ multiText || '请选择' }}</text>
-							<m-icon name="arrow-right" :size="16" />
+							<m-icon name="right" :size="18" />
 						</view>
 					</view>
 				</view>
@@ -34,7 +34,7 @@
 						<text class="demo-picker-label">级联选择</text>
 						<view class="demo-picker-value">
 							<text>{{ cascadeText || '请选择' }}</text>
-							<m-icon name="arrow-right" :size="16" />
+							<m-icon name="right" :size="18" />
 						</view>
 					</view>
 				</view>
@@ -47,7 +47,7 @@
 						<text class="demo-picker-label">禁用选项</text>
 						<view class="demo-picker-value">
 							<text>{{ disabledText || '请选择' }}</text>
-							<m-icon name="arrow-right" :size="16" />
+							<m-icon name="right" :size="18" />
 						</view>
 					</view>
 				</view>
@@ -60,7 +60,7 @@
 						<text class="demo-picker-label">自定义标题</text>
 						<view class="demo-picker-value">
 							<text>{{ titleText || '请选择' }}</text>
-							<m-icon name="arrow-right" :size="16" />
+							<m-icon name="right" :size="18" />
 						</view>
 					</view>
 				</view>
@@ -73,7 +73,7 @@
 						<text class="demo-picker-label">手动控制</text>
 						<view class="demo-picker-value">
 							<text>{{ manualText || '请选择' }}</text>
-							<m-icon name="arrow-right" :size="16" />
+							<m-icon name="right" :size="18" />
 						</view>
 					</view>
 				</view>
@@ -284,28 +284,40 @@ function openManualPicker() {
 	manualPickerRef.value?.open()
 }
 
-function onBasicConfirm({ value }: any) {
-	basicText.value = Array.isArray(value) ? value.join(', ') : String(value)
+function onBasicConfirm({ selectedItems }: any) {
+	if (selectedItems && selectedItems.length > 0) {
+		basicText.value = selectedItems.map((item: any) => item.label).join(', ')
+	}
 }
 
-function onMultiConfirm({ value }: any) {
-	multiText.value = Array.isArray(value) ? value.join(', ') : String(value)
+function onMultiConfirm({ selectedItems }: any) {
+	if (selectedItems && selectedItems.length > 0) {
+		multiText.value = selectedItems.map((item: any) => item.label).join(' ')
+	}
 }
 
-function onCascadeConfirm({ value }: any) {
-	cascadeText.value = Array.isArray(value) ? value.join(', ') : String(value)
+function onCascadeConfirm({ selectedItems }: any) {
+	if (selectedItems && selectedItems.length > 0) {
+		cascadeText.value = selectedItems.map((item: any) => item.label).join('/')
+	}
 }
 
-function onDisabledConfirm({ value }: any) {
-	disabledText.value = Array.isArray(value) ? value.join(', ') : String(value)
+function onDisabledConfirm({ selectedItems }: any) {
+	if (selectedItems && selectedItems.length > 0) {
+		disabledText.value = selectedItems.map((item: any) => item.label).join(', ')
+	}
 }
 
-function onTitleConfirm({ value }: any) {
-	titleText.value = Array.isArray(value) ? value.join(', ') : String(value)
+function onTitleConfirm({ selectedItems }: any) {
+	if (selectedItems && selectedItems.length > 0) {
+		titleText.value = selectedItems.map((item: any) => item.label).join(', ')
+	}
 }
 
-function onManualConfirm({ value }: any) {
-	manualText.value = Array.isArray(value) ? value.join(', ') : String(value)
+function onManualConfirm({ selectedItems }: any) {
+	if (selectedItems && selectedItems.length > 0) {
+		manualText.value = selectedItems.map((item: any) => item.label).join(', ')
+	}
 }
 
 function onPickerViewChange(e: any) {
