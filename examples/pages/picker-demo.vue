@@ -379,6 +379,7 @@ function onPickerViewMultiChange(e: any) {
 
 	text {
 		color: #969799;
+    line-height: 1;
 	}
 }
 
