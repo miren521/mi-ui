@@ -153,7 +153,7 @@ const sliderValue17 = ref([30, 70])
 .demo-row {
   display: flex;
   align-items: center;
-  padding: 20rpx 0;
+  padding: 20rpx 16rpx;
 }
 
 .demo-tip {
