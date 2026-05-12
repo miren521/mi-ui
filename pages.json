@@ -233,6 +233,12 @@
       "style": {
         "navigationBarTitleText": "Overlay 遮罩层"
       }
+    },
+    {
+      "path": "examples/pages/toast-demo",
+      "style": {
+        "navigationBarTitleText": "Toast 轻提示"
+      }
     }
   ],
   "globalStyle": {

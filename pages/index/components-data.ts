@@ -20,6 +20,7 @@ export const basicComponents: ComponentItem[] = [
 export const feedbackComponents: ComponentItem[] = [
   { id: 'popup', title: 'Popup 弹出层', enTitle: 'Popup', zhTitle: '弹出层', desc: '弹出层组件，支持多种位置', category: 'feedback', url: '/examples/pages/popup-demo' },
   { id: 'overlay', title: 'Overlay 遮罩层', enTitle: 'Overlay', zhTitle: '遮罩层', desc: '遮罩层组件，用于覆盖在页面内容之上', category: 'feedback', url: '/examples/pages/overlay-demo' },
+  { id: 'toast', title: 'Toast 轻提示', enTitle: 'Toast', zhTitle: '轻提示', desc: '轻提示组件，用于消息提示', category: 'feedback', url: '/examples/pages/toast-demo' },
   { id: 'transition', title: 'Transition 动画', enTitle: 'Transition', zhTitle: '动画', desc: '过渡动画组件', category: 'feedback', url: '/examples/pages/transition-demo' },
   { id: 'loading', title: 'Loading 加载指示器', enTitle: 'Loading', zhTitle: '加载指示器', desc: '加载动画，用于表示加载中的过渡状态', category: 'feedback', url: '/examples/pages/loading-demo' },
 ]

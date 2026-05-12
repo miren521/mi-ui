@@ -1,0 +1,99 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+// ==================== Toast 组件变量 ====================
+
+// 文字颜色
+$m-toast-color: var(--m-toast-color, #ffffff) !default;
+// 内边距
+$m-toast-padding: var(--m-toast-padding, 24rpx 32rpx) !default;
+// 最大宽度
+$m-toast-max-width: var(--m-toast-max-width, 300px) !default;
+// 圆角大小
+$m-toast-border-radius: var(--m-toast-border-radius, 16rpx) !default;
+// 背景色
+$m-toast-bg: var(--m-toast-bg, rgba(0, 0, 0, 0.7)) !default;
+// 字号
+$m-toast-font-size: var(--m-toast-font-size, 28rpx) !default;
+// 行高
+$m-toast-line-height: var(--m-toast-line-height, 1.5) !default;
+// 图标大小
+$m-toast-icon-size: var(--m-toast-icon-size, 48rpx) !default;
+// 消息内容左边距
+$m-toast-msg-margin-left: var(--m-toast-msg-margin-left, 16rpx) !default;
+// 图标下边距
+$m-toast-icon-margin-bottom: var(--m-toast-icon-margin-bottom, 12rpx) !default;
+// loading 状态下的 padding
+$m-toast-loading-padding: var(--m-toast-loading-padding, 32rpx) !default;
+
+// ==================== Toast 组件样式 ====================
+
+@include b(toast) {
+  display: inline-block;
+  max-width: $m-toast-max-width;
+  padding: $m-toast-padding;
+  background: $m-toast-bg;
+  border-radius: $m-toast-border-radius;
+  color: $m-toast-color;
+  transition: all 0.2s;
+  font-size: $m-toast-font-size;
+  box-sizing: border-box;
+
+  @include when(vertical) {
+    flex-direction: column;
+  }
+
+  @include e(msg) {
+    font-size: $m-toast-font-size;
+    word-break: break-all;
+    line-height: $m-toast-line-height;
+    text-align: left;
+  }
+
+  @include edeep(icon) {
+    font-size: $m-toast-icon-size;
+    line-height: $m-toast-icon-size;
+    @include when(vertical) {
+      margin-bottom: $m-toast-icon-margin-bottom;
+    }
+  }
+
+  @include e(loading) {
+    margin-bottom: $m-toast-icon-margin-bottom;
+    display: inline-block;
+  }
+
+  @include m(top) {
+    transform: translate3d(0, -40vh, 0);
+  }
+
+  @include m(middle-top) {
+    transform: translate3d(0%, -18.8vh, 0);
+  }
+
+  @include m(middle) {
+    transform: translate3d(0, -50%, 0);
+  }
+
+  @include m(bottom) {
+    transform: translate3d(0, 40vh, 0);
+  }
+
+  @include m(with-icon) {
+    display: inline-flex;
+    align-items: center;
+
+    @include me(msg) {
+      margin-left: $m-toast-msg-margin-left;
+
+      @include when(vertical) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  @include m(loading) {
+    min-width: auto;
+    padding: $m-toast-loading-padding;
+  }
+}
