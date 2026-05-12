@@ -13,7 +13,7 @@ $m-picker-view-column-item-color: var(--m-picker-view-column-item-color, var(--m
 $m-picker-view-column-item-padding: var(--m-picker-view-column-item-padding, 0 var(--m-spacing-tight, 12rpx)) !default;
 $m-picker-view-column-item-disabled-color: var(--m-picker-view-column-item-disabled-color, var(--m-text-disabled, #c8c9cc)) !default;
 $m-picker-view-column-item-font-weight-active: var(--m-picker-view-column-item-font-weight-active, 500) !default;
-$m-picker-view-roller-bg: var(--m-picker-view-roller-bg, var(--m-filled-bottom, #e8e8e8)) !default;
+$m-picker-view-roller-bg: var(--m-picker-view-roller-bg, #f5f5f5) !default;
 $m-picker-view-roller-border-radius: var(--m-picker-view-roller-border-radius, var(--m-radius-md, 8rpx)) !default;
 
 @include b(picker-view) {
