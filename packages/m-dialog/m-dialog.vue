@@ -53,7 +53,7 @@
           </slot>
         </view>
       </view>
-      <slot name="actions" :confirm="() => toggleModal('confirm')" :cancel="() => toggleModal('cancel')" :close="() => toggleModal('modal')">
+      <slot name="actions" :confirm="() => toggleModal('confirm')" :cancel="() => toggleModal('cancel')" :close="() => handleClose()">
         <view
           :class="`m-dialog__actions ${dialogState.actionLayout === 'vertical' ? 'm-dialog__actions--vertical' : ''} ${
             dialogState.actionLayout === 'vertical' || showCancelButton || (dialogState.actions && dialogState.actions.length > 1)

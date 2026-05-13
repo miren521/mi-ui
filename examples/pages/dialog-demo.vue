@@ -83,11 +83,12 @@
           <m-button type="primary" @click="showCustomActionsDialog">自定义按钮</m-button>
         </view>
         <m-dialog selector="customActions">
-          <template #actions="{ confirm, cancel }">
+          <template #actions="{ confirm, cancel, close }">
             <view class="demo-dialog-actions">
-              <m-button type="info" plain round @click="cancel">取消</m-button>
-              <m-button type="primary" round @click="handleCustomConfirm">自定义确认</m-button>
-              <m-button type="danger" round @click="handleCustomDelete">删除</m-button>
+              <m-button type="info" plain size="small" @click="cancel">取消</m-button>
+              <m-button type="primary" size="small" @click="handleCustomConfirm">确认</m-button>
+              <m-button type="danger" size="small" @click="handleCustomDelete">删除</m-button>
+              <m-button type="warning" size="small" @click="handleCustomOther">其他</m-button>
             </view>
           </template>
         </m-dialog>
@@ -116,7 +117,7 @@ const { confirm: confirmClickModal } = useDialog('clickModal')
 const { confirm: confirmCloseBtn } = useDialog('closeBtn')
 const { confirm: confirmHeaderImg } = useDialog('headerImg')
 const { confirm: confirmCustom } = useDialog('custom')
-const { confirm: confirmCustomActions } = useDialog('customActions')
+const { confirm: confirmCustomActions, close: closeCustomActions } = useDialog('customActions')
 const { confirm: confirmAsync } = useDialog('async')
 const { confirm: confirmMultiActions } = useDialog('multiActions')
 
@@ -221,14 +222,17 @@ function showCustomActionsDialog() {
 
 function handleCustomConfirm() {
   uni.showToast({ title: '执行确认操作', icon: 'success' })
-  const { close } = useDialog('customActions')
-  close()
+  closeCustomActions()
 }
 
 function handleCustomDelete() {
   uni.showToast({ title: '执行删除操作', icon: 'none' })
-  const { close } = useDialog('customActions')
-  close()
+  closeCustomActions()
+}
+
+function handleCustomOther() {
+  uni.showToast({ title: '执行其他操作', icon: 'none' })
+  closeCustomActions()
 }
 
 function showAsyncConfirmDialog() {
@@ -292,11 +296,15 @@ function showAsyncConfirmDialog() {
 
 .demo-dialog-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  padding: 24px;
+  padding: 16px 24px;
+  justify-content: center;
 
   .m-button {
     flex: 1;
+    min-width: 100px;
+    max-width: 140px;
   }
 }
 </style>

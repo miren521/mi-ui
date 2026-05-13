@@ -150,7 +150,7 @@ export function useDialog(selector: string = ''): Dialog {
    * 关闭弹窗
    */
   const close = () => {
-    if (dialogOption.value !== None) {
+    if (dialogOption.value) {
       dialogOption.value.show = false
     }
   }
