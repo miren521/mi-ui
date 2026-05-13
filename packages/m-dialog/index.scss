@@ -36,9 +36,9 @@ $m-dialog-close-icon-color: var(--m-dialog-close-icon-color, #999999) !default;
 $m-dialog-close-icon-top: var(--m-dialog-close-icon-top, 14px) !default;
 $m-dialog-close-icon-right: var(--m-dialog-close-icon-right, 14px) !default;
 $m-dialog-actions-padding: var(--m-dialog-actions-padding, 20px 6px 4px 6px) !default;
-$m-dialog-actions-padding-vertical: var(--m-dialog-actions-padding-vertical, 24px 16px 16px) !default;
+$m-dialog-actions-padding-vertical: var(--m-dialog-actions-padding-vertical, 20px 6px 4px 6px) !default;
 $m-dialog-actions-spacing: var(--m-dialog-actions-spacing, 16px) !default;
-$m-dialog-actions-spacing-vertical: var(--m-dialog-actions-spacing-vertical, 12px) !default;
+$m-dialog-actions-spacing-vertical: var(--m-dialog-actions-spacing-vertical, 30rpx) !default;
 $m-dialog-actions-confirm-font-weight: var(--m-dialog-actions-confirm-font-weight, 500) !default;
 $m-dialog-img-border-radius: var(--m-dialog-img-border-radius, 16px) !default;
 
@@ -154,9 +154,12 @@ $m-dialog-img-border-radius: var(--m-dialog-img-border-radius, 16px) !default;
       flex-direction: column;
       padding: $m-dialog-actions-padding-vertical;
       gap: $m-dialog-actions-spacing-vertical;
+      align-items: stretch;
 
       :deep() {
         .m-dialog__actions-btn {
+          flex: none;
+          width: 100%;
           max-width: none;
         }
       }
