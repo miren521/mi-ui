@@ -41,6 +41,7 @@
         <m-action-sheet v-model="showColor" :actions="colorActions" cancel-text="取消" />
       </demo-block>
 
+
       <!-- 宫格面板 -->
       <demo-block title="宫格面板" desc="通过 panels 属性展示宫格选项">
         <view class="demo-action-sheet-row">
@@ -55,6 +56,53 @@
           <m-button type="primary" @click="showLoadingActionSheet">加载状态</m-button>
         </view>
         <m-action-sheet v-model="showLoading" :actions="loadingActions" cancel-text="取消" />
+      </demo-block>
+
+      <!-- 真实场景 -->
+      <demo-block title="真实场景" desc="展示退出登录、分享、删除等常见场景">
+        <view class="demo-action-sheet-card">
+          <view class="demo-action-sheet-card__item">
+            <view class="demo-action-sheet-card__icon">
+              <m-icon name="user" :size="24" />
+            </view>
+            <view class="demo-action-sheet-card__content">
+              <view class="demo-action-sheet-card__title">退出登录</view>
+              <view class="demo-action-sheet-card__desc">安全退出当前账号</view>
+            </view>
+            <m-button type="primary" size="small" @click="showLogoutActionSheet">操作</m-button>
+          </view>
+
+          <view class="demo-action-sheet-card__item">
+            <view class="demo-action-sheet-card__icon demo-action-sheet-card__icon--share">
+              <m-icon name="share" :size="24" />
+            </view>
+            <view class="demo-action-sheet-card__content">
+              <view class="demo-action-sheet-card__title">分享内容</view>
+              <view class="demo-action-sheet-card__desc">将内容分享给好友</view>
+            </view>
+            <m-button type="success" size="small" @click="showShareActionSheet">分享</m-button>
+          </view>
+
+          <view class="demo-action-sheet-card__item">
+            <view class="demo-action-sheet-card__icon demo-action-sheet-card__icon--delete">
+              <m-icon name="delete" :size="24" />
+            </view>
+            <view class="demo-action-sheet-card__content">
+              <view class="demo-action-sheet-card__title">删除记录</view>
+              <view class="demo-action-sheet-card__desc">删除后无法恢复</view>
+            </view>
+            <m-button type="danger" size="small" @click="showDeleteActionSheet">删除</m-button>
+          </view>
+        </view>
+
+        <!-- 退出登录 -->
+        <m-action-sheet v-model="showLogout" title="确认退出登录" :actions="logoutActions" cancel-text="取消" />
+
+        <!-- 分享 -->
+        <m-action-sheet v-model="showShare" title="分享到" :actions="shareActions" cancel-text="取消" />
+
+        <!-- 删除 -->
+        <m-action-sheet v-model="showDelete" title="确认删除" :actions="deleteActions" :cancel-text="''" />
       </demo-block>
     </view>
   </view>
@@ -72,6 +120,9 @@ const showDisabled = ref(false)
 const showColor = ref(false)
 const showPanel = ref(false)
 const showLoading = ref(false)
+const showLogout = ref(false)
+const showShare = ref(false)
+const showDelete = ref(false)
 
 const basicActions: Action[] = [
   { name: '选项一' },
@@ -98,7 +149,6 @@ const colorActions: Action[] = [
 ]
 
 const panelData: Panel[] = [
-  { icon: 'share', title: '分享' },
   { icon: 'user', title: '好友' },
   { icon: 'qrcode', title: '二维码' },
   { icon: 'save', title: '保存' },
@@ -110,6 +160,22 @@ const loadingActions: Action[] = [
   { name: '正常选项' },
   { name: '加载中', loading: true },
   { name: '另一个选项' }
+]
+
+const logoutActions: Action[] = [
+  { name: '退出登录', color: '#ee0a24', }
+]
+
+const shareActions: Action[] = [
+  { name: '微信好友', description: '分享给微信好友' },
+  { name: '微信朋友圈', description: '分享到朋友圈' },
+  { name: 'QQ好友', description: '分享给QQ好友' },
+  { name: '复制链接', description: '复制链接到剪贴板' }
+]
+
+const deleteActions: Action[] = [
+  { name: '删除', color: '#ee0a24', description: '删除后无法恢复' },
+  { name: '取消' }
 ]
 
 function showBasicActionSheet() {
@@ -139,6 +205,18 @@ function showPanelActionSheet() {
 function showLoadingActionSheet() {
   showLoading.value = true
 }
+
+function showLogoutActionSheet() {
+  showLogout.value = true
+}
+
+function showShareActionSheet() {
+  showShare.value = true
+}
+
+function showDeleteActionSheet() {
+  showDelete.value = true
+}
 </script>
 
 <style lang="scss">
@@ -160,5 +238,59 @@ function showLoadingActionSheet() {
   gap: 16px;
   align-items: center;
   justify-content: flex-start;
+}
+
+.demo-action-sheet-card {
+  background: white;
+  border-radius: 12px;
+  padding: 6px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #f5f5f5;
+    }
+  }
+
+  &__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #e6f7ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1890ff;
+
+    &--share {
+      background: #f6ffed;
+      color: #52c41a;
+    }
+
+    &--delete {
+      background: #fff2f0;
+      color: #ff4d4f;
+    }
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+  }
+
+  &__desc {
+    font-size: 14px;
+    color: #999;
+  }
 }
 </style>
