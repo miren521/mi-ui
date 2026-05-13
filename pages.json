@@ -245,6 +245,12 @@
       "style": {
         "navigationBarTitleText": "Dialog 对话框"
       }
+    },
+    {
+      "path": "examples/pages/action-sheet-demo",
+      "style": {
+        "navigationBarTitleText": "ActionSheet 上拉菜单"
+      }
     }
   ],
   "globalStyle": {
