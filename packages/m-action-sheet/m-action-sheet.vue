@@ -18,6 +18,7 @@
       @after-leave="emit('after-leave')"
       @click-modal="handleClickModal"
       :z-index="zIndex"
+      contentStyle="padding: 0"
     >
       <view
         :class="`m-action-sheet ${customClass}`"

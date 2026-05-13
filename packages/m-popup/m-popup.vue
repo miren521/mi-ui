@@ -22,7 +22,7 @@
       <view v-if="$slots.header" class="m-popup__header">
         <slot name="header" />
       </view>
-      <view class="m-popup__content">
+      <view class="m-popup__content" :style="contentStyleStr">
         <slot />
       </view>
       <view v-if="$slots.footer" class="m-popup__footer">
@@ -48,6 +48,7 @@ interface PopupProps {
   modalStyle?: string | object
   hideWhenClose?: boolean
   lazyRender?: boolean
+  contentStyle?: string | object
   safeAreaInsetBottom?: boolean
   transition?: string
   lockScroll?: boolean
@@ -87,6 +88,10 @@ function handleTouchMove(e: TouchEvent) {
   }
 }
 
+function toKebabCase(str: string): string {
+  return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
+}
+
 const popupStyleStr = computed(() => {
   let styleStr = `z-index: ${props.zIndex + 1};`
   styleStr += `transition-duration: ${props.duration}ms;`
@@ -99,7 +104,8 @@ const popupStyleStr = computed(() => {
     styleStr += props.customStyle
   } else if (props.customStyle) {
     Object.entries(props.customStyle).forEach(([key, value]) => {
-      styleStr += `${key}: ${value};`
+      const kebabKey = toKebabCase(key)
+      styleStr += `${kebabKey}: ${value};`
     })
   }
   
@@ -113,7 +119,23 @@ const modalStyleStr = computed(() => {
     styleStr += props.modalStyle
   } else if (props.modalStyle) {
     Object.entries(props.modalStyle).forEach(([key, value]) => {
-      styleStr += `${key}: ${value};`
+      const kebabKey = toKebabCase(key)
+      styleStr += `${kebabKey}: ${value};`
+    })
+  }
+  
+  return styleStr
+})
+
+const contentStyleStr = computed(() => {
+  let styleStr = ''
+  
+  if (typeof props.contentStyle === 'string') {
+    styleStr += props.contentStyle
+  } else if (props.contentStyle) {
+    Object.entries(props.contentStyle).forEach(([key, value]) => {
+      const kebabKey = toKebabCase(key)
+      styleStr += `${kebabKey}: ${value};`
     })
   }
   

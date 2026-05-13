@@ -129,7 +129,8 @@
           borderRadius: '24rpx',
           background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
           padding: '0'
-        }">
+        }" contentStyle="padding: 0"
+        >
           <view class="demo-popup-content demo-popup-content--gradient">
             <view class="demo-popup-content--gradient__header">
               <view class="demo-popup-content--gradient__avatar">
