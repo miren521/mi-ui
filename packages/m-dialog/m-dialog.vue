@@ -194,7 +194,8 @@ const dialogState = reactive<DialogOptionsWithCallBack>({
   headerImage: '',
   showClose: false,
   actionLayout: 'horizontal',
-  theme: 'button'
+  theme: 'button',
+  confirmLoading: false
 })
 
 function getConfirmText(): string {
@@ -294,6 +295,7 @@ const customConfirmProps = computed(() => {
   }
 
   buttonProps.customClass = `${buttonProps.customClass || ''} m-dialog__actions-btn m-dialog__actions-btn--confirm`
+  buttonProps.loading = dialogState.confirmLoading
   return buttonProps
 })
 
@@ -352,13 +354,19 @@ function toggleModal(action: 'confirm' | 'cancel' | 'modal') {
   switch (action) {
     case 'confirm':
       if (dialogState.beforeConfirm) {
+        dialogState.confirmLoading = true
         callInterceptor(dialogState.beforeConfirm as DialogBeforeConfirm, {
           args: [inputVal.value],
-          done: () =>
+          done: () => {
+            dialogState.confirmLoading = false
             handleConfirm({
               action: action,
               value: inputVal.value
             })
+          },
+          fail: () => {
+            dialogState.confirmLoading = false
+          }
         })
       } else {
         handleConfirm({
