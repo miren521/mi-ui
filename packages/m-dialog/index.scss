@@ -2,7 +2,7 @@
 @use '../common/styles/variables.scss' as *;
 
 $m-dialog-bg: var(--m-dialog-bg, #ffffff) !default;
-$m-dialog-width: var(--m-dialog-width, 420rpx) !default;
+$m-dialog-width: var(--m-dialog-width, 430rpx) !default;
 $m-dialog-radius: var(--m-dialog-radius, 16px) !default;
 $m-dialog-body-padding: var(--m-dialog-body-padding, 0) !default;
 $m-dialog-body-element-spacing: var(--m-dialog-body-element-spacing, 12px) !default;
@@ -31,11 +31,11 @@ $m-dialog-warning-color: var(--m-dialog-warning-color, #ff9500) !default;
 $m-dialog-error-color: var(--m-dialog-error-color, #ee0a24) !default;
 $m-dialog-icon-size: var(--m-dialog-icon-size, 48px) !default;
 $m-dialog-icon-margin-bottom: var(--m-dialog-icon-margin-bottom, 16px) !default;
-$m-dialog-close-icon-size: var(--m-dialog-close-icon-size, 18px) !default;
+$m-dialog-close-icon-size: var(--m-dialog-close-icon-size, 20px) !default;
 $m-dialog-close-icon-color: var(--m-dialog-close-icon-color, #999999) !default;
-$m-dialog-close-icon-top: var(--m-dialog-close-icon-top, 24px) !default;
-$m-dialog-close-icon-right: var(--m-dialog-close-icon-right, 24px) !default;
-$m-dialog-actions-padding: var(--m-dialog-actions-padding, 20px 10px 6px 10px) !default;
+$m-dialog-close-icon-top: var(--m-dialog-close-icon-top, 14px) !default;
+$m-dialog-close-icon-right: var(--m-dialog-close-icon-right, 14px) !default;
+$m-dialog-actions-padding: var(--m-dialog-actions-padding, 20px 6px 4px 6px) !default;
 $m-dialog-actions-padding-vertical: var(--m-dialog-actions-padding-vertical, 24px 16px 16px) !default;
 $m-dialog-actions-spacing: var(--m-dialog-actions-spacing, 16px) !default;
 $m-dialog-actions-spacing-vertical: var(--m-dialog-actions-spacing-vertical, 12px) !default;
@@ -199,6 +199,12 @@ $m-dialog-action-text-border: var(--m-dialog-action-text-border, 1px) !default;
 
   @include e(block) {
     display: block;
+
+    :deep() {
+      .m-dialog__actions-btn {
+        width: 100%;
+      }
+    }
   }
 
   @include e(icon) {
