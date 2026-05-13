@@ -402,8 +402,8 @@ function handleConfirm(result: DialogResult) {
 
 function handleCancel(result: DialogResult) {
   dialogState.show = false
-  if (isFunction(dialogState.fail)) {
-    dialogState.fail(result)
+  if (isFunction(dialogState.success)) {
+    dialogState.success(result)
   }
 }
 
