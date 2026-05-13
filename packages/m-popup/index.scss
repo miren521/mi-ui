@@ -10,6 +10,7 @@ $m-popup-border-radius: 16rpx;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   transition: opacity 0.3s;
+  pointer-events: auto;
 }
 
 .m-popup__modal--hidden {

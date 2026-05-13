@@ -166,6 +166,22 @@
           </view>
         </m-popup>
       </demo-block>
+
+      <!-- 点击蒙层不关闭 -->
+      <demo-block title="点击蒙层不关闭" desc="设置 close-on-click-modal 为 false，点击蒙层不会关闭弹窗">
+        <view class="demo-popup-row">
+          <m-button type="primary" @click="showCloseOnClickModalPopup = true">点击蒙层不关闭</m-button>
+        </view>
+        <m-popup v-model:modelValue="showCloseOnClickModalPopup" position="center" :close-on-click-modal="false">
+          <view class="demo-popup-content">
+            <view class="demo-popup-content__title">点击蒙层不关闭</view>
+            <view class="demo-popup-content__text">设置 close-on-click-modal 为 false 后，点击蒙层不会关闭弹窗，只能通过按钮关闭</view>
+            <view class="demo-popup-content__actions">
+              <m-button type="primary" @click="showCloseOnClickModalPopup = false">关闭弹窗</m-button>
+            </view>
+          </view>
+        </m-popup>
+      </demo-block>
     </view>
   </view>
 </template>
@@ -182,6 +198,7 @@ const showRightPopup = ref(false)
 const showClosablePopup = ref(false)
 const showCustomContentPopup = ref(false)
 const showCustomStylePopup = ref(false)
+const showCloseOnClickModalPopup = ref(false)
 </script>
 
 <style lang="scss">

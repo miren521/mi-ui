@@ -6,6 +6,7 @@
       :class="['m-popup__modal', isVisible ? 'm-popup__modal--visible' : 'm-popup__modal--hidden']"
       :style="modalStyleStr"
       @tap="handleClickModal"
+      catchtouchmove="noop"
     />
     
     <!-- 弹窗内容 -->
@@ -77,6 +78,14 @@ const emit = defineEmits<{
 
 const isVisible = ref(false)
 const isRendered = ref(false)
+
+function noop() {}
+
+function handleTouchMove(e: TouchEvent) {
+  if (props.lockScroll) {
+    e.stopPropagation?.()
+  }
+}
 
 const popupStyleStr = computed(() => {
   let styleStr = `z-index: ${props.zIndex + 1};`
