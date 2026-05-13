@@ -101,13 +101,6 @@
         <m-dialog selector="async" />
       </demo-block>
 
-      <!-- 多按钮 -->
-      <demo-block title="多按钮" desc="通过 actions 属性设置多个操作按钮">
-        <view class="demo-dialog-row">
-          <m-button type="primary" @click="showMultiActionsDialog">多按钮</m-button>
-        </view>
-        <m-dialog selector="multiActions" />
-      </demo-block>
     </view>
   </view>
 </template>
@@ -253,17 +246,6 @@ function showAsyncConfirmDialog() {
   })
 }
 
-function showMultiActionsDialog() {
-  confirmMultiActions({
-    title: '选择操作',
-    msg: '请选择以下操作之一',
-    actions: [
-      { text: '操作一', click: () => console.log('点击了操作一') },
-      { text: '操作二', type: 'primary', click: () => console.log('点击了操作二') },
-      { text: '操作三', type: 'danger', click: () => console.log('点击了操作三') }
-    ]
-  })
-}
 </script>
 
 <style lang="scss">
