@@ -239,6 +239,12 @@
       "style": {
         "navigationBarTitleText": "Toast 轻提示"
       }
+    },
+    {
+      "path": "examples/pages/dialog-demo",
+      "style": {
+        "navigationBarTitleText": "Dialog 对话框"
+      }
     }
   ],
   "globalStyle": {

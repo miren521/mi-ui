@@ -1,0 +1,235 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$m-dialog-bg: var(--m-dialog-bg, #ffffff) !default;
+$m-dialog-width: var(--m-dialog-width, 420rpx) !default;
+$m-dialog-radius: var(--m-dialog-radius, 16px) !default;
+$m-dialog-body-padding: var(--m-dialog-body-padding, 0) !default;
+$m-dialog-body-element-spacing: var(--m-dialog-body-element-spacing, 12px) !default;
+$m-dialog-body-element-spacing-large: var(--m-dialog-body-element-spacing-large, 24px) !default;
+$m-dialog-title-color: var(--m-dialog-title-color, #333333) !default;
+$m-dialog-title-font-size: var(--m-dialog-title-font-size, 18px) !default;
+$m-dialog-title-line-height: var(--m-dialog-title-line-height, 1.5) !default;
+$m-dialog-title-font-weight: var(--m-dialog-title-font-weight, 500) !default;
+$m-dialog-title-margin-bottom: var(--m-dialog-title-margin-bottom, 16px) !default;
+$m-dialog-content-color: var(--m-dialog-content-color, #666666) !default;
+$m-dialog-content-font-size: var(--m-dialog-content-font-size, 14px) !default;
+$m-dialog-content-line-height: var(--m-dialog-content-line-height, 1.6) !default;
+$m-dialog-content-padding: var(--m-dialog-content-padding, 16px) !default;
+$m-dialog-content-max-height: var(--m-dialog-content-max-height, 340px) !default;
+$m-dialog-content-input-bg: var(--m-dialog-content-input-bg, #f8f9fa) !default;
+$m-dialog-content-input-error-color: var(--m-dialog-content-input-error-color, #ee0a24) !default;
+$m-dialog-content-input-font-size: var(--m-dialog-content-input-font-size, 12px) !default;
+$m-dialog-content-input-line-height: var(--m-dialog-content-input-line-height, 1.5) !default;
+$m-dialog-content-input-padding-top: var(--m-dialog-content-input-padding-top, 16px) !default;
+$m-dialog-scrollbar-color: var(--m-dialog-scrollbar-color, #e5e5e5) !default;
+$m-dialog-scrollbar-width: var(--m-dialog-scrollbar-width, 4px) !default;
+$m-dialog-scrollbar-radius: var(--m-dialog-scrollbar-radius, 2px) !default;
+$m-dialog-primary-color: var(--m-dialog-primary-color, #3b82f6) !default;
+$m-dialog-success-color: var(--m-dialog-success-color, #07c160) !default;
+$m-dialog-warning-color: var(--m-dialog-warning-color, #ff9500) !default;
+$m-dialog-error-color: var(--m-dialog-error-color, #ee0a24) !default;
+$m-dialog-icon-size: var(--m-dialog-icon-size, 48px) !default;
+$m-dialog-icon-margin-bottom: var(--m-dialog-icon-margin-bottom, 16px) !default;
+$m-dialog-close-icon-size: var(--m-dialog-close-icon-size, 18px) !default;
+$m-dialog-close-icon-color: var(--m-dialog-close-icon-color, #999999) !default;
+$m-dialog-close-icon-top: var(--m-dialog-close-icon-top, 24px) !default;
+$m-dialog-close-icon-right: var(--m-dialog-close-icon-right, 24px) !default;
+$m-dialog-actions-padding: var(--m-dialog-actions-padding, 20px 10px 6px 10px) !default;
+$m-dialog-actions-padding-vertical: var(--m-dialog-actions-padding-vertical, 24px 16px 16px) !default;
+$m-dialog-actions-spacing: var(--m-dialog-actions-spacing, 16px) !default;
+$m-dialog-actions-spacing-vertical: var(--m-dialog-actions-spacing-vertical, 12px) !default;
+$m-dialog-actions-confirm-font-weight: var(--m-dialog-actions-confirm-font-weight, 500) !default;
+$m-dialog-img-border-radius: var(--m-dialog-img-border-radius, 16px) !default;
+$m-dialog-action-text-border-color: var(--m-dialog-action-text-border-color, #e5e5e5) !default;
+$m-dialog-action-text-button-padding: var(--m-dialog-action-text-button-padding, 16px 32px) !default;
+$m-dialog-action-text-border: var(--m-dialog-action-text-border, 1px) !default;
+
+:deep(.m-dialog) {
+  background: transparent;
+}
+
+@include b(dialog) {
+  @include e(container) {
+    background: $m-dialog-bg;
+    border-radius: $m-dialog-radius;
+    overflow: hidden;
+    width: $m-dialog-width;
+    box-sizing: border-box;
+  }
+
+  @include e(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: $m-dialog-img-border-radius;
+
+    &+.m-dialog__title {
+      margin-top: $m-dialog-body-element-spacing-large;
+    }
+
+    &+.m-dialog__content {
+      margin-top: $m-dialog-body-element-spacing-large;
+
+      .m-dialog__body.is-prompt & {
+        margin-top: $m-dialog-body-element-spacing;
+      }
+    }
+  }
+
+  @include e(title) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: $m-dialog-title-font-size;
+    color: $m-dialog-title-color;
+    line-height: $m-dialog-title-line-height;
+    font-weight: $m-dialog-title-font-weight;
+
+    &+.m-dialog__content {
+      margin-top: $m-dialog-body-element-spacing;
+    }
+  }
+
+  @include e(body) {
+    padding: $m-dialog-body-padding;
+
+    @include when(prompt) {
+      .m-dialog__content {
+        padding-top: $m-dialog-content-input-padding-top;
+      }
+    }
+  }
+
+  @include e(content) {
+    max-height: $m-dialog-content-max-height;
+    text-align: center;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: $m-dialog-scrollbar-width;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      width: $m-dialog-scrollbar-width;
+      background: $m-dialog-scrollbar-color;
+      border-radius: calc($m-dialog-scrollbar-width / 2);
+    }
+  }
+
+  @include e(content-text) {
+    color: $m-dialog-content-color;
+    font-size: $m-dialog-content-font-size;
+    line-height: $m-dialog-content-line-height;
+  }
+
+  @include e(input) {
+    background: $m-dialog-content-input-bg;
+  }
+
+  @include e(input-error) {
+    color: $m-dialog-content-input-error-color;
+    font-size: $m-dialog-content-input-font-size;
+    line-height: $m-dialog-content-input-line-height;
+    padding-top: $m-dialog-content-input-padding-top;
+    text-align: left;
+  }
+
+  @include e(actions) {
+    padding: $m-dialog-actions-padding;
+    display: flex;
+    gap: $m-dialog-actions-spacing;
+
+    :deep() {
+      .m-dialog__actions-btn {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .m-dialog__actions-btn--confirm {
+        font-weight: $m-dialog-actions-confirm-font-weight;
+      }
+    }
+
+    @include m(vertical) {
+      flex-direction: column;
+      padding: $m-dialog-actions-padding-vertical;
+
+      :deep() {
+        .m-dialog__actions-btn {
+          &:not(:last-child) {
+            margin-right: 0;
+            margin-bottom: $m-dialog-actions-spacing-vertical;
+          }
+        }
+      }
+    }
+
+    @include when(text) {
+      padding: 24px 0 0;
+
+      :deep() {
+        .m-dialog__actions-btn {
+          margin: 0;
+          border-radius: 0;
+          padding: $m-dialog-action-text-button-padding;
+          border-top: $m-dialog-action-text-border solid $m-dialog-action-text-border-color;
+
+          &:not(:last-child) {
+            border-right: $m-dialog-action-text-border solid $m-dialog-action-text-border-color;
+          }
+        }
+      }
+
+      &.m-dialog__actions--vertical {
+        :deep() {
+          .m-dialog__actions-btn {
+            &:not(:last-child) {
+              border-right: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include e(flex) {
+    display: flex;
+  }
+
+  @include e(block) {
+    display: block;
+  }
+
+  @include e(icon) {
+    font-size: $m-dialog-icon-size;
+    line-height: $m-dialog-icon-size;
+    margin: 0 auto;
+    margin-bottom: $m-dialog-icon-margin-bottom;
+    color: $m-dialog-primary-color;
+
+    @include when(success) {
+      color: $m-dialog-success-color;
+    }
+
+    @include when(info) {
+      color: $m-dialog-primary-color;
+    }
+
+    @include when(warning) {
+      color: $m-dialog-warning-color;
+    }
+
+    @include when(danger) {
+      color: $m-dialog-error-color;
+    }
+  }
+
+  @include e(close) {
+    position: absolute;
+    top: $m-dialog-close-icon-top;
+    right: $m-dialog-close-icon-right;
+    font-size: $m-dialog-close-icon-size;
+    color: $m-dialog-close-icon-color;
+  }
+}
