@@ -41,9 +41,6 @@ $m-dialog-actions-spacing: var(--m-dialog-actions-spacing, 16px) !default;
 $m-dialog-actions-spacing-vertical: var(--m-dialog-actions-spacing-vertical, 12px) !default;
 $m-dialog-actions-confirm-font-weight: var(--m-dialog-actions-confirm-font-weight, 500) !default;
 $m-dialog-img-border-radius: var(--m-dialog-img-border-radius, 16px) !default;
-$m-dialog-action-text-border-color: var(--m-dialog-action-text-border-color, #e5e5e5) !default;
-$m-dialog-action-text-button-padding: var(--m-dialog-action-text-button-padding, 16px 32px) !default;
-$m-dialog-action-text-border: var(--m-dialog-action-text-border, 1px) !default;
 
 :deep(.m-dialog) {
   background: transparent;
@@ -138,12 +135,14 @@ $m-dialog-action-text-border: var(--m-dialog-action-text-border, 1px) !default;
   @include e(actions) {
     padding: $m-dialog-actions-padding;
     display: flex;
+    flex-direction: row;
     gap: $m-dialog-actions-spacing;
 
     :deep() {
       .m-dialog__actions-btn {
         flex: 1;
-        min-width: 0;
+        min-width: 100px;
+        max-width: 200px;
       }
 
       .m-dialog__actions-btn--confirm {
@@ -154,40 +153,11 @@ $m-dialog-action-text-border: var(--m-dialog-action-text-border, 1px) !default;
     @include m(vertical) {
       flex-direction: column;
       padding: $m-dialog-actions-padding-vertical;
+      gap: $m-dialog-actions-spacing-vertical;
 
       :deep() {
         .m-dialog__actions-btn {
-          &:not(:last-child) {
-            margin-right: 0;
-            margin-bottom: $m-dialog-actions-spacing-vertical;
-          }
-        }
-      }
-    }
-
-    @include when(text) {
-      padding: 24px 0 0;
-
-      :deep() {
-        .m-dialog__actions-btn {
-          margin: 0;
-          border-radius: 0;
-          padding: $m-dialog-action-text-button-padding;
-          border-top: $m-dialog-action-text-border solid $m-dialog-action-text-border-color;
-
-          &:not(:last-child) {
-            border-right: $m-dialog-action-text-border solid $m-dialog-action-text-border-color;
-          }
-        }
-      }
-
-      &.m-dialog__actions--vertical {
-        :deep() {
-          .m-dialog__actions-btn {
-            &:not(:last-child) {
-              border-right: none;
-            }
-          }
+          max-width: none;
         }
       }
     }
@@ -198,11 +168,14 @@ $m-dialog-action-text-border: var(--m-dialog-action-text-border, 1px) !default;
   }
 
   @include e(block) {
-    display: block;
+    display: flex;
+    justify-content: center;
 
     :deep() {
       .m-dialog__actions-btn {
+        flex: none;
         width: 100%;
+        max-width: 280px;
       }
     }
   }

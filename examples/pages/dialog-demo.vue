@@ -29,14 +29,6 @@
         <m-dialog selector="confirm" />
       </demo-block>
 
-      <!-- 圆角按钮风格 -->
-      <demo-block title="圆角按钮风格" desc="通过 theme 属性设置按钮风格为 text">
-        <view class="demo-dialog-row">
-          <m-button type="primary" @click="showTextThemeDialog">Text 风格</m-button>
-        </view>
-        <m-dialog selector="textTheme" />
-      </demo-block>
-
       <!-- 垂直按钮布局 -->
       <demo-block title="垂直按钮布局" desc="通过 actionLayout 属性设置垂直排列按钮">
         <view class="demo-dialog-row">
@@ -85,6 +77,22 @@
         </m-dialog>
       </demo-block>
 
+      <!-- 自定义底部按钮 -->
+      <demo-block title="自定义底部按钮" desc="使用 actions 插槽自定义底部操作按钮">
+        <view class="demo-dialog-row">
+          <m-button type="primary" @click="showCustomActionsDialog">自定义按钮</m-button>
+        </view>
+        <m-dialog selector="customActions">
+          <template #actions="{ confirm, cancel }">
+            <view class="demo-dialog-actions">
+              <m-button type="info" plain round @click="cancel">取消</m-button>
+              <m-button type="primary" round @click="handleCustomConfirm">自定义确认</m-button>
+              <m-button type="danger" round @click="handleCustomDelete">删除</m-button>
+            </view>
+          </template>
+        </m-dialog>
+      </demo-block>
+
       <!-- 异步关闭 -->
       <demo-block title="异步关闭" desc="通过 beforeConfirm 钩子实现异步确认">
         <view class="demo-dialog-row">
@@ -110,12 +118,12 @@ import { useDialog } from '../../packages/m-dialog/index'
 const { alert: alertBasic, confirm: confirmBasic } = useDialog('basic')
 const { confirm: confirmIcon } = useDialog('icon')
 const { confirm: confirmWithTitle } = useDialog('confirm')
-const { confirm: confirmTextTheme } = useDialog('textTheme')
 const { confirm: confirmVertical } = useDialog('vertical')
 const { confirm: confirmClickModal } = useDialog('clickModal')
 const { confirm: confirmCloseBtn } = useDialog('closeBtn')
 const { confirm: confirmHeaderImg } = useDialog('headerImg')
 const { confirm: confirmCustom } = useDialog('custom')
+const { confirm: confirmCustomActions } = useDialog('customActions')
 const { confirm: confirmAsync } = useDialog('async')
 const { confirm: confirmMultiActions } = useDialog('multiActions')
 
@@ -172,14 +180,6 @@ function showConfirmWithTitle() {
   })
 }
 
-function showTextThemeDialog() {
-  confirmTextTheme({
-    title: 'Text 风格',
-    msg: '这是一个圆角按钮风格的对话框',
-    theme: 'text'
-  })
-}
-
 function showVerticalLayoutDialog() {
   confirmVertical({
     title: '垂直布局',
@@ -217,6 +217,25 @@ function showCustomContentDialog() {
     title: '自定义内容',
     msg: '使用默认插槽'
   })
+}
+
+function showCustomActionsDialog() {
+  confirmCustomActions({
+    title: '自定义按钮',
+    msg: '使用 actions 插槽自定义底部按钮'
+  })
+}
+
+function handleCustomConfirm() {
+  uni.showToast({ title: '执行确认操作', icon: 'success' })
+  const { close } = useDialog('customActions')
+  close()
+}
+
+function handleCustomDelete() {
+  uni.showToast({ title: '执行删除操作', icon: 'none' })
+  const { close } = useDialog('customActions')
+  close()
 }
 
 function showAsyncConfirmDialog() {
@@ -286,6 +305,16 @@ function showMultiActionsDialog() {
   &__desc {
     font-size: 14px;
     color: #666;
+  }
+}
+
+.demo-dialog-actions {
+  display: flex;
+  gap: 12px;
+  padding: 24px;
+
+  .m-button {
+    flex: 1;
   }
 }
 </style>
