@@ -11,7 +11,7 @@
     :root-portal="rootPortal"
   >
     <view :class="rootClass">
-      <m-icon v-if="dialogState.showClose" custom-class="m-dialog__close" name="close" @click="toggleModal('modal')"></m-icon>
+      <m-icon v-if="dialogState.showClose" custom-class="m-dialog__close" name="close" @click="handleClose"></m-icon>
       <slot name="header" />
       <view :class="bodyClass">
         <slot name="image">
@@ -404,6 +404,13 @@ function handleCancel(result: DialogResult) {
   dialogState.show = false
   if (isFunction(dialogState.success)) {
     dialogState.success(result)
+  }
+}
+
+function handleClose() {
+  dialogState.show = false
+  if (isFunction(dialogState.success)) {
+    dialogState.success({ action: 'close' })
   }
 }
 
