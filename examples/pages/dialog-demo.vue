@@ -102,12 +102,37 @@
         <m-dialog selector="async" />
       </demo-block>
 
+      <!-- 真实场景演示 -->
+      <demo-block title="真实场景演示" desc="展示各种真实业务场景的对话框用法">
+        <view class="demo-dialog-scene-card">
+          <view class="demo-dialog-scene-row">
+            <m-button type="danger" @click="showDeleteConfirmDialog">确认删除</m-button>
+            <m-button type="primary" @click="showCallDialog">立即拨打</m-button>
+          </view>
+          <view class="demo-dialog-scene-row">
+            <m-button type="success" @click="showContactServiceDialog">联系客服</m-button>
+            <m-button type="info" @click="showAddressInputDialog">地址录入</m-button>
+          </view>
+        </view>
+        <m-dialog selector="delete" />
+        <m-dialog selector="call" />
+        <m-dialog selector="service" />
+        <m-dialog selector="address">
+          <view class="demo-dialog-address">
+            <m-textarea v-model="addressValue" background show-word-limit placeholder="请输入详细地址" :maxlength="200" />
+          </view>
+        </m-dialog>
+      </demo-block>
+
     </view>
   </view>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useDialog } from '../../packages/m-dialog/index'
+
+const addressValue = ref('')
 
 const { alert: alertBasic, confirm: confirmBasic } = useDialog('basic')
 const { confirm: confirmIcon } = useDialog('icon')
@@ -120,6 +145,10 @@ const { confirm: confirmCustom } = useDialog('custom')
 const { confirm: confirmCustomActions, close: closeCustomActions } = useDialog('customActions')
 const { confirm: confirmAsync } = useDialog('async')
 const { confirm: confirmMultiActions } = useDialog('multiActions')
+const { confirm: confirmDelete } = useDialog('delete')
+const { confirm: confirmCall } = useDialog('call')
+const { confirm: confirmService } = useDialog('service')
+const { confirm: confirmAddress } = useDialog('address')
 
 function showAlertDialog() {
   alertBasic({
@@ -250,6 +279,43 @@ function showAsyncConfirmDialog() {
   })
 }
 
+function showDeleteConfirmDialog() {
+  confirmDelete({
+    title: '确认删除',
+    msg: '删除后将无法恢复，确定要删除吗？',
+    confirmButtonProps: { type: 'danger' },
+    cancelButtonProps: '取消'
+  })
+}
+
+function showCallDialog() {
+  confirmCall({
+    title: '拨打电话',
+    msg: '确定要拨打客服电话 400-123-4567 吗？',
+    confirmButtonProps: { type: 'primary', text: '立即拨打' },
+    cancelButtonProps: '取消'
+  })
+}
+
+function showContactServiceDialog() {
+  confirmService({
+    title: '联系客服',
+    msg: '是否需要联系在线客服获取帮助？',
+    confirmButtonProps: { type: 'success', text: '进入客服' },
+    cancelButtonProps: '暂不需要'
+  })
+}
+
+function showAddressInputDialog() {
+  addressValue.value = ''
+  confirmAddress({
+    title: '地址录入',
+    msg: '请输入详细地址',
+    confirmButtonProps: '确认保存',
+    cancelButtonProps: '取消'
+  })
+}
+
 </script>
 
 <style lang="scss">
@@ -306,5 +372,29 @@ function showAsyncConfirmDialog() {
     min-width: 100px;
     max-width: 140px;
   }
+}
+
+.demo-dialog-scene-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.demo-dialog-scene-row {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+
+  .m-button {
+    min-width: 120px;
+  }
+}
+
+.demo-dialog-address {
+  padding: 5px;
 }
 </style>
