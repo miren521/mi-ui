@@ -7,13 +7,13 @@ $m-action-sheet-action-font-size: var(--m-action-sheet-action-font-size, 16px) !
 $m-action-sheet-action-line-height: var(--m-action-sheet-action-line-height, 24px) !default;
 $m-action-sheet-action-color: var(--m-action-sheet-action-color, #333333) !default;
 $m-action-sheet-action-padding: var(--m-action-sheet-action-padding, 20px 24px) !default;
-$m-action-sheet-gap-bg: var(--m-action-sheet-gap-bg, #f5f5f5) !default;
+$m-action-sheet-gap-bg: var(--m-action-sheet-gap-bg, #f0f0f0) !default;
 $m-action-sheet-cancel-bg: var(--m-action-sheet-cancel-bg, #ffffff) !default;
 $m-action-sheet-cancel-font-size: var(--m-action-sheet-cancel-font-size, 16px) !default;
 $m-action-sheet-cancel-line-height: var(--m-action-sheet-cancel-line-height, 24px) !default;
 $m-action-sheet-cancel-color: var(--m-action-sheet-cancel-color, #333333) !default;
 $m-action-sheet-cancel-padding: var(--m-action-sheet-cancel-padding, 20px 24px) !default;
-$m-action-sheet-gap-height: var(--m-action-sheet-gap-height, 8px) !default;
+$m-action-sheet-gap-height: var(--m-action-sheet-gap-height, 4px) !default;
 $m-action-sheet-description-font-size: var(--m-action-sheet-description-font-size, 14px) !default;
 $m-action-sheet-description-line-height: var(--m-action-sheet-description-line-height, 20px) !default;
 $m-action-sheet-description-color: var(--m-action-sheet-description-color, #999999) !default;
@@ -73,7 +73,7 @@ $m-action-sheet-loading-size: var(--m-action-sheet-loading-size, 20px) !default;
     box-sizing: border-box;
 
     @include when(border) {
-      @include pixelBorder;
+      @include pixelBorder("bottom", 0, #ebe9e9, 1px);
     }
 
     &:not(&--disabled):not(&--loading):active {
