@@ -1,0 +1,89 @@
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+// 菜单项高度
+$drop-menu-height: var(--m-drop-menu-height, 48px) !default;
+// 菜单列表背景色
+$drop-menu-list-bg: var(--m-drop-menu-list-bg, #ffffff) !default;
+// 菜单项内边距
+$drop-menu-option-padding: var(--m-drop-menu-option-padding, 16px) !default;
+// 菜单项禁用态透明度
+$drop-menu-option-opacity-disabled: var(--m-drop-menu-option-opacity-disabled, 0.5) !default;
+// 菜单项水平内边距
+$drop-menu-option-padding-horizontal: var(--m-drop-menu-option-padding-horizontal, 24px) !default;
+// 箭头图标大小
+$drop-menu-arrow-size: var(--m-drop-menu-arrow-size, 16px) !default;
+// 箭头图标颜色
+$drop-menu-arrow-color: var(--m-drop-menu-arrow-color, #999999) !default;
+// 箭头图标激活态颜色
+$drop-menu-arrow-color-active: var(--m-drop-menu-arrow-color-active, #4080ff) !default;
+// 箭头图标间距
+$drop-menu-arrow-spacing: var(--m-drop-menu-arrow-spacing, 4px) !default;
+// 菜单文字颜色
+$drop-menu-text-color: var(--m-drop-menu-text-color, #333333) !default;
+// 菜单文字字号
+$drop-menu-text-font-size: var(--m-drop-menu-text-font-size, 16px) !default;
+// 菜单文字行高
+$drop-menu-text-line-height: var(--m-drop-menu-text-line-height, 24px) !default;
+// 菜单激活态字重
+$drop-menu-text-font-weight-active: var(--m-drop-menu-text-font-weight-active, 500) !default;
+// 菜单激活态文字颜色
+$drop-menu-text-color-active: var(--m-drop-menu-text-color-active, #4080ff) !default;
+
+@include b(drop-menu) {
+  position: relative;
+
+  @include e(list) {
+    display: flex;
+    text-align: center;
+    background-color: $drop-menu-list-bg;
+  }
+
+  @include e(option) {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    height: $drop-menu-height;
+    padding: $drop-menu-option-padding;
+    box-sizing: border-box;
+    text-align: center;
+
+    @include when(active) {
+      .m-drop-menu__option-title-text {
+        font-weight: $drop-menu-text-font-weight-active;
+        color: $drop-menu-text-color-active;
+      }
+
+      :deep(.m-drop-menu__arrow) {
+        transform: rotate(-180deg);
+        transform-origin: center center;
+        color: $drop-menu-arrow-color-active;
+      }
+    }
+
+    @include when(disabled) {
+      opacity: $drop-menu-option-opacity-disabled;
+    }
+
+  }
+
+  @include e(option-title) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+  }
+
+  @include e(option-title-text) {
+    color: $drop-menu-text-color;
+    font-size: $drop-menu-text-font-size;
+    line-height: $drop-menu-text-line-height;
+    @include lineEllipsis;
+  }
+
+  @include edeep(arrow) {
+    font-size: $drop-menu-arrow-size;
+    color: $drop-menu-arrow-color;
+    margin-left: $drop-menu-arrow-spacing;
+  }
+}

@@ -23,6 +23,7 @@ export const feedbackComponents: ComponentItem[] = [
   { id: 'toast', title: 'Toast 轻提示', enTitle: 'Toast', zhTitle: '轻提示', desc: '轻提示组件，用于消息提示', category: 'feedback', url: '/examples/pages/toast-demo' },
   { id: 'dialog', title: 'Dialog 对话框', enTitle: 'Dialog', zhTitle: '对话框', desc: '对话框组件，用于消息提示和确认操作', category: 'feedback', url: '/examples/pages/dialog-demo' },
   { id: 'action-sheet', title: 'ActionSheet 上拉菜单', enTitle: 'ActionSheet', zhTitle: '上拉菜单', desc: '底部弹出的动作菜单面板', category: 'feedback', url: '/examples/pages/action-sheet-demo' },
+  { id: 'drop-menu', title: 'DropMenu 下拉菜单', enTitle: 'DropMenu', zhTitle: '下拉菜单', desc: '下拉菜单组件，支持多级联动选择', category: 'feedback', url: '/examples/pages/drop-menu-demo' },
   { id: 'transition', title: 'Transition 动画', enTitle: 'Transition', zhTitle: '动画', desc: '过渡动画组件', category: 'feedback', url: '/examples/pages/transition-demo' },
   { id: 'loading', title: 'Loading 加载指示器', enTitle: 'Loading', zhTitle: '加载指示器', desc: '加载动画，用于表示加载中的过渡状态', category: 'feedback', url: '/examples/pages/loading-demo' },
 ]

@@ -1,0 +1,96 @@
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+// 选项内边距
+$drop-item-option-padding: var(--m-drop-item-option-padding, 16px) !default;
+// 选中项文字颜色
+$drop-item-text-color-active: var(--m-drop-item-text-color-active, #4080ff) !default;
+// 提示文字颜色
+$drop-item-tip-color: var(--m-drop-item-tip-color, #999999) !default;
+// 选中项提示文字颜色
+$drop-item-tip-color-active: var(--m-drop-item-tip-color-active, #4080ff) !default;
+// 提示文字字号
+$drop-item-tip-font-size: var(--m-drop-item-tip-font-size, 14px) !default;
+// 提示文字行高
+$drop-item-tip-line-height: var(--m-drop-item-tip-line-height, 22px) !default;
+// 提示文字间距
+$drop-item-tip-spacing: var(--m-drop-item-tip-spacing, 8px) !default;
+// 勾选图标尺寸
+$drop-item-icon-size: var(--m-drop-item-icon-size, 20px) !default;
+// 勾选图标颜色
+$drop-item-icon-color: var(--m-drop-item-icon-color, #4080ff) !default;
+// 遮罩层背景色
+$drop-item-modal-bg: var(--m-drop-item-modal-bg, rgba(0, 0, 0, 0.55)) !default;
+// 选项文字字号
+$drop-item-text-font-size: var(--m-drop-item-text-font-size, 16px) !default;
+// 选项文字行高
+$drop-item-text-line-height: var(--m-drop-item-text-line-height, 24px) !default;
+// 选项文字颜色
+$drop-item-text-color: var(--m-drop-item-text-color, #333333) !default;
+// 弹层顶部边线样式
+$drop-item-popup-border-top: var(--m-drop-item-popup-border-top, #eeeeee solid 1px) !default;
+
+@include b(drop-item) {
+  position: fixed;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  z-index: 101;
+  pointer-events: none; 
+
+  @include edeep(popup) {
+    position: absolute; 
+    pointer-events: auto;
+    border-top: $drop-item-popup-border-top;
+  }
+
+  @include e(option) {
+    display: flex;
+    padding: $drop-item-option-padding;
+    justify-content: space-between;
+    align-items: center;
+    transition: color .2s;
+
+    @include when(active) {
+      .m-drop-item__title-text {
+        color: $drop-item-text-color-active;
+      }
+      .m-drop-item__tip {
+        color: $drop-item-tip-color-active;
+      }
+    }
+  }
+
+  @include e(title){
+    text-align: left;
+  }
+
+  @include e(title-text) {
+    font-size: $drop-item-text-font-size;
+    line-height: $drop-item-text-line-height;
+    color: $drop-item-text-color;
+  }
+
+  @include e(tip) {
+    display: inline-block;
+    color: $drop-item-tip-color;
+    font-size: $drop-item-tip-font-size;
+    line-height: $drop-item-tip-line-height;
+    margin-left: $drop-item-tip-spacing;
+  }
+
+  @include edeep(icon) {
+    display: block;
+    font-size: $drop-item-icon-size;
+    color: $drop-item-icon-color;
+  }
+
+  @include e(modal) {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: $drop-item-modal-bg;
+    height: 100%;
+  }
+}

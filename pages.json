@@ -251,6 +251,12 @@
       "style": {
         "navigationBarTitleText": "ActionSheet 上拉菜单"
       }
+    },
+    {
+      "path": "examples/pages/drop-menu-demo",
+      "style": {
+        "navigationBarTitleText": "DropMenu 下拉菜单"
+      }
     }
   ],
   "globalStyle": {
