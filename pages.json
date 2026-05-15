@@ -263,6 +263,12 @@
       "style": {
         "navigationBarTitleText": "Popover 气泡卡片"
       }
+    },
+    {
+      "path": "examples/pages/progress-demo",
+      "style": {
+        "navigationBarTitleText": "Progress 进度条"
+      }
     }
   ],
   "globalStyle": {

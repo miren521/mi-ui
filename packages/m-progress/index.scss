@@ -1,0 +1,155 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+// 进度条底色
+$progress-bg: var(--m-progress-bg, #f5f5f5) !default;
+// danger 进度色
+$progress-danger-color: var(--m-progress-danger-color, #f5222d) !default;
+// success 进度色
+$progress-success-color: var(--m-progress-success-color, #52c41a) !default;
+// warning 进度色
+$progress-warning-color: var(--m-progress-warning-color, #faad14) !default;
+// 默认进度色
+$progress-color: var(--m-progress-color, #1890ff) !default;
+// 外部文案模式进度条高度
+$progress-bar-height: var(--m-progress-bar-height, 8px) !default;
+// 内部文案模式组件高度
+$progress-height: var(--m-progress-height, 18px) !default;
+// 外部文案颜色
+$progress-label-color: var(--m-progress-label-color, #333) !default;
+// 外部文案宽度
+$progress-label-width: var(--m-progress-label-width, 34px) !default;
+// 外部文案左侧间距
+$progress-label-margin-left: var(--m-progress-label-margin-left, 8px) !default;
+// 内部文案颜色
+$progress-inner-label-color: var(--m-progress-inner-label-color, #fff) !default;
+// 内部 zero 态背景色
+$progress-inner-zero-bg: var(--m-progress-inner-zero-bg, #bae7ff) !default;
+// 内部 zero 态文字颜色
+$progress-inner-zero-color: var(--m-progress-inner-zero-color, #666) !default;
+// 内部文案内边距
+$progress-inner-padding: var(--m-progress-inner-padding, 0 8px) !default;
+// 文案字号
+$progress-label-font-size: var(--m-progress-label-font-size, 14px) !default;
+// 文案行高
+$progress-label-line-height: var(--m-progress-label-line-height, 20px) !default;
+// 图标字号
+$progress-icon-size: var(--m-progress-icon-size, 18px) !default;
+// 进度条圆角
+$progress-radius: var(--m-progress-radius, 100px) !default;
+
+@include b(progress) {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: $progress-height;
+
+  @include e(outer) {
+    display: block;
+    position: relative;
+    flex: 1;
+    background: $progress-bg;
+    overflow: hidden;
+    height: $progress-bar-height;
+    border-radius: $progress-radius;
+  }
+
+  @include e(inner) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: $progress-color;
+    transition-property: width;
+    transition-timing-function: linear;
+    font-size: $progress-icon-size;
+    display: flex;
+    align-items: center;
+    min-width: max-content;
+  }
+
+  @include edeep(label) {
+    color: $progress-label-color;
+    font-size: $progress-label-font-size;
+    line-height: $progress-label-line-height;
+    width: $progress-label-width;
+    margin-left: $progress-label-margin-left;
+
+    @include when(hide-text){
+      width: auto;
+    }
+  }
+
+  @include edeep(icon) {
+    font-size: $progress-icon-size;
+  }
+
+  @include m(danger) {
+    @include me(inner) {
+      background: $progress-danger-color;
+    }
+    @include me(icon) {
+      color: $progress-danger-color;
+    }
+  }
+
+  @include m(success) {
+    @include me(inner) {
+      background: $progress-success-color;
+    }
+    @include me(icon) {
+      color: $progress-success-color;
+    }
+  }
+
+  @include m(warning) {
+    @include me(inner) {
+      background: $progress-warning-color;
+    }
+    @include me(icon) {
+      color: $progress-warning-color;
+    }
+  }
+
+  @include m(inner) {
+    @include me(outer) {
+      height: 100%;
+      border-radius: $progress-radius;
+    }
+
+    @include me(label) {
+      width: auto;
+      margin-left: 0;
+      color: $progress-inner-label-color;
+      padding: $progress-inner-padding;
+      white-space: nowrap;
+
+      @include when(align-left) {
+        margin-right: auto;
+      }
+      @include when(align-center) {
+        margin: 0 auto;
+      }
+      @include when(align-right) {
+        margin-left: auto;
+      }
+    }
+
+    @include me(icon) {
+      color: $progress-inner-label-color !important;
+    }
+
+    @include when(zero) {
+      @include me(inner) {
+        background: $progress-inner-zero-bg;
+      }
+      @include me(label) {
+        color: $progress-inner-zero-color !important;
+      }
+      @include me(icon) {
+        color: $progress-inner-zero-color !important;
+      }
+    }
+  }
+}

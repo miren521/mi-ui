@@ -25,6 +25,8 @@ export const feedbackComponents: ComponentItem[] = [
   { id: 'action-sheet', title: 'ActionSheet 上拉菜单', enTitle: 'ActionSheet', zhTitle: '上拉菜单', desc: '底部弹出的动作菜单面板', category: 'feedback', url: '/examples/pages/action-sheet-demo' },
   { id: 'drop-menu', title: 'DropMenu 下拉菜单', enTitle: 'DropMenu', zhTitle: '下拉菜单', desc: '下拉菜单组件，支持多级联动选择', category: 'feedback', url: '/examples/pages/drop-menu-demo' },
   { id: 'popover', title: 'Popover 气泡卡片', enTitle: 'Popover', zhTitle: '气泡卡片', desc: '气泡卡片组件，用于展示提示信息', category: 'feedback', url: '/examples/pages/popover-demo' },
+  { id: 'floating-panel', title: 'FloatingPanel 浮动面板', enTitle: 'FloatingPanel', zhTitle: '浮动面板', desc: '浮动面板组件，支持拖拽调整高度', category: 'feedback', url: '/examples/pages/floating-panel-demo' },
+  { id: 'progress', title: 'Progress 进度条', enTitle: 'Progress', zhTitle: '进度条', desc: '进度条组件，用于展示任务进度', category: 'feedback', url: '/examples/pages/progress-demo' },
   { id: 'transition', title: 'Transition 动画', enTitle: 'Transition', zhTitle: '动画', desc: '过渡动画组件', category: 'feedback', url: '/examples/pages/transition-demo' },
   { id: 'loading', title: 'Loading 加载指示器', enTitle: 'Loading', zhTitle: '加载指示器', desc: '加载动画，用于表示加载中的过渡状态', category: 'feedback', url: '/examples/pages/loading-demo' },
 ]
