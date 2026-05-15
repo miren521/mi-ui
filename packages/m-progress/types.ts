@@ -79,7 +79,13 @@ export const progressProps = {
   percentPosition: {
     type: Object as PropType<PercentPosition>,
     default: () => ({ align: 'right', type: 'outer' })
-  }
+  },
+  /**
+   * 进度条高度，单位为 px
+   * 类型: number
+   * 默认值: 8
+   */
+  strokeWidth: makeNumberProp(8)
 }
 
 export type ProgressProps = ExtractPropTypes<typeof progressProps>

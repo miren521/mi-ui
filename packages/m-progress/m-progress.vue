@@ -5,7 +5,7 @@
     } ${customClass}`"
     :style="customStyle"
   >
-    <view class="m-progress__outer">
+    <view class="m-progress__outer" :style="outerStyle">
       <view class="m-progress__inner" :style="rootStyle">
         <!-- inner 渲染到 progress__inner 内部 -->
         <template v-if="percentPosition.type === 'inner'">
@@ -52,7 +52,8 @@ let animationTimer: ReturnType<typeof setTimeout> | null = null
 const rootStyle = computed(() => {
   const style: Record<string, string> = {
     width: `${displayPercentage.value}%`,
-    'transition-duration': `${percentageDiff.value * props.duration * 0.001}s`
+    'transition-duration': `${percentageDiff.value * props.duration * 0.001}s`,
+    height: `${props.strokeWidth}px`
   }
   
   if (gradientBackground.value) {
@@ -63,6 +64,10 @@ const rootStyle = computed(() => {
   
   return objToStyle(style)
 })
+
+const outerStyle = computed(() => ({
+  height: `${props.strokeWidth}px`
+}))
 
 const gradientBackground = ref<string>('')
 

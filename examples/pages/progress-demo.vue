@@ -89,13 +89,13 @@
       <!-- 文字位置 -->
       <demo-block title="文字位置" desc="设置 percentPosition 属性调整文字位置">
         <view class="m-progress-demo__row">
-          <m-progress :percentage="30" :percentPosition="{ type: 'inner', align: 'left' }" />
+          <m-progress :strokeWidth="20" :percentage="30" :percentPosition="{ type: 'inner', align: 'left' }" />
         </view>
         <view class="m-progress-demo__row">
-          <m-progress :percentage="50" :percentPosition="{ type: 'inner', align: 'center' }" />
+          <m-progress :strokeWidth="20" :percentage="50" :percentPosition="{ type: 'inner', align: 'center' }" />
         </view>
         <view class="m-progress-demo__row">
-          <m-progress :percentage="70" :percentPosition="{ type: 'inner', align: 'right' }" />
+          <m-progress :strokeWidth="20" :percentage="70" :percentPosition="{ type: 'inner', align: 'right' }" />
         </view>
       </demo-block>
 
@@ -109,6 +109,22 @@
         </view>
         <view class="m-progress-demo__row">
           <m-progress :percentage="70" :duration="60" />
+        </view>
+      </demo-block>
+
+      <!-- 进度条高度 -->
+      <demo-block title="进度条高度" desc="设置 strokeWidth 属性调整进度条高度">
+        <view class="m-progress-demo__row">
+          <m-progress :percentage="50" :strokeWidth="4" />
+        </view>
+        <view class="m-progress-demo__row">
+          <m-progress :percentage="50" :strokeWidth="8" />
+        </view>
+        <view class="m-progress-demo__row">
+          <m-progress :percentage="50" :strokeWidth="16" />
+        </view>
+        <view class="m-progress-demo__row">
+          <m-progress :percentage="50" :strokeWidth="24" />
         </view>
       </demo-block>
     </view>
