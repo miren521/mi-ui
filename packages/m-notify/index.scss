@@ -1,0 +1,109 @@
+@use "sass:map";
+
+$notify-text-color: var(--m-notify-text-color, #ffffff) !default;
+$notify-padding: var(--m-notify-padding, 12px 16px) !default;
+$notify-font-size: var(--m-notify-font-size, 14px) !default;
+$notify-line-height: var(--m-notify-line-height, 1.5) !default;
+$notify-primary-bg: var(--m-notify-primary-bg, #e6f7ff) !default;
+$notify-primary-color: var(--m-notify-primary-color, #1890ff) !default;
+$notify-success-bg: var(--m-notify-success-bg, #f6ffed) !default;
+$notify-success-color: var(--m-notify-success-color, #52c41a) !default;
+$notify-danger-bg: var(--m-notify-danger-bg, #fff2f0) !default;
+$notify-danger-color: var(--m-notify-danger-color, #ff4d4f) !default;
+$notify-warning-bg: var(--m-notify-warning-bg, #fffbe6) !default;
+$notify-warning-color: var(--m-notify-warning-color, #faad14) !default;
+$notify-icon-size: var(--m-notify-icon-size, 18px) !default;
+$notify-icon-spacing: var(--m-notify-icon-spacing, 8px) !default;
+$notify-floating-bg: var(--m-notify-floating-bg, #ffffff) !default;
+$notify-floating-color: var(--m-notify-floating-color, #333333) !default;
+$notify-floating-radius: var(--m-notify-floating-radius, 12px) !default;
+$notify-floating-margin-horizontal: var(--m-notify-floating-margin-horizontal, 12px) !default;
+$notify-floating-margin-vertical: var(--m-notify-floating-margin-vertical, 12px) !default;
+$notify-floating-shadow: var(--m-notify-floating-shadow,
+  0 12px 48px 16px rgba(39, 43, 59, 0.03), 0 9px 28px 8px rgba(39, 43, 59, 0.05), 0 5px 12px 4px rgba(39, 43, 59, 0.06)) !default;
+
+$notify-types: ("primary": ("bg": $notify-primary-bg,
+    "color": $notify-primary-color),
+  "success": ("bg": $notify-success-bg,
+    "color": $notify-success-color),
+  "danger": ("bg": $notify-danger-bg,
+    "color": $notify-danger-color),
+  "warning": ("bg": $notify-warning-bg,
+    "color": $notify-warning-color));
+
+.m-notify {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: $notify-padding;
+  font-size: $notify-font-size;
+  line-height: $notify-line-height;
+  color: $notify-danger-color;
+  background: $notify-danger-bg;
+  width: 100%;
+
+  @each $type,
+  $conf in $notify-types {
+    &--#{$type} {
+      background: map.get($conf, "bg");
+      color: map.get($conf, "color");
+
+      .m-notify__prefix {
+        color: map.get($conf, "color");
+      }
+    }
+  }
+
+  &--floating {
+    background: $notify-floating-bg;
+    color: $notify-floating-color;
+    border-radius: $notify-floating-radius;
+    box-shadow: $notify-floating-shadow;
+
+    &.m-notify--top {
+      margin-top: $notify-floating-margin-vertical;
+    }
+
+    &.m-notify--bottom {
+      margin-bottom: $notify-floating-margin-vertical;
+    }
+
+    @each $type,
+    $conf in $notify-types {
+      &.m-notify--#{$type} {
+        .m-notify__prefix {
+          color: map.get($conf, "color");
+        }
+      }
+    }
+  }
+
+  &__prefix {
+    font-size: $notify-icon-size;
+    margin-right: $notify-icon-spacing;
+    flex: 0 0 auto;
+  }
+
+  &__close {
+    font-size: $notify-icon-size;
+    margin-left: $notify-icon-spacing;
+    flex: 0 0 auto;
+    cursor: pointer;
+    opacity: 0.6;
+
+    &:active {
+      opacity: 1;
+    }
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    text {
+      display: block;
+    }
+  }
+}

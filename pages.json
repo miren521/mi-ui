@@ -273,7 +273,13 @@
     {
       "path": "examples/pages/circle-demo",
       "style": {
-        "navigationBarTitleText": "Circle 圆环进度条"
+        "navigationBarTitleText": "Circle 环形进度条"
+      }
+    },
+    {
+      "path": "examples/pages/notify-demo",
+      "style": {
+        "navigationBarTitleText": "Notify 通知"
       }
     }
   ],
