@@ -48,12 +48,15 @@
       </demo-block>
 
       <!-- 分段颜色 -->
-      <demo-block title="分段颜色" desc="设置 color 为对象数组实现分段颜色">
+      <demo-block title="分段颜色" desc="设置 color 为对象数组实现分段颜色，不同进度区间显示不同颜色">
         <view class="m-progress-demo__row">
-          <m-progress :percentage="30" :color="[{ color: '#ff0000', percentage: 30 }, { color: '#00ff00', percentage: 70 }, { color: '#0000ff', percentage: 100 }]" />
+          <m-progress :percentage="segmentedPercentage" :color="[{ color: '#ff0000', percentage: 30 }, { color: '#00ff00', percentage: 70 }, { color: '#0000ff', percentage: 100 }]" />
         </view>
-        <view class="m-progress-demo__row">
-          <m-progress :percentage="60" :color="[{ color: '#ff0000', percentage: 30 }, { color: '#00ff00', percentage: 70 }, { color: '#0000ff', percentage: 100 }]" />
+        <view class="m-progress-demo__row m-progress-demo__btn-row">
+          <m-button type="primary" @click="segmentedPercentage = 15">15%</m-button>
+          <m-button type="primary" @click="segmentedPercentage = 45">45%</m-button>
+          <m-button type="primary" @click="segmentedPercentage = 85">85%</m-button>
+          <m-button type="primary" @click="segmentedPercentage = 100">100%</m-button>
         </view>
       </demo-block>
 
@@ -116,6 +119,7 @@
 import { ref } from 'vue'
 
 const dynamicPercentage = ref(30)
+const segmentedPercentage = ref(30)
 </script>
 
 <style lang="scss">
