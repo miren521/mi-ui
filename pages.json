@@ -257,6 +257,12 @@
       "style": {
         "navigationBarTitleText": "DropMenu 下拉菜单"
       }
+    },
+    {
+      "path": "examples/pages/popover-demo",
+      "style": {
+        "navigationBarTitleText": "Popover 气泡卡片"
+      }
     }
   ],
   "globalStyle": {

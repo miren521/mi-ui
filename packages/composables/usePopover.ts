@@ -38,8 +38,9 @@ export interface PopoverMenuItem {
 /**
  * Popover/Tooltip 共用的定位与样式管理 composable
  * @param visibleArrow 是否显示箭头
+ * @param namespace 命名空间前缀，默认 'm'
  */
-export function usePopover(visibleArrow = true) {
+export function usePopover(visibleArrow = true, namespace = 'm') {
   const { proxy } = getCurrentInstance() as any
   const popStyle = ref<string>('')
   const arrowStyle = ref<string>('')
@@ -63,11 +64,11 @@ export function usePopover(visibleArrow = true) {
     // 初始化 class
     if (visibleArrow) {
       const arrowClassArr = [
-        `wd-${selector}__arrow`,
-        placement === 'bottom' || placement === 'bottom-start' || placement === 'bottom-end' ? `wd-${selector}__arrow-up` : '',
-        placement === 'left' || placement === 'left-start' || placement === 'left-end' ? `wd-${selector}__arrow-right` : '',
-        placement === 'right' || placement === 'right-start' || placement === 'right-end' ? `wd-${selector}__arrow-left` : '',
-        placement === 'top' || placement === 'top-start' || placement === 'top-end' ? `wd-${selector}__arrow-down` : ''
+        `${namespace}-${selector}__arrow`,
+        placement === 'bottom' || placement === 'bottom-start' || placement === 'bottom-end' ? `${namespace}-${selector}__arrow-up` : '',
+        placement === 'left' || placement === 'left-start' || placement === 'left-end' ? `${namespace}-${selector}__arrow-right` : '',
+        placement === 'right' || placement === 'right-start' || placement === 'right-end' ? `${namespace}-${selector}__arrow-left` : '',
+        placement === 'top' || placement === 'top-start' || placement === 'top-end' ? `${namespace}-${selector}__arrow-down` : ''
       ]
       arrowClass.value = arrowClassArr.join(' ')
     }
@@ -118,8 +119,6 @@ export function usePopover(visibleArrow = true) {
       offsetX = (verticalX - 17 > 0 ? 0 : verticalX - 25) + offset
       offsetY = (horizontalY - 17 > 0 ? 0 : horizontalY - 25) + offset
     }
-    // const offsetX = (verticalX - 17 > 0 ? 0 : verticalX - 25) + offset
-    // const offsetY = (horizontalY - 17 > 0 ? 0 : horizontalY - 25) + offset
 
     const placements = new Map([
       // 上
