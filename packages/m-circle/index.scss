@@ -1,0 +1,24 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$circle-text-color: var(--m-circle-text-color, currentColor) !default;
+$circle-text-font-size: var(--m-circle-text-size, 20px) !default;
+$circle-text-line-height: var(--m-circle-text-line-height, 28px) !default;
+
+@include b(circle) {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+
+  @include e(text) {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    font-size: $circle-text-font-size;
+    line-height: $circle-text-line-height;
+    color: $circle-text-color;
+  }
+}

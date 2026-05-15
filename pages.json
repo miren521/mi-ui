@@ -269,6 +269,12 @@
       "style": {
         "navigationBarTitleText": "Progress 进度条"
       }
+    },
+    {
+      "path": "examples/pages/circle-demo",
+      "style": {
+        "navigationBarTitleText": "Circle 圆环进度条"
+      }
     }
   ],
   "globalStyle": {
