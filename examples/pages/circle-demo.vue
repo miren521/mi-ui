@@ -56,23 +56,23 @@
           <m-circle :modelValue="50" :size="80" />
         </view>
         <view class="m-circle-demo__row">
-          <m-circle :modelValue="60" :size="120" />
+          <m-circle :modelValue="50" :size="120" />
         </view>
         <view class="m-circle-demo__row">
-          <m-circle :modelValue="70" :size="160" />
+          <m-circle :modelValue="50" :size="160" />
         </view>
       </demo-block>
 
       <!-- 自定义文字 -->
-      <demo-block title="自定义文字" desc="设置 text 属性显示自定义文字，适合展示状态">
+      <demo-block title="自定义文字" desc="设置 text 属性显示自定义文字，配合 color 使用">
         <view class="m-circle-demo__row">
-          <m-circle :modelValue="30" text="进行中" color="#ff6b6b" />
+          <m-circle :modelValue="30" text="进行中" color="#e6a23c" />
         </view>
         <view class="m-circle-demo__row">
-          <m-circle :modelValue="50" text="一半了" color="#4ecdc4" />
+          <m-circle :modelValue="50" text="一半了" color="#409eff" />
         </view>
         <view class="m-circle-demo__row">
-          <m-circle :modelValue="100" text="已完成" color="#9a8dc4" />
+          <m-circle :modelValue="100" text="已完成" color="#67c23a" />
         </view>
       </demo-block>
 
@@ -143,9 +143,6 @@
         <view class="m-circle-demo__row">
           <m-circle :modelValue="50" strokeLinecap="round" />
         </view>
-        <view class="m-circle-demo__row">
-          <m-circle :modelValue="50" strokeLinecap="square" />
-        </view>
       </demo-block>
 
       <!-- 填充 -->
@@ -162,15 +159,16 @@
       </demo-block>
 
       <!-- 动画速度 -->
-      <demo-block title="动画速度" desc="设置 speed 属性调整动画速度（rate/s）">
+      <demo-block title="动画速度" desc="设置 speed 属性调整动画速度，值越大动画越快">
         <view class="m-circle-demo__row">
-          <m-circle :modelValue="80" :speed="10" />
+          <m-circle :modelValue="dynamicSpeedValue" :speed="dynamicSpeed" />
         </view>
-        <view class="m-circle-demo__row">
-          <m-circle :modelValue="80" :speed="50" />
-        </view>
-        <view class="m-circle-demo__row">
-          <m-circle :modelValue="80" :speed="200" />
+        <view class="m-circle-demo__row m-circle-demo__btn-row">
+          <m-button type="primary" size="small" @click="startSpeedAnimation(10)">慢速 10</m-button>
+          <m-button type="primary" size="small" @click="startSpeedAnimation(50)">中速 50</m-button>
+          <m-button type="primary" size="small" @click="startSpeedAnimation(200)">快速 200</m-button>
+          <m-button type="primary" size="small" @click="startSpeedAnimation(500)">极快 500</m-button>
+          <m-button type="info" size="small" @click="resetSpeedAnimation">重置</m-button>
         </view>
       </demo-block>
     </view>
@@ -181,6 +179,20 @@
 import { ref } from 'vue'
 
 const dynamicValue = ref(30)
+const dynamicSpeed = ref(50)
+const dynamicSpeedValue = ref(0)
+
+function startSpeedAnimation(speed: number) {
+  dynamicSpeed.value = speed
+  dynamicSpeedValue.value = 0
+  setTimeout(() => {
+    dynamicSpeedValue.value = 100
+  }, 50)
+}
+
+function resetSpeedAnimation() {
+  dynamicSpeedValue.value = 0
+}
 </script>
 
 <style lang="scss">

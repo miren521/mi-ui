@@ -3,9 +3,9 @@ import { baseProps, makeBooleanProp, makeNumberProp, makeStringProp } from '../c
 
 /**
  * 进度条端点的形状
- * 可选值: 'butt' | 'round' | 'square'
+ * 可选值: 'butt' | 'round'
  */
-export type StrokeLinecapType = 'butt' | 'round' | 'square'
+export type StrokeLinecapType = 'butt' | 'round'
 
 export const circleProps = {
   ...baseProps,
