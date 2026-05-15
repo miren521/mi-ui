@@ -113,7 +113,7 @@ const menuItems = [
   { content: '选项一', iconClass: 'star' },
   { content: '选项二', iconClass: 'heart' },
   { content: '选项三', iconClass: 'settings' },
-  { content: '选项四', iconClass: 'share' }
+  { content: '选项四', iconClass: 'share-alt' }
 ]
 
 function handleMenuClick(event: { item: Record<string, any>; index: number }) {

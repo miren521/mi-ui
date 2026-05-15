@@ -1,5 +1,5 @@
 <template>
-  <view :class="`m-popover ${customClass}`" :style="customStyle" id="popover" @click.stop>
+  <view :class="`m-popover ${customClass}`" :style="customStyle" @click.stop>
     <view class="m-popover__pos m-popover__hidden" id="pos">
       <view :class="`m-popover__container ${customPop}`">
         <view v-if="!$slots.content && mode === 'normal'" class="m-popover__inner">
@@ -20,7 +20,7 @@
       name="fade"
       @after-enter="handleAfterEnter"
     >
-      <view :class="`m-popover__container ${customPop}`" id="content" @click.stop>
+      <view ref="popoverContentRef" :class="`m-popover__container ${customPop}`" id="content" @click.stop>
         <view
           v-if="props.visibleArrow"
           :class="`m-popover__arrow ${popover.arrowClass.value} ${customArrow}`"
@@ -48,7 +48,7 @@
         <m-icon v-if="showClose" name="close" custom-class="m-popover__close-icon" @click="toggle"></m-icon>
       </view>
     </m-transition>
-    <view @click="toggle" class="m-popover__target" id="target">
+    <view ref="targetRef" @click="toggle" class="m-popover__target" id="target">
       <slot />
     </view>
   </view>
@@ -70,7 +70,7 @@ export default {
 <script lang="ts" setup>
 import mIcon from '../m-icon/m-icon.vue'
 import mTransition from '../m-transition/m-transition.vue'
-import { getCurrentInstance, inject, onBeforeMount, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { getCurrentInstance, inject, onBeforeMount, onBeforeUnmount, onMounted, ref, watch, nextTick } from 'vue'
 import { usePopover } from '../composables/usePopover'
 import { closeOther, pushToQueue, removeFromQueue } from '../common/clickoutside'
 import { useQueue, queueKey } from '../composables/useQueue'
@@ -87,6 +87,8 @@ const { proxy } = getCurrentInstance() as any
 const popover = usePopover(props.visibleArrow, 'm')
 
 const showPopover = ref<boolean>(false)
+const popoverContentRef = ref<HTMLElement | null>(null)
+const targetRef = ref<HTMLElement | null>(null)
 
 watch(
   () => props.content,
@@ -124,12 +126,31 @@ watch(
       } else {
         closeOther(proxy)
       }
+      nextTick(() => {
+        document.addEventListener('click', handleDocumentClick)
+      })
+    } else {
+      document.removeEventListener('click', handleDocumentClick)
     }
     popover.showStyle.value = newValue ? 'display: inline-block;' : 'display: none;'
     emit('change', { show: newValue })
     emit(`${newValue ? 'open' : 'close'}`)
   }
 )
+
+function handleDocumentClick(e: MouseEvent) {
+  const target = e.target as HTMLElement
+  
+  const popoverEl = popoverContentRef.value as unknown as HTMLElement
+  const targetEl = targetRef.value as unknown as HTMLElement
+  
+  const isClickOnPopover = popoverEl && popoverEl.contains && popoverEl.contains(target)
+  const isClickOnTarget = targetEl && targetEl.contains && targetEl.contains(target)
+  
+  if (!isClickOnPopover && !isClickOnTarget) {
+    close()
+  }
+}
 
 onMounted(() => {
   popover.init(props.placement, props.visibleArrow, selector)
@@ -145,6 +166,7 @@ onBeforeMount(() => {
 })
 
 onBeforeUnmount(() => {
+  document.removeEventListener('click', handleDocumentClick)
   if (queue && queue.removeFromQueue) {
     queue.removeFromQueue(proxy)
   } else {
