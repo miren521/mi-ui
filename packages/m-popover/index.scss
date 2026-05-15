@@ -12,7 +12,7 @@ $popover-arrow-box-shadow: var(--m-popover-arrow-box-shadow, 0 12px 48px 16px rg
 // 浮层边框颜色
 $popover-border-color: var(--m-popover-border-color, $border-main) !default;
 // 浮层圆角
-$popover-radius: var(--m-popover-radius, $radius-main) !default;
+$popover-radius: var(--m-popover-radius, 8px) !default;
 // 箭头尺寸
 $popover-arrow-size: var(--m-popover-arrow-size, $n-8) !default;
 // 浮层字号

@@ -159,6 +159,8 @@ function handleCustomClick() {
   &__custom-content {
     padding: 16px;
     text-align: left;
+    min-width: 150px;
+    box-sizing: border-box;
 
     .m-popover-demo__title {
       font-weight: bold;
