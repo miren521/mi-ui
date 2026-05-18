@@ -1,0 +1,90 @@
+$notice-bar-padding: var(--m-notice-bar-padding, 12px 10px) !default;
+$notice-bar-font-size: var(--m-notice-bar-font-size, 14px) !default;
+$notice-bar-radius: var(--m-notice-bar-radius, 0) !default;
+$notice-bar-line-height: var(--m-notice-bar-line-height, 21px) !default;
+$notice-bar-warning-bg: var(--m-notice-bar-warning-bg, #fffbe6) !default;
+$notice-bar-warning-color: var(--m-notice-bar-warning-color, #faad14) !default;
+$notice-bar-info-bg: var(--m-notice-bar-info-bg, #e6f7ff) !default;
+$notice-bar-info-color: var(--m-notice-bar-info-color, #1890ff) !default;
+$notice-bar-danger-bg: var(--m-notice-bar-danger-bg, #fff2f0) !default;
+$notice-bar-danger-color: var(--m-notice-bar-danger-color, #ff4d4f) !default;
+$notice-bar-prefix-size: var(--m-notice-bar-prefix-size, 20px) !default;
+$notice-bar-prefix-margin-right: var(--m-notice-bar-prefix-margin-right, 8px) !default;
+$notice-bar-suffix-size: var(--m-notice-bar-suffix-size, 20px) !default;
+$notice-bar-suffix-margin-left: var(--m-notice-bar-suffix-margin-left, 8px) !default;
+$notice-bar-suffix-color: var(--m-notice-bar-suffix-color, inherit) !default;
+
+.m-notice-bar {
+  display: flex;
+  padding: $notice-bar-padding;
+  align-items: center;
+  font-size: $notice-bar-font-size;
+  border-radius: $notice-bar-radius;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  color: $notice-bar-warning-color;
+  background: $notice-bar-warning-bg;
+
+  &--warning {
+    background: $notice-bar-warning-bg;
+    color: $notice-bar-warning-color;
+  }
+
+  &--info {
+    background: $notice-bar-info-bg;
+    color: $notice-bar-info-color;
+  }
+
+  &--danger {
+    background: $notice-bar-danger-bg;
+    color: $notice-bar-danger-color;
+  }
+
+  &__prefix {
+    margin-right: $notice-bar-prefix-margin-right;
+    font-size: $notice-bar-prefix-size;
+    line-height: $notice-bar-line-height;
+  }
+
+  &__suffix {
+    font-size: $notice-bar-suffix-size;
+    line-height: $notice-bar-line-height;
+    color: $notice-bar-suffix-color;
+    margin-left: $notice-bar-suffix-margin-left;
+  }
+
+  &__wrap {
+    position: relative;
+    flex: 1;
+    height: $notice-bar-line-height;
+    overflow: hidden;
+    line-height: $notice-bar-line-height;
+  }
+
+  &__content {
+    position: absolute;
+    white-space: nowrap;
+    line-height: $notice-bar-line-height;
+  }
+
+  &--ellipse {
+    .m-notice-bar__content {
+      position: static;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  &--wrap {
+    .m-notice-bar__wrap {
+      height: auto;
+    }
+
+    .m-notice-bar__content {
+      position: static;
+      white-space: normal;
+    }
+  }
+}

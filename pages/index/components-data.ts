@@ -31,6 +31,7 @@ export const feedbackComponents: ComponentItem[] = [
   { id: 'loading', title: 'Loading 加载指示器', enTitle: 'Loading', zhTitle: '加载指示器', desc: '加载动画，用于表示加载中的过渡状态', category: 'feedback', url: '/examples/pages/loading-demo' },
   { id: 'Circle', title: 'Circle 环形进度条', enTitle: 'Circle', zhTitle: '环形进度条', desc: '支持颜色定制、渐变色、方向控制', category: 'feedback', url: '/examples/pages/circle-demo' },
   { id: 'notify', title: 'Notify 通知', enTitle: 'Notify', zhTitle: '通知', desc: '顶部或底部展示消息通知', category: 'feedback', url: '/examples/pages/notify-demo' },
+  { id: 'notice-bar', title: 'NoticeBar 通知栏', enTitle: 'NoticeBar', zhTitle: '通知栏', desc: '用于展示公告、活动等滚动通知', category: 'feedback', url: '/examples/pages/notice-bar-demo' },
 ]
 
 // 表单

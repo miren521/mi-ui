@@ -281,6 +281,12 @@
       "style": {
         "navigationBarTitleText": "Notify 通知"
       }
+    },
+    {
+      "path": "examples/pages/notice-bar-demo",
+      "style": {
+        "navigationBarTitleText": "NoticeBar 通知栏"
+      }
     }
   ],
   "globalStyle": {
