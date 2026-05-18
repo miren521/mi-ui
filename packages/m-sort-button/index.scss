@@ -21,14 +21,14 @@ $m-sort-button-color: var(--m-sort-button-color, #64748b) !default;
 $m-sort-button-color-active: var(--m-sort-button-color-active, #1e293b) !default;
 // 文字激活字重
 $m-sort-button-font-weight-active: var(--m-sort-button-font-weight-active, 500) !default;
-// 下划线宽度
-$m-sort-button-line-width: var(--m-sort-button-line-width, 24rpx) !default;
+// 下划线宽度（设为auto时跟随文字宽度）
+$m-sort-button-line-width: var(--m-sort-button-line-width, 70%) !default;
 // 下划线高度
-$m-sort-button-line-height: var(--m-sort-button-line-height, 4rpx) !default;
+$m-sort-button-line-height: var(--m-sort-button-line-height, 3px) !default;
 // 下划线颜色
 $m-sort-button-line-color: var(--m-sort-button-line-color, #3b82f6) !default;
-// 下划线底部距离
-$m-sort-button-line-bottom: var(--m-sort-button-line-bottom, 4rpx) !default;
+// 下划线底部距离（距离文字底部的间距）
+$m-sort-button-line-bottom: var(--m-sort-button-line-bottom, -4px) !default;
 // 右侧区域左间距
 $m-sort-button-right-spacing-left: var(--m-sort-button-right-spacing-left, 8rpx) !default;
 // 排序图标纵向间距
@@ -48,7 +48,7 @@ $m-sort-button-sort-spacing: var(--m-sort-button-sort-spacing, 4rpx) !default;
         height: $m-sort-button-line-height;
         bottom: $m-sort-button-line-bottom;
         left: 50%;
-        transform: translate(-50%, 0);
+        transform: translateX(-50%);
         background: $m-sort-button-line-color;
         border-radius: calc($m-sort-button-line-height / 2);
         transition: opacity 0.15s;
@@ -99,7 +99,7 @@ $m-sort-button-sort-spacing: var(--m-sort-button-sort-spacing, 4rpx) !default;
     font-size: $m-sort-button-arrow-icon-size;
     color: $m-sort-button-icon-color;
     transition: color 0.15s;
-    line-height: .9;
+    line-height: 1.3;
   }
 
   @include e(icon-up) {

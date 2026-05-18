@@ -293,6 +293,12 @@
       "style": {
         "navigationBarTitleText": "SwipeAction 滑动操作"
       }
+    },
+    {
+      "path": "examples/pages/sort-button-demo",
+      "style": {
+        "navigationBarTitleText": "SortButton 排序按钮"
+      }
     }
   ],
   "globalStyle": {
