@@ -287,6 +287,12 @@
       "style": {
         "navigationBarTitleText": "NoticeBar 通知栏"
       }
+    },
+    {
+      "path": "examples/pages/swipe-action-demo",
+      "style": {
+        "navigationBarTitleText": "SwipeAction 滑动操作"
+      }
     }
   ],
   "globalStyle": {

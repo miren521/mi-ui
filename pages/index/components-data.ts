@@ -32,6 +32,7 @@ export const feedbackComponents: ComponentItem[] = [
   { id: 'Circle', title: 'Circle 环形进度条', enTitle: 'Circle', zhTitle: '环形进度条', desc: '支持颜色定制、渐变色、方向控制', category: 'feedback', url: '/examples/pages/circle-demo' },
   { id: 'notify', title: 'Notify 通知', enTitle: 'Notify', zhTitle: '通知', desc: '顶部或底部展示消息通知', category: 'feedback', url: '/examples/pages/notify-demo' },
   { id: 'notice-bar', title: 'NoticeBar 通知栏', enTitle: 'NoticeBar', zhTitle: '通知栏', desc: '用于展示公告、活动等滚动通知', category: 'feedback', url: '/examples/pages/notice-bar-demo' },
+  { id: 'swipe-action', title: 'SwipeAction 滑动操作', enTitle: 'SwipeAction', zhTitle: '滑动操作', desc: '左滑或右滑显示操作按钮，支持双向滑动', category: 'feedback', url: '/examples/pages/swipe-action-demo' },
 ]
 
 // 表单
