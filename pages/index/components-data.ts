@@ -34,6 +34,7 @@ export const feedbackComponents: ComponentItem[] = [
   { id: 'notice-bar', title: 'NoticeBar 通知栏', enTitle: 'NoticeBar', zhTitle: '通知栏', desc: '用于展示公告、活动等滚动通知', category: 'feedback', url: '/examples/pages/notice-bar-demo' },
   { id: 'swipe-action', title: 'SwipeAction 滑动操作', enTitle: 'SwipeAction', zhTitle: '滑动操作', desc: '左滑或右滑显示操作按钮，支持双向滑动', category: 'feedback', url: '/examples/pages/swipe-action-demo' },
   { id: 'sort-button', title: 'SortButton 排序按钮', enTitle: 'SortButton', zhTitle: '排序按钮', desc: '点击切换排序方向，支持升序、降序、重置状态', category: 'feedback', url: '/examples/pages/sort-button-demo' },
+  { id: 'empty', title: 'Empty 空状态', enTitle: 'Empty', zhTitle: '空状态', desc: '空状态占位展示，支持自定义图标、文案和底部操作', category: 'feedback', url: '/examples/pages/empty-demo' },
 ]
 
 // 表单

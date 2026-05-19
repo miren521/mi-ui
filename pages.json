@@ -299,6 +299,12 @@
       "style": {
         "navigationBarTitleText": "SortButton 排序按钮"
       }
+    },
+    {
+      "path": "examples/pages/empty-demo",
+      "style": {
+        "navigationBarTitleText": "Empty 空状态"
+      }
     }
   ],
   "globalStyle": {
