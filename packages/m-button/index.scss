@@ -183,6 +183,12 @@ $m-button-info-plain-disabled-border-color: #c8c8c8;
 	border-radius: 9999px;
 }
 
+// 块级按钮
+.m-button--block {
+	display: flex;
+	width: 100%;
+}
+
 // 禁用状态
 .m-button--disabled {
 	cursor: default;

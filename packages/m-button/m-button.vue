@@ -6,6 +6,7 @@
       `m-button--${size}`,
       { 'm-button--plain': plain },
       { 'm-button--round': round },
+      { 'm-button--block': block },
       { 'm-button--disabled': disabled },
       { 'm-button--loading': loading },
       props.customClass
@@ -31,6 +32,7 @@ interface ButtonProps {
   size?: 'large' | 'medium' | 'small'
   plain?: boolean
   round?: boolean
+  block?: boolean
   disabled?: boolean
   loading?: boolean
   loadingColor?: string
@@ -43,6 +45,7 @@ const props = withDefaults(defineProps<ButtonProps>(), {
   size: 'medium',
   plain: false,
   round: false,
+  block: false,
   disabled: false,
   loading: false,
   loadingColor: '',
