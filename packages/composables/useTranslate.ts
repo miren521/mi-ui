@@ -12,6 +12,10 @@ const defaultMessages: Record<string, Record<string, string>> = {
     error: '加载失败',
     loading: '加载中...',
     retry: '点击重试'
+  },
+  search: {
+    search: '搜索',
+    cancel: '取消'
   }
 }
 

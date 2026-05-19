@@ -317,6 +317,12 @@
       "style": {
         "navigationBarTitleText": "CountTo 数字滚动"
       }
+    },
+    {
+      "path": "examples/pages/search-demo",
+      "style": {
+        "navigationBarTitleText": "Search 搜索框"
+      }
     }
   ],
   "globalStyle": {
