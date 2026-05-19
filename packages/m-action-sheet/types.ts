@@ -34,7 +34,7 @@ export const actionSheetProps = {
   lazyRender: makeBooleanProp(true),
   safeAreaInsetBottom: makeBooleanProp(true),
   rootPortal: makeBooleanProp(false),
-  lockScroll: makeBooleanProp(false)
+  lockScroll: makeBooleanProp(true)
 }
 
 export type ActionSheetProps = ExtractPropTypes<typeof actionSheetProps>

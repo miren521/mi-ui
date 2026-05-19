@@ -35,6 +35,9 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import MIcon from '../m-icon/m-icon.vue'
+// #ifdef H5
+import { useLockScroll } from '../composables/useLockScroll'
+// #endif
 
 interface PopupProps {
   modelValue?: boolean
@@ -79,6 +82,10 @@ const emit = defineEmits<{
 
 const isVisible = ref(false)
 const isRendered = ref(false)
+
+// #ifdef H5
+useLockScroll(() => props.modelValue && props.lockScroll)
+// #endif
 
 function noop() {}
 
