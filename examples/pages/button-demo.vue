@@ -44,6 +44,17 @@
 				</view>
 			</demo-block>
 
+			<!-- 块级按钮 -->
+			<demo-block title="块级按钮" desc="使用 block 属性使按钮占据父容器全部宽度">
+				<view class="demo-button-block">
+					<m-button type="primary" block>块级主要按钮</m-button>
+					<m-button type="success" block>块级成功按钮</m-button>
+					<m-button type="warning" block>块级警告按钮</m-button>
+					<m-button type="danger" plain block>块级朴素危险按钮</m-button>
+					<m-button type="primary" round block>块级圆角按钮</m-button>
+				</view>
+			</demo-block>
+
 			<!-- 禁用状态 -->
 			<demo-block title="禁用状态" desc="使用 disabled 属性禁用按钮">
 				<view class="demo-button-row">
@@ -158,6 +169,12 @@ onMounted(() => {
 	.fit-content-btn {
 		margin: 10rpx 20rpx 10rpx 0;
 	}
+}
+
+.demo-button-block {
+	display: flex;
+	flex-direction: column;
+	gap: 16rpx;
 }
 
 .demo-button-theme {
