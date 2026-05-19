@@ -24,6 +24,8 @@
         :scroll-y="!loading"
         :scroll-top="scrollTop"
         :scroll-with-animation="true"
+        enhanced
+        :show-scrollbar="false"
       >
         <!-- 多选 -->
         <view v-if="type === 'checkbox' && isArray(selectList)" class="m-select-picker__checkbox" id="m-checkbox-group">
@@ -83,7 +85,7 @@
       </scroll-view>
       <!-- 确认按钮 -->
       <view v-if="showConfirm" class="m-select-picker__footer">
-        <m-button block size="large" @click="onConfirm" :disabled="loading">{{ confirmButtonText || translate('confirm') }}</m-button>
+        <m-button block size="large" @click="onConfirm" :disabled="loading">{{ confirmButtonText || '确认' }}</m-button>
       </view>
     </m-action-sheet>
   </view>
