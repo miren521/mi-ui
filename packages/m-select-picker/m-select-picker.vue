@@ -66,7 +66,7 @@
             @change="handleChange"
           >
             <view v-for="(item, index) in filterColumns" :key="index" :id="'radio' + item[valueKey]" class="m-select-picker__radio-item">
-              <m-radio :value="item[valueKey]" :disabled="item.disabled" custom-label-class="m-select-picker__radio-label">
+              <m-radio :value="item[valueKey]" :disabled="item.disabled" custom-label-class="m-select-picker__radio-label" placement="right">
                 <block v-if="showHighlightText">
                   <block v-for="text in item[labelKey]" :key="text.label">
                     <text :class="`${text.type === 'active' ? 'm-select-picker__text-active' : ''}`">{{ text.label }}</text>

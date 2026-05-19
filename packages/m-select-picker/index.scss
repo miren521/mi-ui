@@ -8,7 +8,7 @@ $select-picker-loading-opacity: var(--m-select-picker-loading-opacity, 0.4) !def
 // loading 图标尺寸
 $select-picker-loading-icon-size: var(--m-select-picker-loading-icon-size, 48rpx) !default;  
 // 内容区水平内边距
-$select-picker-wrapper-padding-horizontal: var(--m-select-picker-wrapper-padding-horizontal, 30rpx) !default;
+$select-picker-wrapper-padding-horizontal: var(--m-select-picker-wrapper-padding-horizontal, 34rpx) !default;
 // 内容区最大高度
 $select-picker-wrapper-max-height: var(--m-select-picker-wrapper-max-height, 600rpx) !default;
 // 选中态文字颜色
@@ -20,7 +20,7 @@ $select-picker-footer-border-color: var(--m-select-picker-footer-border-color, #
 // 选项内边距
 $select-picker-item-padding: var(--m-select-picker-item-padding, 36rpx 0) !default;
 // 选项文字大小
-$select-picker-item-font-size: var(--m-select-picker-item-font-size, 34rpx) !default;
+$select-picker-item-font-size: var(--m-select-picker-item-font-size, 32rpx) !default;
 
 @include b(select-picker) {
   @include e(loading) {
@@ -96,5 +96,12 @@ $select-picker-item-font-size: var(--m-select-picker-item-font-size, 34rpx) !def
     align-items: center;
     padding: $select-picker-footer-padding;
     @include pixelBorder(top, 0, $select-picker-footer-border-color);
+  }
+
+  // 覆盖内部单选/多选组件的标签字体大小
+  :deep(.m-checkbox__label),
+  :deep(.m-radio__label) {
+    font-size: $select-picker-item-font-size !important;
+    line-height: 1.6 !important;
   }
 }

@@ -286,11 +286,6 @@ const cityColumns = ref([
 	{ value: 'hangzhou', label: '杭州' },
 	{ value: 'wuhan', label: '武汉' },
 	{ value: 'xian', label: '西安' },
-	{ value: 'xian1', label: '西安' },
-	{ value: 'xian2', label: '西安' },
-	{ value: 'xian3', label: '西安' },
-	{ value: 'xian4', label: '西安' },
-	{ value: 'xian5', label: '西安' },
 ]);
 
 const genderColumns = ref([
