@@ -47,8 +47,8 @@ $select-picker-item-font-size: var(--m-select-picker-item-font-size, 32rpx) !def
   @include e(wrapper) {
     padding: 0 $select-picker-wrapper-padding-horizontal;
     position: relative;
-    max-height: 50vh;
-    // height: 375px;
+    // max-height: 50vh;
+    height: 340px;
     box-sizing: border-box;
     overflow: hidden;
     width: 100%;
@@ -62,8 +62,7 @@ $select-picker-item-font-size: var(--m-select-picker-item-font-size, 32rpx) !def
   }
 
   .m-select-picker__wrapper {
-    // max-height: 70vh;
-    height: 100%;
+    // height: auto;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
@@ -81,10 +80,23 @@ $select-picker-item-font-size: var(--m-select-picker-item-font-size, 32rpx) !def
     color: $select-picker-text-active-color;
   }
 
-  @include e(checkbox-item,radio-item) {
+  @include e(checkbox-item) {
     padding: $select-picker-item-padding;
     font-size: $select-picker-item-font-size;
     line-height: 1.6;
+  }
+
+  @include e(radio-item) {
+    padding: $select-picker-item-padding;
+    font-size: $select-picker-item-font-size;
+    line-height: 1.6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .m-radio{
+      width: 100%;
+      justify-content: space-between;
+    }
   }
 
   @include edeep(radio-label,checkbox-label) {
