@@ -311,6 +311,12 @@
       "style": {
         "navigationBarTitleText": "CountDown 倒计时"
       }
+    },
+    {
+      "path": "examples/pages/count-to-demo",
+      "style": {
+        "navigationBarTitleText": "CountTo 数字滚动"
+      }
     }
   ],
   "globalStyle": {
