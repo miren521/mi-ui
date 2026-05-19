@@ -323,6 +323,12 @@
       "style": {
         "navigationBarTitleText": "Search 搜索框"
       }
+    },
+    {
+      "path": "examples/pages/select-picker-demo",
+      "style": {
+        "navigationBarTitleText": "SelectPicker 选择器"
+      }
     }
   ],
   "globalStyle": {

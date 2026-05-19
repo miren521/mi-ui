@@ -6,7 +6,7 @@
       :class="['m-popup__modal', isVisible ? 'm-popup__modal--visible' : 'm-popup__modal--hidden']"
       :style="modalStyleStr"
       @tap="handleClickModal"
-      catchtouchmove="noop"
+      :catchtouchmove="lockScroll ? 'noop' : ''"
     />
     
     <!-- 弹窗内容 -->

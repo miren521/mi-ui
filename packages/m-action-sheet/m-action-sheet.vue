@@ -10,6 +10,7 @@
       :safe-area-inset-bottom="safeAreaInsetBottom"
       :lazy-render="lazyRender"
       :root-portal="rootPortal"
+      :lock-scroll="lockScroll"
       round
       @close="close"
       @enter="emit('enter')"
@@ -133,6 +134,7 @@ function handleCancel() {
 }
 
 function close() {
+  if (!showPopup.value) return
   emit('update:modelValue', false)
   emit('close')
 }

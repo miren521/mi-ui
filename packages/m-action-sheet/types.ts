@@ -33,7 +33,8 @@ export const actionSheetProps = {
   zIndex: makeNumberProp(10),
   lazyRender: makeBooleanProp(true),
   safeAreaInsetBottom: makeBooleanProp(true),
-  rootPortal: makeBooleanProp(false)
+  rootPortal: makeBooleanProp(false),
+  lockScroll: makeBooleanProp(false)
 }
 
 export type ActionSheetProps = ExtractPropTypes<typeof actionSheetProps>

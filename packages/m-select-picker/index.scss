@@ -1,0 +1,100 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+// 选择器背景色
+$select-picker-bg: var(--m-select-picker-bg, #ffffff) !default;
+// loading 状态下透明度
+$select-picker-loading-opacity: var(--m-select-picker-loading-opacity, 0.4) !default;
+// loading 图标尺寸
+$select-picker-loading-icon-size: var(--m-select-picker-loading-icon-size, 48rpx) !default;  
+// 内容区水平内边距
+$select-picker-wrapper-padding-horizontal: var(--m-select-picker-wrapper-padding-horizontal, 24rpx) !default;
+// 内容区最大高度
+$select-picker-wrapper-max-height: var(--m-select-picker-wrapper-max-height, 600rpx) !default;
+// 选中态文字颜色
+$select-picker-text-active-color: var(--m-select-picker-text-active-color, #1989fa) !default;
+// 底部内边距
+$select-picker-footer-padding: var(--m-select-picker-footer-padding, 24rpx) !default;
+// 确认区域上边框颜色
+$select-picker-footer-border-color: var(--m-select-picker-footer-border-color, #ebedf0) !default;
+// 选项内边距
+$select-picker-item-padding: var(--m-select-picker-item-padding, 36rpx 0) !default;
+// 选项文字大小
+$select-picker-item-font-size: var(--m-select-picker-item-font-size, 34rpx) !default;
+
+@include b(select-picker) {
+  @include e(loading) {
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+  }
+
+  @include edeep(loading-icon){
+    opacity: 1;
+    font-size: $select-picker-loading-icon-size;
+  }
+
+  @include edeep(popup) {
+    background: $select-picker-bg;
+  }
+
+  @include e(wrapper) {
+    padding: 0 $select-picker-wrapper-padding-horizontal;
+    position: relative;
+    max-height: 50vh;
+    // height: 375px;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 100%;
+
+    @include when(loading) {
+      .m-select-picker__checkbox,
+      .m-select-picker__radio{
+        opacity: $select-picker-loading-opacity;
+      }
+    }
+  }
+
+  .m-select-picker__wrapper {
+    // max-height: 70vh;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+    }
+  }
+
+  @include e(text-active) {
+    color: $select-picker-text-active-color;
+  }
+
+  @include e(checkbox-item,radio-item) {
+    padding: $select-picker-item-padding;
+    font-size: $select-picker-item-font-size;
+    line-height: 1.6;
+  }
+
+  @include edeep(radio-label,checkbox-label) {
+    @include lineEllipsis;
+  } 
+
+  @include e(footer) {
+    display: flex;
+    align-items: center;
+    padding: $select-picker-footer-padding;
+    @include pixelBorder(top, 0, $select-picker-footer-border-color);
+  }
+}
