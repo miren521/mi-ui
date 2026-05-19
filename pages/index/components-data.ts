@@ -35,6 +35,7 @@ export const feedbackComponents: ComponentItem[] = [
   { id: 'swipe-action', title: 'SwipeAction 滑动操作', enTitle: 'SwipeAction', zhTitle: '滑动操作', desc: '左滑或右滑显示操作按钮，支持双向滑动', category: 'feedback', url: '/examples/pages/swipe-action-demo' },
   { id: 'sort-button', title: 'SortButton 排序按钮', enTitle: 'SortButton', zhTitle: '排序按钮', desc: '点击切换排序方向，支持升序、降序、重置状态', category: 'feedback', url: '/examples/pages/sort-button-demo' },
   { id: 'empty', title: 'Empty 空状态', enTitle: 'Empty', zhTitle: '空状态', desc: '空状态占位展示，支持自定义图标、文案和底部操作', category: 'feedback', url: '/examples/pages/empty-demo' },
+  { id: 'count-down', title: 'CountDown 倒计时', enTitle: 'CountDown', zhTitle: '倒计时', desc: '倒计时组件，支持自定义格式、毫秒级显示和手动控制', category: 'feedback', url: '/examples/pages/count-down-demo' },
 ]
 
 // 表单

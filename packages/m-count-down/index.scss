@@ -1,0 +1,15 @@
+@use '../common/styles/variables.scss' as *;
+@use '../common/styles/mixin/_mixin.scss' as *;
+
+// 倒计时文本颜色
+$m-count-down-text-color: var(--m-count-down-text-color, #64748b) !default;
+// 倒计时文本字号
+$m-count-down-font-size: var(--m-count-down-font-size, 28rpx) !default;
+// 倒计时文本行高
+$m-count-down-line-height: var(--m-count-down-line-height, 1.5) !default;
+
+@include b(count-down) {
+  color: $m-count-down-text-color;
+  font-size: $m-count-down-font-size;
+  line-height: $m-count-down-line-height;
+}

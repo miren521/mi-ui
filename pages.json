@@ -305,6 +305,12 @@
       "style": {
         "navigationBarTitleText": "Empty 空状态"
       }
+    },
+    {
+      "path": "examples/pages/count-down-demo",
+      "style": {
+        "navigationBarTitleText": "CountDown 倒计时"
+      }
     }
   ],
   "globalStyle": {
