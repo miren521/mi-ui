@@ -101,30 +101,69 @@
       </view>
 
       <!-- 活动倒计时 -->
-      <view class="demo-count-group">
+      <view class="demo-count-group activity-card">
         <view class="demo-header">
           <text class="demo-title">活动倒计时</text>
           <text class="demo-desc">模拟电商活动倒计时场景</text>
         </view>
-        <view class="demo-content activity-scene">
-          <view class="activity-header">
-            <text class="activity-title">限时特惠</text>
-            <text class="activity-subtitle">距离活动结束</text>
-          </view>
-          <view class="activity-countdown">
-            <m-count-down :time="activityTime" format="DD天 HH:mm:ss" />
-          </view>
-          <view class="activity-products">
-            <view class="product-card">
-              <view class="product-image">
-                <view class="image-placeholder"></view>
-                <view class="product-tag">限时5折</view>
+        <view class="demo-content">
+          <view class="promo-banner">
+            <view class="promo-bg"></view>
+            <view class="promo-content">
+              <view class="promo-badge">
+                <text class="badge-text">HOT</text>
               </view>
-              <view class="product-info">
-                <text class="product-name">无线蓝牙耳机</text>
-                <view class="product-price">
-                  <text class="price-current">¥199</text>
-                  <text class="price-original">¥399</text>
+              <text class="promo-title">限时特惠</text>
+              <text class="promo-subtitle">距离活动结束</text>
+              <view class="promo-countdown">
+                <m-count-down :time="activityTime">
+                  <template #default="{ current }">
+                    <view class="promo-countdown-row">
+                      <view class="promo-countdown-box">
+                        <text class="promo-countdown-num">{{ padZero(current.days) }}</text>
+                        <text class="promo-countdown-label">天</text>
+                      </view>
+                      <text class="promo-countdown-sep">:</text>
+                      <view class="promo-countdown-box">
+                        <text class="promo-countdown-num">{{ padZero(current.hours) }}</text>
+                        <text class="promo-countdown-label">时</text>
+                      </view>
+                      <text class="promo-countdown-sep">:</text>
+                      <view class="promo-countdown-box">
+                        <text class="promo-countdown-num">{{ padZero(current.minutes) }}</text>
+                        <text class="promo-countdown-label">分</text>
+                      </view>
+                      <text class="promo-countdown-sep">:</text>
+                      <view class="promo-countdown-box">
+                        <text class="promo-countdown-num">{{ padZero(current.seconds) }}</text>
+                        <text class="promo-countdown-label">秒</text>
+                      </view>
+                    </view>
+                  </template>
+                </m-count-down>
+              </view>
+            </view>
+            <view class="promo-products">
+              <view class="promo-product-card">
+                <view class="promo-product-image">
+                  <view class="promo-image-placeholder"></view>
+                  <view class="promo-tag">
+                    <text class="tag-text">5折</text>
+                  </view>
+                </view>
+                <view class="promo-product-info">
+                  <text class="promo-product-name">无线蓝牙耳机 Pro</text>
+                  <text class="promo-product-desc">主动降噪 · 40小时续航 · 蓝牙5.3</text>
+                  <view class="promo-price-row">
+                    <view class="promo-price-wrap">
+                      <text class="promo-price-symbol">¥</text>
+                      <text class="promo-price-value">199</text>
+                    </view>
+                    <text class="promo-original-price">¥399</text>
+                    <view class="promo-sales">
+                      <text class="sales-text">已售 2.6万</text>
+                    </view>
+                  </view>
                 </view>
               </view>
             </view>
@@ -139,10 +178,10 @@
           <text class="demo-desc">监听 change 和 finish 事件</text>
         </view>
         <view class="demo-content">
-          <m-count-down 
-            :time="10000" 
-            @change="handleChange" 
-            @finish="handleFinish" 
+          <m-count-down
+            :time="10000"
+            @change="handleChange"
+            @finish="handleFinish"
           />
           <view class="event-logs">
             <text v-for="(log, index) in eventLogs" :key="index" class="log-item">{{ log }}</text>
@@ -326,98 +365,214 @@ export default {
     }
   }
 
-  .activity-scene {
-    padding: 0;
-    background: linear-gradient(135deg, #fa4350 0%, #f87171 100%);
+  .activity-card {
+    overflow: visible;
+    padding: 24rpx;
+    background: transparent;
+    box-shadow: none;
 
-    .activity-header {
-      padding: 32rpx;
+    .demo-content {
+      padding: 0;
+    }
+  }
+
+  .promo-banner {
+    position: relative;
+    border-radius: 24rpx;
+    overflow: hidden;
+    box-shadow: 0 8rpx 32rpx rgba(250, 67, 80, 0.3);
+
+    .promo-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 320rpx;
+      background: linear-gradient(135deg, #fa4350 0%, #ff6b7a 50%, #f87171 100%);
+    }
+
+    .promo-content {
+      position: relative;
+      z-index: 1;
+      padding: 40rpx 32rpx 32rpx;
       text-align: center;
 
-      .activity-title {
+      .promo-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+        padding: 8rpx 20rpx;
+        border-radius: 20rpx;
+        margin-bottom: 16rpx;
+        box-shadow: 0 4rpx 12rpx rgba(255, 215, 0, 0.4);
+
+        .badge-text {
+          font-size: 22rpx;
+          font-weight: 700;
+          color: #8b4513;
+        }
+      }
+
+      .promo-title {
         display: block;
-        font-size: 40rpx;
-        font-weight: 600;
+        font-size: 44rpx;
+        font-weight: 700;
         color: #fff;
         margin-bottom: 8rpx;
+        text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
       }
 
-      .activity-subtitle {
+      .promo-subtitle {
+        display: block;
         font-size: 26rpx;
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 24rpx;
       }
-    }
 
-    .activity-countdown {
-      padding: 16rpx 32rpx 32rpx;
-      text-align: center;
-      font-size: 36rpx;
-      font-weight: 600;
-      color: #fff;
-      letter-spacing: 2rpx;
-    }
+      .promo-countdown {
+        .promo-countdown-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12rpx;
+        }
 
-    .activity-products {
-      padding: 24rpx;
-      background-color: #fff;
+        .promo-countdown-box {
+          background: rgba(255, 255, 255, 0.25);
+          backdrop-filter: blur(10px);
+          border-radius: 12rpx;
+          padding: 16rpx 20rpx;
+          min-width: 72rpx;
+          text-align: center;
 
-      .product-card {
-        display: flex;
-        background-color: #f8f9fa;
-        border-radius: 16rpx;
-        overflow: hidden;
-
-        .product-image {
-          position: relative;
-          width: 200rpx;
-          height: 200rpx;
-
-          .image-placeholder {
-            width: 100%;
-            height: 100%;
-            background-color: #e2e8f0;
+          .promo-countdown-num {
+            display: block;
+            font-size: 36rpx;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
           }
 
-          .product-tag {
-            position: absolute;
-            top: 12rpx;
-            left: 12rpx;
-            background-color: #fa4350;
-            color: #fff;
+          .promo-countdown-label {
             font-size: 20rpx;
-            padding: 4rpx 12rpx;
-            border-radius: 8rpx;
+            color: rgba(255, 255, 255, 0.9);
           }
         }
 
-        .product-info {
+        .promo-countdown-sep {
+          font-size: 32rpx;
+          font-weight: 700;
+          color: rgba(255, 255, 255, 0.6);
+          margin-top: -8rpx;
+        }
+      }
+    }
+
+    .promo-products {
+      padding: 24rpx;
+      background: #fff;
+
+      .promo-product-card {
+        display: flex;
+        background: #fafafa;
+        border-radius: 16rpx;
+        overflow: hidden;
+        box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+
+        .promo-product-image {
+          position: relative;
+          width: 180rpx;
+          height: 180rpx;
+          flex-shrink: 0;
+
+          .promo-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f4ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &::before {
+              content: '🎧';
+              font-size: 60rpx;
+            }
+          }
+
+          .promo-tag {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(135deg, #fa4350 0%, #ff6b7a 100%);
+            padding: 8rpx 16rpx;
+            border-radius: 0 16rpx 0 16rpx;
+
+            .tag-text {
+              font-size: 22rpx;
+              font-weight: 600;
+              color: #fff;
+            }
+          }
+        }
+
+        .promo-product-info {
           flex: 1;
           padding: 20rpx;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
 
-          .product-name {
-            font-size: 28rpx;
-            font-weight: 500;
-            color: #333;
+          .promo-product-name {
+            font-size: 30rpx;
+            font-weight: 600;
+            color: #1a1a1a;
+            line-height: 1.3;
           }
 
-          .product-price {
-            display: flex;
-            align-items: baseline;
-            gap: 12rpx;
+          .promo-product-desc {
+            font-size: 24rpx;
+            color: #999;
+            line-height: 1.4;
+          }
 
-            .price-current {
-              font-size: 32rpx;
-              font-weight: 600;
-              color: #fa4350;
+          .promo-price-row {
+            display: flex;
+            align-items: center;
+            gap: 16rpx;
+
+            .promo-price-wrap {
+              display: flex;
+              align-items: baseline;
+
+              .promo-price-symbol {
+                font-size: 24rpx;
+                font-weight: 600;
+                color: #fa4350;
+              }
+
+              .promo-price-value {
+                font-size: 40rpx;
+                font-weight: 700;
+                color: #fa4350;
+              }
             }
 
-            .price-original {
+            .promo-original-price {
               font-size: 24rpx;
-              color: #999;
+              color: #bbb;
               text-decoration: line-through;
+            }
+
+            .promo-sales {
+              margin-left: auto;
+              background: rgba(250, 67, 80, 0.1);
+              padding: 6rpx 16rpx;
+              border-radius: 20rpx;
+
+              .sales-text {
+                font-size: 22rpx;
+                color: #fa4350;
+              }
             }
           }
         }
