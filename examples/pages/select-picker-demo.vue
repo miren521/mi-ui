@@ -6,12 +6,12 @@
 				<view class="demo-select-picker-row">
 					<m-cell 
 						title="选择城市" 
-						:value="checkboxValue.join(',') || '请选择'"
+						:value="checkboxLabels || '请选择'"
 						clickable
 						@click="openCheckboxPicker"
 					>
 						<template #right-icon>
-							<m-icon name="arrow-right" />
+							<m-icon name="right" />
 						</template>
 					</m-cell>
 					<m-select-picker
@@ -29,12 +29,12 @@
 				<view class="demo-select-picker-row">
 					<m-cell 
 						title="选择性别" 
-						:value="radioValue || '请选择'"
+						:value="radioLabels || '请选择'"
 						clickable
 						@click="openRadioPicker"
 					>
 						<template #right-icon>
-							<m-icon name="arrow-right" />
+							<m-icon name="right" />
 						</template>
 					</m-cell>
 					<m-select-picker
@@ -52,12 +52,12 @@
 				<view class="demo-select-picker-row">
 					<m-cell 
 						title="搜索城市" 
-						:value="filterValue.join(',') || '请选择'"
+						:value="filterLabels || '请选择'"
 						clickable
 						@click="openFilterPicker"
 					>
 						<template #right-icon>
-							<m-icon name="arrow-right" />
+							<m-icon name="right" />
 						</template>
 					</m-cell>
 					<m-select-picker
@@ -77,12 +77,12 @@
 				<view class="demo-select-picker-row">
 					<m-cell 
 						title="选择水果" 
-						:value="colorValue.join(',') || '请选择'"
+						:value="colorLabels || '请选择'"
 						clickable
 						@click="openColorPicker"
 					>
 						<template #right-icon>
-							<m-icon name="arrow-right" />
+							<m-icon name="right" />
 						</template>
 					</m-cell>
 					<m-select-picker
@@ -101,12 +101,12 @@
 				<view class="demo-select-picker-row">
 					<m-cell 
 						title="选择爱好" 
-						:value="limitValue.join(',') || '请选择(至少2项，最多4项)'"
+						:value="limitLabels || '请选择(至少2项，最多4项)'"
 						clickable
 						@click="openLimitPicker"
 					>
 						<template #right-icon>
-							<m-icon name="arrow-right" />
+							<m-icon name="right" />
 						</template>
 					</m-cell>
 					<m-select-picker
@@ -126,12 +126,12 @@
 				<view class="demo-select-picker-row">
 					<m-cell 
 						title="选择部门" 
-						:value="disabledValue.join(',') || '请选择'"
+						:value="disabledLabels || '请选择'"
 						clickable
 						@click="openDisabledPicker"
 					>
 						<template #right-icon>
-							<m-icon name="arrow-right" />
+							<m-icon name="right" />
 						</template>
 					</m-cell>
 					<m-select-picker
@@ -145,24 +145,24 @@
 			</demo-block>
 
 			<!-- 加载状态 -->
-			<demo-block title="加载状态" desc="设置 loading 显示加载动画，禁用交互">
+			<demo-block title="加载状态" desc="设置 loading 显示加载动画，禁用交互，每次打开都会模拟加载过程">
 				<view class="demo-select-picker-row">
 					<m-cell 
-						title="加载中" 
-						value="数据加载中..."
+						title="加载示例" 
+						:value="loadingLabels || '点击打开'"
 						clickable
 						@click="openLoadingPicker"
 					>
 						<template #right-icon>
-							<m-icon name="arrow-right" />
+							<m-icon name="right" />
 						</template>
 					</m-cell>
 					<m-select-picker
 						v-model="loadingValue"
-						:columns="[]"
+						:columns="loadingColumns"
 						type="checkbox"
 						title="加载中"
-						loading
+						:loading="isLoading"
 						loading-color="#ff6b6b"
 						ref="loadingPicker"
 					/>
@@ -174,12 +174,12 @@
 				<view class="demo-select-picker-row">
 					<m-cell 
 						title="选择选项" 
-						:value="customBtnValue.join(',') || '请选择'"
+						:value="customBtnLabels || '请选择'"
 						clickable
 						@click="openCustomBtnPicker"
 					>
 						<template #right-icon>
-							<m-icon name="arrow-right" />
+							<m-icon name="right" />
 						</template>
 					</m-cell>
 					<m-select-picker
@@ -187,7 +187,7 @@
 						:columns="simpleColumns"
 						type="checkbox"
 						title="选择选项"
-						confirm-button-text="确定"
+						confirm-button-text="提交"
 						ref="customBtnPicker"
 					/>
 				</view>
@@ -198,12 +198,12 @@
 				<view class="demo-select-picker-row">
 					<m-cell 
 						title="选择等级" 
-						:value="instantValue || '请选择'"
+						:value="instantLabels || '请选择'"
 						clickable
 						@click="openInstantPicker"
 					>
 						<template #right-icon>
-							<m-icon name="arrow-right" />
+							<m-icon name="right" />
 						</template>
 					</m-cell>
 					<m-select-picker
@@ -222,12 +222,12 @@
 				<view class="demo-select-picker-row">
 					<m-cell 
 						title="选择" 
-						:value="eventValue.join(',') || '请选择'"
+						:value="eventLabels || '请选择'"
 						clickable
 						@click="openEventPicker"
 					>
 						<template #right-icon>
-							<m-icon name="arrow-right" />
+							<m-icon name="right" />
 						</template>
 					</m-cell>
 					<m-select-picker
@@ -252,7 +252,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const checkboxValue = ref<string[]>([]);
 const radioValue = ref<string>('');
@@ -261,6 +261,8 @@ const colorValue = ref<string[]>([]);
 const limitValue = ref<string[]>([]);
 const disabledValue = ref<string[]>([]);
 const loadingValue = ref<string[]>([]);
+const loadingColumns = ref<any[]>([]);
+const isLoading = ref(true);
 const customBtnValue = ref<string[]>([]);
 const instantValue = ref<string>('');
 const eventValue = ref<string[]>([]);
@@ -333,6 +335,33 @@ const levelColumns = ref([
 	{ value: 'expert', label: '专家' },
 ]);
 
+// 根据 value 获取 label
+function getLabels(columns: any[], values: string[] | string): string {
+	if (!values || (Array.isArray(values) && values.length === 0)) {
+		return '';
+	}
+	if (Array.isArray(values)) {
+		return values.map(v => {
+			const item = columns.find(col => col.value === v);
+			return item ? item.label : v;
+		}).join(',');
+	}
+	const item = columns.find(col => col.value === values);
+	return item ? item.label : values;
+}
+
+// 计算选中的中文标签
+const checkboxLabels = computed(() => getLabels(cityColumns.value, checkboxValue.value));
+const radioLabels = computed(() => getLabels(genderColumns.value, radioValue.value));
+const filterLabels = computed(() => getLabels(cityColumns.value, filterValue.value));
+const colorLabels = computed(() => getLabels(fruitColumns.value, colorValue.value));
+const limitLabels = computed(() => getLabels(hobbyColumns.value, limitValue.value));
+const disabledLabels = computed(() => getLabels(departmentColumns.value, disabledValue.value));
+const customBtnLabels = computed(() => getLabels(simpleColumns.value, customBtnValue.value));
+const instantLabels = computed(() => getLabels(levelColumns.value, instantValue.value));
+const eventLabels = computed(() => getLabels(simpleColumns.value, eventValue.value));
+const loadingLabels = computed(() => getLabels(loadingColumns.value, loadingValue.value));
+
 function openCheckboxPicker() {
 	checkboxPicker.value?.open();
 }
@@ -358,7 +387,23 @@ function openDisabledPicker() {
 }
 
 function openLoadingPicker() {
+	// 重置加载状态
+	isLoading.value = true;
+	loadingColumns.value = [];
+	loadingValue.value = [];
+	
 	loadingPicker.value?.open();
+	
+	// 模拟2秒后加载成功
+	setTimeout(() => {
+		isLoading.value = false;
+		loadingColumns.value = [
+			{ value: 'item1', label: '加载成功项一' },
+			{ value: 'item2', label: '加载成功项二' },
+			{ value: 'item3', label: '加载成功项三' },
+			{ value: 'item4', label: '加载成功项四' },
+		];
+	}, 1500);
 }
 
 function openCustomBtnPicker() {
