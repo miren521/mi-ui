@@ -65,6 +65,7 @@ export const layoutComponents: ComponentItem[] = [
 // 导航
 export const navigationComponents: ComponentItem[] = [
   { id: 'tabbar', title: 'Tabbar 底部导航', enTitle: 'Tabbar', zhTitle: '底部导航', desc: '底部导航栏，用于在不同页面之间进行切换', category: 'navigation', url: '/examples/pages/tabbar-demo' },
+  { id: 'tabs', title: 'Tabs 标签页', enTitle: 'Tabs', zhTitle: '标签页', desc: '标签页组件，支持多种样式、粘性布局、手势滑动、动画切换', category: 'navigation', url: '/examples/pages/tabs-demo' },
 ]
 
 // 展示

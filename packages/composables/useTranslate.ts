@@ -21,6 +21,9 @@ const defaultMessages: Record<string, Record<string, string>> = {
     title: '请选择',
     select: '请选择',
     confirm: '确定'
+  },
+  tabs: {
+    all: '全部'
   }
 }
 

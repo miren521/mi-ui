@@ -335,6 +335,12 @@
       "style": {
         "navigationBarTitleText": "Cascader 级联选择器"
       }
+    },
+    {
+      "path": "examples/pages/tabs-demo",
+      "style": {
+        "navigationBarTitleText": "Tabs 标签页"
+      }
     }
   ],
   "globalStyle": {
