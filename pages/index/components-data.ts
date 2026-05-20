@@ -53,6 +53,7 @@ export const formComponents: ComponentItem[] = [
   { id: 'Slider', title: 'Slider 滑块', enTitle: 'Slider', zhTitle: '滑块', desc: '滑块组件，支持双向、刻度、垂直', category: 'form', url: '/examples/pages/slider-demo' },
   { id: 'Picker', title: 'Picker 选择器', enTitle: 'Picker', zhTitle: '选择器', desc: '选择器组件，支持单列、多列、级联选择', category: 'form', url: '/examples/pages/picker-demo' },
   { id: 'select-picker', title: 'SelectPicker 选择器', enTitle: 'SelectPicker', zhTitle: '选择器', desc: '单选/多选选择器，支持搜索、加载状态、数量限制', category: 'form', url: '/examples/pages/select-picker-demo' },
+  { id: 'cascader', title: 'Cascader 级联选择器', enTitle: 'Cascader', zhTitle: '级联选择器', desc: '级联选择器组件，支持静态数据和异步懒加载，支持任意级可选', category: 'form', url: '/examples/pages/cascader-demo' },
 ]
 
 // 布局

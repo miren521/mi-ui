@@ -329,6 +329,12 @@
       "style": {
         "navigationBarTitleText": "SelectPicker 选择器"
       }
+    },
+    {
+      "path": "examples/pages/cascader-demo",
+      "style": {
+        "navigationBarTitleText": "Cascader 级联选择器"
+      }
     }
   ],
   "globalStyle": {

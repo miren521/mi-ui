@@ -1,0 +1,154 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+// 级联选择器弹层背景色
+$cascader-bg: var(--m-cascader-bg, #ffffff) !default;
+// 选项列表高度
+$cascader-list-height: var(--m-cascader-list-height, 336px) !default;
+// 选项文字颜色
+$cascader-list-item-color: var(--m-cascader-list-item-color, #323233) !default;
+// 选项禁用态透明度
+$cascader-list-item-opacity-disabled: var(--m-cascader-list-item-opacity-disabled, 0.4) !default;
+// 选项文字字号
+$cascader-list-item-font-size: var(--m-cascader-list-item-font-size, 32rpx) !default;
+// 选项文字行高
+$cascader-list-item-line-height: var(--m-cascader-list-item-line-height, 1.5) !default;
+// 选项内边距
+$cascader-list-item-padding: var(--m-cascader-list-item-padding, 24rpx 32rpx) !default;
+// 选项选中态文字颜色
+$cascader-list-item-color-checked: var(--m-cascader-list-item-color-checked, #1989fa) !default;
+// 选项选中态文字字重
+$cascader-list-item-font-weight-checked: var(--m-cascader-list-item-font-weight-checked, 500) !default;
+// 选项提示文字颜色
+$cascader-list-tip-color: var(--m-cascader-list-tip-color, #999999) !default;
+// 选项提示文字字号
+$cascader-list-tip-font-size: var(--m-cascader-list-tip-font-size, 24rpx) !default;
+// 选项提示文字行高
+$cascader-list-tip-line-height: var(--m-cascader-list-tip-line-height, 1.4) !default;
+// 选项提示顶部外边距
+$cascader-list-tip-margin-top: var(--m-cascader-list-tip-margin-top, 8rpx) !default;
+// 选中图标尺寸
+$cascader-list-checked-icon-size: var(--m-cascader-list-checked-icon-size, 40rpx) !default;
+// 选中图标与文字间距
+$cascader-list-checked-icon-spacing: var(--m-cascader-list-checked-icon-spacing, 8rpx) !default;
+// 关闭图标右侧偏移
+$cascader-action-right: var(--m-cascader-action-right, 32rpx) !default;
+// checkStrictly模式确认按钮颜色
+$cascader-confirm-color: var(--m-cascader-confirm-color, #1989fa) !default;
+// checkStrictly模式确认按钮禁用透明度
+$cascader-confirm-opacity-disabled: var(--m-cascader-confirm-opacity-disabled, 0.4) !default;
+// checkStrictly模式确认按钮字号
+$cascader-confirm-font-size: var(--m-cascader-confirm-font-size, 28rpx) !default;
+// checkStrictly模式确认按钮行高
+$cascader-confirm-line-height: var(--m-cascader-confirm-line-height, 1.5) !default;
+// checkStrictly模式确认按钮字重
+$cascader-confirm-font-weight: var(--m-cascader-confirm-font-weight, 400) !default;
+// loading 状态下选项区透明度
+$cascader-loading-opacity: var(--m-cascader-loading-opacity, 0.4) !default;
+// loading 图标尺寸
+$cascader-loading-icon-size: var(--m-cascader-loading-icon-size, 48rpx) !default;
+
+@include b(cascader) {
+  @include edeep(popup) {
+    background: $cascader-bg;
+  }
+
+  // 选项列表容器
+  @include e(list) {
+    height: $cascader-list-height;
+    box-sizing: border-box;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @include e(panel) {
+    position: relative;
+    height: $cascader-list-height;
+
+    @include when(loading) {
+      overflow: hidden;
+      .m-cascader__list {
+        opacity: $cascader-loading-opacity;
+      }
+    }
+  }
+
+  // 异步加载遮罩
+  @include e(loading) {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+  }
+
+  @include edeep(loading-icon){
+    opacity: 1;
+    font-size: $cascader-loading-icon-size;
+  }
+
+  // 选项行
+  @include e(list-item) {
+    display: flex;
+    align-items: center;
+    padding: $cascader-list-item-padding;
+
+    @include m(selected) {
+      color: $cascader-list-item-color-checked;
+
+      @include me(list-item-label) {
+        font-weight: $cascader-list-item-font-weight-checked;
+      }
+    }
+
+    @include m(disabled) {
+      opacity: $cascader-list-item-opacity-disabled;
+    }
+  }
+
+  // 选项文本容器
+  @include e(list-item-content) {
+    flex: 1;
+    min-width: 0;
+  }
+
+  // 选项标签文字
+  @include e(list-item-label) {
+    font-size: $cascader-list-item-font-size;
+    line-height: $cascader-list-item-line-height;
+  }
+
+  // 选项提示信息
+  @include e(list-item-tip) {
+    margin-top: $cascader-list-tip-margin-top;
+    font-size: $cascader-list-tip-font-size;
+    color: $cascader-list-tip-color;
+    line-height: $cascader-list-tip-line-height;
+  }
+
+  @include edeep(checked) {
+    margin-left: $cascader-list-checked-icon-spacing;
+    font-size: $cascader-list-checked-icon-size;
+    color: $cascader-list-item-color-checked;
+  }
+
+  @include e(action) {
+    position: absolute;
+    top: 50%;
+    right: $cascader-action-right;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+  }
+
+  @include e(action-confirm) {
+    font-size: $cascader-confirm-font-size;
+    line-height: $cascader-confirm-line-height;
+    font-weight: $cascader-confirm-font-weight;
+    color: $cascader-confirm-color;
+    @include m(disabled) {
+      opacity: $cascader-confirm-opacity-disabled;
+    }
+  }
+}

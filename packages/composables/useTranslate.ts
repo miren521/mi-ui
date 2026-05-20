@@ -16,6 +16,11 @@ const defaultMessages: Record<string, Record<string, string>> = {
   search: {
     search: '搜索',
     cancel: '取消'
+  },
+  cascader: {
+    title: '请选择',
+    select: '请选择',
+    confirm: '确定'
   }
 }
 
