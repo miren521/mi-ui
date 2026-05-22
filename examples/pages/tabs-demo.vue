@@ -126,33 +126,81 @@
           <view class="demo-style-section">
             <text class="demo-style-label">normal（默认）</text>
             <m-tabs v-model="active4" line-theme="normal">
-              <m-tab title="首页">首页内容</m-tab>
-              <m-tab title="分类">分类内容</m-tab>
-              <m-tab title="购物车">购物车内容</m-tab>
+              <m-tab title="首页">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">首页内容</text>
+                </view>
+              </m-tab>
+              <m-tab title="分类">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">分类内容</text>
+                </view>
+              </m-tab>
+              <m-tab title="购物车">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">购物车内容</text>
+                </view>
+              </m-tab>
             </m-tabs>
           </view>
           <view class="demo-style-section">
             <text class="demo-style-label">text（跟随文字）</text>
             <m-tabs v-model="active5" line-theme="text">
-              <m-tab title="首页">首页内容</m-tab>
-              <m-tab title="分类">分类内容</m-tab>
-              <m-tab title="购物车">购物车内容</m-tab>
+              <m-tab title="首页">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">首页内容</text>
+                </view>
+              </m-tab>
+              <m-tab title="分类">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">分类内容</text>
+                </view>
+              </m-tab>
+              <m-tab title="购物车">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">购物车内容</text>
+                </view>
+              </m-tab>
             </m-tabs>
           </view>
           <view class="demo-style-section">
             <text class="demo-style-label">underline（下划线）</text>
             <m-tabs v-model="active6" line-theme="underline">
-              <m-tab title="首页">首页内容</m-tab>
-              <m-tab title="分类">分类内容</m-tab>
-              <m-tab title="购物车">购物车内容</m-tab>
+              <m-tab title="首页">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">首页内容</text>
+                </view>
+              </m-tab>
+              <m-tab title="分类">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">分类内容</text>
+                </view>
+              </m-tab>
+              <m-tab title="购物车">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">购物车内容</text>
+                </view>
+              </m-tab>
             </m-tabs>
           </view>
           <view class="demo-style-section">
             <text class="demo-style-label">dot（点状）</text>
             <m-tabs v-model="active7" line-theme="dot">
-              <m-tab title="首页">首页内容</m-tab>
-              <m-tab title="分类">分类内容</m-tab>
-              <m-tab title="购物车">购物车内容</m-tab>
+              <m-tab title="首页">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">首页内容</text>
+                </view>
+              </m-tab>
+              <m-tab title="分类">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">分类内容</text>
+                </view>
+              </m-tab>
+              <m-tab title="购物车">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">购物车内容</text>
+                </view>
+              </m-tab>
             </m-tabs>
           </view>
         </view>
@@ -282,10 +330,26 @@
           <view class="demo-slidable-section">
             <text class="demo-slidable-label">slidable="always"（始终可滑动）</text>
             <m-tabs v-model="active16" slidable="always">
-              <m-tab title="精选好物推荐">精选内容</m-tab>
-              <m-tab title="限时特惠活动">特惠内容</m-tab>
-              <m-tab title="新品首发专区">新品内容</m-tab>
-              <m-tab title="会员专属福利">会员内容</m-tab>
+              <m-tab title="精选好物推荐">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">精选内容</text>
+                </view>
+              </m-tab>
+              <m-tab title="限时特惠活动">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">特惠内容</text>
+                </view>
+              </m-tab>
+              <m-tab title="新品首发专区">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">新品内容</text>
+                </view>
+              </m-tab>
+              <m-tab title="会员专属福利">
+                <view class="demo-simple-content">
+                  <text class="demo-simple-text">会员内容</text>
+                </view>
+              </m-tab>
             </m-tabs>
           </view>
         </view>
@@ -295,14 +359,46 @@
       <demo-block title="导航地图" desc="标签数超过 mapNum 时显示导航地图">
         <view class="demo-tabs-card">
           <m-tabs v-model="active13" :map-num="4">
-            <m-tab title="手机数码">数码内容</m-tab>
-            <m-tab title="电脑办公">办公内容</m-tab>
-            <m-tab title="家居生活">生活内容</m-tab>
-            <m-tab title="服饰鞋包">服饰内容</m-tab>
-            <m-tab title="美妆护肤">美妆内容</m-tab>
-            <m-tab title="母婴用品">母婴内容</m-tab>
-            <m-tab title="食品生鲜">食品内容</m-tab>
-            <m-tab title="运动户外">运动内容</m-tab>
+            <m-tab title="手机数码">
+              <view class="demo-simple-content">
+                <text class="demo-simple-text">数码内容</text>
+              </view>
+            </m-tab>
+            <m-tab title="电脑办公">
+              <view class="demo-simple-content">
+                <text class="demo-simple-text">办公内容</text>
+              </view>
+            </m-tab>
+            <m-tab title="家居生活">
+              <view class="demo-simple-content">
+                <text class="demo-simple-text">生活内容</text>
+              </view>
+            </m-tab>
+            <m-tab title="服饰鞋包">
+              <view class="demo-simple-content">
+                <text class="demo-simple-text">服饰内容</text>
+              </view>
+            </m-tab>
+            <m-tab title="美妆护肤">
+              <view class="demo-simple-content">
+                <text class="demo-simple-text">美妆内容</text>
+              </view>
+            </m-tab>
+            <m-tab title="母婴用品">
+              <view class="demo-simple-content">
+                <text class="demo-simple-text">母婴内容</text>
+              </view>
+            </m-tab>
+            <m-tab title="食品生鲜">
+              <view class="demo-simple-content">
+                <text class="demo-simple-text">食品内容</text>
+              </view>
+            </m-tab>
+            <m-tab title="运动户外">
+              <view class="demo-simple-content">
+                <text class="demo-simple-text">运动内容</text>
+              </view>
+            </m-tab>
           </m-tabs>
         </view>
       </demo-block>
@@ -764,5 +860,21 @@ function handleDisabled(e: any) {
   font-size: 24rpx;
   color: #666;
   word-break: break-all;
+}
+
+.demo-simple-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160rpx;
+  padding: 24rpx;
+}
+
+.demo-simple-text {
+  font-size: 28rpx;
+  color: #666;
+  background: #f5f5f7;
+  padding: 16rpx 32rpx;
+  border-radius: 8rpx;
 }
 </style>
