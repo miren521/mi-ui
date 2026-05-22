@@ -19,7 +19,7 @@ export type TabsProvide = {
   props: Partial<TabsProps>
 }
 
-export type TabsSlidable = 'auto' | 'always'
+
 
 /**
  * 底部条位置样式
@@ -105,13 +105,6 @@ export const tabsProps = {
    * 默认值: 300
    */
   duration: makeNumberProp(300),
-  /**
-   * 是否开启滚动导航
-   * 类型: string
-   * 可选值：'auto' | 'always'
-   * 默认值: 'auto'
-   */
-  slidable: makeStringProp<TabsSlidable>('auto'),
   /**
    * 标签可滑动时是否显示滚动条
    * 类型: boolean

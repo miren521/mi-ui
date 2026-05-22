@@ -60,7 +60,7 @@
 <script setup lang="ts">
 import mIcon from '../m-icon/m-icon.vue'
 import mBadge from '../m-badge/m-badge.vue'
-import { computed, getCurrentInstance, onMounted, watch, nextTick, reactive, type CSSProperties, type ComponentInstance } from 'vue'
+import { computed, getCurrentInstance, onMounted, watch, nextTick, reactive, type CSSProperties, type ComponentInstance, type PropType } from 'vue'
 import { addUnit, checkNumRange, debounce, getRect, isDef, isNumber, isString, objToStyle } from '../common/util'
 import { useTouch } from '../composables/useTouch'
 import { TABS_KEY, tabsProps, type TabsExpose } from './types'
@@ -71,7 +71,19 @@ const $item = '.m-tabs__nav-item'
 const $itemText = '.m-tabs__nav-item-text'
 const $container = '.m-tabs__nav-container'
 
-const props = defineProps(tabsProps)
+const props = defineProps({
+  ...tabsProps,
+  /**
+   * 是否开启滚动导航
+   * 类型: string
+   * 可选值：'auto' | 'always'
+   * 默认值: 'auto'
+   */
+  slidable: {
+    type: String as PropType<'auto' | 'always'>,
+    default: 'auto'
+  }
+})
 const emit = defineEmits(['change', 'disabled', 'click', 'update:modelValue'])
 
 const { translate } = useTranslate('tabs')

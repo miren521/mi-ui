@@ -277,17 +277,8 @@
       </demo-block>
 
       <!-- 自动滑动 -->
-      <demo-block title="自动滑动" desc="slidable 支持 auto 和 always 两种模式">
+      <demo-block title="自动滑动" desc="宽度太宽会自动滑动">
         <view class="demo-tabs-card">
-          <view class="demo-slidable-section">
-            <text class="demo-slidable-label">slidable="auto"（自动模式）</text>
-            <m-tabs v-model="active15" slidable="auto">
-              <m-tab title="精选好物推荐">精选内容</m-tab>
-              <m-tab title="限时特惠活动">特惠内容</m-tab>
-              <m-tab title="新品首发专区">新品内容</m-tab>
-              <m-tab title="会员专属福利">会员内容</m-tab>
-            </m-tabs>
-          </view>
           <view class="demo-slidable-section">
             <text class="demo-slidable-label">slidable="always"（始终可滑动）</text>
             <m-tabs v-model="active16" slidable="always">
