@@ -1,136 +1,64 @@
 <template>
-  <template v-if="sticky">
-    <m-sticky-box>
-      <view
-        :class="`m-tabs ${customClass} ${innerSlidable ? 'is-slide' : ''} ${mapNum < children.length && mapNum !== 0 ? 'is-map' : ''} ${
-          !showScrollbar ? 'is-hide-scrollbar' : ''
-        }`"
-        :style="customStyle"
-      >
-        <m-sticky :offset-top="offsetTop">
-          <view class="m-tabs__nav m-tabs__nav--sticky">
-            <view class="m-tabs__nav--wrap">
-              <scroll-view :scroll-x="innerSlidable" scroll-with-animation :scroll-left="state.scrollLeft">
-                <view class="m-tabs__nav-container">
-                  <view
-                    @click="handleSelect(index)"
-                    v-for="(item, index) in children"
-                    :key="index"
-                    :class="`m-tabs__nav-item  ${state.activeIndex === index ? 'is-active' : ''} ${item.disabled ? 'is-disabled' : ''}`"
-                    :style="getTabItemStyle(index)"
-                  >
-                    <m-badge v-if="item.badgeProps" v-bind="item.badgeProps">
-                      <text class="m-tabs__nav-item-text">{{ item.title }}</text>
-                    </m-badge>
-                    <text v-else class="m-tabs__nav-item-text">{{ item.title }}</text>
-
-                    <view
-                      :class="`m-tabs__line ${state.activeIndex === index && state.useInnerLine ? 'is-' + lineTheme : ''} m-tabs__line--inner`"
-                      v-if="state.activeIndex === index && state.useInnerLine"
-                    ></view>
-                  </view>
-                  <view :class="`m-tabs__line ${'is-' + lineTheme}`" :style="state.lineStyle"></view>
-                </view>
-              </scroll-view>
-            </view>
-            <view class="m-tabs__map" v-if="mapNum < children.length && mapNum !== 0">
-              <view :class="`m-tabs__map-btn  ${state.animating ? 'is-open' : ''}`" @click="toggleMap">
-                <view :class="`m-tabs__map-arrow  ${state.animating ? 'is-open' : ''}`">
-                  <m-icon name="down" custom-class="m-tabs__map-arrow-icon" />
-                </view>
-              </view>
-              <view class="m-tabs__map-header" :style="mapHeaderStyle">
-                {{ mapTitle || translate('all') }}
-              </view>
-              <view :class="`m-tabs__map-body  ${state.animating ? 'is-open' : ''}`" :style="state.mapShow ? '' : 'display:none'">
-                <view class="m-tabs__map-nav-item" v-for="(item, index) in children" :key="index" @click="handleSelect(index)">
-                  <view
-                    :class="`m-tabs__map-nav-btn ${state.activeIndex === index ? 'is-active' : ''}  ${item.disabled ? 'is-disabled' : ''}`"
-                    :style="getMapTabStyle(index)"
-                  >
-                    {{ item.title }}
-                  </view>
-                </view>
-              </view>
-            </view>
-          </view>
-        </m-sticky>
-
-        <view class="m-tabs__container" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd" @touchcancel="onTouchEnd">
-          <view :class="['m-tabs__body', animated ? 'is-animated' : '']" :style="bodyStyle">
-            <slot />
-          </view>
-        </view>
-
-        <view class="m-tabs__mask" :style="mapHeaderStyle" @click="toggleMap"></view>
-      </view>
-    </m-sticky-box>
-  </template>
-
-  <template v-else>
-    <view
-      :class="`m-tabs ${customClass} ${innerSlidable ? 'is-slide' : ''} ${mapNum < children.length && mapNum !== 0 ? 'is-map' : ''} ${
-        !showScrollbar ? 'is-hide-scrollbar' : ''
-      }`"
-    >
-      <view class="m-tabs__nav">
-        <view class="m-tabs__nav--wrap">
-          <scroll-view :scroll-x="innerSlidable" scroll-with-animation :scroll-left="state.scrollLeft">
-            <view class="m-tabs__nav-container">
+  <view
+    :class="`m-tabs ${customClass} ${innerSlidable ? 'is-slide' : ''} ${mapNum < children.length && mapNum !== 0 ? 'is-map' : ''} ${
+      !showScrollbar ? 'is-hide-scrollbar' : ''
+    }`"
+  >
+    <view class="m-tabs__nav">
+      <view class="m-tabs__nav--wrap">
+        <scroll-view :scroll-x="innerSlidable" scroll-with-animation :scroll-left="state.scrollLeft">
+          <view class="m-tabs__nav-container">
+            <view
+              v-for="(item, index) in children"
+              @click="handleSelect(index)"
+              :key="index"
+              :class="`m-tabs__nav-item ${state.activeIndex === index ? 'is-active' : ''} ${item.disabled ? 'is-disabled' : ''}`"
+              :style="getTabItemStyle(index)"
+            >
+              <m-badge custom-class="m-tabs__nav-item-badge" v-if="item.badgeProps" v-bind="item.badgeProps">
+                <text class="m-tabs__nav-item-text">{{ item.title }}</text>
+              </m-badge>
+              <text v-else class="m-tabs__nav-item-text">{{ item.title }}</text>
               <view
-                v-for="(item, index) in children"
-                @click="handleSelect(index)"
-                :key="index"
-                :class="`m-tabs__nav-item ${state.activeIndex === index ? 'is-active' : ''} ${item.disabled ? 'is-disabled' : ''}`"
-                :style="getTabItemStyle(index)"
-              >
-                <m-badge custom-class="m-tabs__nav-item-badge" v-if="item.badgeProps" v-bind="item.badgeProps">
-                  <text class="m-tabs__nav-item-text">{{ item.title }}</text>
-                </m-badge>
-                <text v-else class="m-tabs__nav-item-text">{{ item.title }}</text>
-                <view
-                  :class="`m-tabs__line ${state.activeIndex === index && state.useInnerLine ? 'is-' + lineTheme : ''} m-tabs__line--inner`"
-                  v-if="state.activeIndex === index && state.useInnerLine"
-                ></view>
-              </view>
-              <view :class="`m-tabs__line ${'is-' + lineTheme}`" :style="state.lineStyle"></view>
+                :class="`m-tabs__line ${state.activeIndex === index && state.useInnerLine ? 'is-' + lineTheme : ''} m-tabs__line--inner`"
+                v-if="state.activeIndex === index && state.useInnerLine"
+              ></view>
             </view>
-          </scroll-view>
+            <view :class="`m-tabs__line ${'is-' + lineTheme}`" :style="state.lineStyle"></view>
+          </view>
+        </scroll-view>
+      </view>
+      <view class="m-tabs__map" v-if="mapNum < children.length && mapNum !== 0">
+        <view class="m-tabs__map-btn" @click="toggleMap">
+          <view :class="`m-tabs__map-arrow ${state.animating ? 'is-open' : ''}`">
+            <m-icon name="down" custom-class="m-tabs__map-arrow-icon" />
+          </view>
         </view>
-        <view class="m-tabs__map" v-if="mapNum < children.length && mapNum !== 0">
-          <view class="m-tabs__map-btn" @click="toggleMap">
-            <view :class="`m-tabs__map-arrow ${state.animating ? 'is-open' : ''}`">
-              <m-icon name="down" custom-class="m-tabs__map-arrow-icon" />
-            </view>
-          </view>
-          <view class="m-tabs__map-header" :style="mapHeaderStyle">
-            {{ mapTitle || translate('all') }}
-          </view>
-          <view :class="`m-tabs__map-body ${state.animating ? 'is-open' : ''}`" :style="state.mapShow ? '' : 'display:none'">
-            <view class="m-tabs__map-nav-item" v-for="(item, index) in children" :key="index" @click="handleSelect(index)">
-              <view :class="`m-tabs__map-nav-btn ${state.activeIndex === index ? 'is-active' : ''}  ${item.disabled ? 'is-disabled' : ''}`">
-                {{ item.title }}
-              </view>
+        <view class="m-tabs__map-header" :style="mapHeaderStyle">
+          {{ mapTitle || translate('all') }}
+        </view>
+        <view :class="`m-tabs__map-body ${state.animating ? 'is-open' : ''}`" :style="state.mapShow ? '' : 'display:none'">
+          <view class="m-tabs__map-nav-item" v-for="(item, index) in children" :key="index" @click="handleSelect(index)">
+            <view :class="`m-tabs__map-nav-btn ${state.activeIndex === index ? 'is-active' : ''}  ${item.disabled ? 'is-disabled' : ''}`">
+              {{ item.title }}
             </view>
           </view>
         </view>
       </view>
-
-      <view class="m-tabs__container" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd" @touchcancel="onTouchEnd">
-        <view :class="['m-tabs__body', animated ? 'is-animated' : '']" :style="bodyStyle">
-          <slot />
-        </view>
-      </view>
-
-      <view class="m-tabs__mask" :style="mapHeaderStyle" @click="toggleMap"></view>
     </view>
-  </template>
+
+    <view class="m-tabs__container" @touchstart="onTouchStart" @touchmove="onTouchMove" @touchend="onTouchEnd" @touchcancel="onTouchEnd">
+      <view :class="['m-tabs__body', animated ? 'is-animated' : '']" :style="bodyStyle">
+        <slot />
+      </view>
+    </view>
+
+    <view class="m-tabs__mask" :style="mapHeaderStyle" @click="toggleMap"></view>
+  </view>
 </template>
 
 <script setup lang="ts">
 import mIcon from '../m-icon/m-icon.vue'
-import mSticky from '../m-sticky/m-sticky.vue'
-import mStickyBox from '../m-sticky-box/m-sticky-box.vue'
 import mBadge from '../m-badge/m-badge.vue'
 import { computed, getCurrentInstance, onMounted, watch, nextTick, reactive, type CSSProperties, type ComponentInstance } from 'vue'
 import { addUnit, checkNumRange, debounce, getRect, isDef, isNumber, isString, objToStyle } from '../common/util'
@@ -162,7 +90,9 @@ const state = reactive({
   /** map的开关 */
   mapShow: false,
   /** scroll-view偏移量 */
-  scrollLeft: 0
+  scrollLeft: 0,
+  /** 是否需要滑动（标签总宽度超过容器） */
+  needSlide: false
 })
 
 const { children, linkChildren } = useChildren(TABS_KEY)
@@ -176,7 +106,9 @@ const touch = useTouch()
  * 内部是否可滑动
  */
 const innerSlidable = computed(() => {
-  return props.slidable === 'always' || children.length > props.slidableNum
+  if (props.slidable === 'always') return true
+  if (props.slidable === 'auto') return state.needSlide
+  return children.length > props.slidableNum
 })
 
 /**
@@ -315,8 +247,27 @@ onMounted(() => {
   nextTick(() => {
     updateActive(props.modelValue, true)
     state.useInnerLine = true
+    checkNeedSlide()
   })
 })
+
+/**
+ * 检查是否需要滑动
+ */
+async function checkNeedSlide() {
+  if (!state.inited || props.slidable === 'always') return
+  try {
+    const containerRect = await getRect($container, false, proxy)
+    const itemRects = await getRect($item, true, proxy)
+    if (containerRect && itemRects.length > 0) {
+      const containerWidth = Number(containerRect.width)
+      const totalWidth = itemRects.reduce((sum, rect) => sum + Number(rect.width), 0)
+      state.needSlide = totalWidth > containerWidth
+    }
+  } catch (error) {
+    console.error('[m-ui] error(m-tabs): check need slide failed', error)
+  }
+}
 
 /**
  * 切换 map 显示状态

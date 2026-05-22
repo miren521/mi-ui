@@ -190,69 +190,6 @@
         </view>
       </demo-block>
 
-      <!-- 粘性布局 -->
-      <demo-block title="粘性布局" desc="设置 sticky 属性开启粘性布局">
-        <view class="demo-tabs-card">
-          <m-tabs v-model="active9" sticky :offset-top="0">
-            <m-tab title="视频">
-              <view class="demo-tabs-content demo-tabs-content--tall">
-                <view class="demo-video-card">
-                  <view class="demo-video-cover">
-                    <text class="demo-video-icon">▶</text>
-                  </view>
-                  <text class="demo-video-title">热门视频推荐</text>
-                  <text class="demo-video-play">10万+播放</text>
-                </view>
-                <view class="demo-video-card">
-                  <view class="demo-video-cover">
-                    <text class="demo-video-icon">▶</text>
-                  </view>
-                  <text class="demo-video-title">新品开箱测评</text>
-                  <text class="demo-video-play">5万+播放</text>
-                </view>
-                <view class="demo-video-card">
-                  <view class="demo-video-cover">
-                    <text class="demo-video-icon">▶</text>
-                  </view>
-                  <text class="demo-video-title">使用技巧分享</text>
-                  <text class="demo-video-play">3万+播放</text>
-                </view>
-              </view>
-            </m-tab>
-            <m-tab title="图文">
-              <view class="demo-tabs-content demo-tabs-content--tall">
-                <view class="demo-article-card">
-                  <image src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=beautiful%20lifestyle%20article%20cover&image_size=square" mode="aspectFill" class="demo-article-img" />
-                  <text class="demo-article-title">生活方式分享</text>
-                </view>
-                <view class="demo-article-card">
-                  <image src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=fashion%20style%20article%20cover&image_size=square" mode="aspectFill" class="demo-article-img" />
-                  <text class="demo-article-title">时尚穿搭指南</text>
-                </view>
-              </view>
-            </m-tab>
-            <m-tab title="动态">
-              <view class="demo-tabs-content demo-tabs-content--tall">
-                <view class="demo-status-card">
-                  <view class="demo-status-avatar"></view>
-                  <view class="demo-status-content">
-                    <text class="demo-status-name">用户昵称</text>
-                    <text class="demo-status-text">分享了一条新动态...</text>
-                  </view>
-                </view>
-                <view class="demo-status-card">
-                  <view class="demo-status-avatar"></view>
-                  <view class="demo-status-content">
-                    <text class="demo-status-name">用户昵称</text>
-                    <text class="demo-status-text">发布了新内容...</text>
-                  </view>
-                </view>
-              </view>
-            </m-tab>
-          </m-tabs>
-        </view>
-      </demo-block>
-
       <!-- 滑动切换 -->
       <demo-block title="滑动切换" desc="设置 swipeable 属性开启手势滑动切换">
         <view class="demo-tabs-card">
@@ -339,10 +276,34 @@
         </view>
       </demo-block>
 
+      <!-- 自动滑动 -->
+      <demo-block title="自动滑动" desc="slidable 支持 auto 和 always 两种模式">
+        <view class="demo-tabs-card">
+          <view class="demo-slidable-section">
+            <text class="demo-slidable-label">slidable="auto"（自动模式）</text>
+            <m-tabs v-model="active15" slidable="auto">
+              <m-tab title="精选好物推荐">精选内容</m-tab>
+              <m-tab title="限时特惠活动">特惠内容</m-tab>
+              <m-tab title="新品首发专区">新品内容</m-tab>
+              <m-tab title="会员专属福利">会员内容</m-tab>
+            </m-tabs>
+          </view>
+          <view class="demo-slidable-section">
+            <text class="demo-slidable-label">slidable="always"（始终可滑动）</text>
+            <m-tabs v-model="active16" slidable="always">
+              <m-tab title="精选好物推荐">精选内容</m-tab>
+              <m-tab title="限时特惠活动">特惠内容</m-tab>
+              <m-tab title="新品首发专区">新品内容</m-tab>
+              <m-tab title="会员专属福利">会员内容</m-tab>
+            </m-tabs>
+          </view>
+        </view>
+      </demo-block>
+
       <!-- 导航地图 -->
       <demo-block title="导航地图" desc="标签数超过 mapNum 时显示导航地图">
         <view class="demo-tabs-card">
-          <m-tabs v-model="active13" :map-num="5">
+          <m-tabs v-model="active13" :map-num="4">
             <m-tab title="手机数码">数码内容</m-tab>
             <m-tab title="电脑办公">办公内容</m-tab>
             <m-tab title="家居生活">生活内容</m-tab>
@@ -396,11 +357,12 @@ const active5 = ref(0)
 const active6 = ref(0)
 const active7 = ref(0)
 const active8 = ref(0)
-const active9 = ref(0)
 const active10 = ref(0)
 const active12 = ref(0)
 const active13 = ref(0)
 const active14 = ref(0)
+const active15 = ref(0)
+const active16 = ref(0)
 const eventLog = ref('')
 
 // 模拟商品数据
@@ -584,7 +546,14 @@ function handleDisabled(e: any) {
   color: #999;
 }
 
-.demo-style-section {
+.demo-style-label {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 16rpx;
+}
+
+.demo-slidable-section {
   padding: 24rpx 32rpx;
   border-bottom: 1rpx solid #f5f5f7;
 
@@ -593,7 +562,7 @@ function handleDisabled(e: any) {
   }
 }
 
-.demo-style-label {
+.demo-slidable-label {
   display: block;
   font-size: 24rpx;
   color: #999;

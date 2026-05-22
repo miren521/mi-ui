@@ -57,18 +57,7 @@ export const tabsProps = {
    * 类型: string
    */
   mapTitle: String,
-  /**
-   * 粘性布局
-   * 类型: boolean
-   * 默认值: false
-   */
-  sticky: makeBooleanProp(false),
-  /**
-   * 粘性布局吸顶位置
-   * 类型: number
-   * 默认值: 0
-   */
-  offsetTop: makeNumberProp(0),
+  
   /**
    * 开启手势滑动
    * 类型: boolean

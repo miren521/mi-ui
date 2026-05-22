@@ -17,6 +17,8 @@ $tabs-nav-item-font-size: var(--m-tabs-nav-item-font-size, 28rpx) !default;
 $tabs-nav-item-line-height: var(--m-tabs-nav-item-line-height, 1.5) !default;
 // 导航项内边距
 $tabs-nav-item-padding: var(--m-tabs-nav-item-padding, 20rpx 32rpx) !default;
+// 导航项最小宽度
+$tabs-nav-item-min-width: var(--m-tabs-nav-item-min-width, 80rpx) !default;
 // 导航禁用文字颜色
 $tabs-nav-color-disabled: var(--m-tabs-nav-color-disabled, #cccccc) !default;
 // 导航线背景色
@@ -113,7 +115,7 @@ $tabs-map-body-bg: var(--m-tabs-map-body-bg, #ffffff) !default;
     align-items: center;
     justify-content: center;
     flex: 1;
-    min-width: 0;
+    min-width: $tabs-nav-item-min-width;
     font-size: $tabs-nav-item-font-size;
     line-height: $tabs-nav-item-line-height;
     padding: $tabs-nav-item-padding;
@@ -132,6 +134,14 @@ $tabs-map-body-bg: var(--m-tabs-map-body-bg, #ffffff) !default;
 
   @include e(nav-item-text) {
     @include lineEllipsis();
+  }
+
+  @include when(slide) {
+    .m-tabs__nav-item-text {
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: clip;
+    }
   }
 
   @include edeep(nav-item-badge) {
@@ -318,15 +328,18 @@ $tabs-map-body-bg: var(--m-tabs-map-body-bg, #ffffff) !default;
     transition: opacity $tabs-duration;
   }
 
-  @include when(slide) {
-    .m-tabs__nav-item {
-      flex: 0 0 auto;
-    }
-  }
+  
 
   @include when(map) {
     .m-tabs__nav--wrap {
       padding-right: $tabs-map-btn-width;
+    }
+  }
+
+  @include when(slide) {
+    .m-tabs__nav-item {
+      flex: 0 0 auto;
+      flex-shrink: 0;
     }
   }
 }
