@@ -394,6 +394,21 @@ function handleEventClose() {
 
   :deep(.m-cell) {
     margin-bottom: 0;
+    
+    .m-cell__left {
+      flex: 0 0 30%;
+      max-width: 55%;
+    }
+    
+    .m-cell__right {
+      flex: 1;
+    }
+    
+    .m-cell__value {
+      text-align: right;
+      white-space: normal;
+      word-break: break-all;
+    }
   }
 }
 
