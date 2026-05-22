@@ -348,19 +348,23 @@ function openEventCascader() {
 }
 
 function handleCascaderConfirm(e: any) {
-  uni.showToast({ title: `选中: ${e.value}`, icon: 'none' })
+  const labels = e.selectedOptions.map((opt: any) => opt.text).join(' / ')
+  uni.showToast({ title: `选中: ${labels}`, icon: 'none' })
 }
 
 function handleLazyConfirm(e: any) {
-  uni.showToast({ title: `选中: ${Array.isArray(e.value) ? e.value.join(',') : e.value}`, icon: 'none' })
+  const labels = e.selectedOptions.map((opt: any) => opt.text).join(' / ')
+  uni.showToast({ title: `选中: ${labels}`, icon: 'none' })
 }
 
 function handleStrictConfirm(e: any) {
-  uni.showToast({ title: `选中: ${e.value}`, icon: 'none' })
+  const labels = e.selectedOptions.map((opt: any) => opt.text).join(' / ')
+  uni.showToast({ title: `选中: ${labels}`, icon: 'none' })
 }
 
 function handleCustomConfirm(e: any) {
-  uni.showToast({ title: `选中: ${e.value}`, icon: 'none' })
+  const labels = e.selectedOptions.map((opt: any) => opt.name).join(' / ')
+  uni.showToast({ title: `选中: ${labels}`, icon: 'none' })
 }
 
 function handleEventConfirm(e: any) {
