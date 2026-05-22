@@ -245,7 +245,7 @@
             <m-tab title="美食">
               <view class="demo-tabs-content demo-tabs-content--swipe">
                 <view class="demo-swipe-card">
-                  <image src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=delicious%20food%20cuisine%20beautiful%20presentation&image_size=landscape_16_9" mode="aspectFill" class="demo-swipe-img" />
+                  <image src="/static/img/img_1.jpg" mode="aspectFill" class="demo-swipe-img" />
                   <text class="demo-swipe-title">美食推荐</text>
                 </view>
               </view>
@@ -253,7 +253,7 @@
             <m-tab title="旅行">
               <view class="demo-tabs-content demo-tabs-content--swipe">
                 <view class="demo-swipe-card">
-                  <image src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=beautiful%20travel%20destination%20scenic%20view&image_size=landscape_16_9" mode="aspectFill" class="demo-swipe-img" />
+                  <image src="/static/img/img_2.jpg" mode="aspectFill" class="demo-swipe-img" />
                   <text class="demo-swipe-title">旅行攻略</text>
                 </view>
               </view>
@@ -261,7 +261,7 @@
             <m-tab title="娱乐">
               <view class="demo-tabs-content demo-tabs-content--swipe">
                 <view class="demo-swipe-card">
-                  <image src="https://neeko-copilot.bytedance.net/api/text_to_image?prompt=entertainment%20amusement%20park%20fun&image_size=landscape_16_9" mode="aspectFill" class="demo-swipe-img" />
+                  <image src="/static/img/img_3.jpg" mode="aspectFill" class="demo-swipe-img" />
                   <text class="demo-swipe-title">娱乐资讯</text>
                 </view>
               </view>
@@ -324,64 +324,43 @@
         </view>
       </demo-block>
 
-      <!-- 自动滑动 -->
-      <demo-block title="自动滑动" desc="宽度太宽会自动滑动">
-        <view class="demo-tabs-card">
-          <view class="demo-slidable-section">
-            <text class="demo-slidable-label">slidable="always"（始终可滑动）</text>
-            <m-tabs v-model="active16" slidable="always">
-              <m-tab title="精选好物推荐">
-                <view class="demo-simple-content">
-                  <text class="demo-simple-text">精选内容</text>
-                </view>
-              </m-tab>
-              <m-tab title="限时特惠活动">
-                <view class="demo-simple-content">
-                  <text class="demo-simple-text">特惠内容</text>
-                </view>
-              </m-tab>
-              <m-tab title="新品首发专区">
-                <view class="demo-simple-content">
-                  <text class="demo-simple-text">新品内容</text>
-                </view>
-              </m-tab>
-              <m-tab title="会员专属福利">
-                <view class="demo-simple-content">
-                  <text class="demo-simple-text">会员内容</text>
-                </view>
-              </m-tab>
-            </m-tabs>
-          </view>
-        </view>
-      </demo-block>
-
       <!-- 导航地图 -->
       <demo-block title="导航地图" desc="标签数超过 mapNum 时显示导航地图">
         <view class="demo-tabs-card">
           <m-tabs v-model="active13" :map-num="4">
+            <m-tab title="首页">
+              <view class="demo-simple-content">
+                <text class="demo-simple-text">首页内容</text>
+              </view>
+            </m-tab>
+            <m-tab title="精选好物">
+              <view class="demo-simple-content">
+                <text class="demo-simple-text">精选内容</text>
+              </view>
+            </m-tab>
             <m-tab title="手机数码">
               <view class="demo-simple-content">
                 <text class="demo-simple-text">数码内容</text>
               </view>
             </m-tab>
-            <m-tab title="电脑办公">
+            <m-tab title="服装">
               <view class="demo-simple-content">
-                <text class="demo-simple-text">办公内容</text>
+                <text class="demo-simple-text">服装内容</text>
+              </view>
+            </m-tab>
+            <m-tab title="美食外卖">
+              <view class="demo-simple-content">
+                <text class="demo-simple-text">美食内容</text>
               </view>
             </m-tab>
             <m-tab title="家居生活">
               <view class="demo-simple-content">
-                <text class="demo-simple-text">生活内容</text>
+                <text class="demo-simple-text">家居内容</text>
               </view>
             </m-tab>
-            <m-tab title="服饰鞋包">
+            <m-tab title="运动户外">
               <view class="demo-simple-content">
-                <text class="demo-simple-text">服饰内容</text>
-              </view>
-            </m-tab>
-            <m-tab title="美妆护肤">
-              <view class="demo-simple-content">
-                <text class="demo-simple-text">美妆内容</text>
+                <text class="demo-simple-text">运动内容</text>
               </view>
             </m-tab>
             <m-tab title="母婴用品">
@@ -389,14 +368,14 @@
                 <text class="demo-simple-text">母婴内容</text>
               </view>
             </m-tab>
-            <m-tab title="食品生鲜">
+            <m-tab title="美妆护肤">
               <view class="demo-simple-content">
-                <text class="demo-simple-text">食品内容</text>
+                <text class="demo-simple-text">美妆内容</text>
               </view>
             </m-tab>
-            <m-tab title="运动户外">
+            <m-tab title="限时特惠">
               <view class="demo-simple-content">
-                <text class="demo-simple-text">运动内容</text>
+                <text class="demo-simple-text">特惠内容</text>
               </view>
             </m-tab>
           </m-tabs>
@@ -505,7 +484,6 @@ function handleDisabled(e: any) {
 
 .demo-tabs-content {
   padding: 32rpx;
-  min-height: 300rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -784,7 +762,7 @@ function handleDisabled(e: any) {
 
 .demo-swipe-img {
   width: 100%;
-  height: 280rpx;
+  height: 380rpx;
   border-radius: 16rpx;
   background: #f5f5f7;
 }
@@ -866,7 +844,7 @@ function handleDisabled(e: any) {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 160rpx;
+  // min-height: 160rpx;
   padding: 24rpx;
 }
 
@@ -876,5 +854,9 @@ function handleDisabled(e: any) {
   background: #f5f5f7;
   padding: 16rpx 32rpx;
   border-radius: 8rpx;
+}
+
+.demo-map-card {
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
 }
 </style>

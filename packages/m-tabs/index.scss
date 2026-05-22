@@ -191,10 +191,10 @@ $tabs-map-body-bg: var(--m-tabs-map-body-bg, #ffffff) !default;
   @include e(body) {
     position: relative;
     width: 100%;
-    height: 100%;
-
     @include when(animated) {
       display: flex;
+      align-items: center;
+      justify-content: center;
       transition-property: left;
     }
   }
@@ -230,6 +230,7 @@ $tabs-map-body-bg: var(--m-tabs-map-body-bg, #ffffff) !default;
     transition: transform $tabs-duration;
     transform: scaleY(0);
     transform-origin: center top;
+    box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.12);
 
     @include when(open) {
       transform: scaleY(1);
@@ -277,26 +278,16 @@ $tabs-map-body-bg: var(--m-tabs-map-body-bg, #ffffff) !default;
 
 
   @include e(map-nav-item) {
-    flex-basis: calc((100% - 2 * $tabs-map-nav-btn-gap) / 3);
+    flex: 0 0 auto;
     box-sizing: border-box;
     margin-right: $tabs-map-nav-btn-gap;
     margin-bottom: $tabs-map-nav-btn-gap;
-
-    &:nth-child(3n) {
-      margin-right: 0;
-    }
-
-    &:nth-last-child(-n + 3) {
-      margin-bottom: 0;
-    }
   }
 
   @include e(map-nav-btn) {
     @include buttonClear;
-    @include lineEllipsis;
     box-sizing: border-box;
     background: $tabs-map-nav-btn-bg;
-    width: 100%;
     border: 1rpx solid transparent;
     font-size: $tabs-map-nav-btn-font-size;
     line-height: $tabs-map-nav-btn-line-height;
@@ -304,6 +295,7 @@ $tabs-map-body-bg: var(--m-tabs-map-body-bg, #ffffff) !default;
     color: $tabs-map-nav-btn-color;
     padding: $tabs-map-nav-btn-padding;
     text-align: center;
+    white-space: nowrap;
     transition: color $tabs-duration, border-color $tabs-duration;
 
     @include when(active) {
