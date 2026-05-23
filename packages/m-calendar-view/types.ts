@@ -29,7 +29,12 @@ export const calendarViewProps = {
   timeVisibleItemCount: makeNumberProp(3),
   hideSecond: makeBooleanProp(false),
   immediateChange: makeBooleanProp(false),
-  switchMode: makeStringProp<'none' | 'month' | 'year-month'>('none')
+  switchMode: makeStringProp<'none' | 'month' | 'year-month'>('none'),
+  showHeader: makeBooleanProp(true),
+  showYearView: makeBooleanProp(false),
+  itemHeight: makeNumberProp(64),
+  visibleItemCount: makeNumberProp(6),
+  timeFormatter: Function as PropType<CalendarTimeFormatter>
 }
 
 export type CalendarViewProps = ExtractPropTypes<typeof calendarViewProps>

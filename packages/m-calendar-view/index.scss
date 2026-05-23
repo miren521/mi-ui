@@ -39,3 +39,7 @@ $calendar-view-control-icon-size: var(--m-calendar-view-control-icon-size, 20rpx
 $calendar-view-control-icon-spacing: var(--m-calendar-view-control-icon-spacing, 24rpx) !default;
 $calendar-view-control-color-disabled: var(--m-calendar-view-control-color-disabled, #cccccc) !default;
 $calendar-view-time-box-shadow: var(--m-calendar-view-time-box-shadow, 0 -4rpx 8rpx 0 rgba(0, 0, 0, 0.02)) !default;
+$calendar-view-year-font-size: var(--m-calendar-view-year-font-size, 32rpx) !default;
+$calendar-view-year-line-height: var(--m-calendar-view-year-line-height, 60rpx) !default;
+$calendar-view-year-text-padding: var(--m-calendar-view-year-text-padding, 12rpx 8rpx) !default;
+$calendar-view-border-radius: var(--m-calendar-view-border-radius, 8rpx) !default;

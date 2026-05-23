@@ -162,25 +162,48 @@
         </view>
       </demo-block>
 
-      <!-- 年份选择 -->
-      <demo-block title="年份选择" desc="仅选择年份">
+      <!-- 月份选择 -->
+      <demo-block title="月份选择" desc="仅选择月份">
         <view class="demo-calendar-row">
           <m-cell
-            title="年份选择"
-            :value="yearValueLabel || '请选择'"
+            title="月份选择"
+            :value="monthValueLabel || '请选择'"
             clickable
-            @click="openYearCalendar"
+            @click="openMonthCalendar"
           >
             <template #right-icon>
               <m-icon name="right" />
             </template>
           </m-cell>
           <m-calendar
-            v-model="yearValue"
-            type="year"
-            title="选择年份"
-            ref="yearCalendarRef"
-            @confirm="handleYearConfirm"
+            v-model="monthValue"
+            type="month"
+            title="选择月份"
+            ref="monthCalendarRef"
+            @confirm="handleMonthConfirm"
+          />
+        </view>
+      </demo-block>
+
+      <!-- 月份范围选择 -->
+      <demo-block title="月份范围选择" desc="选择一段时间的起止月份">
+        <view class="demo-calendar-row">
+          <m-cell
+            title="月份范围"
+            :value="monthrangeValueLabel || '请选择'"
+            clickable
+            @click="openMonthRangeCalendar"
+          >
+            <template #right-icon>
+              <m-icon name="right" />
+            </template>
+          </m-cell>
+          <m-calendar
+            v-model="monthrangeValue"
+            type="monthrange"
+            title="选择月份范围"
+            ref="monthrangeCalendarRef"
+            @confirm="handleMonthRangeConfirm"
           />
         </view>
       </demo-block>
@@ -283,21 +306,8 @@
         </view>
       </demo-block>
 
-      <!-- 内联模式 -->
-      <demo-block title="内联模式" desc="将日历直接展示在页面中">
-        <view class="demo-calendar-row demo-calendar-row--inline">
-          <m-calendar
-            v-model="inlineValue"
-            type="date"
-            inline
-            :height="380"
-            @change="handleInlineChange"
-          />
-        </view>
-      </demo-block>
-
-      <!-- 确认按钮文本 -->
-      <demo-block title="自定义按钮文本" desc="通过 confirm-text 和 cancel-text 自定义按钮文本">
+      <!-- 自定义按钮文本 -->
+      <demo-block title="自定义按钮文本" desc="通过 confirm-text 自定义按钮文本">
         <view class="demo-calendar-row">
           <m-cell
             title="自定义按钮"
@@ -314,7 +324,6 @@
             type="date"
             title="自定义按钮"
             confirm-text="好的"
-            cancel-text="算了"
             ref="customTextCalendarRef"
             @confirm="handleCustomTextConfirm"
           />
@@ -326,7 +335,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import type { CalendarDayItem } from '../../packages/m-calendar/types'
+import type { CalendarDayItem } from '../../packages/m-calendar-view/types'
 
 const dateValue = ref<number | null>(null)
 const rangeValue = ref<(number | null)[]>([])
@@ -335,12 +344,12 @@ const datetimeValue = ref<number | null>(null)
 const datetimerangeValue = ref<(number | null)[]>([])
 const weekValue = ref<number | null>(null)
 const weekrangeValue = ref<(number | null)[]>([])
-const yearValue = ref<number | null>(null)
+const monthValue = ref<number | null>(null)
+const monthrangeValue = ref<(number | null)[]>([])
 const customRangeValue = ref<number | null>(null)
 const maxRangeValue = ref<(number | null)[]>([])
 const sameDayValue = ref<(number | null)[]>([])
 const formatterValue = ref<number | null>(null)
-const inlineValue = ref<number | null>(null)
 const customTextValue = ref<number | null>(null)
 
 const dateCalendarRef = ref<any>(null)
@@ -350,7 +359,8 @@ const datetimeCalendarRef = ref<any>(null)
 const datetimerangeCalendarRef = ref<any>(null)
 const weekCalendarRef = ref<any>(null)
 const weekrangeCalendarRef = ref<any>(null)
-const yearCalendarRef = ref<any>(null)
+const monthCalendarRef = ref<any>(null)
+const monthrangeCalendarRef = ref<any>(null)
 const customRangeCalendarRef = ref<any>(null)
 const maxRangeCalendarRef = ref<any>(null)
 const sameDayCalendarRef = ref<any>(null)
@@ -402,9 +412,19 @@ const weekrangeValueLabel = computed(() => {
   return `${formatDate(start)} - ${formatDate(end)}`
 })
 
-const yearValueLabel = computed(() => {
-  if (!yearValue.value) return ''
-  return `${new Date(yearValue.value).getFullYear()}年`
+const monthValueLabel = computed(() => {
+  if (!monthValue.value) return ''
+  const date = new Date(monthValue.value)
+  return `${date.getFullYear()}年${String(date.getMonth() + 1).padStart(2, '0')}月`
+})
+
+const monthrangeValueLabel = computed(() => {
+  if (!monthrangeValue.value || monthrangeValue.value.length === 0) return ''
+  const [start, end] = monthrangeValue.value
+  if (!start || !end) return ''
+  const startDate = new Date(start)
+  const endDate = new Date(end)
+  return `${startDate.getFullYear()}年${String(startDate.getMonth() + 1).padStart(2, '0')}月 - ${endDate.getFullYear()}年${String(endDate.getMonth() + 1).padStart(2, '0')}月`
 })
 
 const customRangeValueLabel = computed(() => {
@@ -429,11 +449,6 @@ const sameDayValueLabel = computed(() => {
 const formatterValueLabel = computed(() => {
   if (!formatterValue.value) return ''
   return formatDate(formatterValue.value)
-})
-
-const inlineValueLabel = computed(() => {
-  if (!inlineValue.value) return ''
-  return formatDate(inlineValue.value)
 })
 
 const customTextValueLabel = computed(() => {
@@ -501,8 +516,12 @@ function openWeekRangeCalendar() {
   weekrangeCalendarRef.value?.open()
 }
 
-function openYearCalendar() {
-  yearCalendarRef.value?.open()
+function openMonthCalendar() {
+  monthCalendarRef.value?.open()
+}
+
+function openMonthRangeCalendar() {
+  monthrangeCalendarRef.value?.open()
 }
 
 function openCustomRangeCalendar() {
@@ -525,65 +544,69 @@ function openCustomTextCalendar() {
   customTextCalendarRef.value?.open()
 }
 
-function handleDateConfirm(value: any) {
+function handleDateConfirm({ value }: any) {
   uni.showToast({ title: `选中: ${formatDate(value)}`, icon: 'none' })
 }
 
-function handleRangeConfirm(value: any) {
+function handleRangeConfirm({ value }: any) {
   const [start, end] = value
   uni.showToast({ title: `${formatDate(start)} - ${formatDate(end)}`, icon: 'none' })
 }
 
-function handleDatesConfirm(value: any) {
+function handleDatesConfirm({ value }: any) {
   const labels = value.map((d: number) => formatDate(d)).join(', ')
   uni.showToast({ title: `选中: ${labels}`, icon: 'none' })
 }
 
-function handleDatetimeConfirm(value: any) {
+function handleDatetimeConfirm({ value }: any) {
   uni.showToast({ title: `选中: ${formatDatetime(value)}`, icon: 'none' })
 }
 
-function handleDatetimeRangeConfirm(value: any) {
+function handleDatetimeRangeConfirm({ value }: any) {
   const [start, end] = value
   uni.showToast({ title: `${formatDatetime(start)} - ${formatDatetime(end)}`, icon: 'none' })
 }
 
-function handleWeekConfirm(value: any) {
+function handleWeekConfirm({ value }: any) {
   uni.showToast({ title: `选中: ${formatDate(value)}`, icon: 'none' })
 }
 
-function handleWeekRangeConfirm(value: any) {
+function handleWeekRangeConfirm({ value }: any) {
   const [start, end] = value
   uni.showToast({ title: `${formatDate(start)} - ${formatDate(end)}`, icon: 'none' })
 }
 
-function handleYearConfirm(value: any) {
-  uni.showToast({ title: `选中: ${new Date(value).getFullYear()}年`, icon: 'none' })
+function handleMonthConfirm({ value }: any) {
+  const date = new Date(value)
+  uni.showToast({ title: `选中: ${date.getFullYear()}年${String(date.getMonth() + 1).padStart(2, '0')}月`, icon: 'none' })
 }
 
-function handleCustomRangeConfirm(value: any) {
+function handleMonthRangeConfirm({ value }: any) {
+  const [start, end] = value
+  const startDate = new Date(start)
+  const endDate = new Date(end)
+  uni.showToast({ title: `${startDate.getFullYear()}年${String(startDate.getMonth() + 1).padStart(2, '0')}月 - ${endDate.getFullYear()}年${String(endDate.getMonth() + 1).padStart(2, '0')}月`, icon: 'none' })
+}
+
+function handleCustomRangeConfirm({ value }: any) {
   uni.showToast({ title: `选中: ${formatDate(value)}`, icon: 'none' })
 }
 
-function handleMaxRangeConfirm(value: any) {
+function handleMaxRangeConfirm({ value }: any) {
   const [start, end] = value
   uni.showToast({ title: `${formatDate(start)} - ${formatDate(end)}`, icon: 'none' })
 }
 
-function handleSameDayConfirm(value: any) {
+function handleSameDayConfirm({ value }: any) {
   const [start, end] = value
   uni.showToast({ title: `${formatDate(start)} - ${formatDate(end || start)}`, icon: 'none' })
 }
 
-function handleFormatterConfirm(value: any) {
+function handleFormatterConfirm({ value }: any) {
   uni.showToast({ title: `选中: ${formatDate(value)}`, icon: 'none' })
 }
 
-function handleInlineChange(value: any) {
-  console.log('Inline calendar change:', value)
-}
-
-function handleCustomTextConfirm(value: any) {
+function handleCustomTextConfirm({ value }: any) {
   uni.showToast({ title: `选中: ${formatDate(value)}`, icon: 'none' })
 }
 </script>
@@ -609,10 +632,6 @@ function handleCustomTextConfirm(value: any) {
 
   &:not(:last-child) {
     margin-bottom: 24rpx;
-  }
-
-  &--inline {
-    padding: 16rpx;
   }
 
   :deep(.m-cell) {
