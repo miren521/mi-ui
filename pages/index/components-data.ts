@@ -55,6 +55,7 @@ export const formComponents: ComponentItem[] = [
   { id: 'select-picker', title: 'SelectPicker 选择器', enTitle: 'SelectPicker', zhTitle: '选择器', desc: '单选/多选选择器，支持搜索、加载状态、数量限制', category: 'form', url: '/examples/pages/select-picker-demo' },
   { id: 'cascader', title: 'Cascader 级联选择器', enTitle: 'Cascader', zhTitle: '级联选择器', desc: '级联选择器组件，支持静态数据和异步懒加载，支持任意级可选', category: 'form', url: '/examples/pages/cascader-demo' },
   { id: 'calendar', title: 'Calendar 日历', enTitle: 'Calendar', zhTitle: '日历', desc: '日历组件，支持日期、日期范围、多日期等选择模式', category: 'form', url: '/examples/pages/calendar-demo' },
+  { id: 'datetime-picker', title: 'DatetimePicker 日期时间选择器', enTitle: 'DatetimePicker', zhTitle: '日期时间选择器', desc: '日期时间选择器，支持日期、时间、日期时间、年份、月份选择及范围选择', category: 'form', url: '/examples/pages/datetime-picker-demo' },
 ]
 
 // 布局
