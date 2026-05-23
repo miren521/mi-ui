@@ -1,0 +1,69 @@
+@use '../../common/styles/mixin/_mixin.scss' as *;
+@use '../index.scss' as *;
+
+@include b(year-panel) {
+  @include e(controls) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: $calendar-view-controls-padding;
+  }
+
+  @include e(controls-title) {
+    font-size: $calendar-view-panel-title-font-size;
+    line-height: $calendar-view-panel-title-line-height;
+    color: $calendar-view-panel-title-color;
+    font-weight: $calendar-view-panel-title-font-weight;
+  }
+
+  @include edeep(control-icon) {
+    color: $calendar-view-control-icon-color;
+    font-size: $calendar-view-control-icon-size;
+    line-height: $calendar-view-control-icon-size;
+
+    &:not(:last-child) {
+      margin-right: $calendar-view-control-icon-spacing;
+    }
+
+    @include when(disabled) {
+      color: $calendar-view-control-color-disabled;
+      cursor: not-allowed;
+    }
+  }
+
+  @include e(years) {
+    display: flex;
+    flex-wrap: wrap;
+    padding: $calendar-view-item-padding;
+  }
+
+  @include e(year) {
+    width: calc(100% / 4);
+    text-align: center;
+    padding: $calendar-view-item-padding;
+    box-sizing: border-box;
+
+    @include when(selected) {
+      .m-year-panel__year-text {
+        border-radius: $calendar-view-border-radius-active;
+        background: $calendar-view-color-active;
+        color: $calendar-view-color-selected;
+      }
+    }
+
+    @include when(disabled) {
+      .m-year-panel__year-text {
+        color: $calendar-view-color-disabled;
+      }
+    }
+  }
+
+  @include e(year-text) {
+    font-size: $calendar-view-year-font-size;
+    line-height: $calendar-view-year-line-height;
+    display: inline-block;
+    padding: $calendar-view-year-text-padding;
+    border-radius: $calendar-view-border-radius;
+  }
+}

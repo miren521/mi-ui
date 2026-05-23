@@ -1,0 +1,96 @@
+@use '../common/styles/mixin/_mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$calendar-bg: var(--m-calendar-bg, #ffffff) !default;
+$calendar-tabs-width: var(--m-calendar-tabs-width, 100%) !default;
+$calendar-tabs-padding: var(--m-calendar-tabs-padding, 0 32rpx) !default;
+$calendar-shortcuts-padding: var(--m-calendar-shortcuts-padding, 12rpx 0) !default;
+$calendar-tag-spacing-right: var(--m-calendar-tag-spacing-right, 24rpx) !default;
+$calendar-range-padding: var(--m-calendar-range-padding, 0 24rpx 32rpx) !default;
+$calendar-range-font-size: var(--m-calendar-range-font-size, 28rpx) !default;
+$calendar-range-item-font-size: var(--m-calendar-range-item-font-size, 32rpx) !default;
+$calendar-range-item-font-weight: var(--m-calendar-range-item-font-weight, 500) !default;
+$calendar-range-item-line-height: var(--m-calendar-range-item-line-height, 1.5) !default;
+$calendar-range-item-padding: var(--m-calendar-range-item-padding, 16rpx 0) !default;
+$calendar-range-item-color: var(--m-calendar-range-item-color, #1989fa) !default;
+$calendar-range-item-color-placeholder: var(--m-calendar-range-item-color-placeholder, #999999) !default;
+$calendar-range-item-line-color: var(--m-calendar-range-item-line-color, #1989fa) !default;
+$calendar-range-item-line-color-placeholder: var(--m-calendar-range-item-line-color-placeholder, #ebedf0) !default;
+$calendar-range-separator-margin: var(--m-calendar-range-separator-margin, 0 12rpx) !default;
+$calendar-range-separator-color: var(--m-calendar-range-separator-color, #999999) !default;
+$calendar-range-separator-width: var(--m-calendar-range-separator-width, 8rpx) !default;
+$calendar-range-separator-height: var(--m-calendar-range-separator-height, 1rpx) !default;
+$calendar-confirm-padding: var(--m-calendar-confirm-padding, 16rpx 24rpx) !default;
+$calendar-confirm-border-color: var(--m-calendar-confirm-border-color, #ebedf0) !default;
+
+@include b(calendar) {
+  @include e(header) {
+    position: relative;
+    overflow: hidden;
+  }
+
+  @include edeep(popup) {
+    background: $calendar-bg;
+  }
+
+  @include e(tabs) {
+    box-sizing: border-box;
+    width: $calendar-tabs-width;
+    padding: $calendar-tabs-padding;
+  }
+
+  @include e(shortcuts) {
+    padding: $calendar-shortcuts-padding;
+    text-align: center;
+  }
+
+  @include edeep(tag) {
+    margin-right: $calendar-tag-spacing-right;
+    @include when(last-tag) {
+      margin-right: 0;
+    }
+  }
+
+  @include e(range) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $calendar-range-font-size;
+    padding: $calendar-range-padding;
+  }
+
+  @include e(range-item) {
+    flex: 1;
+    color: $calendar-range-item-color;
+    font-size: $calendar-range-item-font-size;
+    font-weight: $calendar-range-item-font-weight;
+    line-height: $calendar-range-item-line-height;
+    padding: $calendar-range-item-padding;
+    text-align: center;
+    @include pixelBorder(bottom, 0, $calendar-range-item-line-color);
+
+    @include when(placeholder) {
+      color: $calendar-range-item-color-placeholder;
+      @include pixelBorder(bottom, 0, $calendar-range-item-line-color-placeholder);
+    }
+  }
+
+  @include e(range-separator) {
+    width: $calendar-range-separator-width;
+    height: $calendar-range-separator-height;
+    position: relative;
+    margin: $calendar-range-separator-margin;
+    background: $calendar-range-separator-color;
+  }
+
+  @include e(confirm) {
+    display: flex;
+    align-items: center;
+    padding: $calendar-confirm-padding;
+    @include pixelBorder(top, 0, $calendar-confirm-border-color);
+  }
+
+  @include e(confirm-btn-wrapper) {
+    flex-grow: 1;
+  }
+}

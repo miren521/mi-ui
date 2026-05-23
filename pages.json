@@ -337,6 +337,12 @@
       }
     },
     {
+      "path": "examples/pages/calendar-demo",
+      "style": {
+        "navigationBarTitleText": "Calendar 日历"
+      }
+    },
+    {
       "path": "examples/pages/tabs-demo",
       "style": {
         "navigationBarTitleText": "Tabs 标签页"

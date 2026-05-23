@@ -1,0 +1,48 @@
+@use '../../common/styles/mixin/_mixin.scss' as *;
+@use '../index.scss' as *;
+
+@include b(year) {
+  @include e(title) {
+    font-size: $calendar-view-panel-title-font-size;
+    line-height: $calendar-view-panel-title-line-height;
+    color: $calendar-view-panel-title-color;
+    padding: $calendar-view-panel-title-padding;
+    font-weight: $calendar-view-panel-title-font-weight;
+    margin: $calendar-view-panel-title-margin;
+  }
+
+  @include e(months) {
+    display: flex;
+    flex-wrap: wrap;
+    padding: $calendar-view-item-padding;
+  }
+
+  @include e(month) {
+    width: calc(100% / 4);
+    text-align: center;
+    padding: $calendar-view-item-padding;
+    box-sizing: border-box;
+
+    @include when(selected) {
+      .m-year__month-text {
+        border-radius: $calendar-view-border-radius-active;
+        background: $calendar-view-color-active;
+        color: $calendar-view-color-selected;
+      }
+    }
+
+    @include when(disabled) {
+      .m-year__month-text {
+        color: $calendar-view-color-disabled;
+      }
+    }
+  }
+
+  @include e(month-text) {
+    font-size: $calendar-view-year-font-size;
+    line-height: $calendar-view-year-line-height;
+    display: inline-block;
+    padding: $calendar-view-year-text-padding;
+    border-radius: $calendar-view-border-radius;
+  }
+}
