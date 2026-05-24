@@ -22,6 +22,7 @@
     text-align: center;
     padding: $calendar-view-item-padding;
     box-sizing: border-box;
+    height: 140rpx;
 
     @include when(selected) {
       .m-year__month-text {

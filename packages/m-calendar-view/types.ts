@@ -2,8 +2,8 @@ import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeNumberProp, makeRequiredProp, makeStringProp } from '../common/props'
 
 const now = new Date()
-const defaultMinDate = new Date(now.getFullYear(), now.getMonth() - 6, now.getDate()).getTime()
-const defaultMaxDate = new Date(now.getFullYear(), now.getMonth() + 6, now.getDate(), 23, 59, 59).getTime()
+const defaultMinDate = new Date(now.getFullYear() - 5, now.getMonth(), now.getDate()).getTime()
+const defaultMaxDate = new Date(now.getFullYear() + 5, now.getMonth(), now.getDate(), 23, 59, 59).getTime()
 
 export type CalendarType = 'date' | 'dates' | 'datetime' | 'week' | 'month' | 'daterange' | 'datetimerange' | 'weekrange' | 'monthrange'
 

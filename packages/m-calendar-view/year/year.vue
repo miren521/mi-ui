@@ -37,7 +37,6 @@ import { computed, ref, watch } from 'vue'
 import { deepClone, isArray, isFunction } from '../../common/util'
 import { compareMonth, formatYearTitle, getDateByDefaultTime, getItemClass, getMonthByOffset, getMonthOffset } from '../utils'
 import { useTranslate } from '../../composables/useTranslate'
-import { formatDate } from '../../common/formatDate'
 import { yearProps } from './types'
 import type { CalendarDayItem, CalendarDayType } from '../types'
 
@@ -72,7 +71,8 @@ watch(
 )
 
 function getMonthLabel(date: number) {
-  return formatDate(date, translate('month', date))
+  const month = new Date(date).getMonth() + 1
+  return `${month}月`
 }
 
 function setMonths() {
@@ -119,6 +119,28 @@ function getMonthType(date: number) {
       return ''
     }
   }
+}
+
+function getFormatterDate(date: number, month: number, type?: CalendarDayType) {
+  let monthObj: CalendarDayItem = {
+    date: date,
+    text: month + 1,
+    topInfo: '',
+    bottomInfo: '',
+    type,
+    disabled: compareMonth(date, props.minDate) === -1 || compareMonth(date, props.maxDate) === 1,
+    isLastRow: month >= 8
+  }
+
+  if (props.formatter) {
+    if (isFunction(props.formatter)) {
+      monthObj = props.formatter(monthObj)
+    } else {
+      console.error('[m-calendar-view] the formatter prop should be a function')
+    }
+  }
+
+  return monthObj
 }
 
 function handleDateClick(index: number) {
@@ -170,28 +192,6 @@ function handleMonthRangeChange(date: CalendarDayItem) {
   emit('change', {
     value
   })
-}
-
-function getFormatterDate(date: number, month: number, type?: CalendarDayType) {
-  let monthObj: CalendarDayItem = {
-    date: date,
-    text: month + 1,
-    topInfo: '',
-    bottomInfo: '',
-    type,
-    disabled: compareMonth(date, props.minDate) === -1 || compareMonth(date, props.maxDate) === 1,
-    isLastRow: month >= 8
-  }
-
-  if (props.formatter) {
-    if (isFunction(props.formatter)) {
-      monthObj = props.formatter(monthObj)
-    } else {
-      console.error('[m-calendar-view] the formatter prop should be a function')
-    }
-  }
-
-  return monthObj
 }
 </script>
 
