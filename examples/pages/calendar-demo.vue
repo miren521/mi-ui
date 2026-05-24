@@ -407,7 +407,7 @@ const datetimerangeValueLabel = computed(() => {
 
 const weekValueLabel = computed(() => {
   if (!weekValue.value) return ''
-  return formatDate(weekValue.value)
+  return formatWeek(weekValue.value)
 })
 
 const weekrangeValueLabel = computed(() => {
@@ -477,6 +477,21 @@ function formatDatetime(timestamp: number): string {
   const hour = String(date.getHours()).padStart(2, '0')
   const minute = String(date.getMinutes()).padStart(2, '0')
   return `${year}-${month}-${day} ${hour}:${minute}`
+}
+
+function getWeekNumber(date: number | Date): number {
+  date = new Date(date)
+  date.setHours(0, 0, 0, 0)
+  date.setDate(date.getDate() + 3 - ((date.getDay() + 6) % 7))
+  const week = new Date(date.getFullYear(), 0, 4)
+  return 1 + Math.round(((date.getTime() - week.getTime()) / 86400000 - 3 + ((week.getDay() + 6) % 7)) / 7)
+}
+
+function formatWeek(timestamp: number): string {
+  const date = new Date(timestamp)
+  const year = date.getFullYear()
+  const week = getWeekNumber(date)
+  return `${year}年第${String(week).padStart(2, '0')}周`
 }
 
 function customFormatter(day: CalendarDayItem): CalendarDayItem {
@@ -573,7 +588,7 @@ function handleDatetimeRangeConfirm({ value }: any) {
 }
 
 function handleWeekConfirm({ value }: any) {
-  uni.showToast({ title: `选中: ${formatDate(value)}`, icon: 'none' })
+  uni.showToast({ title: `选中: ${formatWeek(value)}`, icon: 'none' })
 }
 
 function handleWeekRangeConfirm({ value }: any) {

@@ -103,7 +103,7 @@ import mTab from '../m-tab/m-tab.vue'
 import mTag from '../m-tag/m-tag.vue'
 import { formatDate } from '../common/formatDate'
 import { deepClone, isArray, isEqual, padZero, pause } from '../common/util'
-import { getWeekNumber, isRange } from '../m-calendar-view/utils'
+import { getWeekNumber, getWeekRange, isRange } from '../m-calendar-view/utils'
 import { useTranslate } from '../composables/useTranslate'
 import { calendarProps, type CalendarExpose } from './types'
 import type { CalendarType } from '../m-calendar-view/types'
@@ -129,6 +129,30 @@ const activeShortcutIndex = ref<number>(-1)
 
 const formatRange = (value: number, rangeType: 'start' | 'end', type: CalendarType) => {
   switch (type) {
+    case 'date':
+      if (!value) {
+        return translate('placeholder')
+      }
+      return formatDate(value, translate('dateFormat'))
+    case 'datetime':
+      if (!value) {
+        return translate('placeholder')
+      }
+      return formatDate(value, translate('timeFormat'))
+    case 'week': {
+      if (!value) {
+        return translate('placeholder')
+      }
+      const date = new Date(value)
+      const year = date.getFullYear()
+      const week = getWeekNumber(value)
+      return translate('weekFormat', year, padZero(week))
+    }
+    case 'month':
+      if (!value) {
+        return translate('placeholder')
+      }
+      return formatDate(value, translate('monthFormat'))
     case 'daterange':
       if (!value) {
         return rangeType === 'end' ? translate('endTime') : translate('startTime')
