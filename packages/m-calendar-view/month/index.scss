@@ -27,6 +27,7 @@
     font-weight: $calendar-view-day-font-weight;
     margin-bottom: $calendar-view-item-margin-bottom;
     text-align: center;
+    padding: 12rpx 0;
 
     @include when(disabled) {
       .m-month__day-text {
@@ -44,6 +45,10 @@
         background: $calendar-view-color-active;
         color: $calendar-view-color-selected;
       }
+      .m-month__day-top,
+      .m-month__day-bottom {
+        color: $calendar-view-color-selected;
+      }
     }
 
     @include when(middle) {
@@ -52,10 +57,13 @@
         color: $calendar-view-range-color;
       }
     }
-
     @include when(multiple-middle) {
       .m-month__day-container {
         background: $calendar-view-color-active;
+        color: $calendar-view-color-selected;
+      }
+      .m-month__day-top,
+      .m-month__day-bottom {
         color: $calendar-view-color-selected;
       }
     }
@@ -80,6 +88,10 @@
         color: $calendar-view-color-selected;
         border-radius: $calendar-view-border-radius-active 0 0 $calendar-view-border-radius-active;
       }
+      .m-month__day-top,
+      .m-month__day-bottom {
+        color: $calendar-view-color-selected;
+      }
     }
 
     @include when(end) {
@@ -99,6 +111,10 @@
         color: $calendar-view-color-selected;
         border-radius: 0 $calendar-view-border-radius-active $calendar-view-border-radius-active 0;
       }
+      .m-month__day-top,
+      .m-month__day-bottom {
+        color: $calendar-view-color-selected;
+      }
     }
 
     @include when(same) {
@@ -107,9 +123,13 @@
         color: $calendar-view-color-selected;
         border-radius: $calendar-view-border-radius-active;
       }
+      .m-month__day-top,
+      .m-month__day-bottom {
+        color: $calendar-view-color-selected;
+      }
     }
 
-    @include when(last-row) {
+    @include when(last-row){
       margin-bottom: 0;
     }
   }
@@ -117,29 +137,38 @@
   @include e(day-container) {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
   }
 
   @include e(day-text) {
     font-weight: $calendar-view-day-font-weight;
+    padding: 8rpx 0;
+    line-height: 1.4;
   }
 
   @include e(day-top) {
     position: absolute;
-    top: $calendar-view-info-position;
+    top: 2rpx;
     left: 0;
     right: 0;
-    line-height: $calendar-view-info-line-height;
-    font-size: $calendar-view-info-font-size;
+    line-height: 1;
+    font-size: 18rpx;
     text-align: center;
+    color: #999;
   }
 
   @include e(day-bottom) {
     position: absolute;
-    bottom: $calendar-view-info-position;
+    bottom: 2rpx;
     left: 0;
     right: 0;
-    line-height: $calendar-view-info-line-height;
-    font-size: $calendar-view-info-font-size;
+    line-height: 1;
+    font-size: 18rpx;
     text-align: center;
+    color: #999;
   }
 }

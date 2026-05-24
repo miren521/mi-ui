@@ -16,5 +16,5 @@ export const monthProps = {
   defaultTime: {
     type: [Array] as PropType<Array<number[]>>
   },
-  showTitle: makeBooleanProp(true)
+  showTitle: makeBooleanProp(false)
 }

@@ -28,7 +28,6 @@
 
 <script lang="ts">
 export default {
-  name: 'm-month',
   options: {
     addGlobalClass: true,
     // #ifndef MP-TOUTIAO
@@ -101,7 +100,6 @@ const isLastRow = (date: number) => {
   const totalRows = Math.ceil(totalDaysShown / 7)
   return Math.ceil((offset.value + currentDay) / 7) === totalRows
 }
-
 watch(
   [() => props.type, () => props.date, () => props.value, () => props.minDate, () => props.maxDate, () => props.formatter],
   () => {
@@ -135,7 +133,6 @@ function setDays() {
   }
   days.value = dayList
 }
-
 function getDayType(date: number, value: number | number[] | null): CalendarDayType {
   switch (props.type) {
     case 'date':
@@ -154,7 +151,6 @@ function getDayType(date: number, value: number | number[] | null): CalendarDayT
       return getDateType(date)
   }
 }
-
 function getDateType(date: number): CalendarDayType {
   if (props.value && compareDate(date, props.value as number) === 0) {
     return 'selected'
@@ -189,7 +185,6 @@ function getDatesType(date: number): CalendarDayType {
 
   return type
 }
-
 function getDatetimeType(date: number, value: number | number[] | null) {
   const [startDate, endDate] = isArray(value) ? value : []
 
@@ -206,7 +201,6 @@ function getDatetimeType(date: number, value: number | number[] | null) {
     return ''
   }
 }
-
 function getWeektimeType(date: number, value: number | number[] | null) {
   const [startDate, endDate] = isArray(value) ? value : []
 
@@ -220,7 +214,6 @@ function getWeektimeType(date: number, value: number | number[] | null) {
     return ''
   }
 }
-
 function getWeekValue() {
   if (props.type === 'week') {
     return getWeekRange(props.value as number, props.firstDayOfWeek)
@@ -242,7 +235,6 @@ function getWeekValue() {
     return []
   }
 }
-
 function handleDateClick(index: number) {
   const date = days.value[index]
   switch (props.type) {
@@ -267,7 +259,6 @@ function handleDateClick(index: number) {
       handleDateChange(date)
   }
 }
-
 function getDate(date: number, isEnd: boolean = false) {
   date = props.defaultTime && props.defaultTime.length > 0 ? getDateByDefaultTime(date, isEnd ? props.defaultTime[1] : props.defaultTime[0]) : date
 
@@ -288,7 +279,6 @@ function handleDateChange(date: CalendarDayItem) {
     })
   }
 }
-
 function handleDatesChange(date: CalendarDayItem) {
   if (date.disabled) return
   const currentValue = deepClone(isArray(props.value) ? props.value : [])
@@ -305,11 +295,13 @@ function handleDateRangeChange(date: CalendarDayItem) {
   const [startDate, endDate] = deepClone(isArray(props.value) ? props.value : [])
   const compare = compareDate(date.date, startDate)
 
+  // 禁止选择同个日期
   if (!props.allowSameDay && compare === 0 && (props.type === 'daterange' || props.type === 'datetimerange') && !endDate) {
     return
   }
 
   if (startDate && !endDate && compare > -1) {
+    // 不能选择超过最大范围的日期
     if (props.maxRange && getDayOffset(date.date, startDate) > props.maxRange) {
       const maxEndDate = getDayByOffset(startDate, props.maxRange - 1)
       value = [startDate, getDate(maxEndDate, true)]
@@ -320,6 +312,7 @@ function handleDateRangeChange(date: CalendarDayItem) {
       value = [startDate, getDate(date.date, true)]
     }
   } else if (props.type === 'datetimerange' && startDate && endDate) {
+    // 时间范围类型，且有开始时间和结束时间，需要支持重新点击开始日期和结束日期可以重新修改时间
     if (compare === 0) {
       type = 'start'
       value = props.value as number[]
@@ -338,20 +331,20 @@ function handleDateRangeChange(date: CalendarDayItem) {
     type: type || (value[1] ? 'end' : 'start')
   })
 }
-
 function handleWeekChange(date: CalendarDayItem) {
   const [weekStart] = getWeekRange(date.date, props.firstDayOfWeek)
 
+  // 周的第一天如果是禁用状态，则不可选中
   if (getFormatterDate(weekStart, new Date(weekStart).getDate()).disabled) return
 
   emit('change', {
     value: getDate(weekStart) + 24 * 60 * 60 * 1000
   })
 }
-
 function handleWeekRangeChange(date: CalendarDayItem) {
   const [weekStartDate] = getWeekRange(date.date, props.firstDayOfWeek)
 
+  // 周的第一天如果是禁用状态，则不可选中
   if (getFormatterDate(weekStartDate, new Date(weekStartDate).getDate()).disabled) return
 
   let value: (number | null)[] = []
@@ -371,7 +364,6 @@ function handleWeekRangeChange(date: CalendarDayItem) {
     value
   })
 }
-
 function getFormatterDate(date: number, day: string | number, type?: CalendarDayType) {
   let dayObj: CalendarDayItem = {
     date: date,
@@ -392,7 +384,6 @@ function getFormatterDate(date: number, day: string | number, type?: CalendarDay
   return dayObj
 }
 </script>
-
 <style lang="scss">
 @use './index.scss';
 </style>
