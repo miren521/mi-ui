@@ -362,7 +362,8 @@ const internalTimeFormatter: CalendarTimeFormatter = (type, value) => {
   if (props.timeFormatter) {
     return props.timeFormatter(type, value)
   }
-  return String(value)
+  const unit = type === 'hour' ? '时' : type === 'minute' ? '分' : type === 'second' ? '秒' : ''
+  return `${value}${unit}`
 }
 
 function getTimeValue(date: number | (number | null)[], type: MonthPanelTimeType) {
