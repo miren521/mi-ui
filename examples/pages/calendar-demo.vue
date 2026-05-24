@@ -337,14 +337,20 @@
 import { ref, computed } from 'vue'
 import type { CalendarDayItem } from '../../packages/m-calendar-view/types'
 
-const dateValue = ref<number | null>(null)
-const rangeValue = ref<(number | null)[]>([])
-const datesValue = ref<number[]>([])
+const now = new Date()
+const today = now.getTime()
+const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000).getTime()
+const tomorrow = new Date(now.getTime() + 24 * 60 * 60 * 1000).getTime()
+const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000).getTime()
+
+const dateValue = ref<number | null>(today)
+const rangeValue = ref<(number | null)[]>([yesterday, tomorrow])
+const datesValue = ref<number[]>([today, tomorrow, nextWeek])
 const datetimeValue = ref<number | null>(null)
 const datetimerangeValue = ref<(number | null)[]>([])
 const weekValue = ref<number | null>(null)
 const weekrangeValue = ref<(number | null)[]>([])
-const monthValue = ref<number | null>(null)
+const monthValue = ref<number | null>(today)
 const monthrangeValue = ref<(number | null)[]>([])
 const customRangeValue = ref<number | null>(null)
 const maxRangeValue = ref<(number | null)[]>([])
@@ -367,7 +373,6 @@ const sameDayCalendarRef = ref<any>(null)
 const formatterCalendarRef = ref<any>(null)
 const customTextCalendarRef = ref<any>(null)
 
-const now = new Date()
 const minDate = new Date(now.getFullYear(), now.getMonth() - 1, 1).getTime()
 const maxDate = new Date(now.getFullYear(), now.getMonth() + 2, 0).getTime()
 
