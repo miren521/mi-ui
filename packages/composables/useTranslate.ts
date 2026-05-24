@@ -78,7 +78,16 @@ export const useTranslate = (name?: string) => {
   const translate = (key: string, ...args: unknown[]) => {
     const currentMessages = defaultMessages
     const message = getPropByPath(currentMessages, prefix + key)
-    return isFunction(message) ? message(...args) : isDef(message) ? message : `${prefix}${key}`
+    if (isFunction(message)) {
+      return message(...args)
+    }
+    if (isDef(message)) {
+      if (typeof message === 'string' && args.length > 0) {
+        return message.replace(/%s/g, () => String(args.shift()))
+      }
+      return message
+    }
+    return `${prefix}${key}`
   }
   return { translate }
 }
