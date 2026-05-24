@@ -27,7 +27,7 @@
     font-weight: $calendar-view-day-font-weight;
     margin-bottom: $calendar-view-item-margin-bottom;
     text-align: center;
-    padding: 12rpx 0;
+    padding: 6rpx 0;
 
     @include when(disabled) {
       .m-month__day-text {
@@ -41,7 +41,7 @@
 
     @include when(selected, multiple-selected) {
       .m-month__day-container {
-        border-radius: $calendar-view-border-radius-active;
+        border-radius: 8px;
         background: $calendar-view-color-active;
         color: $calendar-view-color-selected;
       }
@@ -152,7 +152,7 @@
 
   @include e(day-top) {
     position: absolute;
-    top: 2rpx;
+    top: 12rpx;
     left: 0;
     right: 0;
     line-height: 1;
@@ -163,7 +163,7 @@
 
   @include e(day-bottom) {
     position: absolute;
-    bottom: 2rpx;
+    bottom: 12rpx;
     left: 0;
     right: 0;
     line-height: 1;
