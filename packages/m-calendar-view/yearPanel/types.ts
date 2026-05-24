@@ -1,19 +1,33 @@
-import type { PropType } from 'vue'
-import { makeBooleanProp, makeNumberProp, makeStringProp } from '../../common/props'
-import type { CalendarType } from '../types'
+import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'
+import { makeBooleanProp, makeRequiredProp, makeStringProp } from '../../common/props'
+import type { CalendarFormatter, CalendarType } from '../types'
 
-const now = new Date()
-const defaultMinDate = new Date(now.getFullYear() - 10, now.getMonth(), now.getDate()).getTime()
-const defaultMaxDate = new Date(now.getFullYear() + 10, now.getMonth(), now.getDate()).getTime()
+export interface YearInfo {
+  date: number
+  height: number
+}
 
 export const yearPanelProps = {
-  type: makeStringProp<CalendarType>('date'),
-  value: {
-    type: [Number, Array, null] as PropType<number | (number | null)[] | null>,
-    default: null
+  type: makeRequiredProp(String as PropType<CalendarType>),
+  value: makeRequiredProp([Number, Array] as PropType<number | (number | null)[] | null>),
+  minDate: makeRequiredProp(Number),
+  maxDate: makeRequiredProp(Number),
+  formatter: Function as PropType<CalendarFormatter>,
+  maxRange: Number,
+  rangePrompt: String,
+  allowSameDay: makeBooleanProp(false),
+  showPanelTitle: makeBooleanProp(true),
+  defaultTime: {
+    type: [Array] as PropType<Array<number[]>>
   },
-  minDate: makeNumberProp(defaultMinDate),
-  maxDate: makeNumberProp(defaultMaxDate),
-  panelHeight: makeNumberProp(378),
-  switchMode: makeBooleanProp(false)
+  panelHeight: makeRequiredProp(Number),
+  switchMode: makeStringProp<'none' | 'month' | 'year-month'>('none')
 }
+
+export type YearPanelProps = ExtractPropTypes<typeof yearPanelProps>
+
+export type YearPanelExpose = {
+  scrollIntoView: () => void
+}
+
+export type YearPanelInstance = ComponentPublicInstance<YearPanelProps, YearPanelExpose>

@@ -1,12 +1,19 @@
 import type { PropType } from 'vue'
 import { makeBooleanProp, makeRequiredProp } from '../../common/props'
-import type { CalendarType } from '../types'
+import type { CalendarFormatter, CalendarType } from '../types'
 
 export const yearProps = {
   type: makeRequiredProp(String as PropType<CalendarType>),
   date: makeRequiredProp(Number),
-  value: makeRequiredProp([Number, Array, null] as PropType<number | (number | null)[] | null>),
+  value: makeRequiredProp([Number, Array] as PropType<number | (number | null)[] | null>),
   minDate: makeRequiredProp(Number),
   maxDate: makeRequiredProp(Number),
+  formatter: Function as PropType<CalendarFormatter>,
+  maxRange: Number,
+  rangePrompt: String,
+  allowSameDay: makeBooleanProp(false),
+  defaultTime: {
+    type: [Array] as PropType<Array<number[]>>
+  },
   showTitle: makeBooleanProp(true)
 }

@@ -1,36 +1,51 @@
 <template>
   <view class="m-year-panel">
-    <view class="m-year-panel__controls">
+    <view class="m-year-panel__controls" v-if="switchMode !== 'none'">
       <view class="m-year-panel__control">
         <m-icon
-          :custom-class="`m-year-panel__control-icon ${isPrevDecadeDisabled ? 'is-disabled' : ''}`"
           name="left"
-          @click="!isPrevDecadeDisabled && changeDecade(-1)"
+          :custom-class="`m-year-panel__control-icon ${isPrevYearDisabled ? 'is-disabled' : ''}`"
+          @click="!isPrevYearDisabled && changeYear(-1)"
         />
       </view>
       <text class="m-year-panel__controls-title">{{ controlsTitle }}</text>
       <view class="m-year-panel__control">
         <m-icon
-          :custom-class="`m-year-panel__control-icon ${isNextDecadeDisabled ? 'is-disabled' : ''}`"
           name="right"
-          @click="!isNextDecadeDisabled && changeDecade(1)"
+          :custom-class="`m-year-panel__control-icon ${isNextYearDisabled ? 'is-disabled' : ''}`"
+          @click="!isNextYearDisabled && changeYear(1)"
         />
       </view>
     </view>
 
-    <view class="m-year-panel__years">
-      <view
-        v-for="(item, index) in years"
-        :key="index"
-        :class="`m-year-panel__year ${item.selected ? 'is-selected' : ''} ${item.disabled ? 'is-disabled' : ''}`"
-        @click="handleClick(item)"
-      >
-        <view class="m-year-panel__year-text">{{ item.text }}</view>
+    <view v-if="showPanelTitle && switchMode === 'none'" class="m-year-panel__title">{{ title }}</view>
+
+    <scroll-view
+      class="m-year-panel__container"
+      :style="`height: ${scrollHeight}px`"
+      :scroll-y="true"
+      :scroll-top="scrollTop"
+      @scroll="switchMode === 'none' ? yearScroll($event) : undefined"
+    >
+      <view v-for="(item, index) in displayYears" :key="index" :id="`year${index}`">
+        <year
+          :type="type"
+          :date="item.date"
+          :value="value"
+          :min-date="minDate"
+          :max-date="maxDate"
+          :max-range="maxRange"
+          :formatter="formatter"
+          :range-prompt="rangePrompt"
+          :allow-same-day="allowSameDay"
+          :default-time="defaultTime"
+          :showTitle="switchMode === 'none' && index !== 0"
+          @change="handleDateChange"
+        />
       </view>
-    </view>
+    </scroll-view>
   </view>
 </template>
-
 <script lang="ts">
 export default {
   name: 'm-year-panel',
@@ -45,86 +60,85 @@ export default {
 </script>
 
 <script lang="ts" setup>
+import { computed, ref, onMounted } from 'vue'
+import { compareYear, formatYearTitle, getYears } from '../utils'
+import { isArray, isNumber, pause } from '../../common/util'
+import Year from '../year/year.vue'
 import mIcon from '../../m-icon/m-icon.vue'
-import { computed, ref, watch, onMounted } from 'vue'
-import { isArray, isNumber } from '../../common/util'
-import { yearPanelProps } from './types'
+import { yearPanelProps, type YearInfo, type YearPanelExpose } from './types'
 
 const props = defineProps(yearPanelProps)
 const emit = defineEmits(['change'])
 
-const currentDecade = ref<number>(new Date().getFullYear())
+const scrollTop = ref<number>(0)
+const scrollIndex = ref<number>(0)
+
+const currentDisplayYear = ref<number>(new Date().getFullYear())
+
+const scrollHeight = computed(() => {
+  const scrollHeight: number = props.panelHeight + (props.showPanelTitle ? 26 : 16)
+  return scrollHeight
+})
+
+const years = computed<YearInfo[]>(() => {
+  return getYears(props.minDate, props.maxDate).map((year, index) => {
+    return {
+      date: year,
+      height: index === 0 ? 188 : 228
+    }
+  })
+})
+
+const currentYearDate = computed(() => {
+  return new Date(currentDisplayYear.value, 0, 1).getTime()
+})
+
+const displayYears = computed<YearInfo[]>(() => {
+  if (props.switchMode === 'none') {
+    return years.value
+  }
+  return [
+    {
+      date: currentYearDate.value,
+      height: 188
+    }
+  ]
+})
 
 const controlsTitle = computed(() => {
-  const start = Math.floor(currentDecade.value / 10) * 10
-  const end = start + 9
-  return `${start}-${end}`
+  return formatYearTitle(currentYearDate.value)
 })
 
-const isPrevDecadeDisabled = computed(() => {
-  const start = Math.floor(currentDecade.value / 10) * 10 - 10
-  return start < new Date(props.minDate).getFullYear()
+const title = computed(() => {
+  return formatYearTitle(years.value[scrollIndex.value].date)
 })
 
-const isNextDecadeDisabled = computed(() => {
-  const end = Math.floor(currentDecade.value / 10) * 10 + 19
-  return end > new Date(props.maxDate).getFullYear()
+const isPrevYearDisabled = computed(() => {
+  const minYear = new Date(props.minDate).getFullYear()
+  return currentDisplayYear.value <= minYear
 })
 
-const years = computed(() => {
-  const yearList: Array<{ text: string; date: number; selected: boolean; disabled: boolean }> = []
-  const start = Math.floor(currentDecade.value / 10) * 10
-  for (let year = start; year < start + 12; year++) {
-    const date = new Date(year, 0, 1).getTime()
-    const disabled = year < new Date(props.minDate).getFullYear() || year > new Date(props.maxDate).getFullYear()
-
-    let selected = false
-    if (props.value) {
-      if (props.type === 'year') {
-        selected = new Date(props.value as number).getFullYear() === year
-      } else {
-        const value = props.value as number[]
-        const isSelected = value.some((item) => {
-          if (!item) return false
-          return new Date(item).getFullYear() === year
-        })
-        selected = isSelected
-      }
-    }
-
-    yearList.push({
-      text: String(year),
-      date,
-      selected,
-      disabled
-    })
-  }
-  return yearList
+const isNextYearDisabled = computed(() => {
+  const maxYear = new Date(props.maxDate).getFullYear()
+  return currentDisplayYear.value >= maxYear
 })
 
-function changeDecade(delta: number) {
-  currentDecade.value += delta * 10
-}
-
-function handleClick(item: { date: number; disabled: boolean }) {
-  if (!item.disabled) {
-    emit('change', {
-      value: item.date,
-      type: 'year'
-    })
-  }
+function changeYear(delta: number) {
+  currentDisplayYear.value += delta
 }
 
 onMounted(() => {
-  initCurrentDecade()
+  if (props.switchMode !== 'none') {
+    initCurrentDisplayYear()
+  }
+  scrollIntoView()
 })
 
-function initCurrentDecade() {
+function initCurrentDisplayYear() {
   let activeDate: number | null = null
 
   if (isArray(props.value)) {
-    const sortedValue = [...props.value].sort((a, b) => (a || 0) - (b || 0))
-    activeDate = sortedValue[0]
+    activeDate = props.value![0]
   } else if (isNumber(props.value)) {
     activeDate = props.value
   }
@@ -133,21 +147,64 @@ function initCurrentDecade() {
     activeDate = Date.now()
   }
 
-  if (activeDate < props.minDate) {
-    activeDate = props.minDate
-  } else if (activeDate > props.maxDate) {
-    activeDate = props.maxDate
-  }
-
-  currentDecade.value = new Date(activeDate).getFullYear()
+  currentDisplayYear.value = new Date(activeDate).getFullYear()
 }
 
-watch(
-  () => props.value,
-  () => {
-    initCurrentDecade()
+async function scrollIntoView() {
+  await pause()
+  let activeDate: number | null = null
+  if (isArray(props.value)) {
+    activeDate = props.value![0]
+  } else if (isNumber(props.value)) {
+    activeDate = props.value
   }
-)
+
+  if (!activeDate) {
+    activeDate = Date.now()
+  }
+
+  let top: number = 0
+  for (let index = 0; index < years.value.length; index++) {
+    if (compareYear(years.value[index].date, activeDate) === 0) {
+      break
+    }
+    top += years.value[index] ? Number(years.value[index].height) : 0
+  }
+  scrollTop.value = 0
+  if (top > 0) {
+    await pause()
+    scrollTop.value = top + 40
+  }
+}
+
+const yearScroll = (event: { detail: { scrollTop: number } }) => {
+  if (years.value.length <= 1) {
+    return
+  }
+  const scrollTop = Math.max(0, event.detail.scrollTop)
+  doSetSubtitle(scrollTop)
+}
+
+function doSetSubtitle(scrollTop: number) {
+  let height: number = 0
+  for (let index = 0; index < years.value.length; index++) {
+    height = height + years.value[index].height
+    if (scrollTop < height) {
+      scrollIndex.value = index
+      return
+    }
+  }
+}
+
+function handleDateChange({ value }: { value: number[] }) {
+  emit('change', {
+    value
+  })
+}
+
+defineExpose<YearPanelExpose>({
+  scrollIntoView
+})
 </script>
 
 <style lang="scss">
