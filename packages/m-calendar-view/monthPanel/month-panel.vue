@@ -257,11 +257,14 @@ const displayMonths = computed<MonthInfo[]>(() => {
 watch(
   () => props.type,
   (val) => {
-    if (
-      (val === 'datetime' && props.value) ||
-      (val === 'datetimerange' && isArray(props.value) && props.value && props.value.length > 0 && props.value[0])
-    ) {
-      setTime(props.value, 'start')
+    if (val === 'datetime') {
+      setTime(props.value || Date.now(), 'start')
+    } else if (val === 'datetimerange') {
+      if (isArray(props.value) && props.value && props.value.length > 0 && props.value[0]) {
+        setTime(props.value, 'start')
+      } else {
+        setTime([Date.now(), null], 'start')
+      }
     }
   },
   {
@@ -359,7 +362,7 @@ const internalTimeFormatter: CalendarTimeFormatter = (type, value) => {
   if (props.timeFormatter) {
     return props.timeFormatter(type, value)
   }
-  return translate(type, value)
+  return String(value)
 }
 
 function getTimeValue(date: number | (number | null)[], type: MonthPanelTimeType) {

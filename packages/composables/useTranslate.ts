@@ -66,7 +66,10 @@ const defaultMessages: Record<string, Record<string, string | string[] | ((...ar
     rangePrompt: '选择天数不能超过%s天',
     hours: '时',
     minutes: '分',
-    seconds: '秒'
+    seconds: '秒',
+    hour: '时',
+    minute: '分',
+    second: '秒'
   }
 }
 
