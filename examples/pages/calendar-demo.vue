@@ -414,7 +414,7 @@ const weekrangeValueLabel = computed(() => {
   if (!weekrangeValue.value || weekrangeValue.value.length === 0) return ''
   const [start, end] = weekrangeValue.value
   if (!start || !end) return ''
-  return `${formatDate(start)} - ${formatDate(end)}`
+  return `${formatWeek(start)} - ${formatWeek(end)}`
 })
 
 const monthValueLabel = computed(() => {
@@ -593,7 +593,7 @@ function handleWeekConfirm({ value }: any) {
 
 function handleWeekRangeConfirm({ value }: any) {
   const [start, end] = value
-  uni.showToast({ title: `${formatDate(start)} - ${formatDate(end)}`, icon: 'none' })
+  uni.showToast({ title: `${formatWeek(start)} - ${formatWeek(end)}`, icon: 'none' })
 }
 
 function handleMonthConfirm({ value }: any) {
