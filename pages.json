@@ -355,6 +355,12 @@
       }
     },
     {
+      "path": "examples/pages/datetime-picker-view-demo",
+      "style": {
+        "navigationBarTitleText": "DatetimePickerView 日期时间选择器视图"
+      }
+    },
+    {
       "path": "examples/pages/tabs-demo",
       "style": {
         "navigationBarTitleText": "Tabs 标签页"
