@@ -343,6 +343,12 @@
       }
     },
     {
+      "path": "examples/pages/calendar-view-demo",
+      "style": {
+        "navigationBarTitleText": "CalendarView 日历视图"
+      }
+    },
+    {
       "path": "examples/pages/datetime-picker-demo",
       "style": {
         "navigationBarTitleText": "DatetimePicker 日期时间选择器"
