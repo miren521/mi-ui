@@ -11,8 +11,9 @@
         </m-popover>
       </template>
       <template #right v-if="currentNavbarType === 'customRight'">
-        <view class="demo-navbar-custom-right">
-          <m-icon name="share" />
+        <view class="demo-navbar-custom-right" @click="handleScan">
+          <m-icon name="scan" />
+          <text>扫一扫</text>
         </view>
       </template>
       <template #title v-if="currentNavbarType === 'customTitle'">
@@ -79,12 +80,13 @@
       </demo-block>
 
       <!-- 自定义右侧内容 -->
-      <demo-block title="自定义右侧内容" desc="使用 right 插槽自定义右侧内容">
+      <demo-block title="自定义右侧内容" desc="使用 right 插槽自定义右侧内容，添加扫一扫按钮">
         <view class="demo-navbar-row">
           <m-navbar title="自定义右侧">
             <template #right>
-              <view class="demo-navbar-custom-right">
-                <m-icon name="share" />
+              <view class="demo-navbar-custom-right" @click="handleScan">
+                <m-icon name="scan" />
+                <text>扫一扫</text>
               </view>
             </template>
           </m-navbar>
@@ -214,6 +216,10 @@ const handleBack = () => {
 const handleBackHome = () => {
   uni.showToast({ title: '返回首页', icon: 'none' })
 }
+
+const handleScan = () => {
+  uni.showToast({ title: '打开扫一扫', icon: 'none' })
+}
 </script>
 
 <style lang="scss">
@@ -247,10 +253,10 @@ const handleBackHome = () => {
 }
 
 .demo-navbar-row {
-  padding: 20rpx;
-  background-color: #fff;
-  border-radius: 12rpx;
-  margin-bottom: 20rpx;
+  // padding: 20rpx;
+  // background-color: #fff;
+  // border-radius: 12rpx;
+  // margin-bottom: 20rpx;
 }
 
 .demo-navbar-tips {
@@ -283,7 +289,9 @@ const handleBackHome = () => {
 .demo-navbar-custom-title {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12rpx;
+  width: 100%;
 }
 
 .demo-navbar-title-icon {
