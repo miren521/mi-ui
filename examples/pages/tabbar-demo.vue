@@ -299,6 +299,7 @@ function handleBottomTabbarChange(e: any) {
 
 .demo-tabbar-shadow {
   box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+  height: 100%;
 }
 
 .demo-tabbar-switch-row{
