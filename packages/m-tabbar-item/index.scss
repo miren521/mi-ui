@@ -1,0 +1,63 @@
+$tabbar-item-color-active: var(--m-tabbar-item-color-active, #1989fa) !default;
+$tabbar-item-color-inactive: var(--m-tabbar-item-color-inactive, #999999) !default;
+$tabbar-item-title-font-size: var(--m-tabbar-item-title-font-size, 22rpx) !default;
+$tabbar-item-title-line-height: var(--m-tabbar-item-title-line-height, 1.2) !default;
+$tabbar-item-icon-size: var(--m-tabbar-item-icon-size, 48rpx) !default;
+$tabbar-item-active-icon-size: var(--m-tabbar-item-active-icon-size, 112rpx) !default;
+$tabbar-item-active-icon-bg: var(--m-tabbar-item-active-icon-bg, #1989fa) !default;
+
+.m-tabbar-item {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    line-height: 1;
+    padding: 0;
+    position: relative;
+
+    :deep(.is-active) {
+      color: $tabbar-item-color-active;
+    }
+
+    :deep(.is-inactive) {
+      color: $tabbar-item-color-inactive;
+    }
+  }
+
+  &__body-title {
+    font-size: $tabbar-item-title-font-size;
+    line-height: $tabbar-item-title-line-height;
+    margin-top: 4rpx;
+  }
+
+  :deep(.m-tabbar-item__body-icon) {
+    font-size: $tabbar-item-icon-size;
+  }
+
+  &--active-icon {
+    align-items: flex-end;
+    padding-bottom: 16rpx;
+
+    .m-tabbar-item__body {
+      width: $tabbar-item-active-icon-size;
+      height: $tabbar-item-active-icon-size;
+      border-radius: 50%;
+      background: $tabbar-item-active-icon-bg;
+      box-shadow: 0 8rpx 24rpx rgba(25, 137, 250, 0.4);
+      justify-content: center;
+      margin-top: -40rpx;
+
+      :deep(.m-tabbar-item__body-icon--active-icon) {
+        font-size: 56rpx;
+      }
+    }
+  }
+}

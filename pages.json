@@ -396,6 +396,12 @@
         "navigationStyle": "custom",
         "navigationBarTitleText": "Navbar 导航栏"
       }
+    },
+    {
+      "path": "examples/pages/tabbar-demo",
+      "style": {
+        "navigationBarTitleText": "Tabbar 标签栏"
+      }
     }
   ],
   "globalStyle": {
