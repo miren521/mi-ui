@@ -9,6 +9,10 @@ const defaultMessages: Record<string, Record<string, string | string[] | ((...ar
     undoText: '撤销',
     redoText: '恢复'
   },
+  slideVerify: {
+    text: '请按住滑块，拖动到最右边',
+    successText: '验证通过'
+  },
   steps: {
     finished: '已完成',
     failed: '失败',

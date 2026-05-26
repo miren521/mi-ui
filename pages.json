@@ -377,6 +377,12 @@
       "style": {
         "navigationBarTitleText": "Signature 签名"
       }
+    },
+    {
+      "path": "examples/pages/slide-verify-demo",
+      "style": {
+        "navigationBarTitleText": "SlideVerify 滑块验证"
+      }
     }
   ],
   "globalStyle": {

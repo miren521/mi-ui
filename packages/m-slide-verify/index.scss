@@ -1,0 +1,121 @@
+// 组件高度
+$slide-verify-height: var(--m-slide-verify-height, 80rpx) !default;
+// 组件宽度
+$slide-verify-width: var(--m-slide-verify-width, 100%) !default;
+// 组件背景色
+$slide-verify-bg: var(--m-slide-verify-bg, #f5f5f5) !default;
+// 圆角
+$slide-verify-radius: var(--m-slide-verify-radius, 12rpx) !default;
+// 成功态track背景色
+$slide-verify-track-bg: var(--m-slide-verify-track-bg, #52c41a) !default;
+// 禁用态透明度
+$slide-verify-disabled-opacity: var(--m-slide-verify-disabled-opacity, 0.5) !default;
+// 提示文字颜色
+$slide-verify-text-color: var(--m-slide-verify-text-color, #666666) !default;
+// 提示文字字号
+$slide-verify-text-font-size: var(--m-slide-verify-text-font-size, 28rpx) !default;
+// 提示文字行高
+$slide-verify-text-line-height: var(--m-slide-verify-text-line-height, 1.5) !default;
+// 成功态文字颜色
+$slide-verify-success-text-color: var(--m-slide-verify-success-text-color, #ffffff) !default;
+// 滑块背景色
+$slide-verify-button-bg: var(--m-slide-verify-button-bg, #ffffff) !default;
+// 滑块阴影色
+$slide-verify-button-shadow: var(--m-slide-verify-button-shadow, 0 2rpx 8rpx rgba(0, 0, 0, 0.15)) !default;
+// 滑块图标颜色
+$slide-verify-button-color: var(--m-slide-verify-button-color, #999999) !default;
+// 滑块图标成功态颜色
+$slide-verify-button-success-color: var(--m-slide-verify-button-success-color, #52c41a) !default;
+// 滑块尺寸
+$slide-verify-button-size: var(--m-slide-verify-button-size, $slide-verify-height) !default;
+// 滑块边框颜色
+$slide-verify-button-border-color: var(--m-slide-verify-button-border-color, #d9d9d9) !default;
+// 滑块图标尺寸
+$slide-verify-success-icon-size: var(--m-slide-verify-success-icon-size, 40rpx) !default;
+
+.m-slide-verify {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  width: $slide-verify-width;
+  height: $slide-verify-height;
+  background: $slide-verify-bg;
+  border-radius: $slide-verify-radius;
+
+  &.is-disabled {
+    cursor: not-allowed;
+    opacity: $slide-verify-disabled-opacity;
+  }
+
+  &.is-success {
+    .m-slide-verify__text-inner {
+      color: $slide-verify-success-text-color;
+    }
+  }
+
+  &.is-dragging {
+    .m-slide-verify__button {
+      cursor: grabbing;
+    }
+  }
+
+  &__text-inner {
+    color: $slide-verify-text-color;
+    font-size: $slide-verify-text-font-size;
+    line-height: $slide-verify-text-line-height;
+    transition: color 0.3s ease;
+  }
+
+  &__track {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background: $slide-verify-track-bg;
+    border-radius: $slide-verify-radius;
+    overflow: hidden;
+  }
+
+  &__track-text {
+    position: absolute;
+    color: $slide-verify-success-text-color;
+    left: 0;
+    height: 100%;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    pointer-events: none;
+    word-break: keep-all;
+  }
+
+  &__button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $slide-verify-button-size;
+    height: $slide-verify-button-size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $slide-verify-button-bg;
+    box-shadow: $slide-verify-button-shadow;
+    color: $slide-verify-button-color;
+    border-radius: $slide-verify-radius;
+    cursor: grab;
+    border: 1px solid $slide-verify-button-border-color;
+    box-sizing: border-box;
+  }
+
+  &__button-icon {
+    font-size: $slide-verify-success-icon-size;
+    &--success {
+      color: $slide-verify-button-success-color;
+    }
+  }
+}
