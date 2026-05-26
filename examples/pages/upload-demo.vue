@@ -2,10 +2,11 @@
   <view class="m-upload-demo">
     <view class="m-upload-demo__container">
       <!-- 基础用法 -->
-      <demo-block title="基础用法" desc="选择图片后直接回显，不发送上传请求">
+      <demo-block title="基础用法" desc="选择图片后模拟上传成功，直接回显">
         <view class="demo-upload-row">
           <m-upload
             :file-list="fileList1"
+            :before-upload="simulateUpload"
             @update:file-list="fileList1 = $event"
           />
         </view>
@@ -17,14 +18,9 @@
           <m-upload
             :file-list="fileList2"
             :limit="6"
+            :before-upload="simulateUpload"
             @update:file-list="fileList2 = $event"
           />
-        </view>
-        <view class="demo-hint">
-          <text class="demo-hint__label">服务端返回的数据格式：</text>
-          <view class="demo-hint__code">
-{ uid: 1, url: '/static/img/img_1.jpg', status: 'success', name: '图片.jpg' }
-          </view>
         </view>
       </demo-block>
 
@@ -34,6 +30,7 @@
           <m-upload
             :file-list="fileList3"
             :limit="3"
+            :before-upload="simulateUpload"
             @update:file-list="fileList3 = $event"
           />
         </view>
@@ -46,6 +43,7 @@
             :file-list="fileList4"
             :multiple="true"
             :limit="5"
+            :before-upload="simulateUpload"
             @update:file-list="fileList4 = $event"
           />
         </view>
@@ -67,6 +65,7 @@
         <view class="demo-upload-row">
           <m-upload
             :file-list="fileList6"
+            :before-upload="simulateUpload"
             @update:file-list="fileList6 = $event"
           >
             <view class="custom-upload-btn">
@@ -82,6 +81,7 @@
         <view class="demo-upload-row">
           <m-upload
             :file-list="fileList7"
+            :before-upload="simulateUpload"
             @update:file-list="fileList7 = $event"
           >
             <template #preview-cover="{ file, index }">
@@ -99,7 +99,35 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { UploadFileItem } from '../../packages/m-upload/types'
+import type { UploadFileItem, UploadBeforeUploadResult } from '../../packages/m-upload/types'
+
+// 本地图片地址列表
+const localImages = [
+  '/static/img/img_1.jpg',
+  '/static/img/img_2.jpg',
+  '/static/img/img_3.jpg',
+  '/static/img/img_4.jpg',
+  '/static/img/img_5.jpg',
+  '/static/img/img_6.jpg'
+]
+
+let imageIndex = 0
+
+// 模拟上传成功，直接返回本地图片地址
+function simulateUpload(): Promise<UploadBeforeUploadResult> {
+  return new Promise((resolve) => {
+    // 模拟上传延迟
+    setTimeout(() => {
+      // 循环使用本地图片地址
+      const url = localImages[imageIndex % localImages.length]
+      imageIndex++
+      resolve({
+        status: 'success',
+        url: url
+      })
+    }, 300)
+  })
+}
 
 // 文件列表 - 基础用法
 const fileList1 = ref<UploadFileItem[]>([])
@@ -107,8 +135,8 @@ const fileList1 = ref<UploadFileItem[]>([])
 // 文件列表 - 回显演示（模拟从服务端获取的数据）
 const fileList2 = ref<UploadFileItem[]>([
   { uid: 1, url: '/static/img/img_1.jpg', status: 'success', name: '图片1.jpg' },
-  { uid: 2, url: '/static/img/img_1.jpg', status: 'success', name: '图片2.jpg' },
-  { uid: 3, url: '/static/img/img_1.jpg', status: 'success', name: '图片3.jpg' }
+  { uid: 2, url: '/static/img/img_2.jpg', status: 'success', name: '图片2.jpg' },
+  { uid: 3, url: '/static/img/img_3.jpg', status: 'success', name: '图片3.jpg' }
 ])
 
 // 文件列表 - 限制数量
@@ -145,30 +173,6 @@ const fileList7 = ref<UploadFileItem[]>([])
 .demo-upload-row {
   display: flex;
   flex-wrap: wrap;
-}
-
-.demo-hint {
-  margin-top: 16px;
-  padding: 12px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  font-size: 13px;
-
-  &__label {
-    color: #666;
-    margin-bottom: 8px;
-    display: block;
-  }
-
-  &__code {
-    font-family: monospace;
-    font-size: 12px;
-    color: #333;
-    background: #fff;
-    padding: 8px;
-    border-radius: 4px;
-    word-break: break-all;
-  }
 }
 
 .custom-upload-btn {

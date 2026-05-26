@@ -50,7 +50,7 @@
         </view>
         <view v-if="file[props.statusKey] === 'fail'" class="m-upload__status-content">
           <m-icon name="close-circle" custom-class="m-upload__icon"></m-icon>
-          <text class="m-upload__progress-txt">{{ file.error || 'error' }}</text>
+          <text class="m-upload__progress-txt">{{ file.error || '上传失败' }}</text>
         </view>
       </view>
       <view class="m-upload__close" v-if="file[props.statusKey] !== 'loading' && !disabled" @click="removeFile(index)">
