@@ -1,0 +1,100 @@
+// 按键高度
+$keyboard-key-height: var(--m-keyboard-key-height, 96rpx) !default;
+// 按键间距
+$keyboard-key-padding: var(--m-keyboard-key-padding, 8rpx) !default;
+// 按键字号
+$keyboard-key-font-size: var(--m-keyboard-key-font-size, 36rpx) !default;
+// 按键行高
+$keyboard-key-line-height: var(--m-keyboard-key-line-height, 48rpx) !default;
+// 车牌按键字号
+$keyboard-key-car-font-size: var(--m-keyboard-key-car-font-size, 28rpx) !default;
+// 车牌按键行高
+$keyboard-key-car-line-height: var(--m-keyboard-key-car-line-height, 36rpx) !default;
+// 按键字重
+$keyboard-key-font-weight: var(--m-keyboard-key-font-weight, 500) !default;
+// 按键背景色
+$keyboard-key-bg: var(--m-keyboard-key-bg, #f5f5f5) !default;
+// 按键圆角
+$keyboard-key-radius: var(--m-keyboard-key-radius, 12rpx) !default;
+// 按键激活背景色
+$keyboard-key-bg-active: var(--m-keyboard-key-bg-active, #e8e8e8) !default;
+// 删除键字号
+$keyboard-key-delete-font-size: var(--m-keyboard-key-delete-font-size, 28rpx) !default;
+// 删除键行高
+$keyboard-key-delete-line-height: var(--m-keyboard-key-delete-line-height, 36rpx) !default;
+// 删除键字重
+$keyboard-key-delete-font-weight: var(--m-keyboard-key-delete-font-weight, 500) !default;
+// 主按钮文字颜色
+$keyboard-key-primary-color: var(--m-keyboard-key-primary-color, #ffffff) !default;
+// 主按钮背景色
+$keyboard-key-primary-bg: var(--m-keyboard-key-primary-bg, #52c41a) !default;
+// 主按钮激活背景色
+$keyboard-key-primary-bg-active: var(--m-keyboard-key-primary-bg-active, #3d9b1f) !default;
+// 按键图标尺寸
+$keyboard-key-icon-size: var(--m-keyboard-key-icon-size, 44rpx) !default;
+
+.m-key-wrapper {
+  position: relative;
+  flex: 1;
+  flex-basis: 33%;
+  box-sizing: border-box;
+  padding: 0 $keyboard-key-padding $keyboard-key-padding 0;
+
+  &--wider {
+    flex-basis: 66%;
+  }
+}
+
+.m-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: $keyboard-key-height;
+  font-size: $keyboard-key-font-size;
+  line-height: $keyboard-key-line-height;
+  font-weight: $keyboard-key-font-weight;
+  background: $keyboard-key-bg;
+  border-radius: $keyboard-key-radius;
+
+  &--active {
+    background: $keyboard-key-bg-active;
+  }
+
+  &.is-car {
+    font-size: $keyboard-key-car-font-size;
+    line-height: $keyboard-key-car-line-height;
+  }
+
+  &--large {
+    position: absolute;
+    top: 0;
+    right: $keyboard-key-padding;
+    bottom: $keyboard-key-padding;
+    left: 0;
+    height: auto;
+  }
+
+  &--delete,
+  &--close {
+    font-size: $keyboard-key-delete-font-size;
+    line-height: $keyboard-key-delete-line-height;
+    font-weight: $keyboard-key-delete-font-weight;
+  }
+
+  &--close {
+    color: $keyboard-key-primary-color;
+    background: $keyboard-key-primary-bg;
+
+    &.m-key--active {
+      background: $keyboard-key-primary-bg-active;
+    }
+  }
+
+  &__loading-icon {
+    color: $keyboard-key-primary-color;
+  }
+
+  &__icon {
+    font-size: $keyboard-key-icon-size;
+  }
+}

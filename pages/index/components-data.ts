@@ -61,6 +61,7 @@ export const formComponents: ComponentItem[] = [
   { id: 'upload', title: 'Upload 上传', enTitle: 'Upload', zhTitle: '上传', desc: '文件上传组件，支持图片、视频、文件上传，支持多选、预览、删除', category: 'form', url: '/examples/pages/upload-demo' },
   { id: 'signature', title: 'Signature 签名', enTitle: 'Signature', zhTitle: '签名', desc: '签名组件，支持手写签名、压感模式、撤销恢复、导出图片', category: 'form', url: '/examples/pages/signature-demo' },
   { id: 'slide-verify', title: 'SlideVerify 滑块验证', enTitle: 'SlideVerify', zhTitle: '滑块验证', desc: '滑块验证组件，用于人机验证场景，支持自定义颜色、图标和容错范围', category: 'form', url: '/examples/pages/slide-verify-demo' },
+  { id: 'keyboard', title: 'Keyboard 键盘', enTitle: 'Keyboard', zhTitle: '键盘', desc: '数字键盘组件，支持默认模式、自定义模式和车牌模式，支持随机按键顺序', category: 'form', url: '/examples/pages/keyboard-demo' },
 ]
 
 // 布局

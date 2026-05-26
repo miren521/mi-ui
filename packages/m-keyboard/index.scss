@@ -1,0 +1,100 @@
+// 键盘背景色
+$keyboard-bg: var(--m-keyboard-bg, #ffffff) !default;
+// 键盘文字颜色
+$keyboard-color: var(--m-keyboard-color, #333333) !default;
+// 键盘内容间距
+$keyboard-padding: var(--m-keyboard-padding, 8rpx) !default;
+// 键盘头部高度
+$keyboard-header-height: var(--m-keyboard-header-height, 80rpx) !default;
+// 键盘标题颜色
+$keyboard-title-color: var(--m-keyboard-title-color, #999999) !default;
+// 键盘标题字号
+$keyboard-title-font-size: var(--m-keyboard-title-font-size, 28rpx) !default;
+// 关闭按钮文字颜色
+$keyboard-close-color: var(--m-keyboard-close-color, #52c41a) !default;
+// 关闭按钮悬浮透明度
+$keyboard-close-opacity-hover: var(--m-keyboard-close-opacity-hover, 0.7) !default;
+// 关闭按钮字号
+$keyboard-close-font-size: var(--m-keyboard-close-font-size, 28rpx) !default;
+// 关闭按钮内边距
+$keyboard-close-padding: var(--m-keyboard-close-padding, 0 32rpx) !default;
+
+.m-keyboard {
+  width: 100%;
+  background: $keyboard-bg;
+  color: $keyboard-color;
+  user-select: none;
+
+  &__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $keyboard-header-height;
+    color: $keyboard-title-color;
+    font-size: $keyboard-title-font-size;
+  }
+
+  &__title {
+    display: inline-block;
+    font-weight: normal;
+
+    &-left {
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  &__body {
+    display: flex;
+    padding-left: $keyboard-padding;
+    padding-top: $keyboard-padding;
+
+    .m-keyboard__header + & {
+      padding-top: 0;
+    }
+  }
+
+  &__keys {
+    display: flex;
+    flex: 3;
+    flex-wrap: wrap;
+  }
+
+  &__car-keys {
+    display: flex;
+    flex: 10;
+    flex-wrap: wrap;
+
+    .m-key-wrapper {
+      flex-basis: 10%;
+
+      &--wider {
+        flex-basis: 20%;
+      }
+    }
+  }
+
+  &__close {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 0;
+    height: 100%;
+    padding: $keyboard-close-padding;
+    color: $keyboard-close-color;
+    font-size: $keyboard-close-font-size;
+    background-color: transparent;
+    border: none;
+
+    &:active {
+      opacity: $keyboard-close-opacity-hover;
+    }
+  }
+
+  &__sidebar {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+}
