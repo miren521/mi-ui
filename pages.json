@@ -365,6 +365,12 @@
       "style": {
         "navigationBarTitleText": "Tabs 标签页"
       }
+    },
+    {
+      "path": "examples/pages/upload-demo",
+      "style": {
+        "navigationBarTitleText": "Upload 上传"
+      }
     }
   ],
   "globalStyle": {

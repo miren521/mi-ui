@@ -1,0 +1,171 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$upload-size: var(--m-upload-size, $n-88) !default;
+$upload-radius: var(--m-upload-radius, $radius-main) !default;
+$upload-border-color: var(--m-upload-border-color, $border-main) !default;
+$upload-evoke-icon-size: var(--m-upload-evoke-icon-size, $n-32) !default;
+$upload-evoke-bg: var(--m-upload-evoke-bg, $filled-bottom) !default;
+$upload-evoke-color: var(--m-upload-evoke-color, $text-auxiliary) !default;
+$upload-evoke-font-size: var(--m-upload-evoke-font-size, $typography-body-size-main) !default;
+$upload-evoke-line-height: var(--m-upload-evoke-line-height, $typography-body-line-height-size-main) !default;
+$upload-evoke-color-disabled: var(--m-upload-evoke-color-disabled, $text-disabled) !default;
+$upload-evoke-icon-color: var(--m-upload-evoke-icon-color, $icon-auxiliary) !default;
+$upload-evoke-icon-color-disabled: var(--m-upload-evoke-icon-color-disabled, $icon-disabled) !default;
+$upload-close-padding: var(--m-upload-close-padding, $padding-ultra-tight) !default;
+$upload-close-radius: var(--m-upload-close-radius, $radius-zero $radius-zero $radius-zero $radius-main) !default;
+$upload-close-bg: var(--m-upload-close-bg, $opacfilled-main-cover) !default;
+$upload-close-icon-size: var(--m-upload-close-icon-size, $n-16) !default;
+$upload-close-icon-color: var(--m-upload-close-icon-color, $icon-white) !default;
+$upload-progress-font-size: var(--m-upload-progress-font-size, $typography-body-size-main) !default;
+$upload-progress-line-height: var(--m-upload-progress-line-height, $typography-body-line-height-size-main) !default;
+$upload-progress-color: var(--m-upload-progress-color, $text-white) !default;
+$upload-file-font-size: var(--m-upload-file-font-size, $typography-label-size-main) !default;
+$upload-file-line-height: var(--m-upload-file-line-height, $typography-label-line-height-size-main) !default;
+$upload-file-color: var(--m-upload-file-color, $text-secondary) !default;
+$upload-file-padding: var(--m-upload-file-padding, $padding-zero $padding-tight) !default;
+$upload-preview-icon-size: var(--m-upload-preview-icon-size, $n-24) !default;
+$upload-preview-icon-color: var(--m-upload-preview-icon-color, $icon-white) !default;
+$upload-preview-margin: var(--m-upload-preview-margin, $spacing-zero $spacing-tight $spacing-tight $spacing-zero) !default;
+$upload-cover-icon-size: var(--m-upload-cover-icon-size, $n-24) !default;
+$upload-video-icon-size: var(--m-upload-video-icon-size, $n-24) !default;
+$upload-video-icon-color: var(--m-upload-video-icon-color, $icon-white) !default;
+$upload-mask-bg: var(--m-upload-mask-bg, $opacfilled-main-cover) !default;
+$upload-row-spacing: var(--m-upload-row-spacing, $spacing-tight) !default;
+
+@include b(upload) {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+
+  @include e(evoke) {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: $upload-size;
+    height: $upload-size;
+    border-radius: $upload-radius;
+    overflow: hidden;
+    background: $upload-evoke-bg;
+    margin-bottom: $upload-row-spacing;
+    @include pixelBorderSurround($upload-border-color, dashed);
+
+    @include when(disabled) {
+      color: $upload-evoke-color-disabled;
+
+      :deep(.m-upload__evoke-icon) {
+        color: $upload-evoke-icon-color-disabled;
+      }
+    }
+  }
+
+  @include e(evoke-num) {
+    color: $upload-evoke-color;
+    font-size: $upload-evoke-font-size;
+    line-height: $upload-evoke-line-height;
+  }
+
+  @include edeep(evoke-icon) {
+    font-size: $upload-evoke-icon-size;
+    color: $upload-evoke-icon-color;
+  }
+
+  @include e(preview) {
+    position: relative;
+    width: $upload-size;
+    height: $upload-size;
+    border-radius: $upload-radius;
+    overflow: hidden;
+    margin: $upload-preview-margin;
+    @include pixelBorderSurround($upload-border-color);
+  }
+
+  @include e(preview-list) {
+    display: flex;
+  }
+
+  @include e(picture, file, video) {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  @include e(file, video) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $upload-evoke-bg;
+  }
+
+  @include e(video-icon, file-icon) {
+    font-size: $upload-cover-icon-size;
+  }
+
+  @include e(file-name, video-name) {
+    width: 100%;
+    font-size: $upload-file-font-size;
+    line-height: $upload-file-line-height;
+    color: $upload-file-color;
+    box-sizing: border-box;
+    text-align: center;
+    padding: $upload-file-padding;
+    @include lineEllipsis()
+  }
+
+  @include edeep(video-play) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: $upload-video-icon-size;
+    color: $upload-video-icon-color;
+  }
+
+  @include e(close) {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: $upload-close-padding;
+    border-radius: $upload-close-radius;
+    background: $upload-close-bg;
+  }
+
+  @include edeep(close-icon) {
+    display: flex;
+    color: $upload-close-icon-color;
+    font-size: $upload-close-icon-size;
+  }
+
+  @include e(mask) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $upload-mask-bg;
+  }
+
+  @include e(progress-txt) {
+    font-size: $upload-progress-font-size;
+    line-height: $upload-progress-line-height;
+    color: $upload-progress-color;
+  }
+
+  @include edeep(icon) {
+    font-size: $upload-preview-icon-size;
+    color: $upload-preview-icon-color;
+  }
+
+  @include e(status-content) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+}

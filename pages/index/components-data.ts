@@ -58,6 +58,7 @@ export const formComponents: ComponentItem[] = [
   { id: 'calendar-view', title: 'CalendarView 日历视图', enTitle: 'CalendarView', zhTitle: '日历视图', desc: '内嵌式日历视图组件，支持日期、日期范围、周、月份等多种选择模式', category: 'form', url: '/examples/pages/calendar-view-demo' },
   { id: 'datetime-picker', title: 'DatetimePicker 日期时间选择器', enTitle: 'DatetimePicker', zhTitle: '日期时间选择器', desc: '日期时间选择器，支持日期、时间、日期时间、年份、月份选择及范围选择', category: 'form', url: '/examples/pages/datetime-picker-demo' },
   { id: 'datetime-picker-view', title: 'DatetimePickerView 日期时间选择器视图', enTitle: 'DatetimePickerView', zhTitle: '日期时间选择器视图', desc: '内嵌式日期时间选择器视图组件，支持日期、时间、日期时间、年份、月份选择', category: 'form', url: '/examples/pages/datetime-picker-view-demo' },
+  { id: 'upload', title: 'Upload 上传', enTitle: 'Upload', zhTitle: '上传', desc: '文件上传组件，支持图片、视频、文件上传，支持多选、预览、删除', category: 'form', url: '/examples/pages/upload-demo' },
 ]
 
 // 布局
