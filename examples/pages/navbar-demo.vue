@@ -202,7 +202,17 @@ const switchNavbar = (type: string) => {
 }
 
 const handleClickLeft = () => {
-  uni.showToast({ title: '点击左侧', icon: 'none' })
+  uni.switchTab({
+    url: '/pages/index/index',
+    fail: () => {
+      uni.reLaunch({
+        url: '/pages/index/index',
+        fail: () => {
+          uni.showToast({ title: '返回首页失败', icon: 'none' })
+        }
+      })
+    }
+  })
 }
 
 const handleClickRight = () => {
