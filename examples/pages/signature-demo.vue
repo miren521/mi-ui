@@ -185,22 +185,6 @@
         </view>
       </demo-block>
 
-      <!-- 横屏签名 -->
-      <demo-block title="横屏签名" desc="适合宽幅签名场景，设置宽度大于高度">
-        <view class="demo-signature-row">
-          <m-signature 
-            :width="600"
-            :height="200"
-            pen-color="#E17055"
-            confirm-text="确认横屏签名"
-            @confirm="(r) => handleCardConfirm(r, 'landscape')"
-          />
-        </view>
-        <view v-if="signatureImages.landscape" class="demo-signature-preview">
-          <text class="demo-signature-label">横屏签名预览：</text>
-          <image :src="signatureImages.landscape" mode="widthFix" class="demo-signature-image" />
-        </view>
-      </demo-block>
     </view>
 
     <!-- 弹窗组件 -->
