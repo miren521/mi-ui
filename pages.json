@@ -393,6 +393,7 @@
     {
       "path": "examples/pages/navbar-demo",
       "style": {
+        "navigationStyle": "custom",
         "navigationBarTitleText": "Navbar 导航栏"
       }
     }

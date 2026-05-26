@@ -1,12 +1,14 @@
 <template>
   <view class="m-navbar-demo">
     <!-- 可切换的顶部导航栏 -->
-    <m-navbar :key="currentNavbarType" v-if="showCustomNavbar" :title="currentNavbarTitle" :left-arrow="currentNavbarLeftArrow" :left-text="currentNavbarLeftText" :right-text="currentNavbarRightText" :bordered="currentNavbarBordered" @click-left="handleClickLeft" @click-right="handleClickRight">
+    <m-navbar fixed placeholder :key="currentNavbarType" :title="currentNavbarTitle" :left-arrow="currentNavbarLeftArrow" :left-text="currentNavbarLeftText" :right-text="currentNavbarRightText" :bordered="currentNavbarBordered" :safe-area-inset-top="true" @click-left="handleClickLeft" @click-right="handleClickRight">
       <template #left v-if="currentNavbarType === 'customLeft'">
-        <view class="demo-navbar-custom-left">
-          <m-icon name="more" />
-          <text>菜单</text>
-        </view>
+        <m-popover v-model="showPopover" mode="menu" :content="popoverMenuItems" placement="bottom-start">
+          <view class="demo-navbar-custom-left">
+            <m-icon name="more" />
+            <text>菜单</text>
+          </view>
+        </m-popover>
       </template>
       <template #right v-if="currentNavbarType === 'customRight'">
         <view class="demo-navbar-custom-right">
@@ -36,10 +38,6 @@
           <view class="demo-navbar-switch-row">
             <m-button v-for="item in navbarTypes" :key="item.value" :type="currentNavbarType === item.value ? 'primary' : 'default'" size="small" @click="switchNavbar(item.value)">{{ item.label }}</m-button>
           </view>
-          <view class="demo-navbar-switch-toggle">
-            <m-switch v-model="showCustomNavbar" @change="handleNavbarToggle" />
-            <text>{{ showCustomNavbar ? '显示自定义导航栏' : '隐藏自定义导航栏' }}</text>
-          </view>
         </view>
       </demo-block>
 
@@ -65,14 +63,16 @@
       </demo-block>
 
       <!-- 自定义左侧内容 -->
-      <demo-block title="自定义左侧内容" desc="使用 left 插槽自定义左侧内容">
+      <demo-block title="自定义左侧内容" desc="使用 left 插槽自定义左侧内容，结合 popover 实现下拉菜单">
         <view class="demo-navbar-row">
           <m-navbar title="自定义左侧">
             <template #left>
-              <view class="demo-navbar-custom-left">
-                <m-icon name="more" />
-                <text>菜单</text>
-              </view>
+              <m-popover mode="menu" :content="popoverMenuItems" placement="bottom-start">
+                <view class="demo-navbar-custom-left">
+                  <m-icon name="more" />
+                  <text>菜单</text>
+                </view>
+              </m-popover>
             </template>
           </m-navbar>
         </view>
@@ -113,12 +113,11 @@
       </demo-block>
 
       <!-- 固定到顶部 -->
-      <demo-block title="固定到顶部" desc="通过 fixed 属性固定到顶部，placeholder 生成占位元素">
+      <demo-block title="固定到顶部" desc="通过 fixed 属性固定到顶部，placeholder 生成等高占位元素">
         <view class="demo-navbar-row">
-          <m-navbar title="固定导航栏" fixed placeholder bordered />
-          <view class="demo-navbar-content">
-            <text>页面内容区域...</text>
-            <text>向下滚动查看固定效果</text>
+          <m-navbar title="固定导航栏" bordered />
+          <view class="demo-navbar-tips">
+            <text>使用方式：&lt;m-navbar fixed placeholder /&gt;</text>
           </view>
         </view>
       </demo-block>
@@ -150,10 +149,20 @@ import mNavbar from '../../packages/m-navbar/m-navbar.vue'
 import mNavbarCapsule from '../../packages/m-navbar-capsule/m-navbar-capsule.vue'
 import mIcon from '../../packages/m-icon/m-icon.vue'
 import mButton from '../../packages/m-button/m-button.vue'
-import mSwitch from '../../packages/m-switch/m-switch.vue'
+import mPopover from '../../packages/m-popover/m-popover.vue'
+import type { PopoverMenuItem } from '../../packages/m-popover/types'
 
-const showCustomNavbar = ref(true)
 const currentNavbarType = ref('basic')
+const showPopover = ref(false)
+
+const popoverMenuItems = ref<PopoverMenuItem[]>([
+  { content: '全部订单', iconClass: 'm-icon-order' },
+  { content: '待付款', iconClass: 'm-icon-wait' },
+  { content: '待发货', iconClass: 'm-icon-delivery' },
+  { content: '待收货', iconClass: 'm-icon-receive' },
+  { content: '待评价', iconClass: 'm-icon-comment' },
+  { content: '退换/售后', iconClass: 'm-icon-refund' }
+])
 
 const navbarTypes = [
   { value: 'basic', label: '基础标题' },
@@ -188,10 +197,6 @@ const currentNavbarBordered = computed(() => currentNavbarType.value === 'border
 const switchNavbar = (type: string) => {
   currentNavbarType.value = type
   uni.showToast({ title: `已切换到: ${navbarTypes.find(t => t.value === type)?.label}`, icon: 'none' })
-}
-
-const handleNavbarToggle = (value: boolean) => {
-  showCustomNavbar.value = value
 }
 
 const handleClickLeft = () => {
@@ -248,15 +253,18 @@ const handleBackHome = () => {
   margin-bottom: 20rpx;
 }
 
-.demo-navbar-content {
-  padding: 40rpx 20rpx;
+.demo-navbar-tips {
+  padding: 20rpx;
+  margin-top: 16rpx;
+  background-color: #f8f9fa;
+  border-radius: 8rpx;
   text-align: center;
 
   text {
     display: block;
-    color: #999;
-    font-size: 28rpx;
-    margin-bottom: 20rpx;
+    color: #666;
+    font-size: 24rpx;
+    font-family: monospace;
   }
 }
 
@@ -293,15 +301,5 @@ const handleBackHome = () => {
   display: flex;
   flex-wrap: wrap;
   gap: 16rpx;
-  margin-bottom: 20rpx;
-}
-
-.demo-navbar-switch-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16rpx;
-  padding-top: 20rpx;
-  border-top: 1rpx solid #eee;
 }
 </style>
