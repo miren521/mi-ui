@@ -1,0 +1,98 @@
+// 导航栏高度
+$navbar-height: var(--m-navbar-height, 88rpx) !default;
+// 导航栏背景色
+$navbar-bg: var(--m-navbar-bg, #ffffff) !default;
+// 标题文字颜色
+$navbar-color: var(--m-navbar-color, #333333) !default;
+// 标题字重
+$navbar-title-font-weight: var(--m-navbar-title-font-weight, 500) !default;
+// 标题字号
+$navbar-title-font-size: var(--m-navbar-title-font-size, 32rpx) !default;
+// 描述区域字号
+$navbar-desc-font-size: var(--m-navbar-desc-font-size, 28rpx) !default;
+// 描述区域文字颜色
+$navbar-desc-color: var(--m-navbar-desc-color, #333333) !default;
+// 箭头图标大小
+$navbar-arrow-size: var(--m-navbar-arrow-size, 48rpx) !default;
+// 禁用态透明度
+$navbar-opacity-disabled: var(--m-navbar-opacity-disabled, 0.4) !default;
+// 左侧内边距
+$navbar-left-padding: var(--m-navbar-left-padding, 0 32rpx) !default;
+// 固定定位层级
+$navbar-z-index: var(--m-navbar-z-index, 10) !default;
+
+.m-navbar {
+  position: relative;
+  text-align: center;
+  user-select: none;
+  height: $navbar-height;
+  line-height: $navbar-height;
+  background-color: $navbar-bg;
+  box-sizing: content-box;
+
+  &__content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__title {
+    max-width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    color: $navbar-color;
+    font-weight: $navbar-title-font-weight;
+    font-size: $navbar-title-font-size;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__text {
+    display: inline-block;
+    vertical-align: middle;
+    color: $navbar-desc-color;
+  }
+
+  &__left,
+  &__right,
+  &__capsule {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    font-size: $navbar-desc-font-size;
+    display: flex;
+    align-items: center;
+    padding: $navbar-left-padding;
+
+    &.is-disabled {
+      opacity: $navbar-opacity-disabled;
+    }
+  }
+
+  &__left,
+  &__capsule {
+    left: 0;
+  }
+
+  &__right {
+    right: 0;
+  }
+
+  &__arrow {
+    font-size: $navbar-arrow-size;
+    color: $navbar-color;
+  }
+
+  &.is-border {
+    border-bottom: 2rpx solid #eee;
+  }
+
+  &.is-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: $navbar-z-index;
+  }
+}

@@ -1,0 +1,67 @@
+// 胶囊宽度
+$navbar-capsule-width: var(--m-navbar-capsule-width, 176rpx) !default;
+// 胶囊高度
+$navbar-capsule-height: var(--m-navbar-capsule-height, 64rpx) !default;
+// 胶囊边框颜色
+$navbar-capsule-border-color: var(--m-navbar-capsule-border-color, #e8e8e8) !default;
+// 胶囊圆角
+$navbar-capsule-radius: var(--m-navbar-capsule-radius, 64rpx) !default;
+// 胶囊图标大小
+$navbar-capsule-icon-size: var(--m-navbar-capsule-icon-size, 40rpx) !default;
+// 胶囊图标颜色
+$navbar-capsule-icon-color: var(--m-navbar-capsule-icon-color, #333333) !default;
+// 胶囊边框宽度
+$navbar-capsule-border-width: var(--m-navbar-capsule-border-width, 2rpx) !default;
+// 分割线宽度
+$navbar-capsule-sperator-width: var(--m-navbar-capsule-sperator-width, 2rpx) !default;
+// 分割线高度
+$navbar-capsule-sperator-height: var(--m-navbar-capsule-sperator-height, 36rpx) !default;
+// 分割线颜色
+$navbar-capsule-sperator-color: var(--m-navbar-capsule-sperator-color, #e8e8e8) !default;
+
+.m-navbar-capsule {
+  position: relative;
+  box-sizing: border-box;
+  width: $navbar-capsule-width;
+  height: $navbar-capsule-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+    box-sizing: border-box;
+    border-radius: calc($navbar-capsule-radius * 2);
+    border: $navbar-capsule-border-width solid $navbar-capsule-border-color;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $navbar-capsule-sperator-width;
+    height: $navbar-capsule-sperator-height;
+    background: $navbar-capsule-sperator-color;
+  }
+
+  &:empty {
+    display: none;
+  }
+
+  &__icon {
+    flex: 1;
+    position: relative;
+    color: $navbar-capsule-icon-color;
+    font-size: $navbar-capsule-icon-size;
+  }
+}

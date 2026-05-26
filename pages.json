@@ -389,6 +389,12 @@
       "style": {
         "navigationBarTitleText": "Keyboard 键盘"
       }
+    },
+    {
+      "path": "examples/pages/navbar-demo",
+      "style": {
+        "navigationBarTitleText": "Navbar 导航栏"
+      }
     }
   ],
   "globalStyle": {
