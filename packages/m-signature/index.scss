@@ -1,0 +1,42 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+// 签名区域背景色
+$signature-bg: var(--mi-signature-bg, $filled-oppo) !default;
+// 签名区域圆角
+$signature-radius: var(--mi-signature-radius, $radius-main) !default;
+// 签名区域边框
+$signature-border: var(--mi-signature-border, $stroke-main solid $border-main) !default;
+// 底部操作区上间距
+$signature-footer-margin-top: var(--mi-signature-footer-margin-top, $spacing-tight) !default;
+// 底部按钮左间距
+$signature-button-margin-left: var(--mi-signature-button-margin-left, $spacing-tight) !default;
+
+@include b(signature) {
+  @include e(content) {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    background: $signature-bg;
+    border-radius: $signature-radius;
+    border: $signature-border;
+  }
+
+  @include e(content-canvas) {
+    width: 100%;
+  }
+
+
+  @include e(footer) {
+    margin-top: $signature-footer-margin-top;
+    justify-content: flex-end;
+    display: flex;
+  }
+
+  @include edeep(button) {
+    &:not(:first-child) {
+      margin-left: $signature-button-margin-left;
+    }
+  }
+}

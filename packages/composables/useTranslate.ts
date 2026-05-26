@@ -1,6 +1,14 @@
 import { camelCase, getPropByPath, isDef, isFunction } from '../common/util'
 
 const defaultMessages: Record<string, Record<string, string | string[] | ((...args: unknown[]) => string)>> = {
+  signature: {
+    confirmText: '确定',
+    clearText: '清除',
+    revokeText: '撤回',
+    restoreText: '恢复',
+    undoText: '撤销',
+    redoText: '恢复'
+  },
   steps: {
     finished: '已完成',
     failed: '失败',

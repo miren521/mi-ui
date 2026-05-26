@@ -371,6 +371,12 @@
       "style": {
         "navigationBarTitleText": "Upload 上传"
       }
+    },
+    {
+      "path": "examples/pages/signature-demo",
+      "style": {
+        "navigationBarTitleText": "Signature 签名"
+      }
     }
   ],
   "globalStyle": {

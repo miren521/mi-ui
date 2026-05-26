@@ -59,6 +59,7 @@ export const formComponents: ComponentItem[] = [
   { id: 'datetime-picker', title: 'DatetimePicker 日期时间选择器', enTitle: 'DatetimePicker', zhTitle: '日期时间选择器', desc: '日期时间选择器，支持日期、时间、日期时间、年份、月份选择及范围选择', category: 'form', url: '/examples/pages/datetime-picker-demo' },
   { id: 'datetime-picker-view', title: 'DatetimePickerView 日期时间选择器视图', enTitle: 'DatetimePickerView', zhTitle: '日期时间选择器视图', desc: '内嵌式日期时间选择器视图组件，支持日期、时间、日期时间、年份、月份选择', category: 'form', url: '/examples/pages/datetime-picker-view-demo' },
   { id: 'upload', title: 'Upload 上传', enTitle: 'Upload', zhTitle: '上传', desc: '文件上传组件，支持图片、视频、文件上传，支持多选、预览、删除', category: 'form', url: '/examples/pages/upload-demo' },
+  { id: 'signature', title: 'Signature 签名', enTitle: 'Signature', zhTitle: '签名', desc: '签名组件，支持手写签名、压感模式、撤销恢复、导出图片', category: 'form', url: '/examples/pages/signature-demo' },
 ]
 
 // 布局
