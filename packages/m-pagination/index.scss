@@ -7,7 +7,7 @@ $pagination-icon-size: var(--m-pagination-icon-size, $n-16) !default;
 $pagination-message-color: var(--m-pagination-message-color, $text-secondary) !default;
 $pagination-message-font-size: var(--m-pagination-message-font-size, $typography-body-size-main) !default;
 $pagination-message-line-height: var(--m-pagination-message-line-height, $typography-body-line-height-size-main) !default;
-$pagination-message-margin-top: var(--m-pagination-message-margin-top, $spacing-super-tight) !default;
+$pagination-message-margin-top: var(--m-pagination-message-margin-top, $n-8) !default;
 $pagination-nav-width: var(--m-pagination-nav-width, $n-64) !default;
 $pagination-size-font-size: var(--m-pagination-size-font-size, $typography-title-size-main) !default;
 $pagination-size-line-height: var(--m-pagination-size-line-height, $typography-title-line-height-size-main) !default;

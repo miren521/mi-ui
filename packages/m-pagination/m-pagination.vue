@@ -3,15 +3,14 @@
     <view class="m-pagination__content">
       <slot name="prev" :modelValue="modelValue" :totalPageNum="totalPageNum" :total="total" :pageSize="pageSize">
         <m-button
-          :plain="modelValue > 1"
+          :plain="plain"
           type="info"
-          :variant="buttonVariant"
           size="small"
           :disabled="modelValue <= 1"
           :custom-class="`m-pagination__nav`"
           @click="sub"
         >
-          <m-icon v-if="showIcon" name="chevron-left" size="16" />
+          <m-icon v-if="showIcon" name="left" size="16" />
           <text v-else>{{ prevText || '上一页' }}</text>
         </m-button>
       </slot>
@@ -24,15 +23,14 @@
       </slot>
       <slot name="next" :modelValue="modelValue" :totalPageNum="totalPageNum" :total="total" :pageSize="pageSize">
         <m-button
-          :plain="modelValue < totalPageNum"
+          :plain="plain"
           type="primary"
-          :variant="buttonVariant"
           size="small"
           :disabled="modelValue >= totalPageNum"
           :custom-class="`m-pagination__nav`"
           @click="add"
         >
-          <m-icon v-if="showIcon" name="chevron-right" size="16" />
+          <m-icon v-if="showIcon" name="right" size="16" />
           <text v-else>{{ nextText || '下一页' }}</text>
         </m-button>
       </slot>

@@ -31,24 +31,9 @@
         </view>
       </demo-block>
 
-      <demo-block title="按钮变体" desc="通过 buttonVariant 设置按钮样式">
+      <demo-block title="朴素按钮" desc="设置 plain 显示朴素样式的分页按钮">
         <view class="demo-pagination-card">
-          <view class="demo-variant-row">
-            <text class="demo-variant-label">base:</text>
-            <m-pagination v-model="currentPage6" :total-page="5" button-variant="base" />
-          </view>
-          <view class="demo-variant-row">
-            <text class="demo-variant-label">plain:</text>
-            <m-pagination v-model="currentPage6" :total-page="5" button-variant="plain" />
-          </view>
-          <view class="demo-variant-row">
-            <text class="demo-variant-label">dashed:</text>
-            <m-pagination v-model="currentPage6" :total-page="5" button-variant="dashed" />
-          </view>
-          <view class="demo-variant-row">
-            <text class="demo-variant-label">text:</text>
-            <m-pagination v-model="currentPage6" :total-page="5" button-variant="text" />
-          </view>
+          <m-pagination v-model="currentPage6" :total-page="10" :plain="true" />
         </view>
       </demo-block>
 
@@ -73,8 +58,8 @@
         <view class="demo-pagination-card">
           <m-pagination v-model="currentPage9" :total-page="10">
             <template #prev>
-              <m-button type="default" size="small" @click="currentPage9 > 1 && currentPage9--">
-                ⬅️ 上一页
+              <m-button type="primary" round size="small" @click="currentPage9 > 1 && currentPage9--">
+                上一页
               </m-button>
             </template>
             <template #size>
@@ -83,8 +68,8 @@
               </view>
             </template>
             <template #next>
-              <m-button type="success" size="small" @click="currentPage9 < 10 && currentPage9++">
-                下一页 ➡️
+              <m-button type="success" round size="small" @click="currentPage9 < 10 && currentPage9++">
+                下一页
               </m-button>
             </template>
           </m-pagination>
@@ -128,27 +113,7 @@ function handleChange(e: any) {
 }
 
 .demo-pagination-card {
-  padding: 32rpx;
-  background: #fff;
-  border-radius: 16rpx;
-}
-
-.demo-variant-row {
-  display: flex;
-  align-items: center;
-  padding: 24rpx 0;
-  border-bottom: 1rpx solid #f0f0f0;
-
-  &:last-child {
-    border-bottom: none;
-  }
-}
-
-.demo-variant-label {
-  width: 120rpx;
-  font-size: 28rpx;
-  color: #999;
-  margin-right: 20rpx;
+  padding: 10rpx;
 }
 
 .demo-hidden-tip {
