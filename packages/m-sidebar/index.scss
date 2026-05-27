@@ -1,0 +1,21 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$sidebar-width: var(--m-sidebar-width, 114px) !default;
+$sidebar-height: var(--m-sidebar-height, 100%) !default;
+$sidebar-bg: var(--m-sidebar-bg, $filled-oppo) !default;
+$sidebar-padding-bg: var(--m-sidebar-padding-bg, $filled-oppo) !default;
+
+@include b(sidebar) {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  width: $sidebar-width;
+  height: $sidebar-height;
+  background: $sidebar-bg;
+
+  @include e(padding) {
+    flex: 1 1 auto;
+    background: $sidebar-padding-bg;
+  }
+}

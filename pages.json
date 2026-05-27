@@ -408,6 +408,12 @@
       "style": {
         "navigationBarTitleText": "Segmented 分段器"
       }
+    },
+    {
+      "path": "examples/pages/sidebar-demo",
+      "style": {
+        "navigationBarTitleText": "Sidebar 侧边栏"
+      }
     }
   ],
   "globalStyle": {
