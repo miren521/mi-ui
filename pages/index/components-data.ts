@@ -75,6 +75,7 @@ export const navigationComponents: ComponentItem[] = [
   { id: 'tabbar', title: 'Tabbar 底部导航', enTitle: 'Tabbar', zhTitle: '底部导航', desc: '底部导航栏，用于在不同页面之间进行切换', category: 'navigation', url: '/examples/pages/tabbar-demo' },
   { id: 'tabs', title: 'Tabs 标签页', enTitle: 'Tabs', zhTitle: '标签页', desc: '标签页组件，支持多种样式、粘性布局、手势滑动、动画切换', category: 'navigation', url: '/examples/pages/tabs-demo' },
   { id: 'navbar', title: 'Navbar 导航栏', enTitle: 'Navbar', zhTitle: '导航栏', desc: '自定义导航栏，支持多种配置和插槽', category: 'navigation', url: '/examples/pages/navbar-demo' },
+  { id: 'segmented', title: 'Segmented 分段器', enTitle: 'Segmented', zhTitle: '分段器', desc: '分段选择器组件，支持卡片和轮廓两种主题样式', category: 'navigation', url: '/examples/pages/segmented-demo' },
 ]
 
 // 展示

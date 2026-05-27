@@ -402,6 +402,12 @@
       "style": {
         "navigationBarTitleText": "Tabbar 标签栏"
       }
+    },
+    {
+      "path": "examples/pages/segmented-demo",
+      "style": {
+        "navigationBarTitleText": "Segmented 分段器"
+      }
     }
   ],
   "globalStyle": {
