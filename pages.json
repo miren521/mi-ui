@@ -414,6 +414,18 @@
       "style": {
         "navigationBarTitleText": "Sidebar 侧边栏"
       }
+    },
+    {
+      "path": "examples/pages/sidebar-anchor-demo",
+      "style": {
+        "navigationBarTitleText": "Sidebar 锚点定位"
+      }
+    },
+    {
+      "path": "examples/pages/sidebar-scroll-demo",
+      "style": {
+        "navigationBarTitleText": "Sidebar 列表滑动"
+      }
     }
   ],
   "globalStyle": {

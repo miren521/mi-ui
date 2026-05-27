@@ -1,6 +1,15 @@
 <template>
   <view class="m-sidebar-demo">
     <view class="m-sidebar-demo__container">
+      <demo-block title="进阶用法" desc="点击下方按钮查看进阶演示">
+        <view class="demo-sidebar-card">
+          <view class="demo-btn-row">
+            <m-button type="primary" size="large" @click="goToAnchorDemo">锚点定位</m-button>
+            <m-button type="default" size="large" @click="goToScrollDemo">列表滑动</m-button>
+          </view>
+        </view>
+      </demo-block>
+
       <demo-block title="基础用法" desc="最基础的侧边栏用法，通过 v-model 绑定选中值">
         <view class="demo-sidebar-card">
           <view class="demo-sidebar-wrapper">
@@ -127,6 +136,14 @@ function beforeChange(value: number | string) {
   }
   return true
 }
+
+function goToAnchorDemo() {
+  uni.navigateTo({ url: '/examples/pages/sidebar-anchor-demo' })
+}
+
+function goToScrollDemo() {
+  uni.navigateTo({ url: '/examples/pages/sidebar-scroll-demo' })
+}
 </script>
 
 <style lang="scss" scoped>
@@ -195,5 +212,14 @@ function beforeChange(value: number | string) {
   border-radius: 8rpx;
   font-size: 24rpx;
   color: #f57f00;
+}
+
+.demo-btn-row {
+  display: flex;
+  gap: 20rpx;
+  
+  :deep(.m-button) {
+    flex: 1;
+  }
 }
 </style>
