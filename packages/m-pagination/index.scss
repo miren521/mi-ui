@@ -1,0 +1,60 @@
+@use '../common/styles/mixin/mixin.scss' as *;
+@use '../common/styles/variables.scss' as *;
+
+$pagination-bg: var(--m-pagination-bg, $filled-oppo) !default;
+$pagination-padding: var(--m-pagination-padding, 16rpx 24rpx) !default;
+$pagination-icon-size: var(--m-pagination-icon-size, $n-16) !default;
+$pagination-message-color: var(--m-pagination-message-color, $text-secondary) !default;
+$pagination-message-font-size: var(--m-pagination-message-font-size, $typography-body-size-main) !default;
+$pagination-message-line-height: var(--m-pagination-message-line-height, $typography-body-line-height-size-main) !default;
+$pagination-message-margin-top: var(--m-pagination-message-margin-top, $spacing-super-tight) !default;
+$pagination-nav-width: var(--m-pagination-nav-width, $n-64) !default;
+$pagination-size-font-size: var(--m-pagination-size-font-size, $typography-title-size-main) !default;
+$pagination-size-line-height: var(--m-pagination-size-line-height, $typography-title-line-height-size-main) !default;
+$pagination-size-color: var(--m-pagination-size-color, $text-main) !default;
+$pagination-size-current-color: var(--m-pagination-size-current-color, $primary-6) !default;
+$pagination-size-separator-margin: var(--m-pagination-size-separator-margin, $spacing-zero $spacing-super-tight) !default;
+$pagination-item-gap: var(--m-pagination-item-gap, 16rpx) !default;
+
+@include b(pagination) {
+  user-select: none;
+  background-color: $pagination-bg;
+  padding: $pagination-padding;
+
+  @include edeep(icon) {
+    font-size: $pagination-icon-size;
+    line-height: $pagination-icon-size;
+  }
+
+  @include e(content) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $pagination-item-gap;
+  }
+  @include e(message) {
+    text-align: center;
+    color: $pagination-message-color;
+    font-size: $pagination-message-font-size;
+    line-height: $pagination-message-line-height;
+    margin-top: $pagination-message-margin-top;
+  }
+  @include edeep(nav) {
+    min-width: $pagination-nav-width;
+  }
+  @include e(size) {
+    font-size: $pagination-size-font-size;
+    line-height: $pagination-size-line-height;
+    color: $pagination-size-color;
+    min-width: 80rpx;
+    text-align: center;
+  }
+
+  @include e(separator) {
+    margin: $pagination-size-separator-margin;
+  }
+
+  @include e(current) {
+    color: $pagination-size-current-color;
+  }
+}

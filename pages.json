@@ -426,6 +426,12 @@
       "style": {
         "navigationBarTitleText": "Sidebar 列表滑动"
       }
+    },
+    {
+      "path": "examples/pages/pagination-demo",
+      "style": {
+        "navigationBarTitleText": "Pagination 分页"
+      }
     }
   ],
   "globalStyle": {
