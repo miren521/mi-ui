@@ -83,7 +83,7 @@
               </view>
             </template>
             <template #next>
-              <m-button type="primary" size="small" @click="currentPage9 < 10 && currentPage9++">
+              <m-button type="success" size="small" @click="currentPage9 < 10 && currentPage9++">
                 下一页 ➡️
               </m-button>
             </template>
