@@ -7,10 +7,15 @@
           <view class="demo-tabbar-switch-row">
             <m-button v-for="item in tabbarTypes" :key="item.value" :type="currentTabbarType === item.value ? 'primary' : 'default'" size="small" @click="switchTabbar(item.value)">{{ item.label }}</m-button>
           </view>
-          <view class="demo-tabbar-switch-row" style="margin-top: 16rpx;">
+          <view class="demo-tabbar-switch-row" style="margin-top: 30rpx;">
             <m-switch v-model="showShadow" active-color="#1989fa" inactive-color="#ddd">
             </m-switch>
             <m-text text="显示顶部阴影" size="28rpx" />
+          </view>
+          <view class="demo-tabbar-switch-row" style="margin-top: 16rpx;">
+            <m-switch v-model="safeAreaInsetBottom" active-color="#1989fa" inactive-color="#ddd">
+            </m-switch>
+            <m-text text="安全区适配" size="28rpx" />
           </view>
         </view>
       </demo-block>
@@ -137,7 +142,7 @@
       :key="currentTabbarType"
       :fixed="bottomTabbarConfig.fixed"
       :placeholder="bottomTabbarConfig.placeholder"
-      :safe-area-inset-bottom="bottomTabbarConfig.safeAreaInsetBottom"
+      :safe-area-inset-bottom="safeAreaInsetBottom"
       :bordered="bottomTabbarConfig.bordered"
       :shape="bottomTabbarConfig.shape"
       :active-color="bottomTabbarConfig.activeColor"
@@ -165,13 +170,13 @@ import mSwitch from '../../packages/m-switch/m-switch.vue'
 
 const currentTabbarType = ref('basic')
 const showShadow = ref(false)
+const safeAreaInsetBottom = ref(false)
 
 const tabbarTypes = [
   { value: 'basic', label: '基础样式' },
   { value: 'round', label: '圆角样式' },
   { value: 'colored', label: '自定义颜色' },
-  { value: 'bordered', label: '带边框' },
-  { value: 'safe', label: '安全区适配' }
+  { value: 'bordered', label: '带边框' }
 ]
 
 const bottomTabbarConfig = computed(() => {
