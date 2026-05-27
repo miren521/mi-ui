@@ -44,7 +44,7 @@
         <view class="demo-sidebar-card">
           <m-sidebar v-model="active3">
             <m-sidebar-item label="首页" :value="0" icon="home" />
-            <m-sidebar-item label="搜索" :value="1" icon="search" />
+            <m-sidebar-item label="搜索" :value="1" icon="search-line" />
             <m-sidebar-item label="消息" :value="2" icon="message" />
             <m-sidebar-item label="我的" :value="3" icon="user" />
           </m-sidebar>
