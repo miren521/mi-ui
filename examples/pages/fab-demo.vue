@@ -20,6 +20,16 @@
         </view>
       </demo-block>
 
+      <!-- 自定义触发按钮样式 -->
+      <demo-block title="自定义触发按钮" desc="选择触发按钮的样式">
+        <view class="demo-fab-row">
+          <m-radio-group v-model="customStyle" direction="horizontal">
+            <m-radio :value="false">默认样式</m-radio>
+            <m-radio :value="true">自定义样式</m-radio>
+          </m-radio-group>
+        </view>
+      </demo-block>
+
       <!-- 菜单位置 -->
       <demo-block title="菜单位置" desc="选择菜单位于屏幕的哪个角落">
         <view class="demo-fab-row">
@@ -74,10 +84,20 @@
         </view>
       </demo-block>
 
+      <!-- 手动触发演示 -->
+      <demo-block title="手动触发" desc="通过按钮手动控制菜单展开/收起">
+        <view class="demo-fab-row">
+          <m-button type="primary" @click="handleOpen" class="fit-content-btn">展开菜单</m-button>
+          <m-button type="warning" @click="handleClose" class="fit-content-btn">收起菜单</m-button>
+          <m-button type="info" plain @click="handleToggle" class="fit-content-btn">切换状态</m-button>
+        </view>
+      </demo-block>
+
     </view>
 
-    <!-- 浮动按钮 -->
+    <!-- 浮动按钮 - 支持自定义样式切换 -->
     <m-fab
+      ref="fabRef"
       :type="type"
       :position="position"
       :direction="direction"
@@ -86,21 +106,45 @@
       :inactive-icon="useCustomIcon ? 'down' : 'plus'"
       :active-icon="useCustomIcon ? 'up' : 'close'"
       :z-index="99"
+      :active="isFabActive"
       @click="handleFabClick"
+      @update:active="handleActiveChange"
     >
-      <m-button type="success" round size="small" custom-class="m-fab__action-btn">分享</m-button>
-      <m-button type="primary" round size="small" custom-class="m-fab__action-btn">编辑</m-button>
-      <m-button type="warning" round size="small" custom-class="m-fab__action-btn">收藏</m-button>
+      <!-- 自定义触发按钮 -->
+      <template #trigger="{ disabled }">
+        <view v-if="customStyle" class="custom-fab-trigger" :class="{ 'custom-fab-trigger--disabled': disabled }">
+          <m-icon name="apps" size="24" color="#fff" />
+          <text class="custom-fab-trigger__text">菜单</text>
+        </view>
+        <!-- 默认触发按钮由组件内部渲染 -->
+      </template>
+
+      <!-- 操作按钮 - 根据方向动态显示 -->
+      <template v-if="isHorizontalDirection">
+        <!-- 左右方向：只显示图标 -->
+        <m-button icon="edit" type="primary" round size="small" custom-class="m-fab__action-btn m-fab__action-btn--icon-only"></m-button>
+        <m-button icon="star" type="warning" round size="small" custom-class="m-fab__action-btn m-fab__action-btn--icon-only"></m-button>
+        <m-button icon="download" type="info" round size="small" custom-class="m-fab__action-btn m-fab__action-btn--icon-only"></m-button>
+        <m-button icon="delete" type="danger" round size="small" custom-class="m-fab__action-btn m-fab__action-btn--icon-only"></m-button>
+      </template>
+      <template v-else>
+        <!-- 上下方向：图标+文字 -->
+        <m-button icon="edit" type="primary" round size="small" custom-class="m-fab__action-btn">编辑</m-button>
+        <m-button icon="star" type="warning" round size="small" custom-class="m-fab__action-btn">收藏</m-button>
+        <m-button icon="download" type="info" round size="small" custom-class="m-fab__action-btn">下载</m-button>
+        <m-button icon="delete" type="danger" round size="small" custom-class="m-fab__action-btn">删除</m-button>
+      </template>
     </m-fab>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import mRadioGroup from '../../packages/m-radio-group/m-radio-group.vue'
 import mRadio from '../../packages/m-radio/m-radio.vue'
 import mFab from '../../packages/m-fab/m-fab.vue'
 import mButton from '../../packages/m-button/m-button.vue'
+import mIcon from '../../packages/m-icon/m-icon.vue'
 
 const type = ref<string>('primary')
 const position = ref<string>('right-bottom')
@@ -108,9 +152,42 @@ const direction = ref<string>('top')
 const disabled = ref<boolean>(false)
 const draggable = ref<boolean>(false)
 const useCustomIcon = ref<boolean>(false)
+const customStyle = ref<boolean>(false)
+const isFabActive = ref<boolean>(false)
+const fabRef = ref<InstanceType<typeof mFab> | null>(null)
+
+const isHorizontalDirection = computed(() => {
+  return direction.value === 'left' || direction.value === 'right'
+})
 
 function handleFabClick() {
   console.log('fab clicked')
+}
+
+function handleActiveChange(val: boolean) {
+  isFabActive.value = val
+}
+
+function handleOpen() {
+  if (fabRef.value) {
+    fabRef.value.open()
+  }
+}
+
+function handleClose() {
+  if (fabRef.value) {
+    fabRef.value.close()
+  }
+}
+
+function handleToggle() {
+  if (fabRef.value) {
+    if (isFabActive.value) {
+      fabRef.value.close()
+    } else {
+      fabRef.value.open()
+    }
+  }
 }
 </script>
 
@@ -139,6 +216,13 @@ function handleFabClick() {
 
 .demo-fab-row {
   padding: 16rpx 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .fit-content-btn {
+    margin: 10rpx 20rpx 10rpx 0;
+  }
 }
 
 .demo-fab-scroll-area {
@@ -178,6 +262,76 @@ function handleFabClick() {
 .demo-fab-scroll-item__desc {
   font-size: 24rpx;
   color: #999;
+}
+
+.demo-fab-status-card {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 32rpx;
+  background: #fff;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+}
+
+.demo-fab-status-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 16rpx;
+}
+
+.demo-fab-status-value {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #999;
+  padding: 8rpx 20rpx;
+  background: #f5f5f5;
+  border-radius: 20rpx;
+
+  &--active {
+    color: #4d80f0;
+    background: #e8f0fe;
+  }
+}
+
+// 自定义悬浮按钮样式
+.custom-fab-trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90rpx;
+  height: 90rpx;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+  border-radius: 50%;
+  box-shadow: 
+    0 8rpx 24rpx rgba(99, 102, 241, 0.4),
+    0 4rpx 12rpx rgba(139, 92, 246, 0.3),
+    inset 0 2rpx 4rpx rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  padding: 10rpx;
+
+  &:active {
+    transform: translateY(-2rpx) scale(0.98);
+    box-shadow: 
+      0 4rpx 12rpx rgba(99, 102, 241, 0.3),
+      inset 0 1rpx 2rpx rgba(0, 0, 0, 0.2);
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    transform: none !important;
+    box-shadow: 0 4rpx 12rpx rgba(99, 102, 241, 0.2);
+  }
+
+  &__text {
+    font-size: 20rpx;
+    color: #fff;
+    margin-top: 4rpx;
+    font-weight: 500;
+    text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.2);
+  }
 }
 
 :deep(.m-fab__action-btn) {

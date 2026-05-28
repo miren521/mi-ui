@@ -43,6 +43,7 @@ $fab-trigger-icon-size: var(--m-fab-trigger-icon-size, $n-32) !default;
         height: 100%;
         top: 0;
         padding: 0 $fab-actions-padding;
+        gap: 16rpx;
       }
 
       @include m(left) {
@@ -53,6 +54,10 @@ $fab-trigger-icon-size: var(--m-fab-trigger-icon-size, $n-32) !default;
       @include m(right) {
         flex-direction: row;
         left: 100%;
+      }
+
+      @include m(top, bottom) {
+        gap: 0;
       }
 
       @include m(top, bottom) {

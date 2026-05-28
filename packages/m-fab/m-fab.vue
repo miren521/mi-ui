@@ -7,10 +7,10 @@
     :style="rootStyle"
     @click.stop=""
   >
-    <view @click.stop="" :style="{ visibility: inited ? 'visible' : 'hidden' }" id="trigger">
-      <slot name="trigger" :disabled="disabled">
+    <view @click.stop="handleClick" :style="{ visibility: inited ? 'visible' : 'hidden' }" id="trigger">
+      <slot name="trigger" :disabled="disabled" :active="isActive">
         <m-button
-          @click="handleClick"
+          @click.stop="handleClick"
           :icon="isActive ? activeIcon : inactiveIcon"
           custom-class="m-fab__trigger"
           round
