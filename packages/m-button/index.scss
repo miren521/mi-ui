@@ -1,30 +1,39 @@
 // SCSS 变量定义
-$m-button-primary-bg-color: #4d80f0;
-$m-button-primary-color: #ffffff;
-$m-button-success-bg-color: #34d19d;
-$m-button-success-color: #ffffff;
-$m-button-warning-bg-color: #f0883a;
-$m-button-warning-color: #ffffff;
-$m-button-danger-bg-color: #fa4350;
-$m-button-danger-color: #ffffff;
-$m-button-info-bg-color: #f2f3f5;
-$m-button-info-color: #333333;
+$m-button-primary-bg-color: var(--m-button-primary-bg-color, #4d80f0);
+$m-button-primary-color: var(--m-button-primary-color, #ffffff);
+$m-button-success-bg-color: var(--m-button-success-bg-color, #34d19d);
+$m-button-success-color: var(--m-button-success-color, #ffffff);
+$m-button-warning-bg-color: var(--m-button-warning-bg-color, #f0883a);
+$m-button-warning-color: var(--m-button-warning-color, #ffffff);
+$m-button-danger-bg-color: var(--m-button-danger-bg-color, #fa4350);
+$m-button-danger-color: var(--m-button-danger-color, #ffffff);
+$m-button-info-bg-color: var(--m-button-info-bg-color, #f2f3f5);
+$m-button-info-color: var(--m-button-info-color, #333333);
 
 // 按钮尺寸
 $m-button-large-height: 44px;
 $m-button-large-padding: 0 20px;
 $m-button-large-radius: 8px;
 $m-button-large-font-size: 16px;
+$m-button-large-icon-size: 22px;
+$m-button-large-icon-padding: 10px;
 
 $m-button-medium-height: 36px;
 $m-button-medium-padding: 0 16px;
 $m-button-medium-radius: 6px;
 $m-button-medium-font-size: 14px;
+$m-button-medium-icon-size: 20px;
+$m-button-medium-icon-padding: 8px;
 
 $m-button-small-height: 28px;
 $m-button-small-padding: 0 12px;
 $m-button-small-radius: 4px;
 $m-button-small-font-size: 12px;
+$m-button-small-icon-size: 16px;
+$m-button-small-icon-padding: 6px;
+
+// 图标与文字间距
+$m-button-icon-spacing: 6px;
 
 // 其他
 $m-button-disabled-opacity: 0.6;
@@ -83,12 +92,13 @@ $m-button-info-plain-disabled-border-color: #c8c8c8;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	height: 100%;
 	line-height: 1;
 }
 
 // 加载图标
 .m-button__loading {
-	margin-right: 8px;
+	margin-right: $m-button-icon-spacing;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -96,6 +106,15 @@ $m-button-info-plain-disabled-border-color: #c8c8c8;
 	height: 1em;
 	flex-shrink: 0;
 	animation: m-rotate 1s linear infinite;
+}
+
+// 按钮图标
+.m-button__icon {
+	flex-shrink: 0;
+
+	& + .m-button__text {
+		margin-left: $m-button-icon-spacing;
+	}
 }
 
 // 按钮文字
@@ -135,6 +154,15 @@ $m-button-info-plain-disabled-border-color: #c8c8c8;
 	padding: $m-button-large-padding;
 	border-radius: $m-button-large-radius;
 	font-size: $m-button-large-font-size;
+
+	.m-button__icon {
+		font-size: $m-button-large-icon-size;
+	}
+
+	&.m-button--icon {
+		min-width: $m-button-large-height;
+		padding: $m-button-large-icon-padding;
+	}
 }
 
 .m-button--medium {
@@ -142,6 +170,15 @@ $m-button-info-plain-disabled-border-color: #c8c8c8;
 	padding: $m-button-medium-padding;
 	border-radius: $m-button-medium-radius;
 	font-size: $m-button-medium-font-size;
+
+	.m-button__icon {
+		font-size: $m-button-medium-icon-size;
+	}
+
+	&.m-button--icon {
+		min-width: $m-button-medium-height;
+		padding: $m-button-medium-icon-padding;
+	}
 }
 
 .m-button--small {
@@ -149,6 +186,15 @@ $m-button-info-plain-disabled-border-color: #c8c8c8;
 	padding: $m-button-small-padding;
 	border-radius: $m-button-small-radius;
 	font-size: $m-button-small-font-size;
+
+	.m-button__icon {
+		font-size: $m-button-small-icon-size;
+	}
+
+	&.m-button--icon {
+		min-width: $m-button-small-height;
+		padding: $m-button-small-icon-padding;
+	}
 }
 
 // 朴素按钮
