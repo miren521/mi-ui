@@ -244,7 +244,8 @@ $form-item-asterisk-color: var(--m-color-danger, #ee0a24);
     font-size: 24rpx;
     color: var(--m-color-danger, #ee0a24);
     margin-top: 12rpx;
-    padding-left: calc(var(--m-spacing-loose, 16rpx) + 70px);
+    // padding-left: calc(var(--m-spacing-loose, 16rpx) + 70px);
+    padding-left: calc(var(--m-spacing-loose, 1rpx) + 70px);
     word-break: break-all;
     text-align: left;
   }
