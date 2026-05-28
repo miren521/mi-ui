@@ -127,6 +127,7 @@
 import { ref } from 'vue'
 import mRadioGroup from '../../packages/m-radio-group/m-radio-group.vue'
 import mRadio from '../../packages/m-radio/m-radio.vue'
+import mBacktop from '../../packages/m-backtop/m-backtop.vue'
 
 const shape = ref<'circle' | 'square'>('circle')
 const showText = ref(false)

@@ -5,7 +5,10 @@ export type BacktopShape = 'circle' | 'square'
 
 export const backtopProps = {
   ...baseProps,
-  scrollTop: makeNumberProp(0),
+  scrollTop: {
+    type: Number,
+    default: undefined
+  },
   text: String,
   top: makeNumberProp(300),
   duration: makeNumberProp(100),
