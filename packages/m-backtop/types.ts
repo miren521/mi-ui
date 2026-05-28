@@ -1,11 +1,11 @@
 import type { ExtractPropTypes } from 'vue'
-import { baseProps, makeNumberProp, makeRequiredProp, makeStringProp } from '../common/props'
+import { baseProps, makeNumberProp, makeStringProp } from '../common/props'
 
 export type BacktopShape = 'circle' | 'square'
 
 export const backtopProps = {
   ...baseProps,
-  scrollTop: makeRequiredProp(Number),
+  scrollTop: makeNumberProp(0),
   text: String,
   top: makeNumberProp(300),
   duration: makeNumberProp(100),

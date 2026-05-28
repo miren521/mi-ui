@@ -113,7 +113,6 @@
 
     <!-- 预览按钮 -->
     <m-backtop
-      :scroll-top="scrollTop"
       :shape="shape"
       :text="showText ? '顶部' : ''"
       :bottom="bottom"
@@ -125,11 +124,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref } from 'vue'
 import mRadioGroup from '../../packages/m-radio-group/m-radio-group.vue'
 import mRadio from '../../packages/m-radio/m-radio.vue'
 
-const scrollTop = ref(0)
 const shape = ref<'circle' | 'square'>('circle')
 const showText = ref(false)
 const bottom = ref(100)
@@ -149,18 +147,6 @@ const scrollItems = [
   { icon: '🌐', title: '跨端支持', desc: '完美支持 H5、小程序、App 等多种平台' },
   { icon: '✨', title: '主题定制', desc: '支持通过 CSS 变量自定义主题颜色' }
 ]
-
-function onPageScroll(e: any) {
-  scrollTop.value = e.scrollTop
-}
-
-onMounted(() => {
-  uni.$on('pageScroll', onPageScroll)
-})
-
-onUnmounted(() => {
-  uni.$off('pageScroll', onPageScroll)
-})
 </script>
 
 <style lang="scss" scoped>
