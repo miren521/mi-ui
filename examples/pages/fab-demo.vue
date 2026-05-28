@@ -83,8 +83,8 @@
       :direction="direction"
       :disabled="disabled"
       :draggable="draggable"
-      :inactive-icon="useCustomIcon ? 'add' : 'plus'"
-      :active-icon="useCustomIcon ? 'close' : 'close'"
+      :inactive-icon="useCustomIcon ? 'down' : 'plus'"
+      :active-icon="useCustomIcon ? 'up' : 'close'"
       :z-index="99"
       @click="handleFabClick"
     >
