@@ -7,8 +7,8 @@
     >
       <slot>
         <view class="m-backtop__content">
-          <m-icon custom-class="m-backtop__backicon" name="to-top" :custom-style="iconStyle" />
-          <text class="m-backtop__text" v-if="text">{{ text }}</text>
+          <m-icon custom-class="m-backtop__backicon" name="to-top" :color="color" />
+          <text class="m-backtop__text" :style="{ color: color }" v-if="text">{{ text }}</text>
         </view>
       </slot>
     </view>

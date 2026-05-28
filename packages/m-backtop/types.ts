@@ -15,6 +15,7 @@ export const backtopProps = {
   duration: makeNumberProp(100),
   zIndex: makeNumberProp(10),
   iconStyle: makeStringProp(''),
+  color: makeStringProp('#666666'),
   shape: makeStringProp<BacktopShape>('circle'),
   bottom: makeNumberProp(100),
   right: makeNumberProp(20),

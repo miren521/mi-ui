@@ -80,13 +80,13 @@
         </view>
       </demo-block>
 
-      <!-- 图标颜色 -->
-      <demo-block title="图标颜色" desc="选择按钮图标的颜色">
+      <!-- 颜色 -->
+      <demo-block title="颜色" desc="选择按钮图标和文字的颜色">
         <view class="demo-backtop-option">
-          <m-radio-group v-model="iconColor" direction="horizontal">
+          <m-radio-group v-model="color" direction="horizontal">
+            <m-radio value="#666666">灰色</m-radio>
             <m-radio value="#323233">黑色</m-radio>
             <m-radio value="#ffffff">白色</m-radio>
-            <m-radio value="#666666">灰色</m-radio>
             <m-radio value="#1989fa">蓝色</m-radio>
           </m-radio-group>
         </view>
@@ -135,8 +135,8 @@
             <view class="demo-backtop-preview__color" :style="{ backgroundColor: themeColor || '#ffffff' }"></view>
           </view>
           <view class="demo-backtop-preview__item">
-            <text class="demo-backtop-preview__label">图标颜色：</text>
-            <view class="demo-backtop-preview__color" :style="{ backgroundColor: iconColor }"></view>
+            <text class="demo-backtop-preview__label">颜色：</text>
+            <view class="demo-backtop-preview__color" :style="{ backgroundColor: color }"></view>
           </view>
           <view class="demo-backtop-preview__item">
             <text class="demo-backtop-preview__label">外观效果：</text>
@@ -168,7 +168,8 @@
       :top="scrollThreshold"
       :duration="duration"
       :effect="effect"
-      :custom-style="`background-color: ${themeColor}; color: ${iconColor}`"
+      :color="color"
+      :custom-style="themeColor ? `background-color: ${themeColor}` : ''"
     />
   </view>
 </template>
@@ -182,13 +183,13 @@ import mBacktop from '../../packages/m-backtop/m-backtop.vue'
 type BacktopEffect = 'border' | 'no-border' | 'floating'
 
 const shape = ref<'circle' | 'square'>('circle')
-const showText = ref(false)
+const showText = ref(true)
 const bottom = ref(100)
 const right = ref(20)
 const scrollThreshold = ref(300)
 const duration = ref(300)
 const themeColor = ref('')
-const iconColor = ref('#323233')
+const color = ref('#666666')
 const effect = ref<BacktopEffect>('floating')
 
 const scrollItems = [
