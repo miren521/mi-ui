@@ -10,6 +10,7 @@ $m-backtop-text-font-size: var(--m-backtop-text-font-size, 22rpx) !default;
 $m-backtop-text-color: var(--m-backtop-text-color, #323233) !default;
 $m-backtop-text-line-height: var(--m-backtop-text-line-height, 28rpx) !default;
 $m-backtop-z-index: var(--m-backtop-z-index, 100) !default;
+$m-backtop-floating-shadow: var(--m-backtop-floating-shadow, 0 8rpx 32rpx rgba(0, 0, 0, 0.15)) !default;
 
 .m-backtop {
   position: fixed;
@@ -22,6 +23,7 @@ $m-backtop-z-index: var(--m-backtop-z-index, 100) !default;
   color: $m-backtop-color;
   z-index: $m-backtop-z-index;
   border: 1rpx solid $m-backtop-border-color;
+  transition: all 0.3s ease;
 
   &__content {
     display: flex;
@@ -46,6 +48,22 @@ $m-backtop-z-index: var(--m-backtop-z-index, 100) !default;
 
   &.is-square {
     border-radius: $m-backtop-radius;
+  }
+
+  &.is-no-border {
+    border: none;
+  }
+
+  &.is-floating {
+    box-shadow: $m-backtop-floating-shadow;
+    border: none;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    &:active {
+      box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+    }
   }
 
   &:active {

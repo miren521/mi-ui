@@ -92,12 +92,13 @@
         </view>
       </demo-block>
 
-      <!-- 边框样式 -->
-      <demo-block title="边框样式" desc="选择按钮是否显示边框">
+      <!-- 外观效果 -->
+      <demo-block title="外观效果" desc="选择按钮的视觉效果">
         <view class="demo-backtop-option">
-          <m-radio-group v-model="borderStyle" direction="horizontal">
+          <m-radio-group v-model="effect" direction="horizontal">
             <m-radio value="border">显示边框</m-radio>
             <m-radio value="no-border">隐藏边框</m-radio>
+            <m-radio value="floating">悬浮效果</m-radio>
           </m-radio-group>
         </view>
       </demo-block>
@@ -131,15 +132,15 @@
           </view>
           <view class="demo-backtop-preview__item">
             <text class="demo-backtop-preview__label">主题颜色：</text>
-            <view class="demo-backtop-preview__color" :style="{ backgroundColor: themeColor }"></view>
+            <view class="demo-backtop-preview__color" :style="{ backgroundColor: themeColor || '#ffffff' }"></view>
           </view>
           <view class="demo-backtop-preview__item">
             <text class="demo-backtop-preview__label">图标颜色：</text>
             <view class="demo-backtop-preview__color" :style="{ backgroundColor: iconColor }"></view>
           </view>
           <view class="demo-backtop-preview__item">
-            <text class="demo-backtop-preview__label">边框：</text>
-            <text class="demo-backtop-preview__value">{{ borderStyle === 'border' ? '显示' : '隐藏' }}</text>
+            <text class="demo-backtop-preview__label">外观效果：</text>
+            <text class="demo-backtop-preview__value">{{ effect === 'border' ? '显示边框' : effect === 'no-border' ? '隐藏边框' : '悬浮效果' }}</text>
           </view>
         </view>
       </demo-block>
@@ -166,7 +167,8 @@
       :right="right"
       :top="scrollThreshold"
       :duration="duration"
-      :custom-style="`background-color: ${themeColor}; color: ${iconColor}; border: ${borderStyle === 'border' ? '1rpx solid #ebebeb' : 'none'}`"
+      :effect="effect"
+      :custom-style="`background-color: ${themeColor}; color: ${iconColor}`"
     />
   </view>
 </template>
@@ -177,6 +179,8 @@ import mRadioGroup from '../../packages/m-radio-group/m-radio-group.vue'
 import mRadio from '../../packages/m-radio/m-radio.vue'
 import mBacktop from '../../packages/m-backtop/m-backtop.vue'
 
+type BacktopEffect = 'border' | 'no-border' | 'floating'
+
 const shape = ref<'circle' | 'square'>('circle')
 const showText = ref(false)
 const bottom = ref(100)
@@ -185,7 +189,7 @@ const scrollThreshold = ref(300)
 const duration = ref(300)
 const themeColor = ref('')
 const iconColor = ref('#323233')
-const borderStyle = ref<'border' | 'no-border'>('border')
+const effect = ref<BacktopEffect>('floating')
 
 const scrollItems = [
   { icon: '🌺', title: '功能介绍', desc: '返回顶部按钮可以帮助用户快速回到页面顶部' },

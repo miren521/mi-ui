@@ -1,7 +1,7 @@
 <template>
   <m-transition :show="show" name="fade">
     <view
-      :class="`m-backtop ${customClass} is-${shape}`"
+      :class="`m-backtop ${customClass} is-${shape} is-${effect}`"
       :style="`z-index: ${zIndex}; bottom: ${bottom}px; right: ${right}px; ${customStyle}`"
       @click="handleBacktop"
     >
@@ -46,8 +46,8 @@ watch(() => props.scrollTop, (val) => {
 })
 
 const show = computed(() => {
-  const scrollVal = props.scrollTop !== undefined && props.scrollTop !== null 
-    ? props.scrollTop 
+  const scrollVal = props.scrollTop !== undefined && props.scrollTop !== null
+    ? props.scrollTop
     : currentScrollTop.value
   return scrollVal > props.top
 })
