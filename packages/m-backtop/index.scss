@@ -22,7 +22,7 @@ $m-backtop-floating-shadow: var(--m-backtop-floating-shadow, 0 8rpx 32rpx rgba(0
   align-items: center;
   color: $m-backtop-color;
   z-index: $m-backtop-z-index;
-  border: 1rpx solid $m-backtop-border-color;
+  border: 1rpx solid transparent;
   transition: all 0.3s ease;
 
   &__content {
@@ -50,13 +50,16 @@ $m-backtop-floating-shadow: var(--m-backtop-floating-shadow, 0 8rpx 32rpx rgba(0
     border-radius: $m-backtop-radius;
   }
 
+  &.is-border {
+    border-color: $m-backtop-border-color;
+  }
+
   &.is-no-border {
-    border: none;
+    border-color: transparent;
   }
 
   &.is-floating {
     box-shadow: $m-backtop-floating-shadow;
-    border: none;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);

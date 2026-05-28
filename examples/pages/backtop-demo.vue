@@ -96,9 +96,9 @@
       <demo-block title="外观效果" desc="选择按钮的视觉效果">
         <view class="demo-backtop-option">
           <m-radio-group v-model="effect" direction="horizontal">
+            <m-radio value="floating">悬浮效果</m-radio>
             <m-radio value="border">显示边框</m-radio>
             <m-radio value="no-border">隐藏边框</m-radio>
-            <m-radio value="floating">悬浮效果</m-radio>
           </m-radio-group>
         </view>
       </demo-block>
