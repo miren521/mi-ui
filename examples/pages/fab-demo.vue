@@ -121,7 +121,7 @@ function handleFabClick() {
 
   &__container {
     padding: 32rpx 24rpx;
-    padding-bottom: 200rpx;
+    padding-bottom: 90rpx;
   }
 }
 

@@ -16,6 +16,7 @@
           round
           :type="type"
           :disabled="disabled"
+          icon-size="30"
         ></m-button>
       </slot>
     </view>
