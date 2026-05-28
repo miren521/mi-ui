@@ -1,0 +1,30 @@
+$m-index-anchor-bg: var(--m-index-anchor-bg, #ffffff) !default;
+$m-index-anchor-padding: var(--m-index-anchor-padding, 32rpx) !default;
+$m-index-anchor-font-size: var(--m-index-anchor-font-size, 28rpx) !default;
+$m-index-anchor-color: var(--m-index-anchor-color, #323233) !default;
+$m-index-anchor-z-index: var(--m-index-anchor-z-index, 1) !default;
+
+// #ifdef MP-DINGTALK
+.m-index-anchor-ding {
+  &.is-sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: $m-index-anchor-z-index;
+  }
+}
+// #endif
+
+.m-index-anchor {
+  background: $m-index-anchor-bg;
+  padding: $m-index-anchor-padding;
+  font-size: $m-index-anchor-font-size;
+  color: $m-index-anchor-color;
+
+  &.is-sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: $m-index-anchor-z-index;
+  }
+}

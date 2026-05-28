@@ -432,6 +432,12 @@
       "style": {
         "navigationBarTitleText": "Pagination 分页"
       }
+    },
+    {
+      "path": "examples/pages/index-bar-demo",
+      "style": {
+        "navigationBarTitleText": "IndexBar 索引栏"
+      }
     }
   ],
   "globalStyle": {

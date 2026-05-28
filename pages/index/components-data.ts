@@ -78,6 +78,7 @@ export const navigationComponents: ComponentItem[] = [
   { id: 'segmented', title: 'Segmented 分段器', enTitle: 'Segmented', zhTitle: '分段器', desc: '分段选择器组件，支持卡片和轮廓两种主题样式', category: 'navigation', url: '/examples/pages/segmented-demo' },
   { id: 'sidebar', title: 'Sidebar 侧边栏', enTitle: 'Sidebar', zhTitle: '侧边栏', desc: '侧边导航栏组件，常用于分类导航场景', category: 'navigation', url: '/examples/pages/sidebar-demo' },
   { id: 'pagination', title: 'Pagination 分页', enTitle: 'Pagination', zhTitle: '分页', desc: '分页组件，支持多种配置和自定义插槽', category: 'navigation', url: '/examples/pages/pagination-demo' },
+  { id: 'index-bar', title: 'IndexBar 索引栏', enTitle: 'IndexBar', zhTitle: '索引栏', desc: '索引栏组件，常用于通讯录、城市选择等场景', category: 'navigation', url: '/examples/pages/index-bar-demo' },
 ]
 
 // 展示
