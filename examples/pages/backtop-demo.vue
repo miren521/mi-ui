@@ -67,6 +67,41 @@
         </view>
       </demo-block>
 
+      <!-- 主题颜色 -->
+      <demo-block title="主题颜色" desc="选择按钮的背景颜色">
+        <view class="demo-backtop-option">
+          <m-radio-group v-model="themeColor" direction="horizontal">
+            <m-radio value="">默认</m-radio>
+            <m-radio value="#1989fa">蓝色</m-radio>
+            <m-radio value="#576b95">深灰</m-radio>
+            <m-radio value="#67c23a">绿色</m-radio>
+            <m-radio value="#f56c6c">红色</m-radio>
+          </m-radio-group>
+        </view>
+      </demo-block>
+
+      <!-- 图标颜色 -->
+      <demo-block title="图标颜色" desc="选择按钮图标的颜色">
+        <view class="demo-backtop-option">
+          <m-radio-group v-model="iconColor" direction="horizontal">
+            <m-radio value="#323233">黑色</m-radio>
+            <m-radio value="#ffffff">白色</m-radio>
+            <m-radio value="#666666">灰色</m-radio>
+            <m-radio value="#1989fa">蓝色</m-radio>
+          </m-radio-group>
+        </view>
+      </demo-block>
+
+      <!-- 边框样式 -->
+      <demo-block title="边框样式" desc="选择按钮是否显示边框">
+        <view class="demo-backtop-option">
+          <m-radio-group v-model="borderStyle" direction="horizontal">
+            <m-radio value="border">显示边框</m-radio>
+            <m-radio value="no-border">隐藏边框</m-radio>
+          </m-radio-group>
+        </view>
+      </demo-block>
+
       <!-- 当前配置预览 -->
       <demo-block title="当前配置" desc="实时预览当前配置效果">
         <view class="demo-backtop-preview">
@@ -94,6 +129,18 @@
             <text class="demo-backtop-preview__label">动画时长：</text>
             <text class="demo-backtop-preview__value">{{ duration }}ms</text>
           </view>
+          <view class="demo-backtop-preview__item">
+            <text class="demo-backtop-preview__label">主题颜色：</text>
+            <view class="demo-backtop-preview__color" :style="{ backgroundColor: themeColor }"></view>
+          </view>
+          <view class="demo-backtop-preview__item">
+            <text class="demo-backtop-preview__label">图标颜色：</text>
+            <view class="demo-backtop-preview__color" :style="{ backgroundColor: iconColor }"></view>
+          </view>
+          <view class="demo-backtop-preview__item">
+            <text class="demo-backtop-preview__label">边框：</text>
+            <text class="demo-backtop-preview__value">{{ borderStyle === 'border' ? '显示' : '隐藏' }}</text>
+          </view>
         </view>
       </demo-block>
 
@@ -119,6 +166,7 @@
       :right="right"
       :top="scrollThreshold"
       :duration="duration"
+      :custom-style="`background-color: ${themeColor}; color: ${iconColor}; border: ${borderStyle === 'border' ? '1rpx solid #ebebeb' : 'none'}`"
     />
   </view>
 </template>
@@ -135,6 +183,9 @@ const bottom = ref(100)
 const right = ref(20)
 const scrollThreshold = ref(300)
 const duration = ref(300)
+const themeColor = ref('')
+const iconColor = ref('#323233')
+const borderStyle = ref<'border' | 'no-border'>('border')
 
 const scrollItems = [
   { icon: '🌺', title: '功能介绍', desc: '返回顶部按钮可以帮助用户快速回到页面顶部' },
@@ -202,6 +253,13 @@ const scrollItems = [
   font-size: 26rpx;
   color: #1989fa;
   font-weight: 500;
+}
+
+.demo-backtop-preview__color {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 8rpx;
+  border: 2rpx solid #f0f0f0;
 }
 
 .demo-backtop-scroll-area {
