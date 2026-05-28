@@ -444,6 +444,12 @@
       "style": {
         "navigationBarTitleText": "Backtop 返回顶部"
       }
+    },
+    {
+      "path": "examples/pages/fab-demo",
+      "style": {
+        "navigationBarTitleText": "Fab 浮动按钮"
+      }
     }
   ],
   "globalStyle": {

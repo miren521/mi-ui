@@ -16,6 +16,7 @@ import mTextarea from './m-textarea/m-textarea.vue'
 import mForm from './m-form/m-form.vue'
 import mFormItem from './m-form-item/m-form-item.vue'
 import mSlider from './m-slider/m-slider.vue'
+import mFab from './m-fab/m-fab.vue'
 
 // 所有组件 
 const components = [ 
@@ -32,6 +33,7 @@ const components = [
 	mForm,
 	mFormItem,
 	mSlider,
+	mFab,
 ] 
 
 // 安装函数 
@@ -63,6 +65,7 @@ export {
 	mForm,
 	mFormItem,
 	mSlider,
+	mFab,
 } 
 
 export default { 
@@ -80,4 +83,5 @@ export default {
 	mForm,
 	mFormItem,
 	mSlider,
+	mFab,
 }
