@@ -438,6 +438,12 @@
       "style": {
         "navigationBarTitleText": "IndexBar 索引栏"
       }
+    },
+    {
+      "path": "examples/pages/backtop-demo",
+      "style": {
+        "navigationBarTitleText": "Backtop 返回顶部"
+      }
     }
   ],
   "globalStyle": {

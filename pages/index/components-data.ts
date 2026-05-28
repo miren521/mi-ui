@@ -79,6 +79,7 @@ export const navigationComponents: ComponentItem[] = [
   { id: 'sidebar', title: 'Sidebar 侧边栏', enTitle: 'Sidebar', zhTitle: '侧边栏', desc: '侧边导航栏组件，常用于分类导航场景', category: 'navigation', url: '/examples/pages/sidebar-demo' },
   { id: 'pagination', title: 'Pagination 分页', enTitle: 'Pagination', zhTitle: '分页', desc: '分页组件，支持多种配置和自定义插槽', category: 'navigation', url: '/examples/pages/pagination-demo' },
   { id: 'index-bar', title: 'IndexBar 索引栏', enTitle: 'IndexBar', zhTitle: '索引栏', desc: '索引栏组件，常用于通讯录、城市选择等场景', category: 'navigation', url: '/examples/pages/index-bar-demo' },
+  { id: 'backtop', title: 'Backtop 返回顶部', enTitle: 'Backtop', zhTitle: '返回顶部', desc: '返回顶部组件，支持自定义位置、样式和滚动阈值', category: 'navigation', url: '/examples/pages/backtop-demo' },
 ]
 
 // 展示
