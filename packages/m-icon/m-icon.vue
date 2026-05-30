@@ -9,7 +9,7 @@
 export default {
   name: 'm-icon',
   options: {
-    virtualHost: true,
+    virtualHost: false,
     addGlobalClass: true,
     styleIsolation: 'shared'
   }
@@ -102,6 +102,6 @@ function handleClick(event: any) {
 
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import './index.scss';
 </style>

@@ -168,7 +168,7 @@ const clearSearch = () => { searchText.value = '' }
 const setCategory = (key) => { activeCategory.value = key }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .m-home {
   min-height: 100vh;
   background: #f5f7fc;
@@ -432,15 +432,13 @@ const setCategory = (key) => { activeCategory.value = key }
 
 .m-home__search-icon {
   flex-shrink: 0;
-  width: 44rpx;
-  height: 44rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #94a3b8;
   font-size: 30rpx;
   transition: color 0.3s ease;
-  margin-right: 16rpx;
+  margin-right: 10rpx;
 }
 
 .m-home__search-input {
