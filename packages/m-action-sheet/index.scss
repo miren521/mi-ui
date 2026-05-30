@@ -150,13 +150,27 @@ $m-action-sheet-loading-size: var(--m-action-sheet-loading-size, 20px) !default;
     line-height: $m-action-sheet-title-line-height;
   }
 
-  @include edeep(close) {
+  @include e(title-text) {
+    flex: 1;
+    text-align: center;
+  }
+
+  @include e(close) {
     position: absolute;
     top: 50%;
     right: $m-action-sheet-close-right;
+    transform: translateY(-50%);
+    width: 44rpx;
+    height: 44rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include e(close-icon) {
     color: $m-action-sheet-close-color;
     font-size: $m-action-sheet-close-font-size;
-    transform: translateY(-50%);
+    line-height: 1;
   }
 
   @include e(panels-wrap) {

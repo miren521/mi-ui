@@ -26,9 +26,11 @@
         :style="`${(actions && actions.length) || (panels && panels.length) ? ' ' : ''} ${customStyle}`"
       >
         <view v-if="title" :class="`m-action-sheet__title ${customTitleClass}`">
-          {{ title }}
+          <text class="m-action-sheet__title-text">{{ title }}</text>
           <slot name="close" :close="close">
-            <m-icon custom-class="m-action-sheet__close" name="close" @click="close" />
+            <view class="m-action-sheet__close" @click="close">
+              <m-icon name="close" class="m-action-sheet__close-icon" />
+            </view>
           </slot>
         </view>
 
