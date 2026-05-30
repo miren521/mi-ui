@@ -69,7 +69,7 @@ function loadFont() {
     source: 'url("/static/fonts/m-icons.ttf")',
     global: true,
     success: () => console.log('m-icons font loaded'),
-    fail: (error) => console.error('m-icons font load failed', error)
+    // fail: (error) => console.error('m-icons font load failed', error)
   })
   // #endif
   
@@ -77,7 +77,9 @@ function loadFont() {
   uni.loadFontFace({
     family: 'm-icons',
     source: 'url("/static/fonts/m-icons.ttf")',
-    global: true
+    global: true,
+    success: () => console.log('m-icons font loaded'),
+    // fail: (error) => console.error('m-icons font load failed', error)
   })
   // #endif
 }
