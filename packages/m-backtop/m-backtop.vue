@@ -29,29 +29,22 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, ref, watch, onMounted, onUnmounted } from 'vue'
+import { computed } from 'vue'
 import mTransition from '../m-transition/m-transition.vue'
 import mIcon from '../m-icon/m-icon.vue'
 import { backtopProps } from './types'
 
 const props = defineProps(backtopProps)
-const emit = defineEmits(['update:scrollTop', 'click'])
+const emit = defineEmits(['click'])
 
-const currentScrollTop = ref(props.scrollTop || 0)
+/**
+ * 是否显示回到顶部按钮
+ */
+const show = computed(() => props.scrollTop > props.top)
 
-watch(() => props.scrollTop, (val) => {
-  if (val !== undefined && val !== null) {
-    currentScrollTop.value = val
-  }
-})
-
-const show = computed(() => {
-  const scrollVal = props.scrollTop !== undefined && props.scrollTop !== null
-    ? props.scrollTop
-    : currentScrollTop.value
-  return scrollVal > props.top
-})
-
+/**
+ * 处理点击回到顶部
+ */
 function handleBacktop() {
   emit('click')
   uni.pageScrollTo({
@@ -59,42 +52,6 @@ function handleBacktop() {
     duration: props.duration
   })
 }
-
-function updateScrollTop(val: number) {
-  if (props.scrollTop === undefined || props.scrollTop === null) {
-    currentScrollTop.value = val
-  }
-  emit('update:scrollTop', val)
-}
-
-function handleWindowScroll() {
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-  updateScrollTop(scrollTop)
-}
-
-function handlePageScroll(e: any) {
-  updateScrollTop(e.scrollTop)
-}
-
-onMounted(() => {
-  // #ifdef H5
-  window.addEventListener('scroll', handleWindowScroll, { passive: true })
-  // #endif
-  // #ifndef H5
-  uni.$on('pageScroll', handlePageScroll)
-  // #endif
-})
-
-onUnmounted(() => {
-  // #ifdef H5
-  window.removeEventListener('scroll', handleWindowScroll)
-  // #endif
-  // #ifndef H5
-  uni.$off('pageScroll', handlePageScroll)
-  // #endif
-})
-
-defineExpose({ updateScrollTop })
 </script>
 
 <style lang="scss">

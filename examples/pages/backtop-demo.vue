@@ -161,6 +161,7 @@
 
     <!-- 预览按钮 -->
     <m-backtop
+      :scroll-top="scrollTop"
       :shape="shape"
       :text="showText ? '顶部' : ''"
       :bottom="bottom"
@@ -176,11 +177,20 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { onPageScroll } from '@dcloudio/uni-app'
 import mRadioGroup from '../../packages/m-radio-group/m-radio-group.vue'
 import mRadio from '../../packages/m-radio/m-radio.vue'
 import mBacktop from '../../packages/m-backtop/m-backtop.vue'
 
 type BacktopEffect = 'border' | 'no-border' | 'floating'
+
+// 页面滚动距离
+const scrollTop = ref(0)
+
+// 监听页面滚动
+onPageScroll((event) => {
+  scrollTop.value = event.scrollTop
+})
 
 const shape = ref<'circle' | 'square'>('circle')
 const showText = ref(true)
