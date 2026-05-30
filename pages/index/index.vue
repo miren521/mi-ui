@@ -25,14 +25,16 @@
       <!-- 搜索 & 分类筛选 -->
       <view class="m-home__toolbar">
         <view class="m-home__search">
-          <m-icon name="search-line" class="m-home__search-icon" size="18" />
-          <input 
-            v-model="searchText" 
-            type="text" 
-            class="m-home__search-input" 
-            placeholder="搜索组件..."
-          />
-          <text v-if="searchText" class="m-home__search-clear" @click="clearSearch">✕</text>
+          <view class="m-home__search-wrapper">
+            <m-icon name="search-line" class="m-home__search-icon" size="18" />
+            <input 
+              v-model="searchText" 
+              type="text" 
+              class="m-home__search-input" 
+              placeholder="搜索组件..."
+            />
+            <text v-if="searchText" class="m-home__search-clear" @click="clearSearch">✕</text>
+          </view>
         </view>
         
         <view class="m-home__categories">
@@ -397,74 +399,81 @@ const setCategory = (key) => { activeCategory.value = key }
 }
 
 .m-home__search {
-  position: relative;
   max-width: 100%;
   margin-bottom: 20rpx;
+}
+
+.m-home__search-wrapper {
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  padding: 0 24rpx;
+  background: #ffffff;
+  border-radius: 40rpx;
+  border: 2rpx solid #e2e8f0;
+  box-shadow: 
+    0 4rpx 16rpx rgba(0, 0, 0, 0.06),
+    inset 0 2rpx 4rpx rgba(0, 0, 0, 0.03);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:focus-within {
+    border-color: #6366f1;
+    box-shadow: 
+      0 0 0 6rpx rgba(99, 102, 241, 0.12),
+      0 6rpx 24rpx rgba(99, 102, 241, 0.18),
+      inset 0 1rpx 2rpx rgba(0, 0, 0, 0.02);
+    transform: translateY(-2rpx);
+    
+    .m-home__search-icon {
+      color: #6366f1;
+    }
+  }
 }
 
 .m-home__search-icon {
-  position: absolute;
-  left: 28rpx;
-  top: 50%;
-  transform: translateY(-50%);
+  flex-shrink: 0;
+  width: 44rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #94a3b8;
-  font-size: 28rpx;
-  z-index: 1;
+  font-size: 30rpx;
   transition: color 0.3s ease;
+  margin-right: 16rpx;
 }
 
 .m-home__search-input {
-  width: 100%;
-  height: 72rpx;
-  padding: 0 80rpx 0 72rpx;
-  background: #ffffff;
-  border-radius: 36rpx;
-  font-size: 28rpx;
-  box-sizing: border-box;
-  border: 2rpx solid #e2e8f0;
-  box-shadow: 
-    0 2rpx 8rpx rgba(0, 0, 0, 0.04),
-    inset 0 1rpx 2rpx rgba(0, 0, 0, 0.02);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
-  &:focus {
-    border-color: #6366f1;
-    outline: none;
-    box-shadow: 
-      0 0 0 4rpx rgba(99, 102, 241, 0.1),
-      0 4rpx 16rpx rgba(99, 102, 241, 0.15),
-      inset 0 1rpx 2rpx rgba(0, 0, 0, 0.02);
-    transform: translateY(-1rpx);
-  }
+  flex: 1;
+  height: 100%;
+  font-size: 30rpx;
+  background: transparent;
+  border: none;
+  outline: none;
   
   &::placeholder {
     color: #94a3b8;
-    font-size: 26rpx;
-  }
-}
-
-.m-home__search:focus-within {
-  .m-home__search-icon {
-    color: #6366f1;
+    font-size: 28rpx;
   }
 }
 
 .m-home__search-clear {
-  position: absolute;
-  right: 24rpx;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40rpx;
-  height: 40rpx;
-  line-height: 40rpx;
-  text-align: center;
+  flex-shrink: 0;
+  width: 44rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #94a3b8;
-  font-size: 24rpx;
+  font-size: 26rpx;
   background: #f1f5f9;
   border-radius: 50%;
   transition: all 0.2s ease;
-  cursor: pointer;
+  
+  &:active {
+    background: #e2e8f0;
+    transform: scale(0.9);
+  }
   
   &:hover {
     color: #64748b;
