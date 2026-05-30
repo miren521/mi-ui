@@ -208,6 +208,7 @@ function resetSpeedAnimation() {
 
   &__btn-row {
     gap: 12px;
+    flex-wrap: wrap;
   }
 
   &__slot-content {
