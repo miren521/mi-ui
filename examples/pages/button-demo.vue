@@ -84,7 +84,7 @@
 			<!-- 图标按钮 -->
 			<demo-block title="图标按钮" desc="通过 icon 属性设置图标，支持仅图标模式和图标+文字模式">
 				<view class="demo-button-row">
-					<m-button icon="plus" class="fit-content-btn">主要按钮</m-button>
+					<m-button icon="heart" class="fit-content-btn">主要按钮</m-button>
 					<m-button icon="edit" type="success" class="fit-content-btn">编辑</m-button>
 					<m-button icon="delete" type="danger" class="fit-content-btn">删除</m-button>
 					<m-button icon="star" type="warning" class="fit-content-btn">收藏</m-button>
@@ -94,29 +94,29 @@
 			<!-- 图标按钮 - 仅图标模式 -->
 			<demo-block title="仅图标按钮" desc="不设置文字内容时，按钮仅显示图标">
 				<view class="demo-button-row">
-					<m-button icon="plus" type="primary" class="fit-content-btn"></m-button>
+					<m-button icon="heart" type="primary" class="fit-content-btn"></m-button>
 					<m-button icon="edit" type="success" class="fit-content-btn"></m-button>
 					<m-button icon="delete" type="danger" class="fit-content-btn"></m-button>
 					<m-button icon="star" type="warning" class="fit-content-btn"></m-button>
 					<m-button icon="search-line" type="info" class="fit-content-btn"></m-button>
 				</view>
 				<view class="demo-button-row" style="margin-top: 20rpx">
-					<m-button icon="plus" type="primary" size="large" class="fit-content-btn"></m-button>
-					<m-button icon="plus" type="primary" size="medium" class="fit-content-btn"></m-button>
-					<m-button icon="plus" type="primary" size="small" class="fit-content-btn"></m-button>
+					<m-button icon="heart" type="primary" size="large" class="fit-content-btn"></m-button>
+					<m-button icon="heart" type="primary" size="medium" class="fit-content-btn"></m-button>
+					<m-button icon="heart" type="primary" size="small" class="fit-content-btn"></m-button>
 				</view>
 			</demo-block>
 
 			<!-- 图标按钮 - 朴素样式 -->
 			<demo-block title="图标按钮 - 朴素样式" desc="图标按钮的朴素样式变体">
 				<view class="demo-button-row">
-					<m-button icon="plus" type="primary" plain class="fit-content-btn">主要按钮</m-button>
+					<m-button icon="heart" type="primary" plain class="fit-content-btn">主要按钮</m-button>
 					<m-button icon="edit" type="success" plain class="fit-content-btn">编辑</m-button>
 					<m-button icon="delete" type="danger" plain class="fit-content-btn">删除</m-button>
 					<m-button icon="star" type="warning" plain class="fit-content-btn">收藏</m-button>
 				</view>
 				<view class="demo-button-row" style="margin-top: 20rpx">
-					<m-button icon="plus" type="primary" plain round class="fit-content-btn"></m-button>
+					<m-button icon="heart" type="primary" plain round class="fit-content-btn"></m-button>
 					<m-button icon="edit" type="success" plain round class="fit-content-btn"></m-button>
 					<m-button icon="delete" type="danger" plain round class="fit-content-btn"></m-button>
 					<m-button icon="star" type="warning" plain round class="fit-content-btn"></m-button>
@@ -126,11 +126,11 @@
 			<!-- 图标尺寸 -->
 			<demo-block title="图标尺寸" desc="通过 icon-size 属性自定义图标大小">
 				<view class="demo-button-row">
-					<m-button icon="plus" type="primary" icon-size="12px" class="fit-content-btn">12px</m-button>
-					<m-button icon="plus" type="primary" icon-size="16px" class="fit-content-btn">16px</m-button>
-					<m-button icon="plus" type="primary" icon-size="20px" class="fit-content-btn">20px</m-button>
-					<m-button icon="plus" type="primary" icon-size="24px" class="fit-content-btn">24px</m-button>
-					<m-button icon="plus" type="primary" icon-size="32px" class="fit-content-btn">32px</m-button>
+					<m-button icon="heart" type="primary" icon-size="12px" class="fit-content-btn">12px</m-button>
+					<m-button icon="heart" type="primary" icon-size="16px" class="fit-content-btn">16px</m-button>
+					<m-button icon="heart" type="primary" icon-size="20px" class="fit-content-btn">20px</m-button>
+					<m-button icon="heart" type="primary" icon-size="24px" class="fit-content-btn">24px</m-button>
+					<m-button icon="heart" type="primary" icon-size="32px" class="fit-content-btn">32px</m-button>
 				</view>
 				<view class="demo-button-row" style="margin-top: 20rpx">
 					<m-button icon="star" type="success" icon-size="14px" class="fit-content-btn"></m-button>
