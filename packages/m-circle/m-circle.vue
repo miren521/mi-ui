@@ -19,9 +19,12 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, type CSSProperties, getCurrentInstance, onBeforeMount, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, type CSSProperties, getCurrentInstance, onBeforeMount, onMounted, onUnmounted, ref, watch, nextTick } from 'vue'
 import { addUnit, isObj, objToStyle, uuid, getSystemInfo } from '../common/util'
 import { circleProps } from './types'
+// #ifdef MP-WEIXIN
+import { canvas2dAdapter } from '../common/canvasHelper'
+// #endif
 
 function format(rate: number) {
   return Math.min(Math.max(rate, 0), 100)
@@ -104,7 +107,16 @@ onBeforeMount(() => {
 
 onMounted(() => {
   currentValue.value = props.modelValue
+  // #ifdef MP-WEIXIN
+  nextTick(() => {
+    setTimeout(() => {
+      drawCircle(currentValue.value)
+    }, 50)
+  })
+  // #endif
+  // #ifndef MP-WEIXIN
   drawCircle(currentValue.value)
+  // #endif
 })
 
 onUnmounted(() => {
@@ -116,35 +128,59 @@ function getContext() {
     if (ctx) {
       return resolve(ctx)
     }
+    // #ifndef MP-WEIXIN
     ctx = uni.createCanvasContext(canvasId.value, proxy)
     resolve(ctx)
+    // #endif
+    // #ifdef MP-WEIXIN
+    let resolved = false
+    const queryCanvas = () => {
+      if (resolved) return
+      uni
+        .createSelectorQuery()
+        .in(proxy)
+        .select(`#${canvasId.value}`)
+        .node((res) => {
+          if (resolved) return
+          if (res && res.node) {
+            resolved = true
+            const canvas = res.node
+            ctx = canvas2dAdapter(canvas.getContext('2d') as CanvasRenderingContext2D)
+            canvas.width = props.size * pixelRatio.value
+            canvas.height = props.size * pixelRatio.value
+            ctx.scale(pixelRatio.value, pixelRatio.value)
+            resolve(ctx)
+          }
+        })
+        .exec()
+    }
+    queryCanvas()
+    setTimeout(queryCanvas, 50)
+    setTimeout(queryCanvas, 150)
+    // #endif
   })
 }
 
-function presetCanvas(context: any, strokeStyle: string | CanvasGradient, beginAngle: number, endAngle: number, fill?: string) {
-  let width = sWidth.value
+function presetCanvas(context: any, strokeStyle: string | CanvasGradient, beginAngle: number, endAngle: number) {
   const position = canvasSize.value / 2
-  if (!fill) {
-    width = width / 2
-  }
-  const radius = position - width / 2
+  const strokeWidth = sWidth.value
+  
+  // 轨道圆的半径（中心到轨道中线）
+  const radius = position - strokeWidth / 2
+  
+  // 绘制圆弧轨道
   context.strokeStyle = strokeStyle
   context.setStrokeStyle(strokeStyle)
-  context.setLineWidth(width)
+  context.setLineWidth(strokeWidth / 2)
   context.setLineCap(props.strokeLinecap)
 
   context.beginPath()
   context.arc(position, position, radius, beginAngle, endAngle, !props.clockwise)
   context.stroke()
-  if (fill) {
-    context.setLineWidth(width)
-    context.setFillStyle(fill)
-    context.fill()
-  }
 }
 
 function renderLayerCircle(context: UniApp.CanvasContext) {
-  presetCanvas(context, props.layerColor, 0, PERIMETER, props.fill)
+  presetCanvas(context, props.layerColor, 0, PERIMETER)
 }
 
 function renderHoverCircle(context: UniApp.CanvasContext, formatValue: number) {

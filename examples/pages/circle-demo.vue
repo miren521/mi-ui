@@ -145,19 +145,6 @@
         </view>
       </demo-block>
 
-      <!-- 填充 -->
-      <demo-block title="填充" desc="设置 fill 属性填充圆环内部区域">
-        <view class="m-circle-demo__row">
-          <m-circle :modelValue="30" fill="#e6f7ff" />
-        </view>
-        <view class="m-circle-demo__row">
-          <m-circle :modelValue="50" fill="#f6ffed" />
-        </view>
-        <view class="m-circle-demo__row">
-          <m-circle :modelValue="70" fill="#fff7e6" />
-        </view>
-      </demo-block>
-
       <!-- 动画速度 -->
       <demo-block title="动画速度" desc="设置 speed 属性调整动画速度，值越大动画越快">
         <view class="m-circle-demo__row">
@@ -239,7 +226,6 @@ function resetSpeedAnimation() {
   &__slot-label {
     font-size: 12px;
     color: #999;
-    margin-top: 4px;
   }
 }
 </style>

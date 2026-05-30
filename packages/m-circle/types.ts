@@ -37,11 +37,6 @@ export const circleProps = {
    */
   layerColor: makeStringProp('#F2F3F5'),
   /**
-   * 填充颜色
-   * 类型: string
-   */
-  fill: String,
-  /**
    * 动画速度（单位为 rate/s）
    * 类型: number
    * 默认值: 50
