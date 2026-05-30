@@ -17,7 +17,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, type CSSProperties } from 'vue'
+import { computed, type CSSProperties, onMounted } from 'vue'
 
 interface IconProps {
   name: string
@@ -38,6 +38,10 @@ const props = withDefaults(defineProps<IconProps>(), {
 
 const emit = defineEmits(['click', 'touch'])
 
+// #ifndef H5
+let fontLoaded = false
+// #endif
+
 function isDef(value: any): boolean {
   return value !== undefined && value !== null
 }
@@ -53,6 +57,31 @@ function addUnit(value: string | number): string {
 function objToStyle(style: CSSProperties): string {
   return Object.keys(style).map(key => `${key}: ${style[key]}`).join('; ')
 }
+
+// #ifndef H5
+function loadFont() {
+  if (fontLoaded) return
+  fontLoaded = true
+  
+  // #ifdef MP-WEIXIN
+  uni.loadFontFace({
+    family: 'm-icons',
+    source: 'url("/static/fonts/m-icons.ttf")',
+    global: true,
+    success: () => console.log('m-icons font loaded'),
+    fail: (error) => console.error('m-icons font load failed', error)
+  })
+  // #endif
+  
+  // #ifdef APP-PLUS
+  uni.loadFontFace({
+    family: 'm-icons',
+    source: 'url("/static/fonts/m-icons.ttf")',
+    global: true
+  })
+  // #endif
+}
+// #endif
 
 const isImage = computed(() => {
   return isDef(props.name) && props.name.includes('/')
@@ -95,6 +124,12 @@ const cssIconStyle = computed(() => {
 function handleClick(event: any) {
   emit('click', event)
 }
+
+onMounted(() => {
+  // #ifndef H5
+  loadFont()
+  // #endif
+})
 </script>
 
 <style lang="scss" scoped>
