@@ -111,15 +111,18 @@ $m-button-info-plain-disabled-border-color: #c8c8c8;
 // 按钮图标
 .m-button__icon {
 	flex-shrink: 0;
-
-	& + .m-button__text {
-		margin-left: $m-button-icon-spacing;
-	}
 }
 
 // 按钮文字
 .m-button__text {
 	white-space: nowrap;
+}
+
+// 有图标的按钮，文字需要间距
+.m-button--has-icon {
+	.m-button__text {
+		margin-left: $m-button-icon-spacing;
+	}
 }
 
 // 类型样式

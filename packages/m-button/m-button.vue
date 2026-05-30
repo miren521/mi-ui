@@ -10,6 +10,7 @@
       { 'm-button--disabled': disabled },
       { 'm-button--loading': loading },
       { 'm-button--icon': isIcon },
+      { 'm-button--has-icon': hasIcon },
       props.customClass
     ]"
     :style="props.customStyle"
@@ -101,6 +102,10 @@ const displayIconSize = computed(() => {
 
 const isIcon = computed(() => {
   return !slots.default && !props.text && !!(props.icon || props.cssIcon)
+})
+
+const hasIcon = computed(() => {
+  return !!(props.icon || props.cssIcon)
 })
 
 function handleClick(event: MouseEvent) {
