@@ -52,6 +52,18 @@ $m-action-sheet-loading-size: var(--m-action-sheet-loading-size, 20px) !default;
   background: $m-action-sheet-bg;
   border-radius: $m-action-sheet-radius $m-action-sheet-radius 0 0;
   overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: constant(safe-area-inset-bottom);
+    height: env(safe-area-inset-bottom);
+    background: $m-action-sheet-bg;
+    pointer-events: none;
+  }
 
   @include e(actions) {
     max-height: 50vh;
