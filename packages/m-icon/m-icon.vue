@@ -58,33 +58,6 @@ function objToStyle(style: CSSProperties): string {
   return Object.keys(style).map(key => `${key}: ${style[key]}`).join('; ')
 }
 
-// #ifndef H5
-function loadFont() {
-  if (fontLoaded) return
-  fontLoaded = true
-  
-  // #ifdef MP-WEIXIN
-  uni.loadFontFace({
-    family: 'm-icons',
-    source: 'url("/static/fonts/m-icons.ttf")',
-    global: true,
-    success: () => console.log('m-icons font loaded'),
-    // fail: (error) => console.error('m-icons font load failed', error)
-  })
-  // #endif
-  
-  // #ifdef APP-PLUS
-  uni.loadFontFace({
-    family: 'm-icons',
-    source: 'url("/static/fonts/m-icons.ttf")',
-    global: true,
-    success: () => console.log('m-icons font loaded'),
-    // fail: (error) => console.error('m-icons font load failed', error)
-  })
-  // #endif
-}
-// #endif
-
 const isImage = computed(() => {
   return isDef(props.name) && props.name.includes('/')
 })
@@ -127,11 +100,6 @@ function handleClick(event: any) {
   emit('click', event)
 }
 
-onMounted(() => {
-  // #ifndef H5
-  loadFont()
-  // #endif
-})
 </script>
 
 <style lang="scss" scoped>
