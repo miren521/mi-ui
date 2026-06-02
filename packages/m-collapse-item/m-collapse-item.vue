@@ -98,7 +98,22 @@ async function updateExpand(useBeforeExpand: boolean = false) {
   if (useBeforeExpand) {
     await handleBeforeExpand()
   }
-  initRect()
+  // 如果是收回操作（当前展开但即将收起），需要先获取当前高度
+  if (expanded.value && !isSelected.value) {
+    const query = uni.createSelectorQuery().in(proxy)
+    query.select(`#${collapseId.value}`).boundingClientRect()
+    query.exec((res) => {
+      if (res && res[0]) {
+        height.value = res[0].height
+        // 下一帧执行收回动画
+        setTimeout(() => {
+          expanded.value = false
+        }, 0)
+      }
+    })
+  } else {
+    initRect()
+  }
 }
 
 /**
