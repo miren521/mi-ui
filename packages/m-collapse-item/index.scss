@@ -54,15 +54,18 @@
   &.is-retract {
     transform: rotate(-180deg);
   }
-  
-  // 加载图标旋转动画
-  .m-icon-loading {
-    animation: spin 1s linear infinite;
-  }
+}
+
+// 加载图标容器
+.m-collapse-item__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: m-collapse-spin 1s linear infinite;
 }
 
 // 旋转动画
-@keyframes spin {
+@keyframes m-collapse-spin {
   from {
     transform: rotate(0deg);
   }

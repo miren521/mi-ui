@@ -8,7 +8,9 @@
         <text class="m-collapse-item__title">{{ title }}</text>
         <view :class="`m-collapse-item__arrow ${expanded ? 'is-retract' : ''}`">
           <m-icon v-if="!loading" name="down" size="20" color="#4e5369" />
-          <m-icon v-else name="sync" size="20" color="#4e5369" class="m-icon-loading" />
+          <view v-else class="m-collapse-item__loading">
+            <m-icon name="sync" size="20" color="#4e5369" />
+          </view>
         </view>
       </slot>
     </view>
