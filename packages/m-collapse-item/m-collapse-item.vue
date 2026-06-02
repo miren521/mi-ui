@@ -32,10 +32,14 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { computed, ref, watch, onMounted, inject, getCurrentInstance } from 'vue'
+import { computed, ref, watch, onMounted, getCurrentInstance } from 'vue'
 import { collapseItemProps, type CollapseItemExpose } from './types'
 import { COLLAPSE_KEY, type CollapseProvide } from '../m-collapse/types'
+import { useParent } from '../composables/useParent'
 import MIcon from '../m-icon/m-icon.vue'
+
+// 获取当前组件实例
+const { proxy } = getCurrentInstance() as any
 
 // 生成唯一ID
 const collapseId = ref<string>(`collapseId_${Date.now()}_${Math.floor(Math.random() * 1000)}`)
@@ -43,8 +47,8 @@ const collapseId = ref<string>(`collapseId_${Date.now()}_${Math.floor(Math.rando
 // 接收属性
 const props = defineProps(collapseItemProps)
 
-// 注入父组件提供的方法和属性
-const collapse = inject<CollapseProvide | undefined>(COLLAPSE_KEY)
+// 使用 useParent 注入父组件提供的方法和属性
+const { parent: collapse } = useParent<CollapseProvide>(COLLAPSE_KEY)
 
 // 响应式数据
 const height = ref<string | number>('')
@@ -54,7 +58,7 @@ const loading = ref<boolean>(false)
 
 // 计算是否选中
 const isSelected = computed(() => {
-  const modelValue = collapse?.props.modelValue || []
+  const modelValue = collapse.value?.props.modelValue || []
   const { name } = props
   return typeof modelValue === 'string' ? modelValue === name : (modelValue as string[]).includes(name)
 })
@@ -101,7 +105,7 @@ async function updateExpand(useBeforeExpand: boolean = false) {
  * 初始化内容高度
  */
 function initRect() {
-  const query = uni.createSelectorQuery().in(getCurrentInstance()?.proxy as any)
+  const query = uni.createSelectorQuery().in(proxy)
   query.select(`#${collapseId.value}`).boundingClientRect()
   query.exec((res) => {
     if (res && res[0]) {
@@ -135,7 +139,7 @@ function handleTransitionEnd() {
     try {
       await updateExpand(true) // 点击时触发展开前回调
       const { name } = props
-      collapse?.toggle(name, !isSelected.value)
+      collapse.value?.toggle(name, !isSelected.value)
     } catch (error) {
       // 回调被拒绝时，不执行展开操作
       loading.value = false

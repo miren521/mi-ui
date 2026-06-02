@@ -16,8 +16,10 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { ref, watch, provide } from 'vue'
+import { ref, watch } from 'vue'
 import { collapseProps, type CollapseExpose, type CollapseProvide, COLLAPSE_KEY } from './types'
+import { useChildren } from '../composables/useChildren'
+import type { CollapseItemInstance } from '../m-collapse-item/types'
 
 const props = defineProps(collapseProps)
 const emit = defineEmits<{
@@ -25,16 +27,14 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: string | string[]): void
 }>()
 
-// 存储子组件实例
-const children = ref<any[]>([])
+// 使用 useChildren 管理子组件
+const { children, linkChildren } = useChildren<CollapseItemInstance, CollapseProvide>(COLLAPSE_KEY)
 
 // 提供给子组件的方法和属性
-const provideValue: CollapseProvide = {
+linkChildren({
   props,
   toggle
-}
-
-provide(COLLAPSE_KEY, provideValue)
+})
 
 // 监听 modelValue 变化，验证类型
 watch(
