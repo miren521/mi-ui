@@ -1,5 +1,5 @@
 <template>
-  <view :class="`m-checkbox-group ${customClass}`" :style="customStyle">
+  <view :class="`m-checkbox-group ${customClass} ${direction === 'horizontal' ? 'm-checkbox-group--horizontal' : ''}`" :style="customStyle">
     <slot />
   </view>
 </template>

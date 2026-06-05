@@ -5,4 +5,9 @@
   display: flex;
   flex-direction: column;
   gap: 12rpx;
+
+  @include m(horizontal) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
