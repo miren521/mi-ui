@@ -47,7 +47,7 @@ watch(
 watch(
   () => props.type,
   (newValue) => {
-    const type = ['circle', 'square', 'button', 'dot']
+    const type = ['circle', 'square', 'dot']
     if (type.indexOf(newValue) === -1) console.error(`type must be one of ${type.toString()}`)
   },
   { deep: true, immediate: true }

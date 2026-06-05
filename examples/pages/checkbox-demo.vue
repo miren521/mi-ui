@@ -56,15 +56,6 @@
 				</view>
 			</demo-block>
 
-			<!-- 按钮模式 -->
-			<demo-block title="按钮模式" desc="设置 type='button' 使用按钮样式的复选框">
-				<m-checkbox-group v-model="buttonValue" type="button" direction="horizontal" class="demo-checkbox-group">
-					<m-checkbox name="btn1">选项一</m-checkbox>
-					<m-checkbox name="btn2">选项二</m-checkbox>
-					<m-checkbox name="btn3">选项三</m-checkbox>
-				</m-checkbox-group>
-			</demo-block>
-
 			<!-- 文字位置 -->
 			<demo-block title="文字位置" desc="设置 placement='right' 将文字放在图标右侧">
 				<view class="demo-checkbox-row">
@@ -174,7 +165,6 @@ const horizontalValue = ref([])
 const shapeValue1 = ref(true)
 const shapeValue2 = ref(false)
 const shapeValue3 = ref(false)
-const buttonValue = ref(['btn1'])
 const placementValue = ref(true)
 const disabledValue1 = ref(false)
 const disabledValue2 = ref(true)

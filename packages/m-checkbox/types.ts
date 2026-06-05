@@ -1,7 +1,7 @@
 import type { ComponentPublicInstance, ExtractPropTypes, PropType } from 'vue'
 import { baseProps, makeBooleanProp, makeStringProp } from '../common/props'
 
-export type CheckboxType = 'circle' | 'square' | 'button' | 'dot'
+export type CheckboxType = 'circle' | 'square' | 'dot'
 export type CheckboxPlacement = 'left' | 'right'
 export type CheckboxDirection = 'horizontal' | 'vertical'
 

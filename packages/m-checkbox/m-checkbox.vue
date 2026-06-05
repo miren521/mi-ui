@@ -1,8 +1,8 @@
 <template>
   <view
-    :class="`m-checkbox m-checkbox--${placementValue} ${isButton ? 'is-button' : 'm-checkbox--' + directionValue} ${
+    :class="`m-checkbox m-checkbox--${placementValue} m-checkbox--${directionValue} ${
       isChecked ? 'is-checked' : ''
-    } ${indeterminate ? 'is-indeterminate' : ''} ${disabledValue ? 'is-disabled' : ''} ${customClass}`"
+    } ${indeterminate ? 'is-indeterminate' : ''} ${disabledValue ? 'is-disabled' : ''} ${readonlyValue ? 'is-readonly' : ''} ${customClass}`"
     :style="customStyle"
     @click="toggle"
   >
@@ -10,14 +10,7 @@
       <slot></slot>
     </view>
 
-    <template v-if="isButton">
-      <slot name="icon" :is-checked="isChecked">
-        <view v-if="isChecked" class="m-checkbox__shape">
-          <m-icon custom-class="m-checkbox__icon" :custom-style="iconStyle" :name="iconValue"></m-icon>
-        </view>
-      </slot>
-    </template>
-    <view v-else class="m-checkbox__shape">
+    <view class="m-checkbox__shape">
       <slot name="icon" :is-checked="isChecked">
         <m-icon custom-class="m-checkbox__icon" :custom-style="iconStyle" :name="iconValue"></m-icon>
       </slot>
@@ -65,12 +58,8 @@ const typeValue = computed(() => {
   return props.type || getPropByPath(checkboxGroup.value, 'props.type') || 'circle'
 })
 
-const isButton = computed(() => {
-  return typeValue.value === 'button'
-})
-
 const iconValue = computed(() => {
-  if (props.indeterminate && !isButton.value) {
+  if (props.indeterminate) {
     return 'minus-circle-fill'
   }
   let icon = ''
@@ -83,9 +72,6 @@ const iconValue = computed(() => {
       break
     case 'dot':
       icon = isChecked.value ? 'check-circle-radio-fill' : 'uncheck-circle'
-      break
-    case 'button':
-      icon = isChecked.value ? 'check' : ''
       break
   }
   return icon
@@ -137,7 +123,6 @@ const placementValue = computed<CheckboxPlacement>(() => {
 })
 
 const iconStyle = computed(() => {
-  if (isButton.value) return ''
   if ((isChecked.value || props.indeterminate) && checkedColorValue.value) {
     return `color: ${checkedColorValue.value}`
   }
@@ -159,7 +144,7 @@ watch(
 watch(
   () => props.type,
   (newValue) => {
-    const type = ['circle', 'square', 'button', 'dot']
+    const type = ['circle', 'square', 'dot']
     if (isDef(newValue) && type.indexOf(newValue) === -1) console.error(`type must be one of ${type.toString()}`)
   }
 )
