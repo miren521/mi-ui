@@ -5,446 +5,86 @@
       "style": {
         "navigationBarTitleText": "Mini-UI"
       }
-    },
-    {
-      "path": "examples/pages/icon-demo",
-      "style": {
-        "navigationBarTitleText": "Icon 图标"
-      }
-    },
-    {
-      "path": "examples/pages/button-demo",
-      "style": {
-        "navigationBarTitleText": "Button 按钮"
-      }
-    },
-    {
-      "path": "examples/pages/layout-demo",
-      "style": {
-        "navigationBarTitleText": "Layout 布局"
-      }
-    },
-    {
-      "path": "examples/pages/popup-demo",
-      "style": {
-        "navigationBarTitleText": "Popup 弹出层"
-      }
-    },
-    {
-      "path": "examples/pages/transition-demo",
-      "style": {
-        "navigationBarTitleText": "Transition 过渡动画"
-      }
-    },
-    {
-      "path": "examples/pages/text-demo",
-      "style": {
-        "navigationBarTitleText": "Text 文本"
-      }
-    },
-    {
-      "path": "examples/pages/cell-demo",
-      "style": {
-        "navigationBarTitleText": "Cell 单元格"
-      }
-    },
-    {
-      "path": "examples/pages/tag-demo",
-      "style": {
-        "navigationBarTitleText": "Tag 标签"
-      }
-    },
-    {
-      "path": "examples/pages/badge-demo",
-      "style": {
-        "navigationBarTitleText": "Badge 徽标"
-      }
-    },
-    {
-      "path": "examples/pages/avatar-demo",
-      "style": {
-        "navigationBarTitleText": "Avatar 头像"
-      }
-    },
-    {
-      "path": "examples/pages/img-demo",
-      "style": {
-        "navigationBarTitleText": "Img 图片"
-      }
-    },
-    {
-      "path": "examples/pages/divider-demo",
-      "style": {
-        "navigationBarTitleText": "Divider 分割线"
-      }
-    },
-    {
-      "path": "examples/pages/card-demo",
-      "style": {
-        "navigationBarTitleText": "Card 卡片"
-      }
-    },
-    {
-      "path": "examples/pages/grid-demo",
-      "style": {
-        "navigationBarTitleText": "Grid 宫格"
-      }
-    },
-    {
-      "path": "examples/pages/collapse-demo",
-      "style": {
-        "navigationBarTitleText": "Collapse 折叠面板"
-      }
-    },
-    {
-      "path": "examples/pages/steps-demo",
-      "style": {
-        "navigationBarTitleText": "Steps 步骤条"
-      }
-    },
-    {
-      "path": "examples/pages/sticky-demo",
-      "style": {
-        "navigationBarTitleText": "Sticky 粘性布局"
-      }
-    },
-    {
-      "path": "examples/pages/skeleton-demo",
-      "style": {
-        "navigationBarTitleText": "Skeleton 骨架屏"
-      }
-    },
-    {
-      "path": "examples/pages/loading-demo",
-      "style": {
-        "navigationBarTitleText": "Loading 加载指示器"
-      }
-    },
-    {
-      "path": "examples/pages/loadmore-demo",
-      "style": {
-        "navigationBarTitleText": "Loadmore 加载更多"
-      }
-    },
-    {
-      "path": "examples/pages/image-preview-demo",
-      "style": {
-        "navigationBarTitleText": "ImagePreview 图片预览"
-      }
-    },
-    {
-      "path": "examples/pages/video-preview-demo",
-      "style": {
-        "navigationBarTitleText": "VideoPreview 视频预览"
-      }
-    },
-    {
-      "path": "examples/pages/img-cropper-demo",
-      "style": {
-        "navigationBarTitleText": "ImgCropper 图片裁剪"
-      }
-    },
-    {
-      "path": "examples/pages/swiper-demo",
-      "style": {
-        "navigationBarTitleText": "Swiper 轮播"
-      }
-    },
-    {
-      "path": "examples/pages/table-demo",
-      "style": {
-        "navigationBarTitleText": "Table 表格"
-      }
-    },
-    {
-      "path": "examples/pages/watermark-demo",
-      "style": {
-        "navigationBarTitleText": "Watermark 水印"
-      }
-    },
-    {
-      "path": "examples/pages/curtain-demo",
-      "style": {
-        "navigationBarTitleText": "Curtain 幕帘"
-      }
-    },
-    {
-      "path": "examples/pages/form-demo",
-      "style": {
-        "navigationBarTitleText": "Form 表单"
-      }
-    },
-    {
-      "path": "examples/pages/input-demo",
-      "style": {
-        "navigationBarTitleText": "Input 输入框"
-      }
-    },
-    {
-      "path": "examples/pages/input-number-demo",
-      "style": {
-        "navigationBarTitleText": "InputNumber 计数器"
-      }
-    },
-    {
-      "path": "examples/pages/checkbox-demo",
-      "style": {
-        "navigationBarTitleText": "Checkbox 复选框"
-      }
-    },
-    {
-      "path": "examples/pages/radio-demo",
-      "style": {
-        "navigationBarTitleText": "Radio 单选框"
-      }
-    },
-    {
-      "path": "examples/pages/switch-demo",
-      "style": {
-        "navigationBarTitleText": "Switch 开关"
-      }
-    },
-    {
-      "path": "examples/pages/rate-demo",
-      "style": {
-        "navigationBarTitleText": "Rate 评分"
-      }
-    },
-    {
-      "path": "examples/pages/slider-demo",
-      "style": {
-        "navigationBarTitleText": "Slider 滑块"
-      }
-    },
-    {
-      "path": "examples/pages/picker-demo",
-      "style": {
-        "navigationBarTitleText": "Picker 选择器"
-      }
-    },
-    {
-      "path": "examples/pages/textarea-demo",
-      "style": {
-        "navigationBarTitleText": "Textarea 文本域"
-      }
-    },
-    {
-      "path": "examples/pages/overlay-demo",
-      "style": {
-        "navigationBarTitleText": "Overlay 遮罩层"
-      }
-    },
-    {
-      "path": "examples/pages/toast-demo",
-      "style": {
-        "navigationBarTitleText": "Toast 轻提示"
-      }
-    },
-    {
-      "path": "examples/pages/dialog-demo",
-      "style": {
-        "navigationBarTitleText": "Dialog 对话框"
-      }
-    },
-    {
-      "path": "examples/pages/action-sheet-demo",
-      "style": {
-        "navigationBarTitleText": "ActionSheet 上拉菜单"
-      }
-    },
-
-    {
-      "path": "examples/pages/popover-demo",
-      "style": {
-        "navigationBarTitleText": "Popover 气泡卡片"
-      }
-    },
-    {
-      "path": "examples/pages/progress-demo",
-      "style": {
-        "navigationBarTitleText": "Progress 进度条"
-      }
-    },
-    {
-      "path": "examples/pages/circle-demo",
-      "style": {
-        "navigationBarTitleText": "Circle 环形进度条"
-      }
-    },
-    {
-      "path": "examples/pages/notify-demo",
-      "style": {
-        "navigationBarTitleText": "Notify 通知"
-      }
-    },
-    {
-      "path": "examples/pages/notice-bar-demo",
-      "style": {
-        "navigationBarTitleText": "NoticeBar 通知栏"
-      }
-    },
-    {
-      "path": "examples/pages/swipe-action-demo",
-      "style": {
-        "navigationBarTitleText": "SwipeAction 滑动操作"
-      }
-    },
-    {
-      "path": "examples/pages/sort-button-demo",
-      "style": {
-        "navigationBarTitleText": "SortButton 排序按钮"
-      }
-    },
-    {
-      "path": "examples/pages/empty-demo",
-      "style": {
-        "navigationBarTitleText": "Empty 空状态"
-      }
-    },
-    {
-      "path": "examples/pages/count-down-demo",
-      "style": {
-        "navigationBarTitleText": "CountDown 倒计时"
-      }
-    },
-    {
-      "path": "examples/pages/count-to-demo",
-      "style": {
-        "navigationBarTitleText": "CountTo 数字滚动"
-      }
-    },
-    {
-      "path": "examples/pages/search-demo",
-      "style": {
-        "navigationBarTitleText": "Search 搜索框"
-      }
-    },
-    {
-      "path": "examples/pages/select-picker-demo",
-      "style": {
-        "navigationBarTitleText": "SelectPicker 选择器"
-      }
-    },
-    {
-      "path": "examples/pages/cascader-demo",
-      "style": {
-        "navigationBarTitleText": "Cascader 级联选择器"
-      }
-    },
-    {
-      "path": "examples/pages/calendar-demo",
-      "style": {
-        "navigationBarTitleText": "Calendar 日历"
-      }
-    },
-    {
-      "path": "examples/pages/calendar-view-demo",
-      "style": {
-        "navigationBarTitleText": "CalendarView 日历视图"
-      }
-    },
-    {
-      "path": "examples/pages/datetime-picker-demo",
-      "style": {
-        "navigationBarTitleText": "DatetimePicker 日期时间选择器"
-      }
-    },
-    {
-      "path": "examples/pages/datetime-picker-view-demo",
-      "style": {
-        "navigationBarTitleText": "DatetimePickerView 日期时间选择器视图"
-      }
-    },
-    {
-      "path": "examples/pages/tabs-demo",
-      "style": {
-        "navigationBarTitleText": "Tabs 标签页"
-      }
-    },
-    {
-      "path": "examples/pages/upload-demo",
-      "style": {
-        "navigationBarTitleText": "Upload 上传"
-      }
-    },
-    {
-      "path": "examples/pages/signature-demo",
-      "style": {
-        "navigationBarTitleText": "Signature 签名"
-      }
-    },
-    {
-      "path": "examples/pages/slide-verify-demo",
-      "style": {
-        "navigationBarTitleText": "SlideVerify 滑块验证"
-      }
-    },
-    {
-      "path": "examples/pages/keyboard-demo",
-      "style": {
-        "navigationBarTitleText": "Keyboard 键盘"
-      }
-    },
-    {
-      "path": "examples/pages/navbar-demo",
-      "style": {
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "Navbar 导航栏"
-      }
-    },
-    {
-      "path": "examples/pages/tabbar-demo",
-      "style": {
-        "navigationBarTitleText": "Tabbar 标签栏"
-      }
-    },
-    {
-      "path": "examples/pages/segmented-demo",
-      "style": {
-        "navigationBarTitleText": "Segmented 分段器"
-      }
-    },
-    {
-      "path": "examples/pages/sidebar-demo",
-      "style": {
-        "navigationBarTitleText": "Sidebar 侧边栏"
-      }
-    },
-    {
-      "path": "examples/pages/sidebar-anchor-demo",
-      "style": {
-        "navigationBarTitleText": "Sidebar 锚点定位"
-      }
-    },
-    {
-      "path": "examples/pages/sidebar-scroll-demo",
-      "style": {
-        "navigationBarTitleText": "Sidebar 列表滑动"
-      }
-    },
-    {
-      "path": "examples/pages/pagination-demo",
-      "style": {
-        "navigationBarTitleText": "Pagination 分页"
-      }
-    },
-    {
-      "path": "examples/pages/index-bar-demo",
-      "style": {
-        "navigationBarTitleText": "IndexBar 索引栏"
-      }
-    },
-    {
-      "path": "examples/pages/backtop-demo",
-      "style": {
-        "navigationBarTitleText": "Backtop 返回顶部"
-      }
-    },
-    {
-      "path": "examples/pages/fab-demo",
-      "style": {
-        "navigationBarTitleText": "Fab 浮动按钮"
-      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "examples",
+      "pages": [
+        { "path": "pages/icon-demo", "style": { "navigationBarTitleText": "Icon 图标" } },
+        { "path": "pages/button-demo", "style": { "navigationBarTitleText": "Button 按钮" } },
+        { "path": "pages/layout-demo", "style": { "navigationBarTitleText": "Layout 布局" } },
+        { "path": "pages/popup-demo", "style": { "navigationBarTitleText": "Popup 弹出层" } },
+        { "path": "pages/transition-demo", "style": { "navigationBarTitleText": "Transition 过渡动画" } },
+        { "path": "pages/text-demo", "style": { "navigationBarTitleText": "Text 文本" } },
+        { "path": "pages/cell-demo", "style": { "navigationBarTitleText": "Cell 单元格" } },
+        { "path": "pages/tag-demo", "style": { "navigationBarTitleText": "Tag 标签" } },
+        { "path": "pages/badge-demo", "style": { "navigationBarTitleText": "Badge 徽标" } },
+        { "path": "pages/avatar-demo", "style": { "navigationBarTitleText": "Avatar 头像" } },
+        { "path": "pages/img-demo", "style": { "navigationBarTitleText": "Img 图片" } },
+        { "path": "pages/divider-demo", "style": { "navigationBarTitleText": "Divider 分割线" } },
+        { "path": "pages/card-demo", "style": { "navigationBarTitleText": "Card 卡片" } },
+        { "path": "pages/grid-demo", "style": { "navigationBarTitleText": "Grid 宫格" } },
+        { "path": "pages/collapse-demo", "style": { "navigationBarTitleText": "Collapse 折叠面板" } },
+        { "path": "pages/steps-demo", "style": { "navigationBarTitleText": "Steps 步骤条" } },
+        { "path": "pages/sticky-demo", "style": { "navigationBarTitleText": "Sticky 粘性布局" } },
+        { "path": "pages/skeleton-demo", "style": { "navigationBarTitleText": "Skeleton 骨架屏" } },
+        { "path": "pages/loading-demo", "style": { "navigationBarTitleText": "Loading 加载指示器" } },
+        { "path": "pages/loadmore-demo", "style": { "navigationBarTitleText": "Loadmore 加载更多" } },
+        { "path": "pages/image-preview-demo", "style": { "navigationBarTitleText": "ImagePreview 图片预览" } },
+        { "path": "pages/video-preview-demo", "style": { "navigationBarTitleText": "VideoPreview 视频预览" } },
+        { "path": "pages/img-cropper-demo", "style": { "navigationBarTitleText": "ImgCropper 图片裁剪" } },
+        { "path": "pages/swiper-demo", "style": { "navigationBarTitleText": "Swiper 轮播" } },
+        { "path": "pages/table-demo", "style": { "navigationBarTitleText": "Table 表格" } },
+        { "path": "pages/watermark-demo", "style": { "navigationBarTitleText": "Watermark 水印" } },
+        { "path": "pages/curtain-demo", "style": { "navigationBarTitleText": "Curtain 幕帘" } },
+        { "path": "pages/form-demo", "style": { "navigationBarTitleText": "Form 表单" } },
+        { "path": "pages/input-demo", "style": { "navigationBarTitleText": "Input 输入框" } },
+        { "path": "pages/input-number-demo", "style": { "navigationBarTitleText": "InputNumber 计数器" } },
+        { "path": "pages/checkbox-demo", "style": { "navigationBarTitleText": "Checkbox 复选框" } },
+        { "path": "pages/radio-demo", "style": { "navigationBarTitleText": "Radio 单选框" } },
+        { "path": "pages/switch-demo", "style": { "navigationBarTitleText": "Switch 开关" } },
+        { "path": "pages/rate-demo", "style": { "navigationBarTitleText": "Rate 评分" } },
+        { "path": "pages/slider-demo", "style": { "navigationBarTitleText": "Slider 滑块" } },
+        { "path": "pages/picker-demo", "style": { "navigationBarTitleText": "Picker 选择器" } },
+        { "path": "pages/textarea-demo", "style": { "navigationBarTitleText": "Textarea 文本域" } },
+        { "path": "pages/overlay-demo", "style": { "navigationBarTitleText": "Overlay 遮罩层" } },
+        { "path": "pages/toast-demo", "style": { "navigationBarTitleText": "Toast 轻提示" } },
+        { "path": "pages/dialog-demo", "style": { "navigationBarTitleText": "Dialog 对话框" } },
+        { "path": "pages/action-sheet-demo", "style": { "navigationBarTitleText": "ActionSheet 上拉菜单" } },
+        { "path": "pages/popover-demo", "style": { "navigationBarTitleText": "Popover 气泡卡片" } },
+        { "path": "pages/progress-demo", "style": { "navigationBarTitleText": "Progress 进度条" } },
+        { "path": "pages/circle-demo", "style": { "navigationBarTitleText": "Circle 环形进度条" } },
+        { "path": "pages/notify-demo", "style": { "navigationBarTitleText": "Notify 通知" } },
+        { "path": "pages/notice-bar-demo", "style": { "navigationBarTitleText": "NoticeBar 通知栏" } },
+        { "path": "pages/swipe-action-demo", "style": { "navigationBarTitleText": "SwipeAction 滑动操作" } },
+        { "path": "pages/sort-button-demo", "style": { "navigationBarTitleText": "SortButton 排序按钮" } },
+        { "path": "pages/empty-demo", "style": { "navigationBarTitleText": "Empty 空状态" } },
+        { "path": "pages/count-down-demo", "style": { "navigationBarTitleText": "CountDown 倒计时" } },
+        { "path": "pages/count-to-demo", "style": { "navigationBarTitleText": "CountTo 数字滚动" } },
+        { "path": "pages/search-demo", "style": { "navigationBarTitleText": "Search 搜索框" } },
+        { "path": "pages/select-picker-demo", "style": { "navigationBarTitleText": "SelectPicker 选择器" } },
+        { "path": "pages/cascader-demo", "style": { "navigationBarTitleText": "Cascader 级联选择器" } },
+        { "path": "pages/calendar-demo", "style": { "navigationBarTitleText": "Calendar 日历" } },
+        { "path": "pages/calendar-view-demo", "style": { "navigationBarTitleText": "CalendarView 日历视图" } },
+        { "path": "pages/datetime-picker-demo", "style": { "navigationBarTitleText": "DatetimePicker 日期时间选择器" } },
+        { "path": "pages/datetime-picker-view-demo", "style": { "navigationBarTitleText": "DatetimePickerView 日期时间选择器视图" } },
+        { "path": "pages/tabs-demo", "style": { "navigationBarTitleText": "Tabs 标签页" } },
+        { "path": "pages/upload-demo", "style": { "navigationBarTitleText": "Upload 上传" } },
+        { "path": "pages/signature-demo", "style": { "navigationBarTitleText": "Signature 签名" } },
+        { "path": "pages/slide-verify-demo", "style": { "navigationBarTitleText": "SlideVerify 滑块验证" } },
+        { "path": "pages/keyboard-demo", "style": { "navigationBarTitleText": "Keyboard 键盘" } },
+        { "path": "pages/navbar-demo", "style": { "navigationStyle": "custom", "navigationBarTitleText": "Navbar 导航栏" } },
+        { "path": "pages/tabbar-demo", "style": { "navigationBarTitleText": "Tabbar 标签栏" } },
+        { "path": "pages/segmented-demo", "style": { "navigationBarTitleText": "Segmented 分段器" } },
+        { "path": "pages/sidebar-demo", "style": { "navigationBarTitleText": "Sidebar 侧边栏" } },
+        { "path": "pages/sidebar-anchor-demo", "style": { "navigationBarTitleText": "Sidebar 锚点定位" } },
+        { "path": "pages/sidebar-scroll-demo", "style": { "navigationBarTitleText": "Sidebar 列表滑动" } },
+        { "path": "pages/pagination-demo", "style": { "navigationBarTitleText": "Pagination 分页" } },
+        { "path": "pages/index-bar-demo", "style": { "navigationBarTitleText": "IndexBar 索引栏" } },
+        { "path": "pages/backtop-demo", "style": { "navigationBarTitleText": "Backtop 返回顶部" } },
+        { "path": "pages/fab-demo", "style": { "navigationBarTitleText": "Fab 浮动按钮" } }
+      ]
     }
   ],
   "globalStyle": {
@@ -455,13 +95,12 @@
   },
   "uniIdRouter": {},
   "easycom": {
-      "autoscan": true,
-      "custom": {
-        "^m-radio-group": "@/packages/m-radio-group/m-radio-group.vue",
-        "^m-radio": "@/packages/m-radio/m-radio.vue",
-        "^m-(.*)": "@/packages/m-$1/m-$1.vue",
-        "^wd-(.*)": "@/wot-ui/components/wd-$1/wd-$1.vue"
-      }
+    "autoscan": true,
+    "custom": {
+      "^m-radio-group": "@/packages/m-radio-group/m-radio-group.vue",
+      "^m-radio": "@/packages/m-radio/m-radio.vue",
+      "^m-(.*)": "@/packages/m-$1/m-$1.vue"
+	  // "^wd-(.*)": "@/wot-ui/components/wd-$1/wd-$1.vue"
     }
   }
 }
