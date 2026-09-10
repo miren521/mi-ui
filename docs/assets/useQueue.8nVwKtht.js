@@ -1,1 +1,0 @@
-import"./index-Cuj9N88v.js";let i=[];function o(o){i.push(o)}function s(o){i=i.filter((i=>i.$.uid!==o.$.uid))}function n(o){i.forEach((i=>{i.$.uid!==o.$.uid&&i.$.exposed.close()}))}const t="__QUEUE_KEY__";export{n as c,o as p,t as q,s as r};
