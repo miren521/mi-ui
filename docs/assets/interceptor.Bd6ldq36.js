@@ -1,1 +1,0 @@
-import{y as n}from"./util.VsvRffM3.js";function c(){}function e(e,{args:o=[],done:t,canceled:r,error:a}){if(e){const l=e.apply(null,o);n(l)?l.then((n=>{n?t():r&&r()})).catch(a||c):l?t():r&&r()}else t()}export{e as c};

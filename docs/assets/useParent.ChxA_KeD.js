@@ -1,0 +1,1 @@
+import{ae as n,r as a,x as e,R as r,c as i,M as l}from"./index-DYojPlI5.js";function t(t){const s={parent:n(null),index:a(-1)};if(s.parent.value=e(t,null),s.parent.value){const n=l(),{link:a,unlink:e,internalChildren:t}=s.parent.value;a(n),r((()=>e(n))),s.index=i((()=>t.indexOf(n)))}return s}export{t as u};
